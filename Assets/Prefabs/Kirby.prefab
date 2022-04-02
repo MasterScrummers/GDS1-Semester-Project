@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -190601041
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 1948870930, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,7 +108,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5303249141562105574
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,9 +122,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.48458135}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.41
 --- !u!114 &5609882435369964719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,17 +138,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTimer: 10
-  jumpForce: 0
-  jumpTime: 0
-  jumpTimeCounter: 0
-  bottom: {fileID: 0}
-  radius: 0
+  jumpForce: 5
+  radius: 1
+  speed: 5
   isOnGround: 0
+  stoppedJumping: 1
+  feet: {fileID: 6751642671478662777}
   Ground:
     serializedVersion: 2
-    m_Bits: 0
-  stoppedJumping: 1
-  speed: 5
+    m_Bits: 8
   lightWeapon: {fileID: 0}
   heavyWeapon: {fileID: 0}
   specialWeapon: {fileID: 0}
@@ -176,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7288022222756105365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.395, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 4, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
