@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class AxeKnightEnemy : Enemy
 {
-
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         health = 1;
         type = WeaponBase.Affinity.fire;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        Move();
+        base.Update();
     }
 
     // To be implemented
