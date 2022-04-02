@@ -1,10 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(HealthComponent))]
+[RequireComponent(typeof(HitBoxAdjustor))]
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //InputController
     public float cooldownTimer = 10f; //The cooldown timer
     private float currCooldownTimer; //Current cooldown tick
+
+    private Animator anim; //Kirby's animation
     private Rigidbody2D rb; //Kirby Rigidbody2D
     private Vector2 vel; //Kirby velocity 
 
@@ -24,6 +29,8 @@ public class PlayerInput : MonoBehaviour
     {
         ic = DoStatic.GetGameController().GetComponent<InputController>();
         currCooldownTimer = cooldownTimer;
+
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         vel = rb.velocity;
     }
@@ -46,7 +53,6 @@ public class PlayerInput : MonoBehaviour
         if (ic.axisRawValues["Horizontal"] != 0)
         {
             vel = new Vector2(speed * ic.axisRawValues["Horizontal"], rb.velocity.y);
-
             rb.velocity = vel;
         }
         else
@@ -55,29 +61,25 @@ public class PlayerInput : MonoBehaviour
             rb.velocity = vel;
         }
 
-            
-
-
         if (ic.buttonDowns["Light"] && lightWeapon)
         {
-            lightWeapon.LightAttack();
+            lightWeapon.LightAttack(anim);
         }
 
         if (ic.buttonDowns["Heavy"] && heavyWeapon)
         {
-            heavyWeapon.HeavyAttack();
+            heavyWeapon.HeavyAttack(anim);
         }
 
         if (currCooldownTimer < 0 && ic.buttonDowns["Special"] && specialWeapon)
         {
             currCooldownTimer = cooldownTimer;
-            specialWeapon.SpecialAttack();
+            specialWeapon.SpecialAttack(anim);
         } else
         {
             currCooldownTimer -= Time.deltaTime;
         }
     }
-
 
     void Jump()
     {

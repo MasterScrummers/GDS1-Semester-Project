@@ -1,25 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
-
+[RequireComponent(typeof(HealthComponent))]
+[RequireComponent(typeof(HitBoxAdjustor))]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int health = 1;
     [SerializeField] protected WeaponBase.Affinity type;
 
-    // Start is called before the first frame update
-    protected virtual void Start() {}
+    private HealthComponent health;
 
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        // Can be ch
-        if (health <= 0) {
-            Death();
-        }
+    // Start is called before the first frame update
+    protected virtual void Start() {
+        health = GetComponent<HealthComponent>();
     }
 
     /// <summary>
@@ -48,6 +41,10 @@ public abstract class Enemy : MonoBehaviour
     /// </param>
     protected virtual void TakeDamage(int damage)
     {
-        health -= damage;
+        health.ChangeHealth(-damage);
+        if (health.hp <= 0)
+        {
+            Death();
+        }
     }
 }

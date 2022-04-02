@@ -1,22 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AxeKnightEnemy : Enemy
 {
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        health = 1;
-        type = WeaponBase.Affinity.fire;
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        Move();
-        base.Update();
-    }
+    /// <summary>
+    /// Since WeaponBase.Affinity type is serialised to be adjustable on
+    /// the editor, we can simply set the type on the prefab without
+    /// coding it onto the script. Thereby no need to override start().
+    /// 
+    /// Up to you, if it is not on the editor, we can override start()
+    /// and set it there. What you have right now is fine.
+    /// </summary>
 
     // To be implemented
     protected override void Move()
@@ -32,5 +25,6 @@ public class AxeKnightEnemy : Enemy
     // To be implemented
     protected override void Death()
     {
+        base.Death();
     }
 }

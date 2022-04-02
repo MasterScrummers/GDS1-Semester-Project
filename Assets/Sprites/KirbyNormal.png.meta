@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,12 +66,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -104,15 +104,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KirbyNormal_0
+      name: KirbyIdle_0
       rect:
         serializedVersion: 2
-        x: 215
-        y: 4306
-        width: 35
-        height: 31
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 229
+        y: 4376
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -120,6 +120,48 @@ TextureImporter:
       bones: []
       spriteID: fa6a191c719c145419ca5ab736d1e305
       internalID: 1948870930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbyIdle_1
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 4376
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04078598da04cae45a796b128f3f4f9c
+      internalID: 1080570564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbyIdle_2
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 4376
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c12deb625de0e4abaa0a999ece4e9a
+      internalID: 1660923632
       vertices: []
       indices: 
       edges: []
@@ -135,7 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KirbyNormal_0: 1948870930
+      KirbyIdle_1: 1080570564
+      KirbyIdle_0: 1948870930
+      KirbyIdle_2: 1660923632
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

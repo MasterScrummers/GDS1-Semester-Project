@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,12 +66,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -107,19 +107,187 @@ TextureImporter:
       name: KirbySword_0
       rect:
         serializedVersion: 2
-        x: 258
-        y: 2162
-        width: 38
-        height: 46
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 2, y: 0, z: 0, w: 0}
+        x: 35
+        y: 473
+        width: 35
+        height: 42
+      alignment: 9
+      pivot: {x: 0.99, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: ab591f5280a5c374897907192d0d233e
       internalID: 1334400624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 473
+        width: 42
+        height: 37
+      alignment: 9
+      pivot: {x: 0.71, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7686130142197c446b60ce9e19871477
+      internalID: -1681458192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_2
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 465
+        width: 70
+        height: 41
+      alignment: 9
+      pivot: {x: 0.36386502, y: 0.20065382}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abcc407f3410f34e9dfd68d6c1ed2ee
+      internalID: 1057669473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_3
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 463
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.68, y: 0.2120134}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 953dea64198c1ae49a4933973ab4a478
+      internalID: -893095830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_4
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 464
+        width: 41
+        height: 39
+      alignment: 9
+      pivot: {x: 0.99, y: 0.22980988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac3da8c0faee824bbc2a8df1d2e8f28
+      internalID: 1718870937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 469
+        width: 45
+        height: 32
+      alignment: 9
+      pivot: {x: 0.99, y: 0.12375069}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9cce380b9088d645b58319ca7034fd3
+      internalID: 1473207747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_6
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 470
+        width: 46
+        height: 31
+      alignment: 9
+      pivot: {x: 0.99, y: 0.09677518}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a891b0755445028419e0d8fb13e3b381
+      internalID: -967510221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_7
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 465
+        width: 71
+        height: 41
+      alignment: 9
+      pivot: {x: 0.36, y: 0.19435231}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48352cf7085f7a44b7b6194e0748ed4
+      internalID: -1140565918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbySword_8
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 473
+        width: 35
+        height: 42
+      alignment: 9
+      pivot: {x: 0.99, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1145abed193041645b9ea17fe4fde557
+      internalID: 2084342299
       vertices: []
       indices: 
       edges: []
@@ -135,7 +303,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      KirbySword_3: -893095830
+      KirbySword_5: 1473207747
+      KirbySword_6: -967510221
+      KirbySword_7: -1140565918
+      KirbySword_9: 270496081
+      KirbySword_1: -1681458192
+      KirbySword_4: 1718870937
+      KirbySword_8: 2084342299
       KirbySword_0: 1334400624
+      KirbySword_2: 1057669473
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

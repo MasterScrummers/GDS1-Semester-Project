@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 1659059076503953980}
   - component: {fileID: 5303249141562105574}
   - component: {fileID: 5609882435369964719}
+  - component: {fileID: 6030150210035700542}
+  - component: {fileID: 8419615727981881617}
+  - component: {fileID: 3641926633032191812}
   m_Layer: 0
   m_Name: Kirby
   m_TagString: Player
@@ -122,9 +125,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.48458135}
+  m_Offset: {x: -0.5, y: 0.45833334}
   serializedVersion: 2
-  m_Radius: 0.41
+  m_Radius: 0.42
 --- !u!114 &5609882435369964719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +153,51 @@ MonoBehaviour:
   lightWeapon: {fileID: 0}
   heavyWeapon: {fileID: 0}
   specialWeapon: {fileID: 0}
+--- !u!95 &6030150210035700542
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415565267665757589}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8419615727981881617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415565267665757589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMaxHealth: 2
+--- !u!114 &3641926633032191812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415565267665757589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7288022222756105365
 GameObject:
   m_ObjectHideFlags: 0

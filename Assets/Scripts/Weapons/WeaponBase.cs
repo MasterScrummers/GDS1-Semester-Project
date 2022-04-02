@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
@@ -12,7 +11,7 @@ public abstract class WeaponBase : MonoBehaviour
     private Affinity weaponWeakness; //Weapon's weakness.
 
     /// <summary>
-    /// Call base.start last in children.
+    /// Call base.start() last in children.
     /// </summary>
     protected virtual void Start()
     {
@@ -33,16 +32,16 @@ public abstract class WeaponBase : MonoBehaviour
     /// <summary>
     /// Meant to be overridden for the lignt attack.
     /// </summary>
-    public virtual void LightAttack() {}
+    public virtual void LightAttack(Animator anim) {}
 
     /// <summary>
     /// Meant to be overridden for the heavy attack.
     /// </summary>
-    public virtual void HeavyAttack() { }
+    public virtual void HeavyAttack(Animator anim) { }
 
     /// <summary>
     /// Meant to be overridden for the special attack.
     /// </summary>
-    public virtual void SpecialAttack() {}
+    public virtual void SpecialAttack(Animator anim) {}
 
 }
