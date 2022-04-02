@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(HitBoxAdjustor))]
+[RequireComponent(typeof(HitBoxDetector))]
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected WeaponBase.Affinity type;

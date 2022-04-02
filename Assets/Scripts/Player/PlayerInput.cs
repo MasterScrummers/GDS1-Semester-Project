@@ -1,8 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(HitBoxAdjustor))]
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //InputController
@@ -21,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     public Transform feet; //Mario's feet, to check if it is colliding with the ground
     public LayerMask Ground; //A LayerMask which defines what is ground object
 
-    [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
+    public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
 
@@ -30,7 +27,7 @@ public class PlayerInput : MonoBehaviour
         ic = DoStatic.GetGameController().GetComponent<InputController>();
         currCooldownTimer = cooldownTimer;
 
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         vel = rb.velocity;
     }
