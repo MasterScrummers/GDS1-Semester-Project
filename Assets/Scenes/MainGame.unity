@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1850675855}
   attackRange: 0.3
+  attackSize: {x: 0, y: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
