@@ -14,11 +14,12 @@ public class HitBoxDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isAttackOn)
+       /* if (!isAttackOn)
         {
             return;
         }
         isAttackOn = false;
+       */
         Debug.Log("Collision");
     }
 }

@@ -12,14 +12,16 @@ public class Sword : WeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        anim.Play("KirbyLightSwordAttack");
+        anim.Play("SwordLight");
     }
 
     public override void HeavyAttack(Animator anim)
     {
+        anim.Play("SwordHeavy");
     }
 
     public override void SpecialAttack(Animator anim)
     {
+        anim.Play("SwordSpecial");
     }
 }

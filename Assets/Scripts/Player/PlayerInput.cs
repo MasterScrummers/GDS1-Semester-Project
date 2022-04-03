@@ -19,8 +19,8 @@ public class PlayerInput : MonoBehaviour
     public LayerMask Ground; //A LayerMask which defines what is ground object
 
     public WeaponBase lightWeapon; //The assigned light weapon
-    [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
-    [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
+    public WeaponBase heavyWeapon; //The assigned heavy weapon
+    public WeaponBase specialWeapon; //The assigned special weapon
 
     void Start()
     {
