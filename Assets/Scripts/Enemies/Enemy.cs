@@ -14,6 +14,14 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start() {
         health = GetComponent<HealthComponent>();
     }
+    
+    // Update is called once per frame
+    protected virtual void Update()
+    {
+        if (health <= 0) {
+            Death();
+        }
+    }
 
     /// <summary>
     /// Meant to be overridden for movement script. This is already called in Update()
@@ -28,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
     /// <summary>
     /// Called when health <= 0. Can override for a unique Death script, otherwise just destroys the GameObject.
     /// </summary>
-    protected virtual void Death() 
+    protected virtual void Death()
     {
         Destroy(gameObject);
     }
