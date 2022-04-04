@@ -6,7 +6,7 @@ public class PlayerFlipper : MonoBehaviour
 
     void Start()
     {
-        ic = DoStatic.GetGameController().GetComponent<InputController>();
+        ic = DoStatic.GetGameController<InputController>();
     }
 
     void Update()

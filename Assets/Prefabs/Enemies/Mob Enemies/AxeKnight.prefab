@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6577600788766136098
+--- !u!1 &6455586161228126595
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6577600788766136096}
-  - component: {fileID: 6577600788766136099}
-  - component: {fileID: 6577600788766136097}
-  - component: {fileID: 4552503281859775110}
-  - component: {fileID: 2105195040920476034}
+  - component: {fileID: 6273758209889813987}
+  - component: {fileID: 7370212623302708007}
   m_Layer: 0
-  m_Name: Axe_Knight_0
+  m_Name: AxeKnight (Sprite)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6577600788766136096
+--- !u!4 &6273758209889813987
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6577600788766136098}
+  m_GameObject: {fileID: 6455586161228126595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6577600788766136096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6577600788766136099
+--- !u!212 &7370212623302708007
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6577600788766136098}
+  m_GameObject: {fileID: 6455586161228126595}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,6 +84,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6577600788766136098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6577600788766136096}
+  - component: {fileID: 6577600788766136097}
+  - component: {fileID: 4552503281859775110}
+  - component: {fileID: 2105195040920476034}
+  - component: {fileID: 7855615561232076326}
+  - component: {fileID: 7143838478350729873}
+  - component: {fileID: 8715653282876995269}
+  m_Layer: 0
+  m_Name: AxeKnight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6577600788766136096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577600788766136098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6273758209889813987}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6577600788766136097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,8 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf9036a9156fe246a956c9bd25d6033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  type: 0
+  type: 1
+  direction: 1
+  movementSpeed: 3
+  leftBoundary: -1
+  rightBoundary: 1
 --- !u!50 &4552503281859775110
 Rigidbody2D:
   serializedVersion: 4
@@ -121,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2105195040920476034
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,6 +171,47 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5208333
+--- !u!114 &7855615561232076326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577600788766136098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMaxHealth: 2
+--- !u!114 &7143838478350729873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577600788766136098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &8715653282876995269
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577600788766136098}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

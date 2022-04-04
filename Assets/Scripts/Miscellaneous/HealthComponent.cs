@@ -25,8 +25,8 @@ public class HealthComponent : MonoBehaviour
     /// Change the health value.
     /// </summary>
     /// <param name="amount">Change value by given amount.</param>
-    public void ChangeHealth(int amount)
+    public void TakeDamage(int amount)
     {
-        hp = Mathf.Clamp(hp + amount, 0, mhp);
+        hp = Mathf.Clamp(hp - amount, 0, mhp);
     }
 }

@@ -1,14 +1,13 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(HitBoxDetector))]
+[RequireComponent(typeof(AttackDetector))]
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected WeaponBase.Affinity type;
 
-    private HealthComponent health;
+    protected HealthComponent health;
 
     // Start is called before the first frame update
     protected virtual void Start() {
@@ -18,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (health <= 0) {
+        if (health.hp <= 0) {
             Death();
         }
     }
@@ -49,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
     /// </param>
     protected virtual void TakeDamage(int damage)
     {
-        health.ChangeHealth(-damage);
+        health.TakeDamage(-damage);
         if (health.hp <= 0)
         {
             Death();

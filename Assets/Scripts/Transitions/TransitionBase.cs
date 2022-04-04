@@ -30,7 +30,7 @@ public abstract class TransitionBase : MonoBehaviour
     /// </summary>
     protected virtual void Start()
     {
-        float[] times = DoStatic.GetGameController().GetComponent<SceneController>().GetTransitionTimes(this);
+        float[] times = DoStatic.GetGameController<SceneController>().GetTransitionTimes(this);
         timeIn = times[0];
         timeOut = times[1];
     }

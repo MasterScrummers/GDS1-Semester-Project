@@ -2,38 +2,30 @@ using UnityEngine;
 
 public class AxeKnightEnemy : Enemy
 {
-    /// <summary>
-    /// Since WeaponBase.Affinity type is serialised to be adjustable on
-    /// the editor, we can simply set the type on the prefab without
-    /// coding it onto the script. Thereby no need to override start().
-    ///
-    /// Up to you, if it is not on the editor, we can override start()
-    /// and set it there. What you have right now is fine.
-    /// </summary>
     private Rigidbody2D rb;
-    private SpriteRenderer sr;
 
-    [SerializeField] public int direction = 1;
-    [SerializeField] public float movementSpeed = 3;
-    [SerializeField] public Vector2 patrolLeft;
-    [SerializeField] public Vector2 patrolRight;
-
-    // Dictionary<jumpPoint, directionToApproach>
-    [SerializeField] Dictionary<Vector2, float> jumpPoints;
-
-
-    private bool canTurn;
+    [SerializeField] private int direction = 1; //The direction of the enemy.
+    [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
+    [SerializeField] private float leftBoundary = -1; //The right boundary?
+    [SerializeField] private float rightBoundary = 1; //The left boundary?
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        health = 1;
-        type = WeaponBase.Affinity.fire;
+        base.Start();
 
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        
+        if (leftBoundary > rightBoundary)
+        {
+            float temp = leftBoundary;
+            leftBoundary = rightBoundary;
+            rightBoundary = temp;
+        }
 
-        canTurn = true;
+        float oX = transform.position.x;
+        leftBoundary += oX;
+        rightBoundary += oX;
     }
 
     // Update is called once per frame
@@ -46,21 +38,22 @@ public class AxeKnightEnemy : Enemy
     // To be implemented
     protected override void Move()
     {
-        if (rb)
+        if (!rb)
         {
-            if ((transform.position.x < patrolLeft.x || transform.position.x > patrolRight.x) && canTurn)
-            {
-                direction *= -1;
-                canTurn = false;
-                transform.localScale = Vector3.Scale(transform.localScale, new Vector3(-1, 1, 1));
-            } else if (transform.position.x > patrolLeft.x && transform.position.x < patrolRight.x)
-            {
-                canTurn = true;
-            }
-            Vector2 vel = rb.velocity;
-            vel.x = direction * movementSpeed;
-            rb.velocity = vel;
+            return;
         }
+
+        Vector3 sca = transform.localScale;
+        if (sca.x < 0 && transform.position.x < leftBoundary || sca.x > 0 && transform.position.x > rightBoundary)
+        {
+            sca.x *= -1;
+            direction *= -1;
+            transform.localScale = sca;
+        }
+
+        Vector2 vel = rb.velocity;
+        vel.x = direction * movementSpeed;
+        rb.velocity = vel;
     }
 
     // To be implemented
@@ -68,9 +61,10 @@ public class AxeKnightEnemy : Enemy
     {
     }
 
-    // To be implemented
-    protected override void Death()
+    void OnDrawGizmos()
     {
-        base.Death();
+        float posX = rb ? 0 : transform.position.x;
+        Gizmos.DrawLine(new Vector2(posX + leftBoundary, int.MinValue), new Vector2(posX + leftBoundary, int.MaxValue));
+        Gizmos.DrawLine(new Vector2(posX + rightBoundary, int.MinValue), new Vector2(posX + rightBoundary, int.MaxValue));
     }
 }

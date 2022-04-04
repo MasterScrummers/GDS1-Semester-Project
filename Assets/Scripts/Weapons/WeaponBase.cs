@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour
+public abstract class WeaponBase
 {
     protected string weaponName = "Unknown Weapon Name."; //Name of the weapon.
     protected string description = "No Description."; //How does the weapon function on each button?
     public enum Affinity { water, fire, grass }; //All the weapon types are here. Any changes must have been discussed.
     protected Affinity weaponType = Affinity.water; //The weapon's typing.
 
-    private int affinityNum; //The number of affinities.
     private Affinity weaponWeakness; //Weapon's weakness.
+    public int strength { get; protected set; } = 1;
 
-    /// <summary>
-    /// Call base.start() last in children.
-    /// </summary>
-    protected virtual void Start()
+    public WeaponBase()
     {
-        affinityNum = typeof(Affinity).GetEnumValues().Length;
+        int affinityNum = typeof(Affinity).GetEnumValues().Length;
+        weaponType = (Affinity)Random.Range(0, affinityNum);
         weaponWeakness = (Affinity)(((int)weaponType + 1) % affinityNum);
     }
 

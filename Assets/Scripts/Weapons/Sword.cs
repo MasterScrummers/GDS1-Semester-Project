@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class Sword : WeaponBase
 {
-    protected override void Start()
+    public Sword() : base()
     {
         weaponName = "Sword";
         description = "Basic Weapon";
-        weaponType = Affinity.water;
-        base.Start();
     }
 
     public override void LightAttack(Animator anim)

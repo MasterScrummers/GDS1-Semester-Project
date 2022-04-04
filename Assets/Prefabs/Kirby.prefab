@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4431151757877688993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -0.3, z: 0}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6239203139267427660}
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1446262499256440001}
   - component: {fileID: 1986466901643813554}
   - component: {fileID: 4743718834578245059}
+  - component: {fileID: 479655026120638283}
   m_Layer: 0
   m_Name: Kirby Sprite
   m_TagString: Untagged
@@ -193,6 +194,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &479655026120638283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476312888186196897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6239203139267427663
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,11 +269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTimer: 10
-  jumpForce: 7
-  radius: 1
   speed: 5
-  isOnGround: 0
-  stoppedJumping: 1
+  baseJumpForce: 5
+  jumpHoldTimer: 0.25
+  gravityMultiplier: 1.2
+  radius: 0.2
   feet: {fileID: 425726152434815053}
   Ground:
     serializedVersion: 2

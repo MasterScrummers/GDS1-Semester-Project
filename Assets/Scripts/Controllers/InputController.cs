@@ -5,6 +5,8 @@ public class InputController : MonoBehaviour
 {
     public Dictionary<string, float> axisRawValues { get; private set; } //All inputs that checks Input.GetAxisRaw.
     public Dictionary<string, bool> buttonDowns { get; private set; } //All inputs that checks Input.GetButtonDown.
+    public Dictionary<string, bool> buttonStates { get; private set; } //All inputs that checks Input.GetButton.
+
     public bool inputLock = false; //Bool to (un)lock inputs.
 
     private delegate Value InputCheck<Value>(string key); //Delegate variable for dynamic dictionary updates reusing code.
@@ -19,10 +21,11 @@ public class InputController : MonoBehaviour
             "Horizontal", //[D, A]
             "Vertical" //[W, S]
         }) {
-            axisRawValues.Add(input, 0);
+            axisRawValues.Add(input, GetAxisRaw(input));
         }
 
         buttonDowns = new Dictionary<string, bool>();
+        buttonStates = new Dictionary<string, bool>();
         foreach (string input in new string[]
         {
             "Jump", //Space
@@ -30,7 +33,8 @@ public class InputController : MonoBehaviour
             "Heavy", //k
             "Special", //l
         }) {
-            buttonDowns.Add(input, false);
+            buttonDowns.Add(input, GetButtonDown(input));
+            buttonStates.Add(input, GetButtonState(input));
         }
     }
 
@@ -43,6 +47,8 @@ public class InputController : MonoBehaviour
 
         DictionaryUpdate(axisRawValues, GetAxisRaw);
         DictionaryUpdate(buttonDowns, GetButtonDown);
+        DictionaryUpdate(buttonStates, GetButtonState);
+
     }
 
     /// <summary>
@@ -75,6 +81,11 @@ public class InputController : MonoBehaviour
     private bool GetButtonDown(string key)
     {
         return Input.GetButtonDown(key);
+    }
+
+    private bool GetButtonState(string key)
+    {
+        return Input.GetButton(key);
     }
 
     private void InputReset()
