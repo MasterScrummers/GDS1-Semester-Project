@@ -16,7 +16,6 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        // Can be ch
         if (health <= 0) {
             Death();
         }
