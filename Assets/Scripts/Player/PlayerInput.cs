@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
 
+    private GameObject currPlatform; //current platform kirby is on.
 
     void Start()
     {
@@ -51,6 +53,21 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
+
+
+
+        //reimplement cleaner later lol
+        if (currPlatform)
+        {
+            Debug.Log(currPlatform.name);
+            GameObject tempPlatform = currPlatform;
+            if (Input.GetKey(KeyCode.S))
+            {
+                StartCoroutine(PlatformFall(tempPlatform));
+            }
+
+        }
+
     }
 
     private void VerticalMovement()
@@ -64,7 +81,8 @@ public class PlayerInput : MonoBehaviour
             holdTimer = jumpHoldTimer;
             hasJumped = true;
             isJumpHeld = true;
-        } else if (Mathf.Abs(rb.velocity.y) < 0.1f && Physics2D.OverlapCircle(feet.position, radius, Ground))
+        }
+        else if (Mathf.Abs(rb.velocity.y) < 0.1f && Physics2D.OverlapCircle(feet.position, radius, Ground))
         {
             hasJumped = false;
         }
@@ -91,6 +109,7 @@ public class PlayerInput : MonoBehaviour
             vel.y = prevYVel;
             rb.velocity = vel;
         }
+
     }
 
     private void HorizontalMovement()
@@ -123,7 +142,8 @@ public class PlayerInput : MonoBehaviour
             currCooldownTimer = cooldownTimer;
             specialWeapon.SpecialAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength * 3;
-        } else
+        }
+        else
         {
             currCooldownTimer -= Time.deltaTime;
         }
@@ -132,5 +152,22 @@ public class PlayerInput : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(feet.position, radius);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            currPlatform = collision.gameObject;
+        }
+    }
+
+    IEnumerator PlatformFall(GameObject platform)
+    {
+        Physics2D.IgnoreCollision(this.GetComponent<CircleCollider2D>(), platform.GetComponent<BoxCollider2D>(), true);
+
+        yield return new WaitForSeconds(0.3f);
+
+        Physics2D.IgnoreCollision(this.GetComponent<CircleCollider2D>(), platform.GetComponent<BoxCollider2D>(), false);
     }
 }
