@@ -6,22 +6,27 @@ public class PlayerAnim : MonoBehaviour
     public Animator anim { get; private set; } //The player's animation
     private InputController ic; //The Input Controller.
     private Rigidbody2D rb;
+    private PlayerInput pi;
 
     private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
     private AnimState animState = AnimState.Idle;
+
+    private enum JumpState { Waiting, StartJump, Peak, Descending }
+    private JumpState jumpState = JumpState.Waiting;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         ic = DoStatic.GetGameController<InputController>();
         rb = GetComponentInParent<Rigidbody2D>();
+        pi = GetComponentInParent<PlayerInput>();
     }
 
     void Update()
     {
         LightAttackCheck();
-        IsMoving();
-        IsJumping();
+        CheckWalking();
+        CheckJumping();
     }
 
     private void LightAttackCheck()
@@ -61,15 +66,46 @@ public class PlayerAnim : MonoBehaviour
         animState = state;
     }
 
-    //Check if the player is moving or not
-    private void IsMoving()
+    /// <summary>
+    /// Used in the animation
+    /// </summary>
+    private void SetJumpState(JumpState state)
     {
-        anim.SetBool("IsMoving", ic.axisRawValues["Horizontal"] != 0);
+        jumpState = state;
     }
 
-    //Check if the player is Jumping or not
-    private void IsJumping()
+    private void CheckWalking()
     {
-        anim.SetBool("IsJumping", rb.velocity.y > 0f);
+        anim.SetBool("IsWalking", ic.axisRawValues["Horizontal"] != 0);
+    }
+
+    private void CheckJumping()
+    {
+        anim.SetBool("IsFalling", pi.isFalling);
+        ConditionalTriggerCheck("Jump", pi.hasJumped && (animState == AnimState.Idle || animState == AnimState.Run));
+        if (animState != AnimState.Jump)
+        {
+            return;
+        }
+
+        switch(jumpState)
+        {
+            case JumpState.StartJump:
+                ConditionalTriggerCheck("Jump", rb.velocity.y < 3); //Takes you to peak
+                return;
+
+
+            case JumpState.Descending:
+                ConditionalTriggerCheck("Jump", !pi.isFalling); //Takes you to peak
+                return;
+        }
+    }
+
+    private void ConditionalTriggerCheck(string animParameter, bool condition)
+    {
+        if (condition)
+        {
+            anim.SetTrigger(animParameter);
+        }
     }
 }
