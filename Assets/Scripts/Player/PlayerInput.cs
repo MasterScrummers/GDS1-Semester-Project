@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     public float speed = 5f; //Speed of the character
 
     public bool hasJumped { private set; get; } = false;//Was the jump pressed?
-    
+    public bool isFalling { private set; get; } = false;//Is player falling?
 
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
     [SerializeField] private float baseJumpForce = 5; //The initial jump force
@@ -71,7 +71,7 @@ public class PlayerInput : MonoBehaviour
     private void VerticalMovement()
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
-
+        isFalling = rb.velocity.y < -0.1;
         if (ic.buttonDowns["Jump"] && !hasJumped)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
