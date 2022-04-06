@@ -35,7 +35,6 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
-        currCooldownTimer = cooldownTimer;
 
         playerAnim = GetComponentInChildren<PlayerAnim>();
         detector = playerAnim.GetComponent<AttackDetector>();
@@ -59,15 +58,12 @@ public class PlayerInput : MonoBehaviour
         //reimplement cleaner later lol
         if (currPlatform)
         {
-            Debug.Log(currPlatform.name);
             GameObject tempPlatform = currPlatform;
-            if (Input.GetKey(KeyCode.S))
+            if (ic.axisRawValues["Vertical"] == -1)
             {
                 StartCoroutine(PlatformFall(tempPlatform));
             }
-
         }
-
     }
 
     private void VerticalMovement()

@@ -14,9 +14,9 @@ public class PlayerFlipper : MonoBehaviour
         float horizontal = ic.axisRawValues["Horizontal"];
         if (horizontal != 0)
         {
-            Vector3 scale = transform.localScale;
-            scale.x = horizontal;
-            transform.localScale = scale;
+            Vector3 rot = transform.eulerAngles;
+            rot.y = horizontal == 1 ? 0 : 180;
+            transform.eulerAngles = rot;
         }
     }
 }
