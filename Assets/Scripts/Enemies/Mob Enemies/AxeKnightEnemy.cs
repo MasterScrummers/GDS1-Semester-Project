@@ -61,7 +61,7 @@ public class AxeKnightEnemy : Enemy
     {
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         float posX = rb ? 0 : transform.position.x;
         Gizmos.DrawLine(new Vector2(posX + leftBoundary, int.MinValue), new Vector2(posX + leftBoundary, int.MaxValue));

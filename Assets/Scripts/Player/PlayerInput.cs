@@ -30,8 +30,6 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
 
-    private GameObject currPlatform; //current platform kirby is on.
-
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
@@ -52,18 +50,6 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
-
-
-
-        //reimplement cleaner later lol
-        if (currPlatform)
-        {
-            GameObject tempPlatform = currPlatform;
-            if (ic.axisRawValues["Vertical"] == -1)
-            {
-                StartCoroutine(PlatformFall(tempPlatform));
-            }
-        }
     }
 
     private void VerticalMovement()
@@ -145,25 +131,8 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(feet.position, radius);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            currPlatform = collision.gameObject;
-        }
-    }
-
-    IEnumerator PlatformFall(GameObject platform)
-    {
-        Physics2D.IgnoreCollision(this.GetComponent<CircleCollider2D>(), platform.GetComponent<BoxCollider2D>(), true);
-
-        yield return new WaitForSeconds(0.3f);
-
-        Physics2D.IgnoreCollision(this.GetComponent<CircleCollider2D>(), platform.GetComponent<BoxCollider2D>(), false);
     }
 }
