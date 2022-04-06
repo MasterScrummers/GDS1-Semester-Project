@@ -166,6 +166,216 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: kirby_walk_0
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 4268
+        width: 26
+        height: 23
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b568ba6cd6a2f9f4e831d6b41cdf5cee
+      internalID: 12694197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 4268
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea707f8a79a143548a0892a9d2c14410
+      internalID: -1506021748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_2
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 4268
+        width: 23
+        height: 20
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b57af5db48a0845bb11727d94cd79e
+      internalID: 1728868239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 4268
+        width: 23
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e99403252284c944aa8014717b1789b
+      internalID: 229626808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_4
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 4268
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bdfbf013155c824a969ebc270e2ccf2
+      internalID: -549318915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_5
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 4268
+        width: 26
+        height: 23
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2ebf630dcecfa4f9df0d28cd42724a
+      internalID: 1195330781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_6
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 4268
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05528e2f9d269934e976ce6dafdba74e
+      internalID: -481831339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_7
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 4268
+        width: 23
+        height: 20
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8be7fdecac29b46a975a83c1ce68ff
+      internalID: 1648456648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_8
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 4268
+        width: 21
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b7a43456d8e7948b45657fde21a2d1
+      internalID: 1873119803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_9
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 4268
+        width: 22
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681521ddeac46e64091cc21c754b8cce
+      internalID: -1204278553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -177,7 +387,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      kirby_walk_5: 1195330781
+      kirby_walk_7: 1648456648
+      kirby_walk_1: -1506021748
       KirbyIdle_1: 1080570564
+      kirby_walk_8: 1873119803
+      kirby_walk_6: -481831339
+      kirby_walk_3: 229626808
+      kirby_walk_9: -1204278553
+      kirby_walk_0: 12694197
+      kirby_walk_4: -549318915
+      kirby_walk_2: 1728868239
       KirbyIdle_0: 1948870930
       KirbyIdle_2: 1660923632
   spritePackingTag: 

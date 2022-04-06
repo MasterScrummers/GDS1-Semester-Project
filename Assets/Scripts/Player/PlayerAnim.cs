@@ -5,7 +5,7 @@ public class PlayerAnim : MonoBehaviour
 {
     public Animator anim { get; private set; } //The player's animation
     private InputController ic; //The Input Controller.
-
+    private Rigidbody2D rb; 
     private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
     private AnimState animState = AnimState.Idle;
 
@@ -13,11 +13,13 @@ public class PlayerAnim : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         ic = DoStatic.GetGameController<InputController>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
 
     void Update()
     {
         LightAttackCheck();
+        IsMoving();
     }
 
     private void LightAttackCheck()
@@ -55,5 +57,18 @@ public class PlayerAnim : MonoBehaviour
     private void SetAnimState(AnimState state)
     {
         animState = state;
+    }
+
+    private void IsMoving()
+    {
+        if (rb.velocity.magnitude != 0)
+        {
+            anim.SetBool("IsMoving", true); 
+        }
+
+        else
+        {
+            anim.SetBool("IsMoving", false);
+        }
     }
 }
