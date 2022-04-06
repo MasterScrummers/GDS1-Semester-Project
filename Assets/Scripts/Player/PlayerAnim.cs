@@ -6,6 +6,7 @@ public class PlayerAnim : MonoBehaviour
     public Animator anim { get; private set; } //The player's animation
     private InputController ic; //The Input Controller.
     private Rigidbody2D rb;
+    private PlayerInput pi;
 
     private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
     private AnimState animState = AnimState.Idle;
@@ -15,6 +16,7 @@ public class PlayerAnim : MonoBehaviour
         anim = GetComponent<Animator>();
         ic = DoStatic.GetGameController<InputController>();
         rb = GetComponentInParent<Rigidbody2D>();
+        pi = GetComponentInParent<PlayerInput>();
     }
 
     void Update()
@@ -71,5 +73,12 @@ public class PlayerAnim : MonoBehaviour
     private void IsJumping()
     {
         anim.SetBool("IsJumping", rb.velocity.y > 0f);
+        anim.SetBool("IsPeak", rb.velocity.y < 3.0f);
+        anim.SetBool("IsLanded", !pi.hasJumped);
+    }
+
+    private void BadLanding()
+    {
+        anim.SetBool("IsLandingFail", !pi.hasJumped);
     }
 }

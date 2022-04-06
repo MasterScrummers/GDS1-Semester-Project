@@ -13,7 +13,9 @@ public class PlayerInput : MonoBehaviour
 
     public float speed = 5f; //Speed of the character
 
-    private bool hasJumped = false; //Was the jump pressed?
+    public bool hasJumped { private set; get; } = false;//Was the jump pressed?
+    
+
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
     [SerializeField] private float baseJumpForce = 5; //The initial jump force
     [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
