@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 1
 --- !u!114 &479655026120638283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,9 +279,6 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 8
-  lightWeapon: {fileID: 0}
-  heavyWeapon: {fileID: 0}
-  specialWeapon: {fileID: 0}
 --- !u!58 &8991236095425167831
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -330,4 +328,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 2
+  startMaxHealth: 4

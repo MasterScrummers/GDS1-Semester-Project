@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //Input controller to check inputs.
-    public float cooldownTimer = 10f; //The cooldown timer
+    [SerializeField] private float cooldownTimer = 10f; //The cooldown timer
     private float currCooldownTimer; //Current cooldown tick
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
@@ -52,6 +51,15 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
+    }
+
+    /// <summary>
+    /// Get the cooldown percentage.
+    /// </summary>
+    /// <returns>1 for finished cooldown.</returns>
+    public float CooldownPercentage()
+    {
+        return 1 - Mathf.Clamp(currCooldownTimer / cooldownTimer, 0, 1);
     }
 
     private void VerticalMovement()
@@ -104,6 +112,7 @@ public class PlayerInput : MonoBehaviour
 
     private void AttackChecks()
     {
+        currCooldownTimer -= Time.deltaTime;
         if (playerAnim.IsAttacking())
         {
             return;
@@ -126,10 +135,6 @@ public class PlayerInput : MonoBehaviour
             currCooldownTimer = cooldownTimer;
             specialWeapon.SpecialAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength * 3;
-        }
-        else
-        {
-            currCooldownTimer -= Time.deltaTime;
         }
     }
 

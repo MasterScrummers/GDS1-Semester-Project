@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (health.hp <= 0) {
+        if (health.health <= 0) {
             Death();
         }
     }
@@ -49,7 +49,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void TakeDamage(int damage)
     {
         health.TakeDamage(-damage);
-        if (health.hp <= 0)
+        if (health.health <= 0)
         {
             Death();
         }

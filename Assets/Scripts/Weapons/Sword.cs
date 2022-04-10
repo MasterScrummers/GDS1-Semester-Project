@@ -6,20 +6,21 @@ public class Sword : WeaponBase
     {
         weaponName = "Sword";
         description = "Basic Weapon";
+        animPath = basePath + "Sword."; //Don't forget the dot!
     }
 
     public override void LightAttack(Animator anim)
     {
-        anim.Play("SwordLight");
+        anim.Play(animPath + "SwordLight");
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        anim.Play("SwordHeavy");
+        anim.Play(animPath + "SwordHeavy");
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        anim.Play("SwordSpecial");
+        anim.Play(animPath + "SwordSpecial");
     }
 }
