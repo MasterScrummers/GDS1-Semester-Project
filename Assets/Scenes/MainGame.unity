@@ -458,19 +458,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1986466901643813554, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.78520966
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1986466901643813554, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.040432546
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1986466901643813554, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.3333334
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1986466901643813554, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.9583334
+      value: 0.9166667
       objectReference: {fileID: 0}
     - target: {fileID: 4431151757877688993, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_Layer
@@ -535,6 +535,10 @@ PrefabInstance:
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: lightWeapon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: cooldownTimer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: specialWeapon

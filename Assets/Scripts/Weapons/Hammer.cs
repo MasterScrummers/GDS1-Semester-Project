@@ -7,12 +7,21 @@ public class Hammer : WeaponBase
     {
         weaponName = "Hammer";
         description = "Hammer";
+        animPath = basePath + "Hammer.";
        
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void LightAttack(Animator anim)
     {
-        
+        anim.Play(animPath + "HammerLight");
+    }
+
+    public override void HeavyAttack(Animator anim)
+    {
+        anim.Play(animPath + "HammerHeavy");
+    }
+
+    public override void SpecialAttack(Animator anim)
+    {
+        anim.Play(animPath + "HammerSpecial");
     }
 }
