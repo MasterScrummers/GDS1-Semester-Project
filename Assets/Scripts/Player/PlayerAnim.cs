@@ -14,6 +14,8 @@ public class PlayerAnim : MonoBehaviour
     private enum JumpState { Waiting, StartJump, Peak, Descending }
     private JumpState jumpState = JumpState.Waiting;
 
+    public GameObject Cutter;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -107,5 +109,19 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetTrigger(animParameter);
         }
+    }
+
+    //For Cutter Heavy Attack //
+    //Used to move the Kirby Up//
+    private void CutterHeavyJump()
+    {
+        rb.AddForce(transform.up * 400f);
+    }
+
+    //For Cutter Special Attack //
+    //Use to Activate Cutter //
+    private void CutterActivate()
+    {
+        Cutter.SetActive(true);
     }
 }
