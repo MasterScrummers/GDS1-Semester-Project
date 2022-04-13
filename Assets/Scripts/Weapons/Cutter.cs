@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Cutter : WeaponBase
 {
-    
     public Cutter() : base()
     {
         weaponName = "Cutter";
@@ -14,6 +13,16 @@ public class Cutter : WeaponBase
     {
         anim.Play(animPath + "CutterLight");
     }
-    // Update is called once per frame
+
+    public override void HeavyAttack(Animator anim)
+    {
+        anim.Play(animPath + "CutterHeavy");
+        
+    }
+
+    public override void SpecialAttack(Animator anim)
+    {
+        anim.Play(animPath + "CutterSpecial");
+    }
 
 }

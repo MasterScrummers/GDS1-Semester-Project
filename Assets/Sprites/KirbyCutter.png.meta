@@ -293,48 +293,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cutter_heavy_4
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 217
-        width: 37
-        height: 27
-      alignment: 9
-      pivot: {x: 0.81394506, y: 0.0320525}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b46607c11515df94f8b324fcbd77af17
-      internalID: 2104509486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cutter_heavy_5
-      rect:
-        serializedVersion: 2
-        x: 847
-        y: 204
-        width: 72
-        height: 35
-      alignment: 9
-      pivot: {x: 0.32073128, y: 0.11112496}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f45bbd712ad5c64f91c2f52381954cf
-      internalID: -1335864934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: cutter_special_0
       rect:
         serializedVersion: 2
@@ -607,6 +565,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: cutter_heavy_4
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 88
+        width: 29
+        height: 34
+      alignment: 9
+      pivot: {x: 0.7623733, y: 0.026488137}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f087e4ee11adf84bb28ebefff300f05
+      internalID: -1333399353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cutter_heavy_5
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 69
+        width: 49
+        height: 46
+      alignment: 9
+      pivot: {x: 0.32875153, y: 0.04128431}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4854303c3d2107438e1f2a2396d1440
+      internalID: 1823168562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -633,9 +633,9 @@ TextureImporter:
       cutter_7: -6940264
       cutter_heavy_3: 155127723
       cutter_heavy_2: -1775702801
-      cutter_heavy_4: 2104509486
+      cutter_heavy_4: -1333399353
       cutter_light_3: 2089118800
-      cutter_heavy_5: -1335864934
+      cutter_heavy_5: 1823168562
       cutter_6: -1574674774
       cutter_light_1: -1915331490
       cutter_light_4: -257100135
