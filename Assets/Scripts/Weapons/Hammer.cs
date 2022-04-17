@@ -6,7 +6,7 @@ public class Hammer : WeaponBase
     public Hammer() : base()
     {
         weaponName = "Hammer";
-        description = "Hammer";
+        description = "Light: \nHeavy: \nSpecial: ";
         animPath = basePath + "Hammer.";
        
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class WeaponBase
 {
     protected string weaponName = "Unknown Weapon Name."; //Name of the weapon.
-    protected string description = "No Description."; //How does the weapon function on each button?
+    public string description = "No Description."; //How does the weapon function on each button?
     
     protected const string basePath = "Base Layer."; //The base path.
     protected string animPath; //The animation path, to keep things simple.

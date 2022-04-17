@@ -5,7 +5,7 @@ public class Sword : WeaponBase
     public Sword() : base()
     {
         weaponName = "Sword";
-        description = "Basic Weapon";
+        description = "Light: Slash\nHeavy: Stab\n Special: Spin";
         animPath = basePath + "Sword."; //Don't forget the dot!
     }
 

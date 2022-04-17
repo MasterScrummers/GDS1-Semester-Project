@@ -45,8 +45,8 @@ public class WeaponCardGenerator : MonoBehaviour
         return Random.Range(1, 4) switch
         {
             1 => new Sword(),
-            //2 => new Hammer(),
-            //3 => new Cutter(),
+            2 => new Hammer(),
+            3 => new Cutter(),
             _ => new Sword(),
         };
     }
@@ -62,7 +62,7 @@ public class WeaponCardGenerator : MonoBehaviour
         weaponIcon.sprite = allWeapons[weaponName]; //The weapon name must be the same as the class name.
         switch(weaponName)
         {
-            case "Sword":
+            case "Sword": case "Cutter":
                 weaponIcon.rectTransform.eulerAngles = new Vector3(0, 0, 90);
                 Vector2 size = weaponIcon.rectTransform.sizeDelta;
                 float temp = size.x;
@@ -75,7 +75,8 @@ public class WeaponCardGenerator : MonoBehaviour
 
     private void SetWeaponText()
     {
-        weaponText.text = weapon.GetType().Name + "\nStrength: " + weapon.strength;
+
+        weaponText.text = "<b>" + weapon.GetType().Name + "</b>" + "\n\nStrength: " + weapon.strength +"\n\n" + weapon.description;
     }
 }
 

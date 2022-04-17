@@ -922,6 +922,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: hammer_icon
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 437
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1e5be6175e973499da220eca0a6541
+      internalID: 1374518297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -953,6 +974,7 @@ TextureImporter:
       hammer_heavy_10: 1309848277
       hammer_heavy_6: -1550020953
       hammer_heavy_3: 1359837071
+      hammer_icon: 1374518297
       hammer_light_3: 2094711356
       hammer_special_4: 830160358
       hammer_special_8: 281359815
