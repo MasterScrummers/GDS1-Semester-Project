@@ -121,4 +121,16 @@ public class DoStatic
     {
         return GetObject("Player");
     }
+
+    /// <summary>
+    /// Swaps the values between two variables.
+    /// </summary>
+    /// <param name="a">The first variable</param>
+    /// <param name="b">The second variable</param>
+    public static void Swap<T>(ref T a, ref T b)
+    {
+        T temp = a;
+        a = b;
+        b = temp;
+    }
 }
