@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SceneController))]
 [RequireComponent(typeof(InputController))]
 [RequireComponent(typeof(SaveController))]
+[RequireComponent(typeof(UIController))]
 public class ControllerPack : MonoBehaviour
 {
     /* This script does nothing but ensures all the

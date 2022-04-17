@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -6,41 +5,38 @@ using TMPro;
 [RequireComponent(typeof(Image))]
 public class WeaponCardGenerator : MonoBehaviour
 {
-    [System.Serializable]
-    public class WeaponInfo
-    {
-        [SerializeField] private string weaponName;
-        [SerializeField] private Sprite weaponSprite;
-
-        public void AddIntoDictionary(ref Dictionary<string, Sprite> allWeapons)
-        {
-            allWeapons.Add(weaponName, weaponSprite);
-        }
-    }
-
-    public WeaponBase weapon { get; private set; }
-    [SerializeField] private WeaponInfo[] weapons;
-    private Dictionary<string, Sprite> allWeapons;
+    public WeaponBase weapon;
+    private VariableController vc; //To grab the dictionary of weapons
     private Image weaponCard;
     [SerializeField] private Image weaponIcon;
     [SerializeField] private TextMeshProUGUI weaponText;
 
     void Start()
     {
+        vc = DoStatic.GetGameController<VariableController>();
         weaponCard = GetComponent<Image>();
-        allWeapons = new Dictionary<string, Sprite>();
-        foreach(WeaponInfo weapon in weapons)
-        {
-            weapon.AddIntoDictionary(ref allWeapons);
-        }
+    }
 
-        weapon = SetWeapon();
+    public void SetWeapon(WeaponBase weapon)
+    {
+        this.weapon = weapon;
+        SetCard();
+    }
+
+    public void GenerateWeapon()
+    {
+        weapon = RandomWeapon();
+        SetCard();
+    }
+
+    private void SetCard()
+    {
         SetColor();
         SetWeaponImage();
         SetWeaponText();
     }
 
-    private WeaponBase SetWeapon()
+    private WeaponBase RandomWeapon()
     {
         return Random.Range(1, 4) switch
         {
@@ -59,16 +55,13 @@ public class WeaponCardGenerator : MonoBehaviour
     private void SetWeaponImage()
     {
         string weaponName = weapon.GetType().Name;
-        weaponIcon.sprite = allWeapons[weaponName]; //The weapon name must be the same as the class name.
+        weaponIcon.sprite = vc.GetWeapon(weaponName); //The weapon name must be the same as the class name.
+        weaponIcon.SetNativeSize();
         switch(weaponName)
         {
             case "Sword":
                 weaponIcon.rectTransform.eulerAngles = new Vector3(0, 0, 90);
-                Vector2 size = weaponIcon.rectTransform.sizeDelta;
-                float temp = size.x;
-                size.x = size.y;
-                size.y = temp;
-                weaponIcon.rectTransform.sizeDelta = size;
+                weaponIcon.rectTransform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
                 return;
         }
     }

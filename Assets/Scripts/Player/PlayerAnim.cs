@@ -38,7 +38,7 @@ public class PlayerAnim : MonoBehaviour
             return;
         }
 
-        if (ic.buttonDowns["Light"])
+        if (ic.GetButtonDown("Attack", "Light"))
         {
             anim.SetTrigger("FollowUp");
         }
@@ -78,7 +78,7 @@ public class PlayerAnim : MonoBehaviour
 
     private void CheckWalking()
     {
-        anim.SetBool("IsWalking", ic.axisRawValues["Horizontal"] != 0);
+        anim.SetBool("IsWalking", ic.GetAxisRawValues("Movement", "Horizontal") != 0);
     }
 
     private void CheckJumping()
