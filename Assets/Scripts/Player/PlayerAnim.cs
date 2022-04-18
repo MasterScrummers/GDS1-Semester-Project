@@ -27,6 +27,7 @@ public class PlayerAnim : MonoBehaviour
     void Update()
     {
         LightAttackCheck();
+        HeavyAttackCheck();
         CheckWalking();
         CheckJumping();
     }
@@ -42,6 +43,27 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetTrigger("FollowUp");
         }
+    }
+
+    private void HeavyAttackCheck()
+    {
+        if(animState != AnimState.HeavyAttack)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            anim.SetBool("Spin", true);
+        }
+
+        //Need Fix on Input Controller
+        else if (Input.GetKeyUp(KeyCode.K))
+        {
+            anim.SetBool("Spin", false);
+        }
+
+
     }
 
     /// <summary>
