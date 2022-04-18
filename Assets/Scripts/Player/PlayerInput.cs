@@ -15,17 +15,20 @@ public class PlayerInput : MonoBehaviour
     public bool hasJumped { private set; get; } = false;//Was the jump pressed?
     public bool isFalling { private set; get; } = false;//Is player falling?
 
+    public bool isOnGround = false; //Is the player standing on the ground of not
+
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
     [SerializeField] private float baseJumpForce = 5; //The initial jump force
     [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
     private float holdTimer; //Timer of the jumpHoldTimer;
     private float prevYVel; //Previous Highest Y Velocity
     private float originalGravity; //The original gravity
-    [SerializeField] private float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
+    public float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     public Transform feet; //Kirby's feet, to check if it is colliding with the ground
     public LayerMask Ground; //A LayerMask which defines what is ground object
+    public Transform firePoint; // Fire Point for all sort of range weapon
 
     [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
@@ -41,9 +44,9 @@ public class PlayerInput : MonoBehaviour
 
         originalGravity = rb.gravityScale;
 
-        lightWeapon = new Hammer();
-        heavyWeapon = new Hammer();
-        specialWeapon = new Hammer();
+        lightWeapon = new Cutter();
+        heavyWeapon = new Cutter();
+        specialWeapon = new Cutter();
 
     }
 
@@ -52,6 +55,7 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
+        SetgravityMultiplier();
     }
 
     /// <summary>
@@ -103,6 +107,16 @@ public class PlayerInput : MonoBehaviour
             rb.velocity = vel;
         }
 
+        //isOnGround = (Physics2D.OverlapCircle(feet.position, radius, Ground)) ? true : false;
+        if (Physics2D.OverlapCircle(feet.position, radius, Ground))
+        {
+            isOnGround = true;
+        }
+
+        else
+        {
+            isOnGround = false;
+        }
     }
 
     private void HorizontalMovement()
@@ -142,5 +156,13 @@ public class PlayerInput : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(feet.position, radius);
+    }
+
+    private void SetgravityMultiplier()
+    {
+        if (isOnGround)
+        {
+            gravityMultiplier = 1.2f;
+        }
     }
 }
