@@ -1220,6 +1220,10 @@ MonoBehaviour:
   weapons:
   - weaponName: Sword
     weaponSprite: {fileID: 1927591234, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
+  - weaponName: Hammer
+    weaponSprite: {fileID: 1374518297, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
+  - weaponName: Cutter
+    weaponSprite: {fileID: 985180077, guid: 424ab6931467a5643b05f1d845212853, type: 3}
 --- !u!114 &879982545141655048
 MonoBehaviour:
   m_ObjectHideFlags: 0

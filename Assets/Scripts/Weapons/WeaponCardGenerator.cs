@@ -63,6 +63,11 @@ public class WeaponCardGenerator : MonoBehaviour
                 weaponIcon.rectTransform.eulerAngles = new Vector3(0, 0, 90);
                 weaponIcon.rectTransform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
                 return;
+
+            case "Hammer":
+                weaponIcon.rectTransform.eulerAngles = Vector3.zero;
+                weaponIcon.rectTransform.localScale = new Vector3(0.65f, 0.65f, 0.65f); 
+                return;
         }
     }
 
