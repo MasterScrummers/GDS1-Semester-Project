@@ -73,7 +73,7 @@ public class PlayerInput : MonoBehaviour
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
         isFalling = rb.velocity.y < -0.1;
-        if (ic.GetButonStates("Movement", "Jump") && !hasJumped)
+        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
             prevYVel = 0;
@@ -91,7 +91,7 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        isJumpHeld = ic.GetButonStates("Movement", "Jump") && holdTimer > 0;
+        isJumpHeld = ic.GetButtonStates("Movement", "Jump") && holdTimer > 0;
         if (!isJumpHeld)
         {
             return;

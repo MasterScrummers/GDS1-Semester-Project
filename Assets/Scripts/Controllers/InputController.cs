@@ -135,7 +135,7 @@ public class InputController : MonoBehaviour
     /// <param name="ID">Purpose</param>
     /// <param name="button">The button to request</param>
     /// <returns>The boolean value of the button state. True if it is pressed.</returns>
-    public bool GetButonStates(string ID, string button)
+    public bool GetButtonStates(string ID, string button)
     {
         return !lockedInput && IDList[ID] && buttonStates[button];
     }
