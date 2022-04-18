@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2272028169050267146}
   - component: {fileID: 2824984720448895336}
   - component: {fileID: 7424526249391454700}
-  - component: {fileID: 2949651204522823353}
+  - component: {fileID: 4388148294466671378}
   m_Layer: 0
   m_Name: WeaponCard
   m_TagString: Untagged
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2949651204522823353
+--- !u!114 &4388148294466671378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,9 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ea8403b2d23c94088ce85eebc26267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - weaponName: Sword
-    weaponSprite: {fileID: 1927591234, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
   weaponIcon: {fileID: 6667124754396653938}
   weaponText: {fileID: 2488126650615343654}
 --- !u!1 &4786431025625623658
