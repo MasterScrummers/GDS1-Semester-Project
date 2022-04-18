@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class DoStatic
 {
+    public delegate void SimpleDelegate();
+
     /// <summary>
     /// Get the name of the current scene.
     /// </summary>

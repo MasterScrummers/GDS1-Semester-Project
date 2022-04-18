@@ -41,9 +41,9 @@ public class PlayerInput : MonoBehaviour
 
         originalGravity = rb.gravityScale;
 
-        lightWeapon = new Cutter();
-        heavyWeapon = new Cutter();
-        specialWeapon = new Cutter();
+        lightWeapon = new Sword();
+        heavyWeapon = new Sword();
+        specialWeapon = new Sword();
     }
 
     void Update()
@@ -51,7 +51,14 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
+
+        if (!ic.lockedInput && Input.GetKeyDown(KeyCode.E))
+        {
+            ic.GetComponent<UIController>().ActivateUI("WeaponSwapSystem", DoNothing);
+        }
     }
+
+    private void DoNothing() { }
 
     /// <summary>
     /// Get the cooldown percentage.
@@ -66,7 +73,7 @@ public class PlayerInput : MonoBehaviour
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
         isFalling = rb.velocity.y < -0.1;
-        if (ic.buttonDowns["Jump"] && !hasJumped)
+        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
             prevYVel = 0;
@@ -84,7 +91,7 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        isJumpHeld = ic.buttonStates["Jump"] && holdTimer > 0;
+        isJumpHeld = ic.GetButtonStates("Movement", "Jump") && holdTimer > 0;
         if (!isJumpHeld)
         {
             return;
@@ -106,7 +113,7 @@ public class PlayerInput : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        Vector2 vel = new Vector2(speed * ic.axisRawValues["Horizontal"], rb.velocity.y);
+        Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
         rb.velocity = vel;
     }
 
@@ -118,19 +125,19 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        if (ic.buttonDowns["Light"] && lightWeapon != null)
+        if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
             lightWeapon.LightAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength;
         }
 
-        if (ic.buttonDowns["Heavy"] && heavyWeapon != null)
+        if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
             heavyWeapon.HeavyAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength * 2;
         }
 
-        if (currCooldownTimer < 0 && ic.buttonDowns["Special"] && specialWeapon != null)
+        if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
         {
             currCooldownTimer = cooldownTimer;
             specialWeapon.SpecialAttack(playerAnim.anim);

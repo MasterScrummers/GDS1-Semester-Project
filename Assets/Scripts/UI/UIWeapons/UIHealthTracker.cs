@@ -18,11 +18,6 @@ public class UIHealthTracker : UICircleBarBase
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E)) //Remove this later!
-        {
-            health.TakeDamage(1);
-        }
-
         circle.fillAmount = health.GetPercentage();
         if (circle.fillAmount == 0 && !isDead)
         {

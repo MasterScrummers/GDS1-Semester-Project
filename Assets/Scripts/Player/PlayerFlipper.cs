@@ -11,7 +11,7 @@ public class PlayerFlipper : MonoBehaviour
 
     void Update()
     {
-        float horizontal = ic.axisRawValues["Horizontal"];
+        float horizontal = ic.GetAxisRawValues("Movement", "Horizontal");
         if (horizontal != 0)
         {
             Vector3 rot = transform.eulerAngles;
