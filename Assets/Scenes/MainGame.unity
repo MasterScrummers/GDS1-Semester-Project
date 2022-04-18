@@ -574,18 +574,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: weapons.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: weapons.Array.data[0].weaponName
-      value: Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: weapons.Array.data[0].weaponSprite
-      value: 
-      objectReference: {fileID: 1927591234, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
     - target: {fileID: 6492174129824088241, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 14
