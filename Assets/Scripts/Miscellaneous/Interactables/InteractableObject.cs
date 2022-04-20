@@ -19,6 +19,6 @@ public class InteractableObject : MonoBehaviour
 
     public virtual void Interact()
     {
-        
+        Destroy(this);
     }
 }

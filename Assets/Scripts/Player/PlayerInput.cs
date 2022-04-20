@@ -31,7 +31,7 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
 
-    private GameObject currInteractable;
+    public GameObject currInteractable;
 
     void Start()
     {
@@ -53,6 +53,7 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
+        Interact();
     }
 
     /// <summary>
@@ -142,9 +143,10 @@ public class PlayerInput : MonoBehaviour
 
     private void Interact()
     {
-        if (currInteractable && Input.GetKeyDown(KeyCode.E))
+        if (currInteractable && Input.GetKeyDown(KeyCode.P))
         {
             currInteractable.GetComponent<InteractableObject>().Interact();
+            currInteractable = null;
         }
     }
 
@@ -160,8 +162,5 @@ public class PlayerInput : MonoBehaviour
             currInteractable = collision.gameObject;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        currInteractable = null;
-    }
+
 }

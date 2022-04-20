@@ -13,6 +13,7 @@ public class CampfireInteract : InteractableObject
 
     public override void Interact()
     {
+        base.Interact();
         hp.HealDamage(1);
     }
 }
