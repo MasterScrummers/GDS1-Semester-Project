@@ -163,4 +163,9 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        currInteractable = null;
+    }
+
 }
