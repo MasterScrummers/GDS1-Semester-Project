@@ -9,7 +9,7 @@ public class PlayerAnim : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput pi;
 
-    private enum AnimState { Idle, Run, Jump, Damage, Death, LightAttack, HeavyAttack, SpecialAttack };
+    private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
     private AnimState animState = AnimState.Idle;
 
     private enum JumpState { Waiting, StartJump, Peak, Descending }
@@ -37,7 +37,7 @@ public class PlayerAnim : MonoBehaviour
 
     void Update()
     {
-        if (animState != AnimState.Damage || animState != AnimState.Death)
+        if (animState != AnimState.Damage && animState != AnimState.Death)
         {
             LightAttackCheck();
             CheckWalking();
@@ -45,10 +45,13 @@ public class PlayerAnim : MonoBehaviour
         } else if (animState == AnimState.Damage)
         {
             CheckDamage();
+            Debug.Log("Checking dmg");
         } else if (animState == AnimState.Death)
         {
             CheckDeath();
         }
+
+        Debug.Log(animState);
     }
 
     private void LightAttackCheck()
@@ -153,6 +156,7 @@ public class PlayerAnim : MonoBehaviour
 
     private void CheckDamage()
     {
+        Debug.Log("Checking dmg");
         damageTimer += Time.deltaTime;
 
         if (damageTimer > 0.5f && pi.OnGround() && !damageLanded)
