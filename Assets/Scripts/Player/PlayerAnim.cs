@@ -63,9 +63,6 @@ public class PlayerAnim : MonoBehaviour
         }
 
         anim.SetBool("Spin", ic.buttonStates["Heavy"]);
-
-
-
     }
 
     /// <summary>
@@ -139,7 +136,7 @@ public class PlayerAnim : MonoBehaviour
     //Used to move the Kirby Up//
     private void CutterHeavyJump()
     {
-        rb.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         pi.gravityMultiplier = 2.5f;
     }
 

@@ -67,7 +67,7 @@ public class PlayerInput : MonoBehaviour
     private void VerticalMovement()
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
-        isFalling = rb.velocity.y < -0.1;
+        isFalling = rb.velocity.y < -0.1f;
         if (ic.buttonDowns["Jump"] && !hasJumped)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
@@ -141,6 +141,6 @@ public class PlayerInput : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(feet.position, radius);
+        Gizmos.DrawWireSphere(feet.position, radius);
     }
 }
