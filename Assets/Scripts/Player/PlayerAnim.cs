@@ -62,15 +62,8 @@ public class PlayerAnim : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            anim.SetBool("Spin", true);
-        }
+        anim.SetBool("Spin", ic.buttonStates["Heavy"]);
 
-        else if (Input.GetKeyUp(KeyCode.K))
-        {
-            anim.SetBool("Spin", false);
-        }
 
 
     }
@@ -147,7 +140,12 @@ public class PlayerAnim : MonoBehaviour
     private void CutterHeavyJump()
     {
         rb.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
-        pi.gravityMultiplier = 2.0f;
+        pi.gravityMultiplier = 2.5f;
+    }
+
+    private void ResetGravityMultiplier()
+    {
+        pi.gravityMultiplier = 1.2f;
     }
 
     //For Cutter Special Attack //

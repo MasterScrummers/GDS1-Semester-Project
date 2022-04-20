@@ -13,11 +13,7 @@ public class CutterMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         velocity = new Vector2(Random.Range(5f, 8f), Random.Range(0f, 5f));
         hp = gameObject.GetComponent<HealthComponent>();
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        rb.AddForce(velocity , ForceMode2D.Impulse);
     }
 
     void Update()

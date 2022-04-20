@@ -15,8 +15,6 @@ public class PlayerInput : MonoBehaviour
     public bool hasJumped { private set; get; } = false;//Was the jump pressed?
     public bool isFalling { private set; get; } = false;//Is player falling?
 
-    public bool isOnGround = false; //Is the player standing on the ground of not
-
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
     [SerializeField] private float baseJumpForce = 5; //The initial jump force
     [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
@@ -55,7 +53,6 @@ public class PlayerInput : MonoBehaviour
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
-        SetgravityMultiplier();
     }
 
     /// <summary>
@@ -106,17 +103,6 @@ public class PlayerInput : MonoBehaviour
             vel.y = prevYVel;
             rb.velocity = vel;
         }
-
-        //isOnGround = (Physics2D.OverlapCircle(feet.position, radius, Ground)) ? true : false;
-        if (Physics2D.OverlapCircle(feet.position, radius, Ground))
-        {
-            isOnGround = true;
-        }
-
-        else
-        {
-            isOnGround = false;
-        }
     }
 
     private void HorizontalMovement()
@@ -156,13 +142,5 @@ public class PlayerInput : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(feet.position, radius);
-    }
-
-    private void SetgravityMultiplier()
-    {
-        if (isOnGround)
-        {
-            gravityMultiplier = 1.2f;
-        }
     }
 }
