@@ -31,6 +31,8 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
 
+    private GameObject currInteractable;
+
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
@@ -138,8 +140,28 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    private void Interact()
+    {
+        if (currInteractable && Input.GetKeyDown(KeyCode.E))
+        {
+            currInteractable.GetComponent<InteractableObject>().Interact();
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(feet.position, radius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            currInteractable = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        currInteractable = null;
     }
 }
