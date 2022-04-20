@@ -21,11 +21,12 @@ public class PlayerInput : MonoBehaviour
     private float holdTimer; //Timer of the jumpHoldTimer;
     private float prevYVel; //Previous Highest Y Velocity
     private float originalGravity; //The original gravity
-    [SerializeField] private float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
+    public float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     public Transform feet; //Kirby's feet, to check if it is colliding with the ground
     public LayerMask Ground; //A LayerMask which defines what is ground object
+    public Transform firePoint; // Fire Point for all sort of range weapon
 
     [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
@@ -108,7 +109,6 @@ public class PlayerInput : MonoBehaviour
             vel.y = prevYVel;
             rb.velocity = vel;
         }
-
     }
 
     private void HorizontalMovement()
@@ -147,6 +147,6 @@ public class PlayerInput : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(feet.position, radius);
+        Gizmos.DrawWireSphere(feet.position, radius);
     }
 }

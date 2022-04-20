@@ -442,8 +442,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 479655026120638283, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: Cutter
-      value: 
-      objectReference: {fileID: 1840919628}
+      value:
+      objectReference: {fileID: 0}
+    - target: {fileID: 479655026120638283, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: numCutters
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 479655026120638283, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: cutters.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1582295632739498613, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_Size.y
       value: 0.9166667
@@ -487,6 +495,14 @@ PrefabInstance:
     - target: {fileID: 2449776842460118494, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676387464216047908, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533964103146670796, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4431151757877688993, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_Layer
@@ -546,11 +562,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: heavyWeapon
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: lightWeapon
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: cooldownTimer
@@ -558,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: specialWeapon
-      value: 
+      value:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}

@@ -14,7 +14,9 @@ public class PlayerAnim : MonoBehaviour
     private enum JumpState { Waiting, StartJump, Peak, Descending }
     private JumpState jumpState = JumpState.Waiting;
 
-    public GameObject Cutter;
+    public GameObject cutter; //Cutter Game Object
+    public int numCutters; //Number of Cutter Spawn
+    private GameObject[] cutters; //Array of Cutters
 
     void Start()
     {
@@ -22,11 +24,18 @@ public class PlayerAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
+
+        cutters = new GameObject[numCutters];
+        for (int i  = 0; i < numCutters; i++)
+        {
+            cutters[i] = cutter;
+        }
     }
 
     void Update()
     {
         LightAttackCheck();
+        HeavyAttackCheck();
         CheckWalking();
         CheckJumping();
     }
@@ -42,6 +51,18 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetTrigger("FollowUp");
         }
+    }
+
+
+    //Need fix in the Inpuut Controller
+    private void HeavyAttackCheck()
+    {
+        if(animState != AnimState.HeavyAttack)
+        {
+            return;
+        }
+
+        anim.SetBool("Spin", ic.buttonStates["Heavy"]);
     }
 
     /// <summary>
@@ -125,13 +146,22 @@ public class PlayerAnim : MonoBehaviour
     //Used to move the Kirby Up//
     private void CutterHeavyJump()
     {
-        rb.AddForce(transform.up * 400f);
+        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+        pi.gravityMultiplier = 2.5f;
+    }
+
+    private void ResetGravityMultiplier()
+    {
+        pi.gravityMultiplier = 1.2f;
     }
 
     //For Cutter Special Attack //
     //Use to Activate Cutter //
     private void CutterActivate()
     {
-        Cutter.SetActive(true);
+        foreach (GameObject cutter in cutters)
+        {
+            Instantiate(cutter, pi.firePoint.position, Quaternion.identity);
+        }
     }
 }
