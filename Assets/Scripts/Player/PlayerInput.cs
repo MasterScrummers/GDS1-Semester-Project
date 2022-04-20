@@ -41,16 +41,24 @@ public class PlayerInput : MonoBehaviour
 
         originalGravity = rb.gravityScale;
 
-        lightWeapon = new Cutter();
-        heavyWeapon = new Cutter();
-        specialWeapon = new Cutter();
+        lightWeapon = new Sword();
+        heavyWeapon = new Sword();
+        specialWeapon = new Sword();
     }
 
     void Update()
     {
-        VerticalMovement();
-        HorizontalMovement();
-        AttackChecks();
+        if (!ic.inputLock)
+        {
+            VerticalMovement();
+            HorizontalMovement();
+            AttackChecks();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            playerAnim.Death();
+        }
     }
 
     /// <summary>
@@ -136,6 +144,11 @@ public class PlayerInput : MonoBehaviour
             specialWeapon.SpecialAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength * 3;
         }
+    }
+
+    public bool OnGround()
+    {
+        return Physics2D.OverlapCircle(feet.position, radius, Ground);
     }
 
     void OnDrawGizmosSelected()

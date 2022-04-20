@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6273758209889813987}
   - component: {fileID: 7370212623302708007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AxeKnight (Sprite)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7855615561232076326}
   - component: {fileID: 7143838478350729873}
   - component: {fileID: 8715653282876995269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AxeKnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 1
 --- !u!58 &8715653282876995269
 CircleCollider2D:
   m_ObjectHideFlags: 0

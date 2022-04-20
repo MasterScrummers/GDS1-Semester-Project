@@ -90,12 +90,14 @@ public class InputController : MonoBehaviour
 
     private void InputReset()
     {
-        foreach(string key in axisRawValues.Keys)
+        Dictionary<string, float>.KeyCollection axisKeys = new Dictionary<string, float>(axisRawValues).Keys;
+        foreach(string key in axisKeys)
         {
             axisRawValues[key] = 0;
         }
 
-        foreach (string key in buttonDowns.Keys)
+        Dictionary<string, bool>.KeyCollection buttonKeys = new Dictionary<string, bool>(buttonDowns).Keys;
+        foreach (string key in buttonKeys)
         {
             buttonDowns[key] = false;
         }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnim : MonoBehaviour
@@ -8,12 +9,21 @@ public class PlayerAnim : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput pi;
 
-    private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
+    private enum AnimState { Idle, Run, Jump, Damage, Death, LightAttack, HeavyAttack, SpecialAttack };
     private AnimState animState = AnimState.Idle;
 
     private enum JumpState { Waiting, StartJump, Peak, Descending }
     private JumpState jumpState = JumpState.Waiting;
 
+    private float damageTimer;
+    private bool damageLanded;
+    private float invincibilityTimer = 3f;
+    public bool invincible;
+    private float deathTimer;
+    private float restartTimer;
+
+    private Vector3 pRot;
+    
     public GameObject Cutter;
 
     void Start()
@@ -22,13 +32,23 @@ public class PlayerAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
+        pRot = DoStatic.GetPlayer().transform.eulerAngles;
     }
 
     void Update()
     {
-        LightAttackCheck();
-        CheckWalking();
-        CheckJumping();
+        if (animState != AnimState.Damage || animState != AnimState.Death)
+        {
+            LightAttackCheck();
+            CheckWalking();
+            CheckJumping();
+        } else if (animState == AnimState.Damage)
+        {
+            CheckDamage();
+        } else if (animState == AnimState.Death)
+        {
+            CheckDeath();
+        }
     }
 
     private void LightAttackCheck()
@@ -65,6 +85,7 @@ public class PlayerAnim : MonoBehaviour
     /// </summary>
     private void SetAnimState(AnimState state)
     {
+        Debug.Log("Setting animation state");
         animState = state;
     }
 
@@ -109,6 +130,92 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetTrigger(animParameter);
         }
+    }
+
+    public void TakeDamage(int xDirectionForce)
+    {
+        if (animState != AnimState.Damage)
+        {
+            invincible = true;
+            damageTimer = 0;
+            damageLanded = false;
+            
+            if (!ic.inputLock)
+            {
+                ic.ToggleInputLock();
+            }
+
+            anim.Play("Base Layer.KirbyHurt.KirbyHurtAir");
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(xDirectionForce*0.8f, 2) * 100f);
+        }  
+    }
+
+    private void CheckDamage()
+    {
+        damageTimer += Time.deltaTime;
+
+        if (damageTimer > 0.5f && pi.OnGround() && !damageLanded)
+            {
+                damageLanded = true;
+                rb.velocity = Vector2.zero;
+                anim.SetTrigger("HurtFallenToGround");
+            }
+    }
+
+    public void ReenableInputAfterDamage()
+    {
+        if (ic.inputLock) {
+            ic.ToggleInputLock();
+        }
+        StartCoroutine("FlashingKirby");
+    }
+
+    private IEnumerator FlashingKirby()
+    {
+        Physics2D.IgnoreLayerCollision(6, 7, true);
+        for (int i = 0; i < invincibilityTimer / 0.2f; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
+        invincible = false;
+        Physics2D.IgnoreLayerCollision(6, 7, false);
+    }
+
+    public void Death()
+    {
+        if (!ic.inputLock)
+        {
+            ic.ToggleInputLock();
+        }
+        anim.Play("Base Layer.KirbyHurt.KirbyDeath");
+    }
+
+    private void CheckDeath()
+    {
+        if (deathTimer >= 1.0f)
+        {
+            rb.AddForce(transform.up * 400f);
+            Physics2D.IgnoreLayerCollision(6, 4, false);
+            deathTimer = -1;
+        } else if (deathTimer != -1) 
+        {
+            deathTimer += Time.deltaTime;
+        }
+    }
+
+    public void DeathRotate()
+    {
+        Vector3 clockwiseRot = pRot;
+        clockwiseRot.y += 90;
+        if (clockwiseRot.y == 360)
+        {
+            clockwiseRot.y = 0;
+        }
+        pRot = clockwiseRot;
     }
 
     //For Cutter Heavy Attack //
