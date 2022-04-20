@@ -62,7 +62,7 @@ public class PlayerAnim : MonoBehaviour
             return;
         }
 
-        anim.SetBool("Spin", ic.buttonStates["Heavy"]);
+        anim.SetBool("Spin", ic.GetButtonStates("Attack", "Heavy"));
     }
 
     /// <summary>
