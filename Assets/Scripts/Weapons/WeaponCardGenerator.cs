@@ -54,10 +54,9 @@ public class WeaponCardGenerator : MonoBehaviour
 
     private void SetWeaponImage()
     {
-        string weaponName = weapon.GetType().Name;
-        weaponIcon.sprite = vc.GetWeapon(weaponName); //The weapon name must be the same as the class name.
+        weaponIcon.sprite = vc.GetWeapon(weapon.weaponName); //The weapon name must be the same as the class name.
         weaponIcon.SetNativeSize();
-        switch(weaponName)
+        switch(weapon.weaponName)
         {
             case "Sword": case "Cutter":
                 weaponIcon.rectTransform.eulerAngles = new Vector3(0, 0, 90);

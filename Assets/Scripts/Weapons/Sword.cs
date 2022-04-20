@@ -6,7 +6,7 @@ public class Sword : WeaponBase
     {
         weaponName = "Sword";
         description = "Light: Slash\nHeavy: Stab\n Special: Spin";
-        animPath = basePath + "Sword."; //Don't forget the dot!
+        animPath = basePath + weaponName + "."; //Don't forget the dot!
     }
 
     public override void LightAttack(Animator anim)

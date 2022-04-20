@@ -111,6 +111,16 @@ public class PlayerAnim : MonoBehaviour
         }
     }
 
+    private void SetReasonLock(string ID)
+    {
+        ic.SetID(ID, false);
+    }
+
+    private void SetReasonUnlock(string ID)
+    {
+        ic.SetID(ID, true);
+    }
+
     //For Cutter Heavy Attack //
     //Used to move the Kirby Up//
     private void CutterHeavyJump()
