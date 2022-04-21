@@ -490,7 +490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1986466901643813554, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.9166667
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449776842460118494, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2449776842460118494, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_IsActive
@@ -514,11 +518,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431151757877688993, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5476312888186196897, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476312888186196897, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6239203139267427660, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_RootOrder
@@ -567,6 +575,22 @@ PrefabInstance:
     - target: {fileID: 6239203139267427663, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: m_Name
       value: Kirby
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239203139267427663, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713749197740003810, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713749197740003810, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713749197740003810, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: heavyWeapon

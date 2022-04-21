@@ -46,9 +46,6 @@ public class PlayerAnim : MonoBehaviour
         {
             CheckDamage();
             Debug.Log("Checking dmg");
-        } else if (animState == AnimState.Death)
-        {
-            CheckDeath();
         }
 
         Debug.Log(animState);
@@ -195,31 +192,24 @@ public class PlayerAnim : MonoBehaviour
         {
             ic.ToggleInputLock();
         }
-        anim.Play("Base Layer.KirbyHurt.KirbyDeath");
+        anim.Play("Base Layer.KirbyDeath.KirbyDeathIntro");
     }
 
-    private void CheckDeath()
+    private void DeathJump()
     {
-        if (deathTimer >= 1.0f)
-        {
-            rb.AddForce(transform.up * 400f);
-            Physics2D.IgnoreLayerCollision(6, 4, false);
-            deathTimer = -1;
-        } else if (deathTimer != -1) 
-        {
-            deathTimer += Time.deltaTime;
-        }
+        rb.AddForce(transform.up * 400f);
+        Physics2D.IgnoreLayerCollision(3, 6, true);
     }
 
     public void DeathRotate()
     {
-        Vector3 clockwiseRot = pRot;
-        clockwiseRot.y += 90;
-        if (clockwiseRot.y == 360)
+        Vector3 clockwiseRot = pi.gameObject.transform.eulerAngles;
+        clockwiseRot.z -= 90;
+        if (clockwiseRot.z == 360)
         {
-            clockwiseRot.y = 0;
+            clockwiseRot.z = 0;
         }
-        pRot = clockwiseRot;
+        pi.gameObject.transform.eulerAngles = clockwiseRot;
     }
 
     //For Cutter Heavy Attack //
