@@ -15,6 +15,6 @@ public class PlatformBehaviour : MonoBehaviour
 
     void Update()
     {
-        Physics2D.IgnoreCollision(playerCollider, platform, ic.axisRawValues["Vertical"] == -1);
+        Physics2D.IgnoreCollision(playerCollider, platform, ic.GetAxisRawValues("Movement", "Vertical") == -1);
     }
 }

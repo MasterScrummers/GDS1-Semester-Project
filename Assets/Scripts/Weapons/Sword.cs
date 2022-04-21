@@ -5,8 +5,8 @@ public class Sword : WeaponBase
     public Sword() : base()
     {
         weaponName = "Sword";
-        description = "Basic Weapon";
-        animPath = basePath + "Sword."; //Don't forget the dot!
+        description = "Light: Slash\nHeavy: Stab\n Special: Spin";
+        animPath = basePath + weaponName + "."; //Don't forget the dot!
     }
 
     public override void LightAttack(Animator anim)

@@ -23,8 +23,9 @@ public class PlayerAnim : MonoBehaviour
     private float restartTimer;
 
     private Vector3 pRot;
-    
-    public GameObject Cutter;
+    public GameObject cutter; //Cutter Game Object
+    public int numCutters; //Number of Cutter Spawn
+    private GameObject[] cutters; //Array of Cutters
 
     void Start()
     {
@@ -33,6 +34,12 @@ public class PlayerAnim : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
         pRot = DoStatic.GetPlayer().transform.eulerAngles;
+
+        cutters = new GameObject[numCutters];
+        for (int i  = 0; i < numCutters; i++)
+        {
+            cutters[i] = cutter;
+        }
     }
 
     void Update()
@@ -40,6 +47,7 @@ public class PlayerAnim : MonoBehaviour
         if (animState != AnimState.Damage && animState != AnimState.Death)
         {
             LightAttackCheck();
+            HeavyAttackCheck();
             CheckWalking();
             CheckJumping();
         } else if (animState == AnimState.Damage)
@@ -58,10 +66,22 @@ public class PlayerAnim : MonoBehaviour
             return;
         }
 
-        if (ic.buttonDowns["Light"])
+        if (ic.GetButtonDown("Attack", "Light"))
         {
             anim.SetTrigger("FollowUp");
         }
+    }
+
+
+    //Need fix in the Inpuut Controller
+    private void HeavyAttackCheck()
+    {
+        if(animState != AnimState.HeavyAttack)
+        {
+            return;
+        }
+
+        anim.SetBool("Spin", ic.GetButtonStates("Attack", "Heavy"));
     }
 
     /// <summary>
@@ -99,7 +119,7 @@ public class PlayerAnim : MonoBehaviour
 
     private void CheckWalking()
     {
-        anim.SetBool("IsWalking", ic.axisRawValues["Horizontal"] != 0);
+        anim.SetBool("IsWalking", ic.GetAxisRawValues("Movement", "Horizontal") != 0);
     }
 
     private void CheckJumping()
@@ -210,19 +230,36 @@ public class PlayerAnim : MonoBehaviour
             clockwiseRot.z = 0;
         }
         pi.gameObject.transform.eulerAngles = clockwiseRot;
+    private void SetReasonLock(string ID)
+    {
+        ic.SetID(ID, false);
+    }
+
+    private void SetReasonUnlock(string ID)
+    {
+        ic.SetID(ID, true);
     }
 
     //For Cutter Heavy Attack //
     //Used to move the Kirby Up//
     private void CutterHeavyJump()
     {
-        rb.AddForce(transform.up * 400f);
+        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+        pi.gravityMultiplier = 2.5f;
+    }
+
+    private void ResetGravityMultiplier()
+    {
+        pi.gravityMultiplier = 1.2f;
     }
 
     //For Cutter Special Attack //
     //Use to Activate Cutter //
     private void CutterActivate()
     {
-        Cutter.SetActive(true);
+        foreach (GameObject cutter in cutters)
+        {
+            Instantiate(cutter, pi.firePoint.position, Quaternion.identity);
+        }
     }
 }

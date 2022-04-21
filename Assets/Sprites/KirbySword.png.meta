@@ -586,6 +586,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sword_icon
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 823
+        width: 13
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1abd45af8c592264886d6c687d309b25
+      internalID: 1927591234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -608,6 +629,7 @@ TextureImporter:
       sword_light_4: 1718870937
       sword_special_1: 628119977
       sword_special_0: 604588221
+      sword_icon: 1927591234
       sword_special_6: 1791956043
       sword_light_3: -893095830
       sword_heavy_1: 530003335

@@ -3,23 +3,33 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public Dictionary<string, float> axisRawValues { get; private set; } //All inputs that checks Input.GetAxisRaw.
-    public Dictionary<string, bool> buttonDowns { get; private set; } //All inputs that checks Input.GetButtonDown.
-    public Dictionary<string, bool> buttonStates { get; private set; } //All inputs that checks Input.GetButton.
+    public bool lockedInput = false; //Bool to (un)lock all inputs.
+    private Dictionary<string, bool> IDList; //Allows inputs depending on the boolean set. Has to be part of IDList to work.
 
-    public bool inputLock = false; //Bool to (un)lock inputs.
+    private Dictionary<string, float> axisRawValues; //All inputs that checks Input.GetAxisRaw.
+    private Dictionary<string, bool> buttonDowns; //All inputs that checks Input.GetButtonDown.
+    private Dictionary<string, bool> buttonStates; //All inputs that checks Input.GetButton.
 
     private delegate Value InputCheck<Value>(string key); //Delegate variable for dynamic dictionary updates reusing code.
 
     private void Awake()
     {
         //Initiation + Default values
+        IDList = new Dictionary<string, bool>();
+        foreach(string input in new string[] { //Treat the ID list like they are GameObject tags
+            "Attack", //Related to attack inputs.
+            "Movement", //Related to movement
+            "WeaponSwap" //The weapon swap system
+        })
+        {
+            IDList.Add(input, true);
+        }
 
         //Add the inputs in the correct dictionary here!
         axisRawValues = new Dictionary<string, float>();
         foreach (string input in new string[] {
-            "Horizontal", //[D, A]
-            "Vertical" //[W, S]
+            "Horizontal", //[D, A, left, right]
+            "Vertical" //[W, S, up, down]
         }) {
             axisRawValues.Add(input, GetAxisRaw(input));
         }
@@ -32,6 +42,7 @@ public class InputController : MonoBehaviour
             "Light", //j
             "Heavy", //k
             "Special", //l
+            "Exit"
         }) {
             buttonDowns.Add(input, GetButtonDown(input));
             buttonStates.Add(input, GetButtonState(input));
@@ -40,30 +51,15 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        if (inputLock)
+        if (!lockedInput) //Not necessary, but saves O(3n) when activated.
         {
-            return;
-        }
-
-        DictionaryUpdate(axisRawValues, GetAxisRaw);
-        DictionaryUpdate(buttonDowns, GetButtonDown);
-        DictionaryUpdate(buttonStates, GetButtonState);
-
-    }
-
-    /// <summary>
-    /// Enables/Disables all input.
-    /// </summary>
-    public void ToggleInputLock()
-    {
-        inputLock = !inputLock;
-        if (inputLock)
-        {
-            InputReset();
+            DictionaryUpdate(ref axisRawValues, GetAxisRaw);
+            DictionaryUpdate(ref buttonDowns, GetButtonDown);
+            DictionaryUpdate(ref buttonStates, GetButtonState);
         }
     }
 
-    private void DictionaryUpdate<Value>(Dictionary<string, Value> dict, InputCheck<Value> check)
+    private void DictionaryUpdate<Value>(ref Dictionary<string, Value> dict, InputCheck<Value> check)
     {
         string[] keys = new string[dict.Keys.Count];
         dict.Keys.CopyTo(keys, 0);
@@ -88,18 +84,59 @@ public class InputController : MonoBehaviour
         return Input.GetButton(key);
     }
 
-    private void InputReset()
+    /// <summary>
+    /// Enables/Disables all input.
+    /// Perfect for cutscenes.
+    /// </summary>
+    public void SetInputLock(bool doLock)
     {
-        Dictionary<string, float>.KeyCollection axisKeys = new Dictionary<string, float>(axisRawValues).Keys;
-        foreach(string key in axisKeys)
-        {
-            axisRawValues[key] = 0;
-        }
+        lockedInput = doLock;
+    }
 
-        Dictionary<string, bool>.KeyCollection buttonKeys = new Dictionary<string, bool>(buttonDowns).Keys;
-        foreach (string key in buttonKeys)
+    /// <summary>
+    /// Adds a reason to the blacklist.
+    /// Makes InputController return negative for that reason.
+    /// </summary>
+    /// <param name="ID">The reason</param>
+    public void SetID(string ID, bool state)
+    {
+        if (IDList.ContainsKey(ID))
         {
-            buttonDowns[key] = false;
+            IDList[ID] = state;
         }
+    }
+
+    /// <summary>
+    /// Get the value of assigned buttons pressed
+    /// </summary>
+    /// <param name="ID">Purpose</param>
+    /// <param name="button">The button to request</param>
+    /// <returns>The value of the button.</returns>
+    public float GetAxisRawValues(string ID, string button)
+    {
+        return !lockedInput && IDList[ID] ? axisRawValues[button] : 0;
+    }
+
+    /// <summary>
+    /// Get the value of if the button is pressed.
+    /// Usually lasts one frame.
+    /// </summary>
+    /// <param name="ID">Purpose</param>
+    /// <param name="button">The button to request</param>
+    /// <returns>The boolean value of the button getting pressed down.</returns>
+    public bool GetButtonDown(string ID, string button)
+    {
+        return !lockedInput && IDList[ID] && buttonDowns[button];
+    }
+
+    /// <summary>
+    /// Get the sate of the button.
+    /// </summary>
+    /// <param name="ID">Purpose</param>
+    /// <param name="button">The button to request</param>
+    /// <returns>The boolean value of the button state. True if it is pressed.</returns>
+    public bool GetButtonStates(string ID, string button)
+    {
+        return !lockedInput && IDList[ID] && buttonStates[button];
     }
 }

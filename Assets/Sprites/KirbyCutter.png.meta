@@ -607,6 +607,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: cutter_icon
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 494
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c95b05d892c12e4598f39b195c048ce
+      internalID: 985180077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -637,6 +658,7 @@ TextureImporter:
       cutter_light_3: 2089118800
       cutter_heavy_5: 1823168562
       cutter_6: -1574674774
+      cutter_icon: 985180077
       cutter_light_1: -1915331490
       cutter_light_4: -257100135
       cutter_0: 448725010

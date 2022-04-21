@@ -21,11 +21,12 @@ public class PlayerInput : MonoBehaviour
     private float holdTimer; //Timer of the jumpHoldTimer;
     private float prevYVel; //Previous Highest Y Velocity
     private float originalGravity; //The original gravity
-    [SerializeField] private float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
+    public float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     public Transform feet; //Kirby's feet, to check if it is colliding with the ground
     public LayerMask Ground; //A LayerMask which defines what is ground object
+    public Transform firePoint; // Fire Point for all sort of range weapon
 
     [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
@@ -58,8 +59,14 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             playerAnim.Death();
+
+        if (!ic.lockedInput && Input.GetKeyDown(KeyCode.E))
+        {
+            ic.GetComponent<UIController>().ActivateUI("WeaponSwapSystem", DoNothing);
         }
     }
+
+    private void DoNothing() { }
 
     /// <summary>
     /// Get the cooldown percentage.
@@ -74,7 +81,7 @@ public class PlayerInput : MonoBehaviour
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
         isFalling = rb.velocity.y < -0.1;
-        if (ic.buttonDowns["Jump"] && !hasJumped)
+        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
             prevYVel = 0;
@@ -92,7 +99,7 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        isJumpHeld = ic.buttonStates["Jump"] && holdTimer > 0;
+        isJumpHeld = ic.GetButtonStates("Movement", "Jump") && holdTimer > 0;
         if (!isJumpHeld)
         {
             return;
@@ -109,12 +116,11 @@ public class PlayerInput : MonoBehaviour
             vel.y = prevYVel;
             rb.velocity = vel;
         }
-
     }
 
     private void HorizontalMovement()
     {
-        Vector2 vel = new Vector2(speed * ic.axisRawValues["Horizontal"], rb.velocity.y);
+        Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
         rb.velocity = vel;
     }
 
@@ -126,19 +132,19 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        if (ic.buttonDowns["Light"] && lightWeapon != null)
+        if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
             lightWeapon.LightAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength;
         }
 
-        if (ic.buttonDowns["Heavy"] && heavyWeapon != null)
+        if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
             heavyWeapon.HeavyAttack(playerAnim.anim);
             detector.strength = lightWeapon.strength * 2;
         }
 
-        if (currCooldownTimer < 0 && ic.buttonDowns["Special"] && specialWeapon != null)
+        if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
         {
             currCooldownTimer = cooldownTimer;
             specialWeapon.SpecialAttack(playerAnim.anim);
@@ -153,6 +159,6 @@ public class PlayerInput : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(feet.position, radius);
+        Gizmos.DrawWireSphere(feet.position, radius);
     }
 }

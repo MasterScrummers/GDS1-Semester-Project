@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class DoStatic
 {
+    public delegate void SimpleDelegate();
+
     /// <summary>
     /// Get the name of the current scene.
     /// </summary>
@@ -120,5 +122,17 @@ public class DoStatic
     public static GameObject GetPlayer()
     {
         return GetObject("Player");
+    }
+
+    /// <summary>
+    /// Swaps the values between two variables.
+    /// </summary>
+    /// <param name="a">The first variable</param>
+    /// <param name="b">The second variable</param>
+    public static void Swap<T>(ref T a, ref T b)
+    {
+        T temp = a;
+        a = b;
+        b = temp;
     }
 }
