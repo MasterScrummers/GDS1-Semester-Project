@@ -896,5 +896,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 4735327986184645884, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
