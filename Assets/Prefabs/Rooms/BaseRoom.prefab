@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 975200689073842378}
   - component: {fileID: 975200689073842377}
   - component: {fileID: 975200689073842376}
+  - component: {fileID: 6672377624324166849}
   m_Layer: 3
   m_Name: Platforms
   m_TagString: Untagged
@@ -493,10 +494,10 @@ CompositeCollider2D:
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 310744aaac9927441ac477818c3df381, type: 2}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -660,6 +661,25 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!251 &6672377624324166849
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975200689073842380}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &975200689749176901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1398,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -4370,6 +4390,10 @@ PrefabInstance:
     - target: {fileID: 4230180676854607802, guid: fc5478ccb58d0a545ba6a6cba6bef139, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127325163339482409, guid: fc5478ccb58d0a545ba6a6cba6bef139, type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc5478ccb58d0a545ba6a6cba6bef139, type: 3}
