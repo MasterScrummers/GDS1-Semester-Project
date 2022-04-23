@@ -46,10 +46,10 @@ public class PlayerInput : MonoBehaviour
         heavyWeapon = new Sword();
         specialWeapon = new Sword();
     }
-
+ 
     void Update()
     {
-        if (!ic.inputLock)
+        if (!ic.lockedInput)
         {
             VerticalMovement();
             HorizontalMovement();
@@ -59,7 +59,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             playerAnim.Death();
-
+        }
         if (!ic.lockedInput && Input.GetKeyDown(KeyCode.E))
         {
             ic.GetComponent<UIController>().ActivateUI("WeaponSwapSystem", DoNothing);
@@ -155,6 +155,12 @@ public class PlayerInput : MonoBehaviour
     public bool OnGround()
     {
         return Physics2D.OverlapCircle(feet.position, radius, Ground);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        {
+            Debug.Log("Colliding with + " + other.gameObject.name);
+        }
     }
 
     void OnDrawGizmosSelected()

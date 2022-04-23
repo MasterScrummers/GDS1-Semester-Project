@@ -160,10 +160,7 @@ public class PlayerAnim : MonoBehaviour
             damageTimer = 0;
             damageLanded = false;
             
-            if (!ic.inputLock)
-            {
-                ic.ToggleInputLock();
-            }
+            ic.SetInputLock(true);
 
             anim.Play("Base Layer.KirbyHurt.KirbyHurtAir");
             rb.velocity = Vector2.zero;
@@ -186,9 +183,7 @@ public class PlayerAnim : MonoBehaviour
 
     public void ReenableInputAfterDamage()
     {
-        if (ic.inputLock) {
-            ic.ToggleInputLock();
-        }
+        ic.SetInputLock(false);
         StartCoroutine("FlashingKirby");
     }
 
@@ -208,10 +203,7 @@ public class PlayerAnim : MonoBehaviour
 
     public void Death()
     {
-        if (!ic.inputLock)
-        {
-            ic.ToggleInputLock();
-        }
+        ic.SetInputLock(true);
         anim.Play("Base Layer.KirbyDeath.KirbyDeathIntro");
     }
 
@@ -230,6 +222,7 @@ public class PlayerAnim : MonoBehaviour
             clockwiseRot.z = 0;
         }
         pi.gameObject.transform.eulerAngles = clockwiseRot;
+    }
     private void SetReasonLock(string ID)
     {
         ic.SetID(ID, false);

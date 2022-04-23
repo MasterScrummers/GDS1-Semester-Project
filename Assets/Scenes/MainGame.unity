@@ -622,6 +622,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 908795106552820488, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6492174129824088241, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 14
@@ -870,6 +874,10 @@ PrefabInstance:
     - target: {fileID: 975200689877583182, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_Name
       value: RoomBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082752412469350907, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_UseColliderMask
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
