@@ -12,10 +12,12 @@ public class UISpecialWeapon : UIWeaponCircle
 
     protected void Update()
     {
+        circle.fillAmount = 1;
         if (playerInput.specialWeapon != null)
         {
             circle.color = circle.fillAmount == 1 ? playerInput.specialWeapon.weaponColour : coolingDown;
+            circle.fillAmount = playerInput.CooldownPercentage();
+            UpdateSprite(playerInput.specialWeapon);
         }
-        circle.fillAmount = playerInput.CooldownPercentage();
     }
 }

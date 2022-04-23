@@ -6,12 +6,29 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected WeaponBase.Affinity type;
+    [SerializeField] protected bool randomiseAffinity = false;
 
     protected HealthComponent health;
 
     // Start is called before the first frame update
     protected virtual void Start() {
         health = GetComponent<HealthComponent>();
+        if (randomiseAffinity)
+        {
+            int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
+            type = (WeaponBase.Affinity)Random.Range(0, affinityNum);
+        }
+
+        SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
+        if (outliner)
+        {
+            outliner.SetColour(type switch {
+                WeaponBase.Affinity.fire => new Color32(183, 18, 52, 255),
+                WeaponBase.Affinity.water => new Color32(0, 70, 173, 255),
+                WeaponBase.Affinity.grass => new Color32(0, 155, 72, 255),
+                _ => new Color32(0, 0, 0, 1)
+            });
+        }
     }
     
     // Update is called once per frame
