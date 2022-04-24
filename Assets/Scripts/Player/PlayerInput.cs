@@ -150,7 +150,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Interact()
     {
-        if (currInteractable && Input.GetKeyDown(KeyCode.P))
+        if (currInteractable && Input.GetKeyDown(KeyCode.W))
         {
             currInteractable.GetComponent<InteractableObject>().Interact();
             currInteractable = null;
