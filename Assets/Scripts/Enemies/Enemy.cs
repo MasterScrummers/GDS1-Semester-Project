@@ -7,10 +7,12 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected WeaponBase.Affinity type;
 
+    public RoomData inRoom;
     protected HealthComponent health;
 
     // Start is called before the first frame update
     protected virtual void Start() {
+        inRoom = transform.parent.parent.GetComponent<RoomData>();
         health = GetComponent<HealthComponent>();
     }
     
@@ -38,6 +40,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Death()
     {
         Destroy(gameObject);
+        inRoom.CheckEnemyCount();
     }
 
     /// <summary>
