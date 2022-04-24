@@ -22,7 +22,8 @@ public class RoomData : MonoBehaviour
 
     public void CheckEnemyCount()
     {
-        if((enemyCount=enemiesGroup.childCount) == 0)
+        enemyCount -= 1;
+        if(enemyCount <= 0)
         {
             empty = true;
         }
