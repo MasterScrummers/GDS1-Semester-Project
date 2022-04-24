@@ -9,16 +9,19 @@ public class WeaponChest : MonoBehaviour
     private GameObject enemies; //Enemies parent object
     private SpriteRenderer chestSprite; //WeaponChest SpriteRenderer
     private Collider2D col; //WeaponChest collider
+    private Animator anim; //WeaponChest animator
 
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
-        col = gameObject.GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
 
-        chestSprite = gameObject.GetComponent<SpriteRenderer>();
+        chestSprite = GetComponent<SpriteRenderer>();
         chestSprite.enabled = false;
 
         enemies = GameObject.Find("Enemies");
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class WeaponChest : MonoBehaviour
         if (enemies && enemies.transform.childCount == 0)
         {
             chestSprite.enabled = true;
+            anim.SetBool("Visible", true);
         }
 
     }
@@ -36,6 +40,7 @@ public class WeaponChest : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && chestSprite.enabled == true)
         {
+            anim.SetBool("Open", true);
             ic.GetComponent<UIController>().ActivateUI("WeaponSwapSystem", DoNothing); //bring up WeaponSwap UI
             col.enabled = false; //stops player from using chest again
         }
