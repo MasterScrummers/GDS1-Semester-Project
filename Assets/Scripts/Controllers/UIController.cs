@@ -24,7 +24,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     /// <param name="name">The name of the UI.</param>
     /// <param name="notification">The method that will be called once it has transitioned in..</param>
-    public void ActivateUI(string name, DoStatic.SimpleDelegate notification)
+    public void ActivateUI(string name, DoStatic.SimpleDelegate notification = null)
     {
         UISystemBase uISystem = UIs[name];
         uISystem.gameObject.SetActive(true);

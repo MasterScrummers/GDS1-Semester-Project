@@ -16,7 +16,8 @@ public class PlayerInput : MonoBehaviour
     public bool isFalling { private set; get; } = false;//Is player falling?
 
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
-    private bool isInFrontInteract = false; //Is the player in front of an interactable object
+    public bool canInteract = false;
+
     [SerializeField] private float baseJumpForce = 5; //The initial jump force
     [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
     private float holdTimer; //Timer of the jumpHoldTimer;
@@ -32,8 +33,6 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
-
-    public GameObject currInteractable;
 
     void Start()
     {
@@ -52,25 +51,15 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (!ic.lockedInput)
-        {
-            VerticalMovement();
-            HorizontalMovement();
-            AttackChecks();
-        }
+        VerticalMovement();
+        HorizontalMovement();
+        AttackChecks();
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X)) //To be removed!
         {
             playerAnim.Death();
         }
-        if (!ic.lockedInput && Input.GetKeyDown(KeyCode.E))
-        {
-            ic.GetComponent<UIController>().ActivateUI("WeaponSwapSystem", DoNothing);
-        }
-        Interact();
     }
-
-    private void DoNothing() { }
 
     /// <summary>
     /// Get the cooldown percentage.
@@ -85,7 +74,13 @@ public class PlayerInput : MonoBehaviour
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
         isFalling = rb.velocity.y < -0.1;
-        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped && !isInFrontInteract)
+
+        if (canInteract && ic.GetButtonDown("Movement", "Interact"))
+        {
+            return;
+        }
+
+        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
             prevYVel = 0;
@@ -155,15 +150,6 @@ public class PlayerInput : MonoBehaviour
             detector.strength = lightWeapon.strength * 3;
         }
     }
-
-    private void Interact()
-    {
-        if (currInteractable && Input.GetKeyDown(KeyCode.W))
-        {
-            currInteractable.GetComponent<InteractableObject>().Interact();
-            currInteractable = null;
-        }
-    }
     
     public bool OnGround()
     {
@@ -174,20 +160,4 @@ public class PlayerInput : MonoBehaviour
     {
         Gizmos.DrawWireSphere(feet.position, radius);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Interactable"))
-        {
-            currInteractable = collision.gameObject;
-            isInFrontInteract = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        currInteractable = null;
-        isInFrontInteract = false;
-    }
-
 }

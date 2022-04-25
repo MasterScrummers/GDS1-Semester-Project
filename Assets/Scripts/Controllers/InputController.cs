@@ -19,7 +19,7 @@ public class InputController : MonoBehaviour
         foreach(string input in new string[] { //Treat the ID list like they are GameObject tags
             "Attack", //Related to attack inputs.
             "Movement", //Related to movement
-            "WeaponSwap" //The weapon swap system
+            "WeaponSwap", //The weapon swap system
         })
         {
             IDList.Add(input, true);
@@ -38,7 +38,7 @@ public class InputController : MonoBehaviour
         buttonStates = new Dictionary<string, bool>();
         foreach (string input in new string[]
         {
-            "Jump", //space, w
+            "Jump", //[space, w]
             "Light", //j
             "Heavy", //k
             "Special", //l

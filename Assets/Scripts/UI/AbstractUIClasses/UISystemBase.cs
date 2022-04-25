@@ -93,6 +93,9 @@ public abstract class UISystemBase : MonoBehaviour
     /// Meant to be overridden.
     /// </summary>
     protected virtual void FirstActiveFrameUpdate() {
-        notification();
+        if (notification != null)
+        {
+            notification();
+        }
     }
 }

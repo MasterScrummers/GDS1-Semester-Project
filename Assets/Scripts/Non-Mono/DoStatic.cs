@@ -104,14 +104,23 @@ public class DoStatic
     }
 
     /// <summary>
+    /// Finds the GameObject with the tag "GameController".
+    /// There should only be one!
+    /// </summary>
+    /// <returns>The GameController GameObject</returns>
+    public static GameObject GetGameController()
+    {
+        return GetObject("GameController");
+    }
+
+    /// <summary>
     /// Finds the GameObject with the tag "GameController" and grabs the component specified.
     /// There should only be one!
-    /// You can access to the GameObject after grabbing the Transform component.
     /// </summary>
     /// <returns>The GameController GameObject</returns>
     public static T GetGameController<T>()
     {
-        return GetObject("GameController").GetComponent<T>();
+        return GetGameController().GetComponent<T>();
     }
 
     /// <summary>
@@ -122,6 +131,16 @@ public class DoStatic
     public static GameObject GetPlayer()
     {
         return GetObject("Player");
+    }
+
+    /// <summary>
+    /// Finds the GameObject with the tag "Player" and grabs the component specified.
+    /// There should only be one!
+    /// </summary>
+    /// <returns>The Component from the player Gameobject</returns>
+    public static T GetPlayer<T>()
+    {
+        return GetPlayer().GetComponent<T>();
     }
 
     /// <summary>

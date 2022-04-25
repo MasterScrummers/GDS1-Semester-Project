@@ -1,40 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomData : MonoBehaviour
 {
-    public int enemyCount;
-    public Transform enemiesGroup;
-    public bool empty;
-    private GameObject doors;
+    [SerializeField] private GameObject enemies;
+    [SerializeField] private GameObject doors;
 
-    // Start is called before the first frame update
+    public bool empty { get; private set; }
+    private int enemyCount;
+
     void Start()
     {
-        empty = false;
-        enemiesGroup = this.gameObject.transform.GetChild(0);
-        enemyCount = enemiesGroup.childCount;
-        doors = this.gameObject.transform.GetChild(1).gameObject;
-        if(enemyCount <= 0)
+        foreach(Transform child in DoStatic.GetChildren(enemies.transform))
         {
-            empty = true;
-            OpenDoors();
+            Enemy enemy = child.GetComponent<Enemy>();
+            if (enemy && child.gameObject.activeInHierarchy)
+            {
+                enemy.AssignToRoomData(this);
+                enemyCount++;
+            }
         }
     }
 
-    public void CheckEnemyCount()
+    void Update()
     {
-        enemyCount -= 1;
-        if(enemyCount <= 0)
-        {
-            empty = true;
-            OpenDoors();
-        }
+        empty = enemyCount == 0;
+        doors.SetActive(!empty);
     }
 
-    private void OpenDoors()
+    public void UpdateEnemyCount()
     {
-        Destroy(doors);
+        enemyCount--;
     }
 }

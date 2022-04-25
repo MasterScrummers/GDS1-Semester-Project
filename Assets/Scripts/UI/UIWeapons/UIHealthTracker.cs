@@ -8,7 +8,7 @@ public class UIHealthTracker : UICircleBarBase
     protected override void Start()
     {
         base.Start();
-        health = DoStatic.GetPlayer().GetComponent<HealthComponent>();
+        health = DoStatic.GetPlayer<HealthComponent>();
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class UIHealthTracker : UICircleBarBase
         circle.fillAmount = health.GetPercentage();
         if (circle.fillAmount == 0 && !isDead)
         {
-            DoStatic.GetPlayer().GetComponentInChildren<PlayerAnim>().Death();
+            health.GetComponentInChildren<PlayerAnim>().Death();
             isDead = true;
         }
     }

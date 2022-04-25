@@ -1,24 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class InteractableObject : MonoBehaviour
 {
+    protected InputController ic; //Input controller to check inputs.
+    protected Collider2D col;
+    protected PlayerInput pi;
+    protected bool nearPlayer = false;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-       
+        col = GetComponent<Collider2D>();
+        col.enabled = true;
+        col.isTrigger = true;
+        ic = DoStatic.GetGameController<InputController>();
+        pi = DoStatic.GetPlayer<PlayerInput>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
+        if (nearPlayer && ic.GetButtonDown("Movement", "Interact"))
+        {
+            Interact();
+        }
     }
 
-    public virtual void Interact()
+    protected virtual void Interact()
     {
-        Destroy(this);
+        col.enabled = false;
+        nearPlayer = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            nearPlayer = true;
+            pi.canInteract = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            nearPlayer = false;
+            pi.canInteract = ic.GetButtonDown("Movement", "Interact");
+        }
     }
 }

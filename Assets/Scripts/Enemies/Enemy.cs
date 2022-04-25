@@ -13,7 +13,6 @@ public abstract class Enemy : MonoBehaviour
 
     // Start is called before the first frame update
     protected virtual void Start() {
-        inRoom = transform.parent.parent.GetComponent<RoomData>();
         health = GetComponent<HealthComponent>();
         if (randomiseAffinity)
         {
@@ -56,8 +55,12 @@ public abstract class Enemy : MonoBehaviour
     /// </summary>
     protected virtual void Death()
     {
-        Destroy(gameObject);
-        inRoom.CheckEnemyCount();
+        if (inRoom)
+        {
+            inRoom.UpdateEnemyCount();
+        }
+
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -73,5 +76,10 @@ public abstract class Enemy : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void AssignToRoomData(RoomData roomData)
+    {
+        inRoom = roomData;
     }
 }
