@@ -5,7 +5,7 @@ public class Cutter : WeaponBase
     public Cutter() : base()
     {
         weaponName = "Cutter";
-        description = "Light: \nHeavy: \nSpecial: ";
+        description = "Light: Slash\nHeavy: Jump Attack\nSpecial: Throw Cutter";
         animPath = basePath + "Cutter.";
     }
 

@@ -5,7 +5,8 @@ using System.Collections;
 public class PlayerAnim : MonoBehaviour
 {
     public Animator anim { get; private set; } //The player's animation
-    private InputController ic; //The Input Controller.
+    private InputController ic; // Input Controller
+    private AudioController ac; // Audio Controller
     private Rigidbody2D rb;
     private PlayerInput pi;
 
@@ -28,10 +29,12 @@ public class PlayerAnim : MonoBehaviour
     public int numCutters; //Number of Cutter Spawn
     private GameObject[] cutters; //Array of Cutters
 
+
     void Start()
     {
         anim = GetComponent<Animator>();
         ic = DoStatic.GetGameController<InputController>();
+        ac = ic.GetComponent<AudioController>();
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
         pRot = DoStatic.GetPlayer().transform.eulerAngles;
@@ -87,7 +90,6 @@ public class PlayerAnim : MonoBehaviour
     }
 
 
-    //Need fix in the Inpuut Controller
     private void HeavyAttackCheck()
     {
         if(animState != AnimState.HeavyAttack)
@@ -252,6 +254,11 @@ public class PlayerAnim : MonoBehaviour
     private void SetReasonUnlock(string ID)
     {
         ic.SetID(ID, true);
+    }
+
+    private void PlaySound(string clipName)
+    {
+        ac.PlaySound(clipName);
     }
 
     //For Cutter Heavy Attack //
