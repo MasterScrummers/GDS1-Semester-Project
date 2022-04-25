@@ -21,7 +21,7 @@ public class UIHealthTracker : UICircleBarBase
         circle.fillAmount = health.GetPercentage();
         if (circle.fillAmount == 0 && !isDead)
         {
-            Debug.Log("Death code here!");//Call a method over here
+            DoStatic.GetPlayer().GetComponentInChildren<PlayerAnim>().Death();
             isDead = true;
         }
     }

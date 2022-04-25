@@ -157,12 +157,6 @@ public class PlayerInput : MonoBehaviour
         return Physics2D.OverlapCircle(feet.position, radius, Ground);
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        {
-            Debug.Log("Colliding with + " + other.gameObject.name);
-        }
-    }
-
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(feet.position, radius);

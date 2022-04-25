@@ -17,10 +17,11 @@ public class PlayerAnim : MonoBehaviour
 
     private float damageTimer;
     private bool damageLanded;
-    private float invincibilityTimer = 3f;
+    private float invincibilityTimer = 1.5f;
     public bool invincible;
     private float deathTimer;
-    private float restartTimer;
+    private float restartTimer = 5f;
+    private bool deathJumped;
 
     private Vector3 pRot;
     public GameObject cutter; //Cutter Game Object
@@ -52,11 +53,25 @@ public class PlayerAnim : MonoBehaviour
             CheckJumping();
         } else if (animState == AnimState.Damage)
         {
-            CheckDamage();
-            Debug.Log("Checking dmg");
+            CheckFallenDuringDamage();
+        } else if (animState == AnimState.Death)
+        {
+            if (transform.parent.localScale.x < 0.01f)
+            {
+                Destroy(transform.parent.gameObject);
+            }
+            transform.parent.localScale = transform.parent.localScale * 0.993f;
+            
+            if (restartTimer <= 0f)
+            {
+                Physics2D.IgnoreLayerCollision(6, 7, false);
+                Physics2D.IgnoreLayerCollision(3, 6, false);
+                DoStatic.LoadScene(0, false);
+            } else {
+                restartTimer -= Time.deltaTime;
+            }
+        
         }
-
-        Debug.Log(animState);
     }
 
     private void LightAttackCheck()
@@ -105,7 +120,6 @@ public class PlayerAnim : MonoBehaviour
     /// </summary>
     private void SetAnimState(AnimState state)
     {
-        Debug.Log("Setting animation state");
         animState = state;
     }
 
@@ -168,9 +182,8 @@ public class PlayerAnim : MonoBehaviour
         }  
     }
 
-    private void CheckDamage()
+    private void CheckFallenDuringDamage()
     {
-        Debug.Log("Checking dmg");
         damageTimer += Time.deltaTime;
 
         if (damageTimer > 0.5f && pi.OnGround() && !damageLanded)
@@ -184,10 +197,10 @@ public class PlayerAnim : MonoBehaviour
     public void ReenableInputAfterDamage()
     {
         ic.SetInputLock(false);
-        StartCoroutine("FlashingKirby");
+        StartCoroutine("InvincibilityFlashing");
     }
 
-    private IEnumerator FlashingKirby()
+    private IEnumerator InvincibilityFlashing()
     {
         Physics2D.IgnoreLayerCollision(6, 7, true);
         for (int i = 0; i < invincibilityTimer / 0.2f; i++)
@@ -205,12 +218,20 @@ public class PlayerAnim : MonoBehaviour
     {
         ic.SetInputLock(true);
         anim.Play("Base Layer.KirbyDeath.KirbyDeathIntro");
+        rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        Physics2D.IgnoreLayerCollision(6, 7, true);
+        Physics2D.IgnoreLayerCollision(3, 6, true);
     }
 
     private void DeathJump()
     {
-        rb.AddForce(transform.up * 400f);
-        Physics2D.IgnoreLayerCollision(3, 6, true);
+        if (!deathJumped)
+        {
+            // rb.constraints = RigidbodyConstraints2D.None;
+            // rb.AddRelativeForce(transform.up * 400f);
+            deathJumped = true;
+        }
     }
 
     public void DeathRotate()
@@ -223,6 +244,7 @@ public class PlayerAnim : MonoBehaviour
         }
         pi.gameObject.transform.eulerAngles = clockwiseRot;
     }
+
     private void SetReasonLock(string ID)
     {
         ic.SetID(ID, false);
