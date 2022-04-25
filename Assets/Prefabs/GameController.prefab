@@ -1236,7 +1236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b02c5136ad526d46a2b2b2d5a49bcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 178b167706595b543929920ed0f80453, type: 3}
+  - {fileID: 8300000, guid: 56aa3108f671864479d0740d9f820e93, type: 3}
+  - {fileID: 8300000, guid: b775a58fe1c2dde459a751f308e7d1aa, type: 3}
+  - {fileID: 8300000, guid: c921df79d8ab0964a88d49688a4484a6, type: 3}
 --- !u!114 &9189817497675335482
 MonoBehaviour:
   m_ObjectHideFlags: 0
