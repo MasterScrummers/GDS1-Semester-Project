@@ -628,6 +628,174 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: kirby_hurt_air_0
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 3601
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1d745a9d6a5ca4dbce44a415c4edeb
+      internalID: 1413387161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_hurt_land_0
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 3601
+        width: 24
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1d89f061199384ca7b13e9e41a3bc3
+      internalID: -886443728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_hurt_land_1
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 3601
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1b7bf4929312049b77a7eb3f3b887b
+      internalID: -1428315978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_0
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 3635
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5149de924f6c54d8b37b9e1054bee2
+      internalID: -1841467584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_1
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3634
+        width: 25
+        height: 28
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac112fad5dc16a646b61e84b68c0d80c
+      internalID: 630630911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_2
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 3634
+        width: 28
+        height: 28
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdbff28b007c29149ac8580949deb07b
+      internalID: 1906352005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_3
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 3635
+        width: 28
+        height: 25
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001cefeca6b1ed44599a416bf37bf890
+      internalID: 1359747380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_4
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 3636
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7fb84a4b15ab4443bd3cab5d725def8
+      internalID: -1465190625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -639,6 +807,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      kirby_death_0: -1841467584
       kirby_walk_5: 1195330781
       kirby_walk_7: 1648456648
       kirby_jump_1: 933192447
@@ -646,7 +815,10 @@ TextureImporter:
       KirbyIdle_1: 1080570564
       kirby_walk_8: 1873119803
       kirby_jump_2: 1243854306
+      kirby_death_3: 1359747380
+      kirby_hurt_land_1: -1428315978
       kirby_walk_6: -481831339
+      kirby_death_4: -1465190625
       kirby_jump_4: 1153074302
       kirby_jump_7: 1213005188
       kirby_jump_8: -1071219015
@@ -659,11 +831,17 @@ TextureImporter:
       kirby_jump_0: 105720551
       kirby_walk_4: -549318915
       kirby_jump_11: 1268743112
+      kirby_hurt_ground_0: 1281851979
       kirby_walk_2: 1728868239
       kirby_jump_3: -1967757045
+      kirby_hurt_air_0: 1413387161
       KirbyIdle_0: 1948870930
       KirbyIdle_2: 1660923632
+      kirby_death_1: 630630911
       kirby_jump_10: 1043929324
+      kirby_hurt_land_0: -886443728
+      kirby_death_2: 1906352005
+      kirby_hurt_air_1: -1256315750
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

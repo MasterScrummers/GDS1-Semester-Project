@@ -52,10 +52,17 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        VerticalMovement();
-        HorizontalMovement();
-        AttackChecks();
+        if (!ic.lockedInput)
+        {
+            VerticalMovement();
+            HorizontalMovement();
+            AttackChecks();
+        }
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            playerAnim.Death();
+        }
         if (!ic.lockedInput && Input.GetKeyDown(KeyCode.E))
         {
             ic.GetComponent<UIController>().ActivateUI("WeaponSwapSystem", DoNothing);
@@ -156,6 +163,11 @@ public class PlayerInput : MonoBehaviour
             currInteractable.GetComponent<InteractableObject>().Interact();
             currInteractable = null;
         }
+    }
+    
+    public bool OnGround()
+    {
+        return Physics2D.OverlapCircle(feet.position, radius, Ground);
     }
 
     void OnDrawGizmosSelected()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnim : MonoBehaviour
@@ -8,12 +9,21 @@ public class PlayerAnim : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput pi;
 
-    private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
+    private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
     private AnimState animState = AnimState.Idle;
 
     private enum JumpState { Waiting, StartJump, Peak, Descending }
     private JumpState jumpState = JumpState.Waiting;
 
+    private float damageTimer;
+    private bool damageLanded;
+    private float invincibilityTimer = 1.5f;
+    public bool invincible;
+    private float deathTimer;
+    private float restartTimer = 5f;
+    private bool deathJumped;
+
+    private Vector3 pRot;
     public GameObject cutter; //Cutter Game Object
     public int numCutters; //Number of Cutter Spawn
     private GameObject[] cutters; //Array of Cutters
@@ -24,6 +34,7 @@ public class PlayerAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
+        pRot = DoStatic.GetPlayer().transform.eulerAngles;
 
         cutters = new GameObject[numCutters];
         for (int i  = 0; i < numCutters; i++)
@@ -34,10 +45,33 @@ public class PlayerAnim : MonoBehaviour
 
     void Update()
     {
-        LightAttackCheck();
-        HeavyAttackCheck();
-        CheckWalking();
-        CheckJumping();
+        if (animState != AnimState.Damage && animState != AnimState.Death)
+        {
+            LightAttackCheck();
+            HeavyAttackCheck();
+            CheckWalking();
+            CheckJumping();
+        } else if (animState == AnimState.Damage)
+        {
+            CheckFallenDuringDamage();
+        } else if (animState == AnimState.Death)
+        {
+            if (transform.parent.localScale.x < 0.01f)
+            {
+                Destroy(transform.parent.gameObject);
+            }
+            transform.parent.localScale = transform.parent.localScale * 0.993f;
+            
+            if (restartTimer <= 0f)
+            {
+                Physics2D.IgnoreLayerCollision(6, 7, false);
+                Physics2D.IgnoreLayerCollision(3, 6, false);
+                DoStatic.LoadScene(0, false);
+            } else {
+                restartTimer -= Time.deltaTime;
+            }
+        
+        }
     }
 
     private void LightAttackCheck()
@@ -130,6 +164,85 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetTrigger(animParameter);
         }
+    }
+
+    public void TakeDamage(int xDirectionForce)
+    {
+        if (animState != AnimState.Damage)
+        {
+            invincible = true;
+            damageTimer = 0;
+            damageLanded = false;
+            
+            ic.SetInputLock(true);
+
+            anim.Play("Base Layer.KirbyHurt.KirbyHurtAir");
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(xDirectionForce*0.8f, 2) * 100f);
+        }  
+    }
+
+    private void CheckFallenDuringDamage()
+    {
+        damageTimer += Time.deltaTime;
+
+        if (damageTimer > 0.5f && pi.OnGround() && !damageLanded)
+            {
+                damageLanded = true;
+                rb.velocity = Vector2.zero;
+                anim.SetTrigger("HurtFallenToGround");
+            }
+    }
+
+    public void ReenableInputAfterDamage()
+    {
+        ic.SetInputLock(false);
+        StartCoroutine("InvincibilityFlashing");
+    }
+
+    private IEnumerator InvincibilityFlashing()
+    {
+        Physics2D.IgnoreLayerCollision(6, 7, true);
+        for (int i = 0; i < invincibilityTimer / 0.2f; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
+        invincible = false;
+        Physics2D.IgnoreLayerCollision(6, 7, false);
+    }
+
+    public void Death()
+    {
+        ic.SetInputLock(true);
+        anim.Play("Base Layer.KirbyDeath.KirbyDeathIntro");
+        rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        Physics2D.IgnoreLayerCollision(6, 7, true);
+        Physics2D.IgnoreLayerCollision(3, 6, true);
+    }
+
+    private void DeathJump()
+    {
+        if (!deathJumped)
+        {
+            // rb.constraints = RigidbodyConstraints2D.None;
+            // rb.AddRelativeForce(transform.up * 400f);
+            deathJumped = true;
+        }
+    }
+
+    public void DeathRotate()
+    {
+        Vector3 clockwiseRot = pi.gameObject.transform.eulerAngles;
+        clockwiseRot.z -= 90;
+        if (clockwiseRot.z == 360)
+        {
+            clockwiseRot.z = 0;
+        }
+        pi.gameObject.transform.eulerAngles = clockwiseRot;
     }
 
     private void SetReasonLock(string ID)
