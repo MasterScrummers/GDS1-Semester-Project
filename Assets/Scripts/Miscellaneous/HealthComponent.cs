@@ -31,9 +31,10 @@ public class HealthComponent : MonoBehaviour
         health = Mathf.Clamp(health - amount, 0, maxHealth);
     }
 
-    public void HealDamage(int amount)
+    public void HealDamage(int currAmount, int maxAmount)
     {
-        health = Mathf.Clamp(health + amount, 0, maxHealth);
+        maxHealth += maxAmount;
+        health = Mathf.Clamp(health + currAmount, 0, maxHealth);
     }
 
     public float GetPercentage()
