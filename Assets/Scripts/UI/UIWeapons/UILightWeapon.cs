@@ -5,6 +5,7 @@ public class UILightWeapon : UIWeaponCircle
         if (playerInput.lightWeapon != null)
         {
             UpdateColour(playerInput.lightWeapon);
+            UpdateSprite(playerInput.lightWeapon);
         }
     }
 }

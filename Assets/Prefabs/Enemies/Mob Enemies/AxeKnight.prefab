@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6273758209889813987}
   - component: {fileID: 7370212623302708007}
+  - component: {fileID: 5891240376551646364}
   m_Layer: 0
   m_Name: AxeKnight (Sprite)
   m_TagString: Untagged
@@ -84,6 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5891240376551646364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455586161228126595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50591fd6af8aa941be47a91af858101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineSizeMultiplier: 1.1
+  mat: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
 --- !u!1 &6577600788766136098
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  randomiseAffinity: 1
   direction: 1
   movementSpeed: 3
   leftBoundary: -1
@@ -201,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 1
 --- !u!58 &8715653282876995269
 CircleCollider2D:
   m_ObjectHideFlags: 0
