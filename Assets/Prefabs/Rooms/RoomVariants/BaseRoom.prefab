@@ -3560,6 +3560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LockedDoor (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2913477777423992203, guid: db0deac51d4e69e4d803bde6f9d49200, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8438476968921775131, guid: db0deac51d4e69e4d803bde6f9d49200, type: 3}
       propertyPath: m_RootOrder
       value: 3

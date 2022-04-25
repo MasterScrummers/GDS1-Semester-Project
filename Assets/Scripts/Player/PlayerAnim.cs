@@ -70,7 +70,6 @@ public class PlayerAnim : MonoBehaviour
             } else {
                 restartTimer -= Time.deltaTime;
             }
-        
         }
     }
 
@@ -202,13 +201,13 @@ public class PlayerAnim : MonoBehaviour
 
     private IEnumerator InvincibilityFlashing()
     {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+
         Physics2D.IgnoreLayerCollision(6, 7, true);
         for (int i = 0; i < invincibilityTimer / 0.2f; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            GetComponent<SpriteRenderer>().enabled = false;
-            yield return new WaitForSeconds(0.1f);
-            GetComponent<SpriteRenderer>().enabled = true;
+            sprite.enabled = !sprite.enabled;
         }
         invincible = false;
         Physics2D.IgnoreLayerCollision(6, 7, false);

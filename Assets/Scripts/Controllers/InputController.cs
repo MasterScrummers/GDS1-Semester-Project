@@ -38,10 +38,11 @@ public class InputController : MonoBehaviour
         buttonStates = new Dictionary<string, bool>();
         foreach (string input in new string[]
         {
-            "Jump", //Space
+            "Jump", //space, w
             "Light", //j
             "Heavy", //k
             "Special", //l
+            "Interact", //w
             "Exit"
         }) {
             buttonDowns.Add(input, GetButtonDown(input));
@@ -51,12 +52,9 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        if (!lockedInput) //Not necessary, but saves O(3n) when activated.
-        {
-            DictionaryUpdate(ref axisRawValues, GetAxisRaw);
-            DictionaryUpdate(ref buttonDowns, GetButtonDown);
-            DictionaryUpdate(ref buttonStates, GetButtonState);
-        }
+        DictionaryUpdate(ref axisRawValues, GetAxisRaw);
+        DictionaryUpdate(ref buttonDowns, GetButtonDown);
+        DictionaryUpdate(ref buttonStates, GetButtonState);
     }
 
     private void DictionaryUpdate<Value>(ref Dictionary<string, Value> dict, InputCheck<Value> check)
