@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
     private float currCooldownTimer; //Current cooldown tick
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
-    private AttackDetector detector; //The attack hitbox when attacking.
+    private AttackDealer detector; //The attack hitbox when attacking.
     private Rigidbody2D rb; //Kirby Rigidbody2D for the movement
 
     public float speed = 5f; //Speed of the character
@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
 
         playerAnim = GetComponentInChildren<PlayerAnim>();
-        detector = playerAnim.GetComponent<AttackDetector>();
+        detector = playerAnim.GetComponent<AttackDealer>();
         rb = GetComponent<Rigidbody2D>();
 
         originalGravity = rb.gravityScale;
@@ -51,14 +51,14 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+        if (ic.lockedInput)
+        {
+            return;
+        }
+
         VerticalMovement();
         HorizontalMovement();
         AttackChecks();
-
-        if (Input.GetKeyDown(KeyCode.X)) //To be removed!
-        {
-            playerAnim.Death();
-        }
     }
 
     /// <summary>
@@ -73,7 +73,7 @@ public class PlayerInput : MonoBehaviour
     private void VerticalMovement()
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
-        isFalling = rb.velocity.y < -0.1;
+        isFalling = rb.velocity.y < -0.2f;
 
         if (canInteract && ic.GetButtonDown("Movement", "Interact"))
         {

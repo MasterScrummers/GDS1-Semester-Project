@@ -2,13 +2,13 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(AttackDetector))]
+[RequireComponent(typeof(AttackDealer))]
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected WeaponBase.Affinity type;
     [SerializeField] protected bool randomiseAffinity = false;
 
-    public RoomData inRoom;
+    protected RoomData inRoom;
     protected HealthComponent health;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour
                 WeaponBase.Affinity.fire => new Color32(183, 18, 52, 255),
                 WeaponBase.Affinity.water => new Color32(0, 70, 173, 255),
                 WeaponBase.Affinity.grass => new Color32(0, 155, 72, 255),
-                _ => new Color32(0, 0, 0, 1)
+                _ => new Color32(0, 0, 0, 255)
             });
         }
     }

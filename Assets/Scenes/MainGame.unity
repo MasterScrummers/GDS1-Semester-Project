@@ -364,6 +364,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kirby
       objectReference: {fileID: 0}
+    - target: {fileID: 6713749197740003810, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713749197740003810, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713749197740003810, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8415065385634405449, guid: 6936e702f43833141aa76783f25c7ef7, type: 3}
       propertyPath: heavyWeapon
       value: 

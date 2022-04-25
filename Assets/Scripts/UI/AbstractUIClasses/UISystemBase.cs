@@ -11,6 +11,7 @@ public abstract class UISystemBase : MonoBehaviour
 
     private bool isActive; //Is the UI System active?
     private bool prevActive; //Allows StartUpdate() to run once.
+    private bool hasStartedUp = false; //Has StartUp been called yet?
 
     private DoStatic.SimpleDelegate notification;
 
@@ -19,6 +20,7 @@ public abstract class UISystemBase : MonoBehaviour
     /// Acts like Start()
     /// </summary>
     public virtual void StartUp() {
+        hasStartedUp = true;
         ic = DoStatic.GetGameController<InputController>();
         UIc = ic.GetComponent<UIController>();
         lerp = new Lerper();
@@ -57,7 +59,7 @@ public abstract class UISystemBase : MonoBehaviour
         if (lerp.isLerping)
         {
             lerp.Update(Time.deltaTime);
-            ic.lockedInput = lerp.isLerping;
+            ic.SetInputLock(lerp.isLerping);
         }
 
         group.alpha = lerp.currentValue;
@@ -83,11 +85,23 @@ public abstract class UISystemBase : MonoBehaviour
     /// </summary>
     protected virtual void DoUpdate() {}
 
-    protected virtual void OnDisable()
+    /// <summary>
+    /// NOT meant to be overridden. Look at DisableOverride.
+    /// </summary>
+    protected void OnDisable()
     {
-        group.alpha = 0;
-        prevActive = false;
+        if (hasStartedUp)
+        {
+            group.alpha = 0;
+            prevActive = false;
+            DisableOverride();
+        }
     }
+
+    /// <summary>
+    /// Meant to be overridden. For OnDisable().
+    /// </summary>
+    protected virtual void DisableOverride() {}
 
     /// <summary>
     /// Meant to be overridden.

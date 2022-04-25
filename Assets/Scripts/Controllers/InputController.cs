@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public bool lockedInput = false; //Bool to (un)lock all inputs.
+    public bool lockedInput { get; private set; } = false; //Bool to (un)lock all inputs.
     private Dictionary<string, bool> IDList; //Allows inputs depending on the boolean set. Has to be part of IDList to work.
 
     private Dictionary<string, float> axisRawValues; //All inputs that checks Input.GetAxisRaw.
