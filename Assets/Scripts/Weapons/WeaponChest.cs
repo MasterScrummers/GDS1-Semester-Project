@@ -16,6 +16,7 @@ public class WeaponChest : InteractableObject
     {
         ic = DoStatic.GetGameController<InputController>();
         col = GetComponent<Collider2D>();
+        col.enabled = false;
 
         chestSprite = GetComponent<SpriteRenderer>();
         chestSprite.enabled = false;
@@ -34,6 +35,7 @@ public class WeaponChest : InteractableObject
         if (enemies && enemies.transform.childCount == 0)
         {
             chestSprite.enabled = true;
+            col.enabled = true;
             anim.SetBool("Visible", true);
         }
 
