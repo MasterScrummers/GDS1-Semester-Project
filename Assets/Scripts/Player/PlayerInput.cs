@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     public bool isFalling { private set; get; } = false;//Is player falling?
 
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
+    private bool isInFrontInteract = false; //Is the player in front of an interactable object
     [SerializeField] private float baseJumpForce = 5; //The initial jump force
     [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
     private float holdTimer; //Timer of the jumpHoldTimer;
@@ -77,7 +78,7 @@ public class PlayerInput : MonoBehaviour
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
         isFalling = rb.velocity.y < -0.1;
-        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped)
+        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped && !isInFrontInteract)
         {
             rb.AddForce(new Vector2(0, baseJumpForce), ForceMode2D.Impulse);
             prevYVel = 0;
@@ -150,7 +151,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Interact()
     {
-        if (currInteractable && Input.GetKeyDown(KeyCode.P))
+        if (currInteractable && Input.GetKeyDown(KeyCode.W))
         {
             currInteractable.GetComponent<InteractableObject>().Interact();
             currInteractable = null;
@@ -167,12 +168,14 @@ public class PlayerInput : MonoBehaviour
         if (collision.gameObject.CompareTag("Interactable"))
         {
             currInteractable = collision.gameObject;
+            isInFrontInteract = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         currInteractable = null;
+        isInFrontInteract = false;
     }
 
 }
