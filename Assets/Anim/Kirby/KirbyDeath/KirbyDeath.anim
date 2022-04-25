@@ -79,13 +79,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetAnimState
+    functionName: DeathJump
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 7
+    intParameter: 0
     messageOptions: 0
-  - time: 0.13333334
+  - time: 0.15
     functionName: DeathRotate
     data: 
     objectReferenceParameter: {fileID: 0}
