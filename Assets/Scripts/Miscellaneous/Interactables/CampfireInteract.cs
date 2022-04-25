@@ -1,8 +1,6 @@
-using UnityEngine;
-
 public class CampfireInteract : InteractableObject
 {
-    public HealthComponent hp;
+    protected HealthComponent hp;
  
     protected override void Start()
     {
