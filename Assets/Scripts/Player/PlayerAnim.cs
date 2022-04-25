@@ -118,9 +118,9 @@ public class PlayerAnim : MonoBehaviour
                 {
                     DoStatic.LoadScene(0, false);
                     Physics2D.IgnoreLayerCollision(6, 7, false);
-                    col.enabled = true;
                     ic.SetInputLock(false);
-                    rb.transform.position = new Vector2(4.91f, 5);
+                    col.enabled = true;
+                    rb.transform.position = new Vector2(4.91f, 5); //VERY HARD CODED, CHANGE LATER!
                     rb.velocity = Vector2.zero;
                     anim.SetTrigger("Restart");
                     health.Restart();
