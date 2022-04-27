@@ -30,7 +30,7 @@ public class Bat : Enemy
         if (!deathState)
         {
             Move();
-            // UpdateSpriteDirection();
+            UpdateSpriteDirection();
             base.Update();
         } else {
             if (deathLanded)
@@ -51,9 +51,9 @@ public class Bat : Enemy
 
     private void UpdateSpriteDirection()
     {
-        // Vector3 rot = transform.eulerAngles;
-        // rot.y = direction == 1 ? 0 : 180;
-        // transform.eulerAngles = rot;
+        Vector3 rot = transform.eulerAngles;
+        rot.y = facingDirection > 0 ? 0 : 180;
+        transform.eulerAngles = rot;
     }
 
     protected override void Death()
