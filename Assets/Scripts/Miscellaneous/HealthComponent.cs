@@ -4,7 +4,7 @@ public class HealthComponent : MonoBehaviour
 {
     public int startMaxHealth = 2; //For editor to set the max health.
     public int maxHealth { get; private set; } //The max health.
-    public int health { get; private set; } //The current health.
+    public int health; //The current health.
 
     void Start()
     {
