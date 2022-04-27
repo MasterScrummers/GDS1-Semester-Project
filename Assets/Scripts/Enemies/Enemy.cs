@@ -69,9 +69,11 @@ public abstract class Enemy : MonoBehaviour
     /// <param name="damage">
     /// The amount of damage the enemy should take
     /// </param>
-    protected virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
-        health.TakeDamage(-damage);
+        Debug.Log("Taking damage in Enemy");
+        // Debug.Log("Health left: " + health.health);
+        // health.TakeDamage(-damage);
         if (health.health <= 0)
         {
             Death();
