@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 425726152434815053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,8 @@ GameObject:
   - component: {fileID: 1986466901643813554}
   - component: {fileID: 4743718834578245059}
   - component: {fileID: 479655026120638283}
-  m_Layer: 0
+  - component: {fileID: 5344266959496010941}
+  m_Layer: 6
   m_Name: Kirby Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,8 +208,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartTimer: 5
   cutter: {fileID: 2662895221900278497, guid: 6f41dbe69f93bd7428e49c5d1bd51081, type: 3}
   numCutters: 2
+--- !u!114 &5344266959496010941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476312888186196897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibilityTimer: 1.5
 --- !u!1 &6239203139267427663
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +239,7 @@ GameObject:
   - component: {fileID: 3076219229029554470}
   - component: {fileID: 5512940949413880379}
   - component: {fileID: 6932217112537427757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Kirby
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -275,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownTimer: 10
   speed: 5
+  canInteract: 0
   baseJumpForce: 5
   jumpHoldTimer: 0.25
   gravityMultiplier: 1.2
@@ -284,7 +300,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   firePoint: {fileID: 2676387464216047908}
-  currInteractable: {fileID: 0}
 --- !u!58 &8991236095425167831
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -335,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 4
+  invincible: 0
 --- !u!114 &6932217112537427757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2676387464216047908}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

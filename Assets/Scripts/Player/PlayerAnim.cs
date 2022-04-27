@@ -2,13 +2,17 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerInvincibility))]
 public class PlayerAnim : MonoBehaviour
 {
     public Animator anim { get; private set; } //The player's animation
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
-    private Rigidbody2D rb;
-    private PlayerInput pi;
+    private Rigidbody2D rb; //The rigidbody of the player
+    private PlayerInput pi; //The update the animation according to player input.
+    private Collider2D col; //The collider of the player. Is disabled upon death.
+    private PlayerInvincibility invincibility; //To start the player's invincibility when they take damage.
+    private HealthComponent health; //To track the player's health.
 
     private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
     private AnimState animState = AnimState.Idle;
@@ -17,27 +21,24 @@ public class PlayerAnim : MonoBehaviour
     private JumpState jumpState = JumpState.Waiting;
 
     private float damageTimer;
-    private bool damageLanded;
-    private float invincibilityTimer = 1.5f;
-    public bool invincible;
-    private float deathTimer;
-    private float restartTimer = 5f;
-    private bool deathJumped;
+    [SerializeField] private float restartTimer = 5f;
 
-    private Vector3 pRot;
     public GameObject cutter; //Cutter Game Object
     public int numCutters; //Number of Cutter Spawn
     private GameObject[] cutters; //Array of Cutters
 
-
     void Start()
     {
         anim = GetComponent<Animator>();
+        
         ic = DoStatic.GetGameController<InputController>();
         ac = ic.GetComponent<AudioController>();
+
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
-        pRot = DoStatic.GetPlayer().transform.eulerAngles;
+        col = pi.GetComponent<Collider2D>();
+        invincibility = GetComponent<PlayerInvincibility>();
+        health = pi.GetComponent<HealthComponent>();
 
         cutters = new GameObject[numCutters];
         for (int i  = 0; i < numCutters; i++)
@@ -48,49 +49,20 @@ public class PlayerAnim : MonoBehaviour
 
     void Update()
     {
-        if (animState != AnimState.Damage && animState != AnimState.Death)
+        void LightAttackCheck()
         {
-            LightAttackCheck();
-            HeavyAttackCheck();
-            CheckWalking();
-            CheckJumping();
-        } else if (animState == AnimState.Damage)
-        {
-            CheckFallenDuringDamage();
-        } else if (animState == AnimState.Death)
-        {
-            if (transform.parent.localScale.x < 0.01f)
+            if (animState != AnimState.LightAttack)
             {
-                Destroy(transform.parent.gameObject);
+                return;
             }
-            transform.parent.localScale = transform.parent.localScale * 0.993f;
-            
-            if (restartTimer <= 0f)
+
+            if (ic.GetButtonDown("Attack", "Light"))
             {
-                Physics2D.IgnoreLayerCollision(6, 7, false);
-                Physics2D.IgnoreLayerCollision(3, 6, false);
-                DoStatic.LoadScene(0, false);
-            } else {
-                restartTimer -= Time.deltaTime;
+                anim.SetTrigger("FollowUp");
             }
         }
-    }
 
-    private void LightAttackCheck()
-    {
-        if (animState != AnimState.LightAttack)
-        {
-            return;
-        }
-
-        if (ic.GetButtonDown("Attack", "Light"))
-        {
-            anim.SetTrigger("FollowUp");
-        }
-    }
-
-
-    private void HeavyAttackCheck()
+        void HeavyAttackCheck()
     {
         if(animState != AnimState.HeavyAttack)
         {
@@ -98,6 +70,71 @@ public class PlayerAnim : MonoBehaviour
         }
 
         anim.SetBool("Spin", ic.GetButtonStates("Attack", "Heavy"));
+    }
+
+        void CheckWalking()
+        {
+            anim.SetBool("IsWalking", ic.GetAxisRawValues("Movement", "Horizontal") != 0);
+        }
+
+        void CheckJumping()
+        {
+            void ConditionalTriggerCheck(string animParameter, bool condition)
+            {
+                if (condition)
+                {
+                    anim.SetTrigger(animParameter);
+                }
+            }
+
+            anim.SetBool("IsFalling", pi.isFalling);
+            ConditionalTriggerCheck("Jump", pi.hasJumped && (animState == AnimState.Idle || animState == AnimState.Run));
+            if (animState != AnimState.Jump)
+            {
+                return;
+            }
+
+            switch(jumpState)
+            {
+                case JumpState.StartJump:
+                    ConditionalTriggerCheck("Jump", rb.velocity.y < 3); //Takes you to peak
+                    return;
+
+
+                case JumpState.Descending:
+                    ConditionalTriggerCheck("Jump", !pi.isFalling);
+                    return;
+            }
+        }
+
+        switch(animState)
+        {
+            case AnimState.Damage:
+                CheckFallenDuringDamage();
+                return;
+
+            case AnimState.Death:
+                if ((restartTimer -= Time.deltaTime) <= 0f)
+                {
+                    DoStatic.LoadScene(0, false);
+                    Physics2D.IgnoreLayerCollision(6, 7, false);
+                    ic.SetInputLock(false);
+                    col.enabled = true;
+                    rb.transform.position = new Vector2(4.91f, 5); //VERY HARD CODED, CHANGE LATER!
+                    rb.velocity = Vector2.zero;
+                    anim.SetTrigger("Restart");
+                    health.Restart();
+                    restartTimer = 5f;
+                }
+                return;
+
+            default:
+                LightAttackCheck();
+                HeavyAttackCheck();
+                CheckWalking();
+                CheckJumping();
+                return;
+        }
     }
 
     /// <summary>
@@ -116,134 +153,61 @@ public class PlayerAnim : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Used in the animation.
-    /// </summary>
-    private void SetAnimState(AnimState state)
+    public void TakeDamage(int xDirectionForce)
     {
-        animState = state;
-    }
-
-    /// <summary>
-    /// Used in the animation
-    /// </summary>
-    private void SetJumpState(JumpState state)
-    {
-        jumpState = state;
-    }
-
-    private void CheckWalking()
-    {
-        anim.SetBool("IsWalking", ic.GetAxisRawValues("Movement", "Horizontal") != 0);
-    }
-
-    private void CheckJumping()
-    {
-        anim.SetBool("IsFalling", pi.isFalling);
-        ConditionalTriggerCheck("Jump", pi.hasJumped && (animState == AnimState.Idle || animState == AnimState.Run));
-        if (animState != AnimState.Jump)
+        if (animState == AnimState.Damage)
         {
             return;
         }
 
-        switch(jumpState)
-        {
-            case JumpState.StartJump:
-                ConditionalTriggerCheck("Jump", rb.velocity.y < 3); //Takes you to peak
-                return;
+        damageTimer = 0;
 
+        ic.SetInputLock(true);
+        Physics2D.IgnoreLayerCollision(6, 7, true);
 
-            case JumpState.Descending:
-                ConditionalTriggerCheck("Jump", !pi.isFalling); //Takes you to peak
-                return;
-        }
-    }
-
-    private void ConditionalTriggerCheck(string animParameter, bool condition)
-    {
-        if (condition)
-        {
-            anim.SetTrigger(animParameter);
-        }
-    }
-
-    public void TakeDamage(int xDirectionForce)
-    {
-        if (animState != AnimState.Damage)
-        {
-            invincible = true;
-            damageTimer = 0;
-            damageLanded = false;
-            
-            ic.SetInputLock(true);
-
-            anim.Play("Base Layer.KirbyHurt.KirbyHurtAir");
-            rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(xDirectionForce*0.8f, 2) * 100f);
-        }  
+        anim.Play(health.health > 0 ? "Base Layer.KirbyHurt.KirbyHurtAir" : "Base Layer.KirbyDeath.KirbyDeathIntro");
+        rb.velocity = health.health > 0 ? new Vector2(xDirectionForce, 2) * 2f : Vector2.zero;
     }
 
     private void CheckFallenDuringDamage()
     {
         damageTimer += Time.deltaTime;
-
-        if (damageTimer > 0.5f && pi.OnGround() && !damageLanded)
-            {
-                damageLanded = true;
-                rb.velocity = Vector2.zero;
-                anim.SetTrigger("HurtFallenToGround");
-            }
+        if (damageTimer > 0.5f && pi.OnGround())
+        {
+            rb.velocity = Vector2.zero;
+            anim.SetTrigger("HurtFallenToGround");
+        }
     }
 
-    public void ReenableInputAfterDamage()
+    #region Called through animation methods.
+    private void SetAnimState(AnimState state)
+    {
+        animState = state;
+    }
+
+    private void SetJumpState(JumpState state)
+    {
+        jumpState = state;
+    }
+
+    private void ReenableInputAfterDamage()
     {
         ic.SetInputLock(false);
-        StartCoroutine("InvincibilityFlashing");
-    }
-
-    private IEnumerator InvincibilityFlashing()
-    {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-
-        Physics2D.IgnoreLayerCollision(6, 7, true);
-        for (int i = 0; i < invincibilityTimer / 0.2f; i++)
-        {
-            yield return new WaitForSeconds(0.1f);
-            sprite.enabled = !sprite.enabled;
-        }
-        invincible = false;
-        Physics2D.IgnoreLayerCollision(6, 7, false);
-    }
-
-    public void Death()
-    {
-        ic.SetInputLock(true);
-        anim.Play("Base Layer.KirbyDeath.KirbyDeathIntro");
-        rb.velocity = Vector2.zero;
-        rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        Physics2D.IgnoreLayerCollision(6, 7, true);
-        Physics2D.IgnoreLayerCollision(3, 6, true);
+        invincibility.StartInvincible();
     }
 
     private void DeathJump()
     {
-        if (!deathJumped)
-        {
-            // rb.constraints = RigidbodyConstraints2D.None;
-            // rb.AddRelativeForce(transform.up * 400f);
-            deathJumped = true;
-        }
+        col.enabled = false;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(transform.up * 10f, ForceMode2D.Impulse);
     }
 
-    public void DeathRotate()
+    private void DeathRotate()
     {
-        Vector3 clockwiseRot = pi.gameObject.transform.eulerAngles;
-        clockwiseRot.z -= 90;
-        if (clockwiseRot.z == 360)
-        {
-            clockwiseRot.z = 0;
-        }
-        pi.gameObject.transform.eulerAngles = clockwiseRot;
+        Vector3 rot = pi.transform.eulerAngles;
+        rot.z -= 90;
+        pi.transform.eulerAngles = rot;
     }
 
     private void SetReasonLock(string ID)
@@ -283,4 +247,5 @@ public class PlayerAnim : MonoBehaviour
             Instantiate(cutter, pi.firePoint.position, Quaternion.identity);
         }
     }
+    #endregion Called through animation methods.
 }

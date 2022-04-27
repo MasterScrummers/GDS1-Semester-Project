@@ -74,9 +74,8 @@ public class WeaponSwapSystem : UISystemBase
         UpdateCards();
     }
 
-    protected override void OnDisable()
+    protected override void DisableOverride()
     {
-        base.OnDisable();
         ic.SetID("Attack", true);
         ic.SetID("Movement", true);
     }

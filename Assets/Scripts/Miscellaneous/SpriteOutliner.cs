@@ -9,9 +9,8 @@ public class SpriteOutliner : MonoBehaviour
     [SerializeField] private float outlineSizeMultiplier = 1.1f;
     [SerializeField] private Material mat;
 
-    void Start()
+    private void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
         GameObject child = new GameObject(name + " outline");
         child.transform.parent = transform;
         child.transform.localPosition = Vector2.zero;
@@ -20,6 +19,11 @@ public class SpriteOutliner : MonoBehaviour
         outline = child.AddComponent<SpriteRenderer>();
         outline.sortingOrder--;
         outline.material = mat;
+    }
+
+    void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void SetColour(Color newColor)

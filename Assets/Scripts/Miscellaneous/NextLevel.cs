@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NextLevel : MonoBehaviour
 {
-    bool playerContact;
+    //private bool playerContact;
 
     void Start()
     {
-        playerContact = false;
+        //playerContact = false;
     }
 
     // Update is called once per frame
@@ -21,12 +19,15 @@ public class NextLevel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerContact = true;
+            //playerContact = true;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        playerContact = false;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //playerContact = false;
+        }
     }
 }

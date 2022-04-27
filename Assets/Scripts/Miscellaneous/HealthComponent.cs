@@ -6,11 +6,9 @@ public class HealthComponent : MonoBehaviour
     public int maxHealth { get; private set; } //The max health.
     public int health { get; private set; } //The current health.
 
-    // Start is called before the first frame update
     void Start()
     {
-        maxHealth = startMaxHealth;
-        health = maxHealth;
+        Restart();
     }
 
     /// <summary>

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public bool lockedInput = false; //Bool to (un)lock all inputs.
+    public bool lockedInput { get; private set; } = false; //Bool to (un)lock all inputs.
     private Dictionary<string, bool> IDList; //Allows inputs depending on the boolean set. Has to be part of IDList to work.
 
     private Dictionary<string, float> axisRawValues; //All inputs that checks Input.GetAxisRaw.
@@ -19,7 +19,7 @@ public class InputController : MonoBehaviour
         foreach(string input in new string[] { //Treat the ID list like they are GameObject tags
             "Attack", //Related to attack inputs.
             "Movement", //Related to movement
-            "WeaponSwap" //The weapon swap system
+            "WeaponSwap", //The weapon swap system
         })
         {
             IDList.Add(input, true);
@@ -38,7 +38,7 @@ public class InputController : MonoBehaviour
         buttonStates = new Dictionary<string, bool>();
         foreach (string input in new string[]
         {
-            "Jump", //space, w
+            "Jump", //[space, w]
             "Light", //j
             "Heavy", //k
             "Special", //l

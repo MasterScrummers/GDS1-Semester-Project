@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class CampfireInteract : InteractableObject
 {
-    public HealthComponent hp;
+    protected HealthComponent hp;
  
-    private void Start()
+    protected override void Start()
     {
-        hp = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthComponent>();
+        base.Start();
+        hp = DoStatic.GetPlayer<HealthComponent>();
     }
 
-    public override void Interact()
+    protected override void Interact()
     {
         base.Interact();
         hp.HealDamage(1,0);
