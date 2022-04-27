@@ -77,6 +77,7 @@ public class PlayerInput : MonoBehaviour
 
         if (canInteract && ic.GetButtonDown("Movement", "Interact"))
         {
+            canInteract = false;
             return;
         }
 

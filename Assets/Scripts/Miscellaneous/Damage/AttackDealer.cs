@@ -30,10 +30,13 @@ public class AttackDealer : MonoBehaviour
             return;
         }
 
-        hp.TakeDamage(strength);
-        if (anim)
+        if (anim && !hitHistory.ContainsKey(hp))
         {
             hitHistory.Add(hp, 0);
+            hp.TakeDamage(strength);
+        } else if (!anim)
+        {
+            hp.TakeDamage(strength);
         }
     }
 }
