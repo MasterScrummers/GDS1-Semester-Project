@@ -2571,5 +2571,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: DEndRoom Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5653823653169770131, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653823653169770131, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.97
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
