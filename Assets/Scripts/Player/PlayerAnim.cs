@@ -30,7 +30,7 @@ public class PlayerAnim : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        
+
         ic = DoStatic.GetGameController<InputController>();
         ac = ic.GetComponent<AudioController>();
 
@@ -39,6 +39,7 @@ public class PlayerAnim : MonoBehaviour
         col = pi.GetComponent<Collider2D>();
         invincibility = GetComponent<PlayerInvincibility>();
         health = pi.GetComponent<HealthComponent>();
+        ac = DoStatic.GetGameController<AudioController>();
 
         cutters = new GameObject[numCutters];
         for (int i  = 0; i < numCutters; i++)
