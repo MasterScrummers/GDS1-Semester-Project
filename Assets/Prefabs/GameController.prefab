@@ -1864,7 +1864,7 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: 178b167706595b543929920ed0f80453, type: 3}
   - {fileID: 8300000, guid: 56aa3108f671864479d0740d9f820e93, type: 3}
-  - {fileID: 8300000, guid: b775a58fe1c2dde459a751f308e7d1aa, type: 3}
+  - {fileID: 8300000, guid: 00df04cf08a4f58469e4698651f51594, type: 3}
   - {fileID: 8300000, guid: c921df79d8ab0964a88d49688a4484a6, type: 3}
   - {fileID: 8300000, guid: 3e3ae969c1512ad40956dfa42c9c75dc, type: 3}
   - {fileID: 8300000, guid: 1fdf1f1ef36e3e3499d7281302f33a48, type: 3}
@@ -1898,7 +1898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c2d24857ba2964ea4a81463ad4a629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedInput: 0
 --- !u!114 &6682773369639146499
 MonoBehaviour:
   m_ObjectHideFlags: 0
