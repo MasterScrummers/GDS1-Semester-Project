@@ -34,6 +34,7 @@ public class PlayerAnim : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         ic = DoStatic.GetGameController<InputController>();
+        ac = ic.GetComponent<AudioController>();
         rb = GetComponentInParent<Rigidbody2D>();
         pi = GetComponentInParent<PlayerInput>();
         ac = DoStatic.GetGameController<AudioController>();
