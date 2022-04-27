@@ -293,7 +293,7 @@ MonoBehaviour:
   canInteract: 0
   baseJumpForce: 5
   jumpHoldTimer: 0.25
-  gravityMultiplier: 1.2
+  gravityMultiplier: 3
   radius: 0.2
   feet: {fileID: 425726152434815053}
   Ground:
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 4
-  invincible: 0
+  health: 0
 --- !u!114 &6932217112537427757
 MonoBehaviour:
   m_ObjectHideFlags: 0
