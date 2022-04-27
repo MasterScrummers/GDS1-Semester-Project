@@ -4,6 +4,7 @@ public class RoomData : MonoBehaviour
 {
     [SerializeField] private GameObject enemies;
     [SerializeField] private GameObject doors;
+    [SerializeField] private GameObject chest;
 
     public bool empty { get; private set; }
     private int enemyCount;
@@ -25,6 +26,7 @@ public class RoomData : MonoBehaviour
     {
         empty = enemyCount == 0;
         doors.SetActive(!empty);
+        chest.SetActive(empty);
     }
 
     public void UpdateEnemyCount()

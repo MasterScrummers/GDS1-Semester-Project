@@ -7,17 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1876136638521587861, guid: caa8c58f6b031614484ff9cace538594, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.009309769
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876136638521587861, guid: caa8c58f6b031614484ff9cace538594, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.943
+      objectReference: {fileID: 0}
     - target: {fileID: 3290458039212460163, guid: caa8c58f6b031614484ff9cace538594, type: 3}
       propertyPath: m_Name
       value: Bonfire
       objectReference: {fileID: 0}
     - target: {fileID: 4776283877106320489, guid: caa8c58f6b031614484ff9cace538594, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.32
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4776283877106320489, guid: caa8c58f6b031614484ff9cace538594, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.32
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5053993473374421585, guid: caa8c58f6b031614484ff9cace538594, type: 3}
       propertyPath: m_RootOrder
@@ -75,7 +83,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3290458039212460163, guid: caa8c58f6b031614484ff9cace538594, type: 3}
   m_PrefabInstance: {fileID: 4528975654164115185}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-9107976143201856167
+--- !u!114 &6005547261838517662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,4 +95,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d3cf2b7ea76a44ea1c4d276db3ccd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: {fileID: 0}

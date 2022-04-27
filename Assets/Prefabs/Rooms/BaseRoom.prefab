@@ -1166,6 +1166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: {fileID: 687779528}
   doors: {fileID: 8129946694555725025}
+  chest: {fileID: 5653823653169770132}
 --- !u!1 &975200689914266775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,6 +3622,11 @@ PrefabInstance:
 --- !u!4 &5653823653169770131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4735327986184645883, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+  m_PrefabInstance: {fileID: 1135233792758432360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5653823653169770132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4735327986184645884, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
   m_PrefabInstance: {fileID: 1135233792758432360}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2716039941689760049

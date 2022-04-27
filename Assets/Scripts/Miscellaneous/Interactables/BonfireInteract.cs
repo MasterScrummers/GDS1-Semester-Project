@@ -3,6 +3,6 @@ public class BonfireInteract : CampfireInteract
     protected override void Interact()
     {
         base.Interact();
-        hp.HealDamage(0, 1);
+        hp.HealDamage(int.MaxValue, 0);
     }
 }

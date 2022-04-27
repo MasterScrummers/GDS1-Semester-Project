@@ -116,9 +116,9 @@ GameObject:
   - component: {fileID: 544042796527561093}
   - component: {fileID: 544042796527561088}
   - component: {fileID: 544042796527561089}
-  - component: {fileID: 544042796527561102}
   - component: {fileID: 544042796527561103}
   - component: {fileID: 544042796527561092}
+  - component: {fileID: 8118329757899005745}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Untagged
@@ -176,19 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 2
---- !u!114 &544042796527561102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544042796527561100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 1
 --- !u!114 &544042796527561103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,8 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  randomiseAffinity: 0
   anim: {fileID: 0}
-  movementSpeed: 0.5
+  movementSpeed: 0
 --- !u!58 &544042796527561092
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -220,3 +208,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.6875
+--- !u!114 &8118329757899005745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544042796527561100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b562fc2905bd246a850d0247e77aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 1
