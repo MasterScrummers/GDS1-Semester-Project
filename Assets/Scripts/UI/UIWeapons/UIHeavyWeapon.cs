@@ -5,6 +5,7 @@ public class UIHeavyWeapon : UIWeaponCircle
         if (playerInput.heavyWeapon != null)
         {
             UpdateColour(playerInput.heavyWeapon);
+            UpdateSprite(playerInput.heavyWeapon);
         }
     }
 }

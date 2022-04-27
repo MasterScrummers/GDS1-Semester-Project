@@ -7,16 +7,19 @@ public class RoomData : MonoBehaviour
     public int enemyCount;
     public Transform enemiesGroup;
     public bool empty;
+    private GameObject doors;
 
     // Start is called before the first frame update
     void Start()
     {
-        empty = true;
+        empty = false;
         enemiesGroup = this.gameObject.transform.GetChild(0);
         enemyCount = enemiesGroup.childCount;
-        if(enemyCount > 0)
+        doors = this.gameObject.transform.GetChild(1).gameObject;
+        if(enemyCount <= 0)
         {
-            empty = false;
+            empty = true;
+            OpenDoors();
         }
     }
 
@@ -26,6 +29,12 @@ public class RoomData : MonoBehaviour
         if(enemyCount <= 0)
         {
             empty = true;
+            OpenDoors();
         }
+    }
+
+    private void OpenDoors()
+    {
+        Destroy(doors);
     }
 }

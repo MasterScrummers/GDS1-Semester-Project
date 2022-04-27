@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 8991236095425167831}
   - component: {fileID: 3076219229029554470}
   - component: {fileID: 5512940949413880379}
+  - component: {fileID: 6932217112537427757}
   m_Layer: 0
   m_Name: Kirby
   m_TagString: Player
@@ -283,6 +284,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   firePoint: {fileID: 2676387464216047908}
+  currInteractable: {fileID: 0}
 --- !u!58 &8991236095425167831
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -333,6 +335,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 4
+--- !u!114 &6932217112537427757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239203139267427663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0006c8df5cc02d0489cef05bfdc02796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onlyOneAllowed: 1
 --- !u!1 &6438367882692015456
 GameObject:
   m_ObjectHideFlags: 0
