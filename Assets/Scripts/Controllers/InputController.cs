@@ -20,6 +20,7 @@ public class InputController : MonoBehaviour
             "Attack", //Related to attack inputs.
             "Movement", //Related to movement
             "WeaponSwap", //The weapon swap system
+            "MenuNavigation", //To navigate through the main menu.
         })
         {
             IDList.Add(input, true);
@@ -27,24 +28,22 @@ public class InputController : MonoBehaviour
 
         //Add the inputs in the correct dictionary here!
         axisRawValues = new Dictionary<string, float>();
-        foreach (string input in new string[] {
-            "Horizontal", //[D, A, left, right]
-            "Vertical" //[W, S, up, down]
-        }) {
-            axisRawValues.Add(input, GetAxisRaw(input));
-        }
-
         buttonDowns = new Dictionary<string, bool>();
         buttonStates = new Dictionary<string, bool>();
         foreach (string input in new string[]
         {
+            "Horizontal", //[D, A, left, right]
+            "Vertical", //[W, S, up, down]
+
+            //More for keydown.
             "Jump", //[space, w]
             "Light", //j
             "Heavy", //k
             "Special", //l
             "Interact", //w
-            "Exit"
+            "Exit", //escape
         }) {
+            axisRawValues.Add(input, GetAxisRaw(input));
             buttonDowns.Add(input, GetButtonDown(input));
             buttonStates.Add(input, GetButtonState(input));
         }

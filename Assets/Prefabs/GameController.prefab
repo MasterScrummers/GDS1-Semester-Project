@@ -2756,10 +2756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547b1368014d6c747ba2de55633671ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allTansitionTimes:
-  - transitionName: Fade
-    timeIn: 1
-    timeOut: 1
+  inGameUI: {fileID: 3656306153090612756}
 --- !u!114 &3857553929770270275
 MonoBehaviour:
   m_ObjectHideFlags: 0

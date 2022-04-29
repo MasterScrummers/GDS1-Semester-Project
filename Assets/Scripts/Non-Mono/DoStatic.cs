@@ -104,6 +104,25 @@ public class DoStatic
     }
 
     /// <summary>
+    /// Get a child with tag. Utilises GetChildren() meaning, it is a recursive function.
+    /// </summary>
+    /// <param name="tag">The first tag to find</param>
+    /// <param name="parent">The parent to search through.</param>
+    /// <param name="generationDepth">The depth of the search.</param>
+    /// <returns></returns>
+    public static GameObject GetChildWithTag(string tag, Transform parent, int generationDepth = 1)
+    {
+        foreach (Transform child in GetChildren(parent, generationDepth))
+        {
+            if (child.CompareTag(tag))
+            {
+                return child.gameObject;
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
     /// Finds the GameObject with the tag "GameController".
     /// There should only be one!
     /// </summary>

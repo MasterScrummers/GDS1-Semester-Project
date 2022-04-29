@@ -4,7 +4,11 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     private bool isTransitioning; //A check to know when the scene is transitioning.
-    private UITransitionSystem transitionSystem; //The transition system
+    
+    [SerializeField] private GameObject inGameUI; //To toggle it on/off.
+    private GameObject player; //To toggle player on/off
+
+    private UITransitionSystem transitionSystem; //To transition between scenes.
 
     /// <summary>
     /// All the scenes in the build. MUST MATCH NAME CORRECTLY.
@@ -19,17 +23,17 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
+        player = DoStatic.GetChildWithTag("Player", transform);
         currentScene = (SceneName)System.Enum.Parse(typeof(SceneName), DoStatic.GetSceneName());
         transitionSystem = GetComponent<UIController>().GetUI<UITransitionSystem>("TransitionSystem");
+        GenericSceneStartUp();
     }
     
-    private void SceneStartUp()
+    private void GenericSceneStartUp()
     {
-        switch(currentScene)
-        {
-            default:
-                return;
-        }
+        bool isTitleScreen = currentScene == SceneName.TitleScreen;
+        player.SetActive(!isTitleScreen);
+        inGameUI.SetActive(!isTitleScreen);
     }
 
     /// <summary>
@@ -68,17 +72,16 @@ public class SceneController : MonoBehaviour
         transitionSystem.Activate();
         yield return StartCoroutine(Wait(transitionSystem));
 
+        currentScene = newSceneName;
+        GenericSceneStartUp();
         yield return StartCoroutine(LoadProgress(DoStatic.LoadScene(newSceneName.ToString())));
         if (notify != null)
         {
             notify();
         }
 
-        currentScene = newSceneName;
-        SceneStartUp();
         transitionSystem.Deactivate();
         yield return StartCoroutine(Wait(transitionSystem));
-        Debug.Log("Done!");
         isTransitioning = false;
     }
 }
