@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour
     public enum SceneName
     {
         TitleScreen,
+        Credits,
         Tutorial,
         MainGame,
     };
@@ -31,7 +32,15 @@ public class SceneController : MonoBehaviour
     
     private void GenericSceneStartUp()
     {
-        bool isTitleScreen = currentScene == SceneName.TitleScreen;
+        bool isTitleScreen = false;
+        foreach(SceneName sceneName in new SceneName[] { SceneName.TitleScreen, SceneName.Credits })
+        {
+            if (isTitleScreen = currentScene == sceneName)
+            {
+                break;
+            }
+        }
+
         player.SetActive(!isTitleScreen);
         inGameUI.SetActive(!isTitleScreen);
     }

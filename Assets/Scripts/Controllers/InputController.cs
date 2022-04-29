@@ -21,6 +21,7 @@ public class InputController : MonoBehaviour
             "Movement", //Related to movement
             "WeaponSwap", //The weapon swap system
             "MenuNavigation", //To navigate through the main menu.
+            "Credits", //To exit the credits.
         })
         {
             IDList.Add(input, true);

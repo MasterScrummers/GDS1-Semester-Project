@@ -33,8 +33,11 @@ public class MainMenuNavigation : MonoBehaviour
                     return;
 
                 case "Credits":
+                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.Credits);
+                    return;
+
                 case "Exit":
-                    Debug.Log(menuOptions[currentIndex].name);
+                    Application.Quit();
                     return;
             }
         }
