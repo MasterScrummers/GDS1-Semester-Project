@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-public class WeaponSwapSystem : UISystemBase
+public class UIWeaponSwapSystem : UISystemBase
 {
     private PlayerInput input; //The player input.
     [SerializeField] private WeaponCardGenerator lightCard; //The light card
@@ -9,10 +8,10 @@ public class WeaponSwapSystem : UISystemBase
     [SerializeField] private WeaponCardGenerator specialCard; //The special card
     [SerializeField] private WeaponCardGenerator newCard; //The new card.
 
-    public override void StartUp()
+    public override void Initiate()
     {
-        base.StartUp();
-        input = DoStatic.GetPlayer().GetComponent<PlayerInput>();
+        base.Initiate();
+        input = DoStatic.GetPlayer<PlayerInput>();
     }
     protected override void FirstActiveFrameUpdate()
     {
@@ -21,14 +20,27 @@ public class WeaponSwapSystem : UISystemBase
         newCard.GenerateWeapon();
     }
 
-    protected override void DoUpdate()
+    void Update()
     {
+        void WeaponSwap(ref WeaponBase weapon)
+        {
+            WeaponBase temp = newCard.weapon;
+            newCard.SetWeapon(weapon);
+            weapon = temp;
+            UpdateCards();
+        }
+
+        if (base.DoTransitioning())
+        {
+            return;
+        }
+
         ic.SetID("Attack", false);
         ic.SetID("Movement", false);
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
-            UIc.DeactivateUI(name);
+            Deactivate();
             return;
         }
 
@@ -66,16 +78,9 @@ public class WeaponSwapSystem : UISystemBase
         }
     }
 
-    private void WeaponSwap(ref WeaponBase weapon)
+    protected override void OnDisable()
     {
-        WeaponBase temp = newCard.weapon;
-        newCard.SetWeapon(weapon);
-        weapon = temp;
-        UpdateCards();
-    }
-
-    protected override void DisableOverride()
-    {
+        base.OnDisable();
         ic.SetID("Attack", true);
         ic.SetID("Movement", true);
     }

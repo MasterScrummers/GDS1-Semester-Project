@@ -20,7 +20,7 @@ public class DoStatic
     /// </summary>
     /// <param name="sceneName">The scene name to load into.</param>
     /// <param name="asAdditive">Adds the loaded scene on top of current scene.</param>
-    public static AsyncOperation LoadScene(string sceneName, bool asAdditive = true)
+    public static AsyncOperation LoadScene(string sceneName, bool asAdditive = false)
     {
         return SceneManager.LoadSceneAsync(sceneName, asAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
     }
@@ -30,7 +30,7 @@ public class DoStatic
     /// </summary>
     /// <param name="index">Scene to load index.</param>
     /// <param name="asAdditive">Adds the loaded scene on top of current scene.</param>
-    public static AsyncOperation LoadScene(int index, bool asAdditive = true)
+    public static AsyncOperation LoadScene(int index, bool asAdditive = false)
     {
         return LoadScene(SceneManager.GetSceneByBuildIndex(index).name, asAdditive);
     }

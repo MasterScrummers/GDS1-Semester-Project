@@ -104,6 +104,7 @@ public class InputController : MonoBehaviour
         }
     }
 
+    public bool DebugBool = false;
     /// <summary>
     /// Get the value of assigned buttons pressed
     /// </summary>
@@ -112,6 +113,10 @@ public class InputController : MonoBehaviour
     /// <returns>The value of the button.</returns>
     public float GetAxisRawValues(string ID, string button)
     {
+        if (DebugBool)
+        {
+            Debug.Log(!lockedInput && IDList[ID] ? axisRawValues[button] : 0);
+        }
         return !lockedInput && IDList[ID] ? axisRawValues[button] : 0;
     }
 

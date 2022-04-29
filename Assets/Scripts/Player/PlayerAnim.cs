@@ -126,6 +126,7 @@ public class PlayerAnim : MonoBehaviour
                     anim.SetTrigger("Restart");
                     health.Restart();
                     ic.transform.position = Vector3.zero;
+                    ic.transform.eulerAngles = Vector3.zero;
                     restartTimer = 5f;
                 }
                 return;

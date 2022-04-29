@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 118427378258202303}
   - component: {fileID: 7978574882905755951}
   m_Layer: 0
-  m_Name: RoomDoor
+  m_Name: RoomDoorTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
