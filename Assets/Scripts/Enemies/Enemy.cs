@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(AttackDealer))]
+[RequireComponent(typeof(EnemyAttackDealer))]
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected WeaponBase.Affinity type;

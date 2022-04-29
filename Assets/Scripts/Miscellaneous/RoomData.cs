@@ -26,7 +26,10 @@ public class RoomData : MonoBehaviour
     {
         empty = enemyCount == 0;
         doors.SetActive(!empty);
-        chest.SetActive(empty);
+        if (chest)
+        {
+            chest.SetActive(empty);
+        }
     }
 
     public void UpdateEnemyCount()
