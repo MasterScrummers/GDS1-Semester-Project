@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         originalGravity = rb.gravityScale;
 
         lightWeapon = new Sword();
-        heavyWeapon = new Sword();
+        heavyWeapon = new Hammer();
         specialWeapon = new Sword();
     }
 
