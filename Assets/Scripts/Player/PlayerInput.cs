@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     private float holdTimer; //Timer of the jumpHoldTimer;
     private float prevYVel; //Previous Highest Y Velocity
     private float originalGravity; //The original gravity
-    public float gravityMultiplier = 1.2f; //Multiplies the gravity when falling
+    public float gravityMultiplier = 3.0f; //Multiplies the gravity when falling
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     public Transform feet; //Kirby's feet, to check if it is colliding with the ground
@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         originalGravity = rb.gravityScale;
 
         lightWeapon = new Sword();
-        heavyWeapon = new Sword();
+        heavyWeapon = new Hammer();
         specialWeapon = new Sword();
     }
 

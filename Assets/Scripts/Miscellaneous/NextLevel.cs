@@ -1,33 +1,12 @@
 using UnityEngine;
 
-public class NextLevel : MonoBehaviour
+public class NextLevel : InteractableObject
 {
-    //private bool playerContact;
+    [SerializeField] private SceneController.SceneName nextScene;
 
-    void Start()
+    protected override void Interact()
     {
-        //playerContact = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //playerContact = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //playerContact = false;
-        }
+        base.Interact();
+        ic.GetComponent<SceneController>().ChangeScene(nextScene);
     }
 }

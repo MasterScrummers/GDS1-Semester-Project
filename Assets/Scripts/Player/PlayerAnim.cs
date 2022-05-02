@@ -64,14 +64,14 @@ public class PlayerAnim : MonoBehaviour
         }
 
         void HeavyAttackCheck()
-    {
-        if(animState != AnimState.HeavyAttack)
         {
-            return;
-        }
+            if(animState != AnimState.HeavyAttack)
+            {
+                return;
+            }
 
-        anim.SetBool("Spin", ic.GetButtonStates("Attack", "Heavy"));
-    }
+            anim.SetBool("Spin", ic.GetButtonStates("Attack", "Heavy"));
+        }
 
         void CheckWalking()
         {
@@ -126,6 +126,7 @@ public class PlayerAnim : MonoBehaviour
                     anim.SetTrigger("Restart");
                     health.Restart();
                     ic.transform.position = Vector3.zero;
+                    ic.transform.eulerAngles = Vector3.zero;
                     restartTimer = 5f;
                 }
                 return;
@@ -232,12 +233,12 @@ public class PlayerAnim : MonoBehaviour
     private void CutterHeavyJump()
     {
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-        pi.gravityMultiplier = 2.5f;
+        pi.gravityMultiplier = 5.0f;
     }
 
     private void ResetGravityMultiplier()
     {
-        pi.gravityMultiplier = 1.2f;
+        pi.gravityMultiplier = 3.0f;
     }
 
     //For Cutter Special Attack //

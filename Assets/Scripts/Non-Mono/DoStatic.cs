@@ -20,7 +20,7 @@ public class DoStatic
     /// </summary>
     /// <param name="sceneName">The scene name to load into.</param>
     /// <param name="asAdditive">Adds the loaded scene on top of current scene.</param>
-    public static AsyncOperation LoadScene(string sceneName, bool asAdditive = true)
+    public static AsyncOperation LoadScene(string sceneName, bool asAdditive = false)
     {
         return SceneManager.LoadSceneAsync(sceneName, asAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
     }
@@ -30,7 +30,7 @@ public class DoStatic
     /// </summary>
     /// <param name="index">Scene to load index.</param>
     /// <param name="asAdditive">Adds the loaded scene on top of current scene.</param>
-    public static AsyncOperation LoadScene(int index, bool asAdditive = true)
+    public static AsyncOperation LoadScene(int index, bool asAdditive = false)
     {
         return LoadScene(SceneManager.GetSceneByBuildIndex(index).name, asAdditive);
     }
@@ -101,6 +101,25 @@ public class DoStatic
     private static GameObject GetObject(string tag)
     {
         return GameObject.FindGameObjectWithTag(tag);
+    }
+
+    /// <summary>
+    /// Get a child with tag. Utilises GetChildren() meaning, it is a recursive function.
+    /// </summary>
+    /// <param name="tag">The first tag to find</param>
+    /// <param name="parent">The parent to search through.</param>
+    /// <param name="generationDepth">The depth of the search.</param>
+    /// <returns></returns>
+    public static GameObject GetChildWithTag(string tag, Transform parent, int generationDepth = 1)
+    {
+        foreach (Transform child in GetChildren(parent, generationDepth))
+        {
+            if (child.CompareTag(tag))
+            {
+                return child.gameObject;
+            }
+        }
+        return null;
     }
 
     /// <summary>
