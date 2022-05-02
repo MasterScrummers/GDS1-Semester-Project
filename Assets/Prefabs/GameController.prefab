@@ -2393,6 +2393,7 @@ GameObject:
   - component: {fileID: 6682773369639146499}
   - component: {fileID: 8716140446907082421}
   - component: {fileID: 1416025382168900194}
+  - component: {fileID: 7419149188209356659}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -2536,6 +2537,27 @@ MonoBehaviour:
   UISystems:
   - {fileID: 1043397255629511747}
   - {fileID: 4552473223980000431}
+--- !u!114 &7419149188209356659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7237153455039077993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8855516cc382a7438272c784b09978d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPrefabs:
+  - {fileID: 8066565722572324527, guid: ff257aaa776ab8942a633b92a96cf392, type: 3}
+  - {fileID: 6478014846475980686, guid: c6d38e722b99d2c4bac29f74f4a80f96, type: 3}
+  - {fileID: 5393820100730246597, guid: a23aeda29da8cc6448c8bf32288ad9fa, type: 3}
+  - {fileID: 8204471849443123645, guid: 022353d32e02cbc49b7dd8b92904381b, type: 3}
+  - {fileID: 4835816653422502968, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}
+  - {fileID: 4901588582992726509, guid: d8ab24a8552acb54e8d25790b06db0e6, type: 3}
+  - {fileID: 4130535372147975833, guid: 7edb1ee2013093b4fa18c77ed0f49e78, type: 3}
+  - {fileID: 5579775396398784295, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
 --- !u!1 &7652924546311891997
 GameObject:
   m_ObjectHideFlags: 0
