@@ -228,17 +228,27 @@ public class PlayerAnim : MonoBehaviour
         ac.PlaySound(clipName);
     }
 
+    private void ResetGravityMultiplier()
+    {
+        pi.gravityMultiplier = 3.0f;
+    }
+
+    private void ChangeSpeed(float speed)
+    {
+        pi.speed = speed;
+    }
+
+    private void ResetSpeed()
+    {
+        pi.speed = pi.orignalspeed;
+    }
+
     //For Cutter Heavy Attack //
     //Used to move the Kirby Up//
     private void CutterHeavyJump()
     {
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         pi.gravityMultiplier = 5.0f;
-    }
-
-    private void ResetGravityMultiplier()
-    {
-        pi.gravityMultiplier = 3.0f;
     }
 
     //For Cutter Special Attack //
