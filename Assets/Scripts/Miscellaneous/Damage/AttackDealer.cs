@@ -34,6 +34,7 @@ public class AttackDealer : MonoBehaviour
         {
             hitHistory.Add(hp, 0);
             hp.TakeDamage(strength);
+            collision.GetComponent<Enemy>().TakeDamage(strength);
         } else if (!anim)
         {
             hp.TakeDamage(strength);
