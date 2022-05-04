@@ -11,7 +11,7 @@ public class CutterMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         hp = GetComponent<HealthComponent>();
-        velocity = new Vector2(Random.Range(-5f, 8f), Random.Range(-5f, 5f));
+        Vector2 velocity = new(Random.Range(-5f, 8f), Random.Range(-5f, 5f));
         rb.AddForce(velocity , ForceMode2D.Impulse);
     }
 
