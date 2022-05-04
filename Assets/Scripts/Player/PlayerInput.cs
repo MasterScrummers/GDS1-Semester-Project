@@ -46,9 +46,9 @@ public class PlayerInput : MonoBehaviour
         originalGravity = rb.gravityScale;
         orignalspeed = speed;
 
-        lightWeapon = new Sword();
-        heavyWeapon = new Hammer();
-        specialWeapon = new Cutter();
+        lightWeapon = new Jet();
+        heavyWeapon = new Jet();
+        specialWeapon = new Jet();
     }
 
     void Update()
@@ -75,7 +75,7 @@ public class PlayerInput : MonoBehaviour
     private void VerticalMovement()
     {
         rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
-        isFalling = rb.velocity.y < -0.2f;
+        isFalling = rb.velocity.y < -1f;
 
         if (canInteract && ic.GetButtonDown("Movement", "Interact"))
         {

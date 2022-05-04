@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,18 +9,12 @@ public class MapGenerator : MonoBehaviour
     public int roomCount;
     int maxRooms;
 
-    private Dictionary<string, GameObject> grid;
+    private Dictionary<Vector2, GameObject> grid;
 
     void Start()
     {
+        grid = new Dictionary<Vector2, GameObject>();
         GenerateRooms(1);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void GenerateRooms(int level)

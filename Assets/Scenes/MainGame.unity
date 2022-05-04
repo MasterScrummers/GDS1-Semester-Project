@@ -773,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 544042796527561100, guid: 47011b07ad5690649b41856ed01f6616, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47011b07ad5690649b41856ed01f6616, type: 3}
 --- !u!1001 &1517162602
@@ -869,7 +873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5900323457753328119, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: projectiles.Array.data[1]
-      value:
+      value: 
       objectReference: {fileID: 3425233335716605277, guid: c79bcaf9d8869834582d98b1b5c921b9, type: 3}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
