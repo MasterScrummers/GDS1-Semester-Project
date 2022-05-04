@@ -10,9 +10,12 @@ public class MapGenerator : MonoBehaviour
     public int roomCount;
     int maxRooms;
 
+    private Dictionary<string, GameObject> grid;
+
     void Start()
     {
         GenerateRooms(1);
+
     }
 
     // Update is called once per frame
