@@ -122,7 +122,7 @@ public class PlayerInput : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        if (ic.GetAxisRawValues("Movement", "Horizontal") != 0)
+        if (ic.GetID("Movement"))
         {
             Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
             rb.velocity = vel;

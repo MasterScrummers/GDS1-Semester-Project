@@ -782,18 +782,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: weapons.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: weapons.Array.data[3].weaponName
-      value: Jet
-      objectReference: {fileID: 0}
-    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: weapons.Array.data[3].weaponSprite
-      value: 
-      objectReference: {fileID: 985180077, guid: 424ab6931467a5643b05f1d845212853, type: 3}
     - target: {fileID: 908795106552820488, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0

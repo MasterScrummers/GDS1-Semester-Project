@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1084695006222266445, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
       value: GameController

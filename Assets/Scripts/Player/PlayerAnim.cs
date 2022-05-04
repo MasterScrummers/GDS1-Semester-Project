@@ -250,11 +250,11 @@ public class PlayerAnim : MonoBehaviour
                 break;
 
             case "forward":
-                rb.AddForce(transform.right* 10f, ForceMode2D.Impulse);
+                rb.AddForce(transform.right* 5f, ForceMode2D.Impulse);
                 break;
 
             case "forwardLong":
-                rb.AddForce(transform.right * 8000f, ForceMode2D.Force);
+                rb.AddForce(transform.right * 5f, ForceMode2D.Impulse);
                 break;
 
             default:
@@ -266,7 +266,7 @@ public class PlayerAnim : MonoBehaviour
 
     private void ActivateProjectile(int num)
     {
-            Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
+        Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
     }
 
     private void ActiveMirror()

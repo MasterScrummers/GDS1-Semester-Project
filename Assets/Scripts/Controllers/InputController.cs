@@ -104,6 +104,20 @@ public class InputController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get the state of an ID.
+    /// </summary>
+    /// <param name="ID">The reason to check.</param>
+    /// <returns>Will always return false if the ID does not exist.</returns>
+    public bool GetID(string ID)
+    {
+        if (IDList.ContainsKey(ID))
+        {
+            return IDList[ID];
+        }
+        return false;
+    }
+
     public bool DebugBool = false;
     /// <summary>
     /// Get the value of assigned buttons pressed
