@@ -48,7 +48,7 @@ public class PlayerInput : MonoBehaviour
 
         lightWeapon = new Jet();
         heavyWeapon = new Jet();
-        specialWeapon = new Jet();
+        specialWeapon = new Mirror();
     }
 
     void Update()

@@ -10,7 +10,7 @@ public class Jet : WeaponBase
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(4 + extra, 7 + extra);
 
-        description = "Light: Dash\nHeavy: Large Distance Dash\n Special: Dash with energy pulse";
+        description = "Light: Dash\nHeavy: Long Distance Dash\n Special: Dash with energy pulse";
         animPath = basePath + weaponName + ".";
     }
 
