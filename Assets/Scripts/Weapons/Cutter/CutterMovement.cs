@@ -3,7 +3,6 @@ using UnityEngine;
 public class CutterMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Vector2 velocity;
     private float lifeTime = 5.0f;
     HealthComponent hp;
 

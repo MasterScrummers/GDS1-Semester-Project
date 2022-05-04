@@ -502,10 +502,10 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: CutterHeavyJump
+    functionName: ChangeGravityMultiplier
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 5
     intParameter: 0
     messageOptions: 0
   - time: 0
@@ -516,8 +516,8 @@ AnimationClip:
     intParameter: 4
     messageOptions: 0
   - time: 0
-    functionName: SetReasonLock
-    data: Movement
+    functionName: Dash
+    data: upward
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

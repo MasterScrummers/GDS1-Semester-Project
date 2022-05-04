@@ -495,17 +495,17 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: SetReasonLock
-    data: Movement
+    functionName: PlaySound
+    data: SwordSpecial
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: PlaySound
-    data: SwordSpecial
+    functionName: ChangeSpeed
+    data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 10
     intParameter: 0
     messageOptions: 0
   - time: 0.06666667
