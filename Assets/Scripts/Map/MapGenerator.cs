@@ -25,7 +25,6 @@ public class MapGenerator : MonoBehaviour
     {
         mapRoom = new int[5+level,5+level];
         //-1 = starting room; 0:empty, 1:uend, 2:rend, 3:dend, 4:lend, 5:4way,
-        //6:3wayu, 7:3wayr, 8:3wayd, 9:3wayl, 10:ur, 11:dr, 12:dl, 13ul, 
         Debug.Log(mapRoom.Length);
         int x = RandRoomCord(4 + level);
         int y = RandRoomCord(4 + level);
@@ -75,7 +74,7 @@ public class MapGenerator : MonoBehaviour
         {
             if (CheckRoomEmpty(map, x, y))
             {
-                map[x, y] = 5;
+                map[x, y] = Random.Range(1,13);
                 roomCount++;
             }
             else
