@@ -122,8 +122,12 @@ public class PlayerInput : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
-        rb.velocity = vel;
+        if (ic.GetAxisRawValues("Movement", "Horizontal") != 0)
+        {
+            Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
+            rb.velocity = vel;
+        }
+  
     }
 
     private void AttackChecks()

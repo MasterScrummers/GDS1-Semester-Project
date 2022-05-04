@@ -23,7 +23,8 @@ public class PlayerAnim : MonoBehaviour
     private float damageTimer;
     [SerializeField] private float restartTimer = 5f;
 
-    public GameObject[] projectiles; //Array of projectiles
+    [SerializeField] GameObject[] projectiles; //Array of projectiles
+    [SerializeField] GameObject[] mirrors; 
 
 
     void Start()
@@ -249,7 +250,7 @@ public class PlayerAnim : MonoBehaviour
                 break;
 
             case "forward":
-                rb.AddForce(transform.right* 5000f, ForceMode2D.Force);
+                rb.AddForce(transform.right* 10f, ForceMode2D.Impulse);
                 break;
 
             case "forwardLong":
@@ -262,11 +263,21 @@ public class PlayerAnim : MonoBehaviour
         }
     }
 
-    //For Cutter Special Attack //
-    //Use to Activate Cutter //
+
     private void ActivateProjectile(int num)
     {
             Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
+    }
+
+    private void ActiveMirror()
+    {
+        foreach (GameObject mirror in mirrors)
+        {
+            if (!mirror.activeInHierarchy)
+            {
+                mirror.SetActive(true);
+            }
+        }
     }
     #endregion Called through animation methods.
 }
