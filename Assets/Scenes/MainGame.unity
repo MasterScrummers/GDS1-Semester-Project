@@ -782,6 +782,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: weapons.Array.data[3].weaponName
+      value: Jet
+      objectReference: {fileID: 0}
+    - target: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: weapons.Array.data[3].weaponSprite
+      value: 
+      objectReference: {fileID: 985180077, guid: 424ab6931467a5643b05f1d845212853, type: 3}
     - target: {fileID: 908795106552820488, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -794,6 +806,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -9.699951
       objectReference: {fileID: 0}
+    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.9166667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900323457753328119, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: projectiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 3425233335716605277, guid: c79bcaf9d8869834582d98b1b5c921b9, type: 3}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -841,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 8310726583514417075, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077803633783099290, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de905da36588aa44884e3c4721a4f817, type: 3}

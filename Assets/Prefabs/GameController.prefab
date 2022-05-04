@@ -65,6 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownTimer: 10
   speed: 5
+  orignalspeed: 0
   canInteract: 0
   baseJumpForce: 5
   jumpHoldTimer: 0.25
@@ -1332,8 +1333,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartTimer: 5
-  cutter: {fileID: 2662895221900278497, guid: 6f41dbe69f93bd7428e49c5d1bd51081, type: 3}
-  numCutters: 2
+  projectiles:
+  - {fileID: 2662895221900278497, guid: 6f41dbe69f93bd7428e49c5d1bd51081, type: 3}
+  - {fileID: 0}
 --- !u!114 &2116864603084409345
 MonoBehaviour:
   m_ObjectHideFlags: 0

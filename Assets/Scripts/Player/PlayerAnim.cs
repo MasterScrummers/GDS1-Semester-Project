@@ -23,9 +23,8 @@ public class PlayerAnim : MonoBehaviour
     private float damageTimer;
     [SerializeField] private float restartTimer = 5f;
 
-    public GameObject cutter; //Cutter Game Object
-    public int numCutters; //Number of Cutter Spawn
-    private GameObject[] cutters; //Array of Cutters
+    public GameObject[] projectiles; //Array of projectiles
+
 
     void Start()
     {
@@ -41,11 +40,6 @@ public class PlayerAnim : MonoBehaviour
         health = pi.GetComponent<HealthComponent>();
         ac = DoStatic.GetGameController<AudioController>();
 
-        cutters = new GameObject[numCutters];
-        for (int i  = 0; i < numCutters; i++)
-        {
-            cutters[i] = cutter;
-        }
     }
 
     void Update()
@@ -139,7 +133,6 @@ public class PlayerAnim : MonoBehaviour
                 return;
         }
     }
-
     /// <summary>
     /// A simple check if the player is in the middle of an attack animation.
     /// </summary>
@@ -227,7 +220,11 @@ public class PlayerAnim : MonoBehaviour
     {
         ac.PlaySound(clipName);
     }
+    private void ChangeGravityMultiplier(float gravityMultiplier)
+    {
+        pi.gravityMultiplier = gravityMultiplier;
 
+    }
     private void ResetGravityMultiplier()
     {
         pi.gravityMultiplier = 3.0f;
@@ -243,22 +240,33 @@ public class PlayerAnim : MonoBehaviour
         pi.speed = pi.orignalspeed;
     }
 
-    //For Cutter Heavy Attack //
-    //Used to move the Kirby Up//
-    private void CutterHeavyJump()
+    private void Dash(string direction)
     {
-        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-        pi.gravityMultiplier = 5.0f;
+        switch(direction)
+        {
+            case "upward":
+                rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+                break;
+
+            case "forward":
+                rb.AddForce(transform.right* 5000f, ForceMode2D.Force);
+                break;
+
+            case "forwardLong":
+                rb.AddForce(transform.right * 8000f, ForceMode2D.Force);
+                break;
+
+            default:
+                Debug.Log("direction doesn't exist");
+                break;
+        }
     }
 
     //For Cutter Special Attack //
     //Use to Activate Cutter //
-    private void CutterActivate()
+    private void ActivateProjectile(int num)
     {
-        foreach (GameObject cutter in cutters)
-        {
-            Instantiate(cutter, pi.firePoint.position, Quaternion.identity);
-        }
+            Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
     }
     #endregion Called through animation methods.
 }
