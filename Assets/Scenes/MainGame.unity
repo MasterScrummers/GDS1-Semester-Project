@@ -782,18 +782,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 908795106552820488, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 961019237750710834, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 12.399902
-      objectReference: {fileID: 0}
-    - target: {fileID: 961019237750710834, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -9.699951
-      objectReference: {fileID: 0}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
       value: GameController

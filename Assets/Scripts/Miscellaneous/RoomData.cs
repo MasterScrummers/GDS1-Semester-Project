@@ -33,7 +33,7 @@ public class RoomData : MonoBehaviour
                 enemyCount++;
             }
         }
-        ChildrenSetActive(false);
+        //ChildrenSetActive(false); //for tests
     }
 
     void Update()
@@ -93,4 +93,5 @@ public class RoomData : MonoBehaviour
             child.SetActive(setActive);
         }
     }
+
 }

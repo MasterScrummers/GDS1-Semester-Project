@@ -1127,7 +1127,6 @@ GameObject:
   - component: {fileID: 975200689877583176}
   - component: {fileID: 157840638659717043}
   - component: {fileID: 4987636327927027047}
-  - component: {fileID: 8098707793805419186}
   m_Layer: 0
   m_Name: BaseRoom
   m_TagString: Untagged
@@ -1195,20 +1194,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 20}
   m_EdgeRadius: 0
---- !u!114 &8098707793805419186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975200689877583182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af5f4d6e13b68364084ad7bacecd505c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorDirections: 0
-  gameController: {fileID: 0}
 --- !u!1 &975200689914266775
 GameObject:
   m_ObjectHideFlags: 0
