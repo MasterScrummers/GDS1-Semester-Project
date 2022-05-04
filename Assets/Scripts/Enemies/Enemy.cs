@@ -36,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         if (health.health <= 0) {
-            Death();
+            // Death();
         }
     }
 
@@ -72,8 +72,6 @@ public abstract class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         Debug.Log("Taking damage in Enemy");
-        // Debug.Log("Health left: " + health.health);
-        // health.TakeDamage(-damage);
         if (health.health <= 0)
         {
             Death();

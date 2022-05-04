@@ -14,7 +14,7 @@ public class SpriteOutliner : MonoBehaviour
         GameObject child = new GameObject(name + " outline");
         child.transform.parent = transform;
         child.transform.localPosition = Vector2.zero;
-        child.transform.localScale *= outlineSizeMultiplier;
+        child.transform.localScale = Vector2.one * outlineSizeMultiplier;
 
         outline = child.AddComponent<SpriteRenderer>();
         outline.sortingOrder--;
