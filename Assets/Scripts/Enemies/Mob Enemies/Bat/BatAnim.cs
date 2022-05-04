@@ -12,8 +12,10 @@ public class BatAnim : MonoBehaviour
     private BoxCollider2D bc; // Bat sprite Collider
     private SpriteRenderer sr; // Bat sprite SpriteRenderer
 
+    private int facingDirection;
+
     private bool deathLanded; // To track ground contact after death
-    private bool hurt;
+    public bool hurt;
     public const float HurtTime = 0.2f;
     private float hurtColourTimer = HurtTime;
 
@@ -57,7 +59,12 @@ public class BatAnim : MonoBehaviour
     // Flips bat sprite according to direction of movement
     private void UpdateSpriteDirection()
     {
-        int facingDirection = transform.position.x < player.transform.position.x ? 1 : -1;
+        if (bat.state == Bat.State.Attack)
+        {
+            facingDirection = transform.position.x < bat.attackTargetPos.x ? 1 : -1;
+        } else {
+            facingDirection = transform.position.x < player.transform.position.x ? 1 : -1;
+        }
         
         Vector3 rot = transform.eulerAngles;
         rot.y = facingDirection > 0 ? 0 : 180;
@@ -69,7 +76,6 @@ public class BatAnim : MonoBehaviour
     /// </summary>
     public void TakeDamage()
     {
-        Debug.Log("Taking damage in bat");
         sr.color = Color.red;
         hurt = true;
         rb.AddForce(Vector3.Normalize(transform.position - player.transform.position) * 500f);
