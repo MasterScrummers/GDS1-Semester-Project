@@ -10,6 +10,10 @@ public class RoomData : MonoBehaviour
     private GameObject[] children; //An array of the room's children (1 generation deep).
     private bool inRoom = false; //A boolean to check if the player is in the room.
 
+    [SerializeField] private bool hasLeft = true;
+    [SerializeField] private bool hasRight = true;
+    [SerializeField] private bool hasUp = true;
+    [SerializeField] private bool hasDown = true;
     public bool empty { get; private set; } //A boolean to check if the number of enemies is 0.
     private int enemyCount; //Tracks the number of enemies in the room.
 
@@ -33,7 +37,7 @@ public class RoomData : MonoBehaviour
                 enemyCount++;
             }
         }
-        ChildrenSetActive(false);
+        //ChildrenSetActive(false); //for tests
     }
 
     void Update()
@@ -93,4 +97,5 @@ public class RoomData : MonoBehaviour
             child.SetActive(setActive);
         }
     }
+
 }

@@ -869,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5900323457753328119, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: projectiles.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 3425233335716605277, guid: c79bcaf9d8869834582d98b1b5c921b9, type: 3}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
