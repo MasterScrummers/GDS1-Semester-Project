@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4908741098113061293}
   - component: {fileID: 6436235499901570337}
   - component: {fileID: 9111022564328974949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Energy Pulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}

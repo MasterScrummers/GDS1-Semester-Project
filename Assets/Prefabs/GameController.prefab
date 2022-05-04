@@ -1333,6 +1333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartTimer: 5
+  cutter: {fileID: 0}
+  numCutters: 0
   projectiles:
   - {fileID: 2662895221900278497, guid: 6f41dbe69f93bd7428e49c5d1bd51081, type: 3}
   - {fileID: 0}
@@ -1457,6 +1459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2344408869410372167}
+  - component: {fileID: 2487152057857153135}
   m_Layer: 6
   m_Name: Mirror Pivot
   m_TagString: Untagged
@@ -1483,6 +1486,19 @@ Transform:
   m_Father: {fileID: 134018831627938800}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2487152057857153135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219970565129338950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126a8e6a00503ff4d839709485ca34f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 0, z: 1}
 --- !u!1 &3185132224024924054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,6 +3746,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2344408869410372167}
     m_Modifications:
+    - target: {fileID: 1424702525460329442, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4606475898779687663, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_RootOrder
       value: 0
