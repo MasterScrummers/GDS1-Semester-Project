@@ -1337,8 +1337,8 @@ MonoBehaviour:
   numCutters: 0
   projectiles:
   - {fileID: 2662895221900278497, guid: 6f41dbe69f93bd7428e49c5d1bd51081, type: 3}
-  - {fileID: 0}
-  mirrors: []
+  - {fileID: 3425233335716605277, guid: c79bcaf9d8869834582d98b1b5c921b9, type: 3}
+  mirror: {fileID: 2219970565129338950}
 --- !u!114 &2116864603084409345
 MonoBehaviour:
   m_ObjectHideFlags: 0

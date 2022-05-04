@@ -23,10 +23,8 @@ public class PlayerAnim : MonoBehaviour
     private float damageTimer;
     [SerializeField] private float restartTimer = 5f;
 
-    public GameObject cutter; //Cutter Game Object
-    public int numCutters; //Number of Cutter Spawn
     [SerializeField] GameObject[] projectiles; //Array of projectiles
-    [SerializeField] GameObject[] mirrors;
+    [SerializeField] GameObject mirror;
 
 
     void Start()
@@ -250,11 +248,11 @@ public class PlayerAnim : MonoBehaviour
                 break;
 
             case "forward":
-                rb.AddForce(transform.right* 10f, ForceMode2D.Impulse);
+                rb.AddForce(transform.right* 7f, ForceMode2D.Impulse);
                 break;
 
             case "forwardLong":
-                rb.AddForce(transform.right * 13f, ForceMode2D.Impulse);
+                rb.AddForce(transform.right * 11f, ForceMode2D.Impulse);
                 break;
 
             default:
@@ -271,13 +269,7 @@ public class PlayerAnim : MonoBehaviour
 
     private void ActiveMirror()
     {
-        foreach (GameObject mirror in mirrors)
-        {
-            if (!mirror.activeInHierarchy)
-            {
-                mirror.SetActive(true);
-            }
-        }
+        mirror.SetActive(true);
     }
 
 
