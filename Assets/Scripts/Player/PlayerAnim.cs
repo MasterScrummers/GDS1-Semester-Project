@@ -25,7 +25,9 @@ public class PlayerAnim : MonoBehaviour
 
     public GameObject cutter; //Cutter Game Object
     public int numCutters; //Number of Cutter Spawn
-    private GameObject[] cutters; //Array of Cutters
+    [SerializeField] GameObject[] projectiles; //Array of projectiles
+    [SerializeField] GameObject[] mirrors;
+
 
     void Start()
     {
@@ -35,17 +37,10 @@ public class PlayerAnim : MonoBehaviour
         ac = ic.GetComponent<AudioController>();
 
         rb = GetComponentInParent<Rigidbody2D>();
-        pi = GetComponentInParent<PlayerInput>();
+        pi = rb.GetComponent<PlayerInput>();
         col = pi.GetComponent<Collider2D>();
-        invincibility = GetComponent<PlayerInvincibility>();
         health = pi.GetComponent<HealthComponent>();
-        ac = DoStatic.GetGameController<AudioController>();
-
-        cutters = new GameObject[numCutters];
-        for (int i  = 0; i < numCutters; i++)
-        {
-            cutters[i] = cutter;
-        }
+        invincibility = GetComponent<PlayerInvincibility>();
     }
 
     void Update()
@@ -139,7 +134,6 @@ public class PlayerAnim : MonoBehaviour
                 return;
         }
     }
-
     /// <summary>
     /// A simple check if the player is in the middle of an attack animation.
     /// </summary>
@@ -227,27 +221,62 @@ public class PlayerAnim : MonoBehaviour
     {
         ac.PlaySound(clipName);
     }
-
-    //For Cutter Heavy Attack //
-    //Used to move the Kirby Up//
-    private void CutterHeavyJump()
+    private void ChangeGravityMultiplier(float gravityMultiplier)
     {
-        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-        pi.gravityMultiplier = 5.0f;
-    }
+        pi.gravityMultiplier = gravityMultiplier;
 
+    }
     private void ResetGravityMultiplier()
     {
         pi.gravityMultiplier = 3.0f;
     }
 
-    //For Cutter Special Attack //
-    //Use to Activate Cutter //
-    private void CutterActivate()
+    private void ChangeSpeed(float speed)
     {
-        foreach (GameObject cutter in cutters)
+        pi.speed = speed;
+    }
+
+    private void ResetSpeed()
+    {
+        pi.speed = pi.orignalspeed;
+    }
+
+    private void Dash(string direction)
+    {
+        switch(direction)
         {
-            Instantiate(cutter, pi.firePoint.position, Quaternion.identity);
+            case "upward":
+                rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+                break;
+
+            case "forward":
+                rb.AddForce(transform.right* 5f, ForceMode2D.Impulse);
+                break;
+
+            case "forwardLong":
+                rb.AddForce(transform.right * 5f, ForceMode2D.Impulse);
+                break;
+
+            default:
+                Debug.Log("direction doesn't exist");
+                break;
+        }
+    }
+
+
+    private void ActivateProjectile(int num)
+    {
+        Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
+    }
+
+    private void ActiveMirror()
+    {
+        foreach (GameObject mirror in mirrors)
+        {
+            if (!mirror.activeInHierarchy)
+            {
+                mirror.SetActive(true);
+            }
         }
     }
     #endregion Called through animation methods.

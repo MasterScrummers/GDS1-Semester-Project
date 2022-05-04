@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //Input controller to check inputs.
-    [SerializeField] private float cooldownTimer = 10f; //The cooldown timer
+    private float cooldownTimer = 10f; //The cooldown timer
     private float currCooldownTimer; //Current cooldown tick
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     private Rigidbody2D rb; //Kirby Rigidbody2D for the movement
 
     public float speed = 5f; //Speed of the character
+    public float orignalspeed; //Orignal Speed
 
     public bool hasJumped { private set; get; } = false;//Was the jump pressed?
     public bool isFalling { private set; get; } = false;//Is player falling?
@@ -22,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
     private float holdTimer; //Timer of the jumpHoldTimer;
     private float prevYVel; //Previous Highest Y Velocity
-    private float originalGravity; //The original gravity
+    public float originalGravity { private set; get; } //The original gravity
     public float gravityMultiplier = 3.0f; //Multiplies the gravity when falling
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
@@ -43,10 +44,11 @@ public class PlayerInput : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         originalGravity = rb.gravityScale;
+        orignalspeed = speed;
 
         lightWeapon = new Sword();
         heavyWeapon = new Hammer();
-        specialWeapon = new Sword();
+        specialWeapon = new Cutter();
     }
 
     void Update()
@@ -120,8 +122,12 @@ public class PlayerInput : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
-        rb.velocity = vel;
+        if (ic.GetID("Movement"))
+        {
+            Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
+            rb.velocity = vel;
+        }
+
     }
 
     private void AttackChecks()
@@ -135,23 +141,24 @@ public class PlayerInput : MonoBehaviour
         if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
             lightWeapon.LightAttack(playerAnim.anim);
-            detector.strength = lightWeapon.strength;
+            detector.strength = lightWeapon.baseStrength;
         }
 
         if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
             heavyWeapon.HeavyAttack(playerAnim.anim);
-            detector.strength = lightWeapon.strength * 2;
+            detector.strength = lightWeapon.baseStrength * 2;
         }
 
         if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
         {
+            cooldownTimer = specialWeapon.GetWeaponCooldown();
             currCooldownTimer = cooldownTimer;
             specialWeapon.SpecialAttack(playerAnim.anim);
-            detector.strength = lightWeapon.strength * 3;
+            detector.strength = lightWeapon.baseStrength * 3;
         }
     }
-    
+
     public bool OnGround()
     {
         return Physics2D.OverlapCircle(feet.position, radius, Ground);
