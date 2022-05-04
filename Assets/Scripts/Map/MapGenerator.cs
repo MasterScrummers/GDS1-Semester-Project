@@ -4,10 +4,10 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     //private int[,] mapRoom;
-    [SerializeField] private int maxRooms;
-    public GameObject startRoom;
-    public RoomData[] specialRooms;
-    public RoomData[] rooms;
+    [SerializeField] private int maxRooms; // The max amount of rooms
+    public GameObject startRoom; //The start room, could be hardcoded.
+    public RoomData[] specialRooms; //The special room pool
+    public RoomData[] rooms; //The room pools
     //public int roomCount;
 
     private Dictionary<Vector2, RoomData> grid;
@@ -19,12 +19,17 @@ public class MapGenerator : MonoBehaviour
         sortedNormalRooms = new Dictionary<string, List<GameObject>>();
         //GenerateRooms(1);
 
+        GenerateLevel();
+    }
+
+    private void GenerateLevel()
+    {
         SortRooms();
         PlanLevelStructure();
         GenerateRooms();
     }
 
-    void SortRooms()
+    private void SortRooms()
     {
         foreach (string combination in new string[]
         {
@@ -53,7 +58,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    void PlanLevelStructure()
+    private void PlanLevelStructure()
     {
         void GenerateNeighbours(Queue<Vector2> unfilledRooms, Vector2 room, bool[] branches) {
             void AddEmptyRoom(Vector2 pos, bool allowBranch)
@@ -95,7 +100,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    void GenerateRooms()
+    private void GenerateRooms()
     {
         /// Work for Richard
         /// 

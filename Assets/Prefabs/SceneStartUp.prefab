@@ -60,12 +60,12 @@ MonoBehaviour:
   maxRooms: 0
   startRoom: {fileID: 4835816653422502968, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}
   specialRooms:
-  - {fileID: 4901588582992726509, guid: d8ab24a8552acb54e8d25790b06db0e6, type: 3}
-  - {fileID: 4130535372147975833, guid: 7edb1ee2013093b4fa18c77ed0f49e78, type: 3}
-  - {fileID: 5579775396398784295, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
+  - {fileID: 3957191742563845220, guid: 7edb1ee2013093b4fa18c77ed0f49e78, type: 3}
+  - {fileID: 5457703305986976528, guid: d8ab24a8552acb54e8d25790b06db0e6, type: 3}
+  - {fileID: 4816319210493853146, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
   rooms:
-  - {fileID: 8066565722572324527, guid: ff257aaa776ab8942a633b92a96cf392, type: 3}
-  - {fileID: 6478014846475980686, guid: c6d38e722b99d2c4bac29f74f4a80f96, type: 3}
-  - {fileID: 5393820100730246597, guid: a23aeda29da8cc6448c8bf32288ad9fa, type: 3}
-  - {fileID: 8204471849443123645, guid: 022353d32e02cbc49b7dd8b92904381b, type: 3}
-  - {fileID: 4835816653422502968, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}
+  - {fileID: 4999815997626201912, guid: a23aeda29da8cc6448c8bf32288ad9fa, type: 3}
+  - {fileID: 9107539898387104576, guid: 022353d32e02cbc49b7dd8b92904381b, type: 3}
+  - {fileID: 6223641307036265843, guid: c6d38e722b99d2c4bac29f74f4a80f96, type: 3}
+  - {fileID: 6938474914973457490, guid: ff257aaa776ab8942a633b92a96cf392, type: 3}
+  - {fileID: 5522571226001360581, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}
