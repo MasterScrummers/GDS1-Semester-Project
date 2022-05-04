@@ -8,7 +8,7 @@ public class InteractableObject : MonoBehaviour
     protected PlayerInput pi;
     protected bool nearPlayer = false;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         col = GetComponent<Collider2D>();
         col.enabled = true;

@@ -19,6 +19,7 @@ public class SceneController : MonoBehaviour
         Credits,
         Tutorial,
         MainGame,
+        MapTestScene, //REMOVE THIS LATER.
     };
     private SceneName currentScene; //The current scene's name
 

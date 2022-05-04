@@ -2,9 +2,9 @@ public class CampfireInteract : InteractableObject
 {
     protected HealthComponent hp;
  
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         hp = DoStatic.GetPlayer<HealthComponent>();
     }
 

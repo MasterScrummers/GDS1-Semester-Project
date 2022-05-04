@@ -73,6 +73,18 @@ PrefabInstance:
       propertyPath: chest
       value: 
       objectReference: {fileID: 7310831112690448626}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: hasUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: hasDown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: hasRight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 975200689749176899, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 58

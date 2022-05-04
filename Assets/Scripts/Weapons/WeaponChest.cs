@@ -9,9 +9,9 @@ public class WeaponChest : InteractableObject
     private bool hasAppeared = false;
     private bool isOpened = false;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         chestSprite = GetComponent<SpriteRenderer>();
         chestSprite.enabled = false;
 

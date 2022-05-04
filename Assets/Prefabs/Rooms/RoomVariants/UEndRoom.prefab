@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: chest
       value: 
       objectReference: {fileID: 3105115186421750383}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: hasUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: hasLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: hasRight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 975200689073842377, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 14
