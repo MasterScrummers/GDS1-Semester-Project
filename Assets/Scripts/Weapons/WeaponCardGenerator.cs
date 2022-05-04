@@ -73,7 +73,8 @@ public class WeaponCardGenerator : MonoBehaviour
     private void SetWeaponText()
     {
 
-        weaponText.text = "<b>" + weapon.GetType().Name + "</b>" + "\n\nStrength: " + weapon.strength +"\n\n" + weapon.description;
+        weaponText.text = "<b>" + weapon.GetType().Name + "</b>" + "\n\nStrength: " + weapon.baseStrength +"\n\n" + weapon.description;
+        weaponText.text += "\n(" + weapon.GetWeaponCooldown() + " seconds cooldown)";
     }
 }
 

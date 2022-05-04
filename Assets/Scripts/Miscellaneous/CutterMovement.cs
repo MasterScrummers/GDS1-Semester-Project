@@ -10,9 +10,9 @@ public class CutterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        velocity = new Vector2(Random.Range(5f, 8f), Random.Range(0f, 5f));
-        hp = gameObject.GetComponent<HealthComponent>();
+        rb = GetComponent<Rigidbody2D>();
+        hp = GetComponent<HealthComponent>();
+        velocity = new Vector2(Random.Range(-5f, 8f), Random.Range(-5f, 5f));
         rb.AddForce(velocity , ForceMode2D.Impulse);
     }
 
@@ -23,6 +23,10 @@ public class CutterMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log(collision.name);
     }
 }

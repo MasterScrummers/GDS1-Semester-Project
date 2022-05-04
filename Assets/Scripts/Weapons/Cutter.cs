@@ -5,8 +5,11 @@ public class Cutter : WeaponBase
     public Cutter() : base()
     {
         weaponName = "Cutter";
+        specialCooldown = Random.Range(3, 8);
+        int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
+        baseStrength = Random.Range(4 + extra, 5 + extra);
         description = "Light: Slash\nHeavy: Jump Attack\nSpecial: Throw Cutter";
-        animPath = basePath + "Cutter.";
+        animPath = basePath + weaponName + "."; //Don't forget the dot!
     }
 
     public override void LightAttack(Animator anim)

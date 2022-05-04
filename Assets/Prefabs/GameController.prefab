@@ -63,12 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feb527eb855fd5469957de8a31abf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTimer: 10
   speed: 5
   canInteract: 0
-  baseJumpForce: 5
+  baseJumpForce: 10
   jumpHoldTimer: 0.25
-  gravityMultiplier: 3
+  gravityMultiplier: 1.2
   radius: 0.2
   feet: {fileID: 5954393082887964401}
   Ground:
@@ -106,7 +105,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

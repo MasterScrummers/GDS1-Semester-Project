@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //Input controller to check inputs.
-    [SerializeField] private float cooldownTimer = 10f; //The cooldown timer
+    private float cooldownTimer = 10f; //The cooldown timer
     private float currCooldownTimer; //Current cooldown tick
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
@@ -46,7 +46,7 @@ public class PlayerInput : MonoBehaviour
 
         lightWeapon = new Sword();
         heavyWeapon = new Hammer();
-        specialWeapon = new Sword();
+        specialWeapon = new Cutter();
     }
 
     void Update()
@@ -135,20 +135,21 @@ public class PlayerInput : MonoBehaviour
         if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
             lightWeapon.LightAttack(playerAnim.anim);
-            detector.strength = lightWeapon.strength;
+            detector.strength = lightWeapon.baseStrength;
         }
 
         if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
             heavyWeapon.HeavyAttack(playerAnim.anim);
-            detector.strength = lightWeapon.strength * 2;
+            detector.strength = lightWeapon.baseStrength * 2;
         }
 
         if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
         {
+            cooldownTimer = specialWeapon.GetWeaponCooldown();
             currCooldownTimer = cooldownTimer;
             specialWeapon.SpecialAttack(playerAnim.anim);
-            detector.strength = lightWeapon.strength * 3;
+            detector.strength = lightWeapon.baseStrength * 3;
         }
     }
     

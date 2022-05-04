@@ -25,7 +25,6 @@ public class PlayerAnim : MonoBehaviour
 
     public GameObject cutter; //Cutter Game Object
     public int numCutters; //Number of Cutter Spawn
-    private GameObject[] cutters; //Array of Cutters
 
     void Start()
     {
@@ -35,17 +34,10 @@ public class PlayerAnim : MonoBehaviour
         ac = ic.GetComponent<AudioController>();
 
         rb = GetComponentInParent<Rigidbody2D>();
-        pi = GetComponentInParent<PlayerInput>();
+        pi = rb.GetComponent<PlayerInput>();
         col = pi.GetComponent<Collider2D>();
-        invincibility = GetComponent<PlayerInvincibility>();
         health = pi.GetComponent<HealthComponent>();
-        ac = DoStatic.GetGameController<AudioController>();
-
-        cutters = new GameObject[numCutters];
-        for (int i  = 0; i < numCutters; i++)
-        {
-            cutters[i] = cutter;
-        }
+        invincibility = GetComponent<PlayerInvincibility>();
     }
 
     void Update()
@@ -245,7 +237,7 @@ public class PlayerAnim : MonoBehaviour
     //Use to Activate Cutter //
     private void CutterActivate()
     {
-        foreach (GameObject cutter in cutters)
+        for(int i = 0; i < numCutters; i++)
         {
             Instantiate(cutter, pi.firePoint.position, Quaternion.identity);
         }

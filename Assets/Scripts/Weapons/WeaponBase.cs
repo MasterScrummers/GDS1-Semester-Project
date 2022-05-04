@@ -7,13 +7,14 @@ public abstract class WeaponBase
     
     protected const string basePath = "Base Layer."; //The base path.
     protected string animPath; //The animation path, to keep things simple.
+    protected int specialCooldown = 10; //The cooldown of the weapon.
 
     public enum Affinity { water, fire, grass }; //All the weapon types are here. Any changes must have been discussed.
     protected Affinity weaponType = Affinity.water; //The weapon's typing.
     public Color32 weaponColour { get; private set; } = Color.white; //Colour of the weapon.
 
     private Affinity weaponWeakness; //Weapon's weakness.
-    public int strength { get; protected set; } = 1;
+    public int baseStrength { get; protected set; } = 1;
 
     public WeaponBase()
     {
@@ -65,5 +66,14 @@ public abstract class WeaponBase
     /// Meant to be overridden for the special attack.
     /// </summary>
     public virtual void SpecialAttack(Animator anim) {}
+
+    /// <summary>
+    /// Gets the weapon cooldown.
+    /// </summary>
+    /// <returns>The weapon cooldown.</returns>
+    public float GetWeaponCooldown()
+    {
+        return specialCooldown;
+    }
 
 }
