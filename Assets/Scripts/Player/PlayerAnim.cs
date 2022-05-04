@@ -250,11 +250,11 @@ public class PlayerAnim : MonoBehaviour
                 break;
 
             case "forward":
-                rb.AddForce(transform.right* 5f, ForceMode2D.Impulse);
+                rb.AddForce(transform.right* 10f, ForceMode2D.Impulse);
                 break;
 
             case "forwardLong":
-                rb.AddForce(transform.right * 5f, ForceMode2D.Impulse);
+                rb.AddForce(transform.right * 13f, ForceMode2D.Impulse);
                 break;
 
             default:
@@ -279,5 +279,21 @@ public class PlayerAnim : MonoBehaviour
             }
         }
     }
+
+
+    private void SetInvincible(int invincible)
+    {
+        switch (invincible)
+        {
+            case 1:
+                Physics2D.IgnoreLayerCollision(6, 7, true);
+                break;
+
+            case 2:
+                Physics2D.IgnoreLayerCollision(6, 7, false);
+                break;
+        }
+    }
+
     #endregion Called through animation methods.
 }

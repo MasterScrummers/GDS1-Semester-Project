@@ -191,12 +191,12 @@ TextureImporter:
       name: jet_light_4
       rect:
         serializedVersion: 2
-        x: 294
+        x: 293
         y: 194
         width: 39
         height: 37
       alignment: 9
-      pivot: {x: 0.9772934, y: 0.05076434}
+      pivot: {x: 0.76208264, y: 0.013474748}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -217,7 +217,7 @@ TextureImporter:
         width: 37
         height: 36
       alignment: 9
-      pivot: {x: 0.9752148, y: 0.05280728}
+      pivot: {x: 0.7473639, y: 0.016498141}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,7 +238,7 @@ TextureImporter:
         width: 37
         height: 34
       alignment: 9
-      pivot: {x: 0.97608, y: 0.055068523}
+      pivot: {x: 0.7472633, y: 0.015553643}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -259,7 +259,7 @@ TextureImporter:
         width: 38
         height: 33
       alignment: 9
-      pivot: {x: 0.9759634, y: 0.05677194}
+      pivot: {x: 0.7696461, y: 0.021575928}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
