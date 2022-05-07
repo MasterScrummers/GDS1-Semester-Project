@@ -469,7 +469,7 @@ TextureImporter:
         width: 31
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -477,6 +477,90 @@ TextureImporter:
       bones: []
       spriteID: 0d78f9aa75163994583331ce083a9f50
       internalID: 572122630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Light_1
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 248
+        width: 30
+        height: 35
+      alignment: 9
+      pivot: {x: 0.7412577, y: 0.022154454}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 961d89941a203d8488f7b62d38701585
+      internalID: -607372801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Light_0
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 160
+        width: 57
+        height: 35
+      alignment: 9
+      pivot: {x: 0.38785914, y: 0.025531441}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a752ef1d36b7c0947b9c4db0260de5d1
+      internalID: -1356301248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorShield
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 239
+        width: 28
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0700dc90de52d944a873ba12ab93abc
+      internalID: -629275206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Heavy_0
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 637
+        width: 30
+        height: 32
+      alignment: 9
+      pivot: {x: 0.9373922, y: 0.043811798}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535410640227c7842a85cfb686fb01c8
+      internalID: 1241522459
       vertices: []
       indices: 
       edges: []
@@ -494,6 +578,7 @@ TextureImporter:
     nameFileIdTable:
       Mirror_4: 223958570
       Mirror_End_0: 572122630
+      Mirror_Heavy_0: 1241522459
       Mirror_14: 858233215
       Mirror_9: 570545352
       Mirror_3: -169187102
@@ -501,10 +586,13 @@ TextureImporter:
       Mirror_5: 1665728220
       Mirror_11: 1060616224
       Mirror_12: -2108475996
+      Mirror_Light_0: -1356301248
       Mirror_Special_0: 321989413
       Mirror_Special_1: 1422575610
+      MirrorShield: -629275206
       Mirror_2: -608480026
       Mirror_1: 1814784656
+      Mirror_Light_1: -607372801
       Mirror_8: -1360146358
       Mirror_13: 1324659474
       Mirror_0: 376309215

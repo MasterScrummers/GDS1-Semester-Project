@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KirbyIdle
+  m_Name: MirrorLightEnd
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,11 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 1948870930, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - time: 4.888889
-      value: {fileID: 1080570564, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - time: 5
-      value: {fileID: 1660923632, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - time: 5.088889
-      value: {fileID: 1080570564, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - time: 5.111111
-      value: {fileID: 1080570564, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 45
+  m_SampleRate: 30
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -49,16 +41,12 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 1948870930, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - {fileID: 1080570564, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - {fileID: 1660923632, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - {fileID: 1080570564, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
-    - {fileID: 1080570564, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 5.133333
+    m_StopTime: 0.033333335
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,22 +67,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetAnimState
-    data: 
+    functionName: SetMirrorShield
+    data: Off
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: ResetSpeed
-    data: 
+  - time: 0.033333335
+    functionName: SetInvincible
+    data: Off
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: RestGravityMultiplier
-    data: 
+  - time: 0.033333335
+    functionName: SetReasonUnlock
+    data: Movement
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

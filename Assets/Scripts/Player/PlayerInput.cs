@@ -25,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     private float prevYVel; //Previous Highest Y Velocity
     public float originalGravity { private set; get; } //The original gravity
     public float gravityMultiplier = 3.0f; //Multiplies the gravity when falling
+    public float originalGravityMultiplier;
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     public Transform feet; //Kirby's feet, to check if it is colliding with the ground
@@ -45,9 +46,10 @@ public class PlayerInput : MonoBehaviour
 
         originalGravity = rb.gravityScale;
         orignalspeed = speed;
+        originalGravityMultiplier = gravityMultiplier;
 
-        lightWeapon = new Jet();
-        heavyWeapon = new Jet();
+        lightWeapon = new Mirror();
+        heavyWeapon = new Mirror();
         specialWeapon = new Mirror();
     }
 

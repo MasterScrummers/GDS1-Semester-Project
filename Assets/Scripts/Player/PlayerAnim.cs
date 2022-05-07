@@ -25,6 +25,7 @@ public class PlayerAnim : MonoBehaviour
 
     [SerializeField] GameObject[] projectiles; //Array of projectiles
     [SerializeField] GameObject mirror;
+    [SerializeField] GameObject shield;
 
 
     void Start()
@@ -54,6 +55,8 @@ public class PlayerAnim : MonoBehaviour
             {
                 anim.SetTrigger("FollowUp");
             }
+
+            anim.SetBool("Shield", ic.GetButtonStates("Attack", "Light"));
         }
 
         void HeavyAttackCheck()
@@ -219,14 +222,14 @@ public class PlayerAnim : MonoBehaviour
     {
         ac.PlaySound(clipName);
     }
+    private void RestGravityMultiplier()
+    {
+        pi.gravityMultiplier = pi.originalGravityMultiplier;
+
+    }
     private void ChangeGravityMultiplier(float gravityMultiplier)
     {
         pi.gravityMultiplier = gravityMultiplier;
-
-    }
-    private void ResetGravityMultiplier()
-    {
-        pi.gravityMultiplier = 3.0f;
     }
 
     private void ChangeSpeed(float speed)
@@ -272,16 +275,30 @@ public class PlayerAnim : MonoBehaviour
         mirror.SetActive(true);
     }
 
-
-    private void SetInvincible(int invincible)
+    private void SetMirrorShield(string state)
     {
-        switch (invincible)
+        switch (state)
         {
-            case 1:
+            case "On":
+                shield.SetActive(true);
+                break;
+
+            case "Off":
+                shield.SetActive(false);
+                break;
+        }
+
+    }
+
+    private void SetInvincible(string state)
+    {
+        switch (state)
+        {
+            case "On":
                 Physics2D.IgnoreLayerCollision(6, 7, true);
                 break;
 
-            case 2:
+            case "Off":
                 Physics2D.IgnoreLayerCollision(6, 7, false);
                 break;
         }

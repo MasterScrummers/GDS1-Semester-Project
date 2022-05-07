@@ -608,7 +608,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0
     functionName: SetInvincible
-    data: 
+    data: On
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
@@ -636,7 +636,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.73333335
     functionName: SetInvincible
-    data: 
+    data: Off
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2

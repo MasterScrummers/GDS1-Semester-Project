@@ -796,6 +796,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Kirby_Normal_0
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 64
+        width: 34
+        height: 23
+      alignment: 9
+      pivot: {x: 0.6495424, y: 0.08199344}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d6333032d9ef74982e082bed2c7674
+      internalID: 1616842696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -823,6 +844,7 @@ TextureImporter:
       kirby_jump_7: 1213005188
       kirby_jump_8: -1071219015
       kirby_jump_9: -986310726
+      Kirby_Normal_0: 1616842696
       kirby_walk_3: 229626808
       kirby_walk_9: -1204278553
       kirby_walk_0: 12694197
