@@ -1238,7 +1238,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minotaur_54
+      name: Minotaur_Death0
       rect:
         serializedVersion: 2
         x: 28
@@ -1259,7 +1259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minotaur_55
+      name: Minotaur_Death1
       rect:
         serializedVersion: 2
         x: 125
@@ -1280,7 +1280,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minotaur_56
+      name: Minotaur_Death2
       rect:
         serializedVersion: 2
         x: 226
@@ -1301,7 +1301,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minotaur_57
+      name: Minotaur_Death3
       rect:
         serializedVersion: 2
         x: 322
@@ -1322,7 +1322,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minotaur_58
+      name: Minotaur_Death4
       rect:
         serializedVersion: 2
         x: 418
@@ -1343,7 +1343,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minotaur_59
+      name: Minotaur_Death5
       rect:
         serializedVersion: 2
         x: 514
@@ -2653,6 +2653,7 @@ TextureImporter:
       Minotaur_101: 1078272651
       Minotaur_49: -904400737
       Minotaur_103: -101729063
+      Minotaur_Death5: -1690722168
       Minotaur_51: 1292044398
       Minotaur_104: 608291143
       Minotaur_41: -1244622893
@@ -2663,11 +2664,9 @@ TextureImporter:
       Minotaur_71: -129264116
       Minotaur_52: -1371872039
       Minotaur_64: -1681417942
-      Minotaur_54: 535074576
       Minotaur_96: -989019772
       Minotaur_81: 1501832946
       Minotaur_111: 1007888616
-      Minotaur_58: 1094505637
       Minotaur_42: -1257699812
       Minotaur_48: 615075429
       Minotaur_109: -641934876
@@ -2687,9 +2686,8 @@ TextureImporter:
       Minotaur_98: 1029880484
       Minotaur_112: 1988903385
       Minotaur_47: -1283423093
-      Minotaur_55: 1325305722
-      Minotaur_36: 1210692437
       Minotaur_78: 646974242
+      Minotaur_36: 1210692437
       Minotaur_34: 1411602227
       Minotaur_37: 1208780647
       Minotaur_27: 2015826432
@@ -2702,18 +2700,17 @@ TextureImporter:
       Minotaur_91: 747589171
       Minotaur_65: -1490358992
       Minotaur_Attack8: 87133340
+      Minotaur_Death4: 1094505637
       Minotaur_75: -400657262
       Minotaur_82: 1298493137
       Minotaur_Walk7: -1225110794
       Minotaur_Walk4: 1221329299
       Minotaur_Attack5: -582777164
-      Minotaur_56: -1343132335
       Minotaur_86: 24743340
       Minotaur_76: -952448532
+      Minotaur_Death0: 535074576
       Minotaur_Walk3: 2062799465
       Minotaur_40: -939734427
-      Minotaur_57: 199289454
-      Minotaur_59: -1690722168
       Minotaur_Attack6: 2031152587
       Minotaur_99: -1706101485
       Minotaur_28: -322258766
@@ -2739,8 +2736,10 @@ TextureImporter:
       Minotaur_15: 1232391354
       Minotaur_46: 1259593874
       Minotaur_Attack3: -1878686813
+      Minotaur_Death3: 199289454
       Minotaur_97: -553942437
       Minotaur_72: -237976207
+      Minotaur_Death2: -1343132335
       Minotaur_87: -166971687
       Minotaur_32: -1662455264
       Minotaur_Attack4: -2030586448
@@ -2748,6 +2747,7 @@ TextureImporter:
       Minotaur_68: 750576653
       Minotaur_Walk0: 1776336223
       Minotaur_118: -1580335919
+      Minotaur_Death1: 1325305722
       Minotaur_120: 1150439748
       Minotaur_85: -1026257210
       Minotaur_16: -167412118

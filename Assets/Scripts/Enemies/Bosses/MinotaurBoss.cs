@@ -36,7 +36,7 @@ public class MinotaurBoss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        if (!anim.GetBool("Attack"))
+        if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
         {
             Move();
             base.Update();
@@ -77,19 +77,33 @@ public class MinotaurBoss : Enemy
         Gizmos.DrawLine(new Vector2(posX + rightBoundary, int.MinValue), new Vector2(posX + rightBoundary, int.MaxValue));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             anim.SetBool("Attack", true);
+            Debug.Log("in range " + anim.GetBool("Attack"));
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             anim.SetBool("Attack", false);
+            Debug.Log("Player gone " + anim.GetBool("Attack"));
         }
+    }
+
+    protected override void Death()
+    {
+        anim.SetBool("Dead", true);
+        Debug.Log(anim.GetBool("Dead"));
+
+    }
+
+    public void FinishDeath()
+    {
+        base.Death();
     }
 }
