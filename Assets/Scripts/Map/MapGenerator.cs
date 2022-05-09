@@ -117,7 +117,10 @@ public class MapGenerator : MonoBehaviour
         ///    
 
         List<Vector2> spent = new List<Vector2>();
-        Instantiate(specialRooms[2].gameObject, new Vector2(100, 0), Quaternion.identity);
+        Instantiate(specialRooms[2], new Vector2(100, 0), Quaternion.identity);
+        if (!grid.ContainsKey(new Vector2(100, 0))){
+            grid.Add(new Vector2(100, 0), null);
+        }
         spent.Add(new Vector2(100, 0));
         Instantiate(specialRooms[0], new Vector2(150, 0), Quaternion.identity);
         spent.Add(new Vector2(150, 0));
@@ -125,7 +128,7 @@ public class MapGenerator : MonoBehaviour
         foreach (Vector2 pos in grid.Keys)
         {
             string exist = "";
-            exist += grid.ContainsKey(pos + new Vector2(-50, 0)) ? "L" : "";
+            exist += grid.ContainsKey((pos + new Vector2(-50, 0))) ? "L" : "";
             exist += grid.ContainsKey(pos + new Vector2(50, 0)) ? "R" : "";
             exist += grid.ContainsKey(pos + new Vector2(0, 50)) ? "U" : "";
             exist += grid.ContainsKey(pos + new Vector2(0, -50)) ? "D" : "";
