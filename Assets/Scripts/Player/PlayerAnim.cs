@@ -228,7 +228,7 @@ public class PlayerAnim : MonoBehaviour
     }
     private void ResetGravityMultiplier()
     {
-        pi.gravityMultiplier = 3.0f;
+        pi.gravityMultiplier = 1.2f;
     }
 
     private void ChangeSpeed(float speed)
