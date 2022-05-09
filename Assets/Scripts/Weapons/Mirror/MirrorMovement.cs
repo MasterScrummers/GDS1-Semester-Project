@@ -9,6 +9,7 @@ public class MirrorMovement : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<HealthComponent>() && !collision.CompareTag("Player"))
@@ -16,6 +17,7 @@ public class MirrorMovement : MonoBehaviour
             anim.SetTrigger("End");
         }
     }
+    */
 
 
 }

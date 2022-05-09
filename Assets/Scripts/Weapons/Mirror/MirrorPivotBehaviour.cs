@@ -5,7 +5,7 @@ using UnityEngine;
 public class MirrorPivotBehaviour : MonoBehaviour
 {
     private float lifeTime;
-    [SerializeField] private float originalLifeTime = 5f;
+    [SerializeField] private float originalLifeTime = 3f;
 
     private void Start()
     {

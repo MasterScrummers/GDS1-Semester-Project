@@ -1337,6 +1337,7 @@ MonoBehaviour:
   projectiles:
   - {fileID: 2662895221900278497, guid: 6f41dbe69f93bd7428e49c5d1bd51081, type: 3}
   - {fileID: 3425233335716605277, guid: c79bcaf9d8869834582d98b1b5c921b9, type: 3}
+  - {fileID: 8362386520587040348, guid: 3f97e25809abe2b498eb4b2e4b79602c, type: 3}
   mirror: {fileID: 2219970565129338950}
   shield: {fileID: 5899896138594468200}
 --- !u!114 &2116864603084409345
@@ -1525,7 +1526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb4a8d934e7d144b9e500c4413f6c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLifeTime: 5
+  originalLifeTime: 3
 --- !u!1 &3185132224024924054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,6 +2666,8 @@ MonoBehaviour:
     weaponSprite: {fileID: -1162353043, guid: eeaa236dbb980e24f974288887929da9, type: 3}
   - weaponName: Mirror
     weaponSprite: {fileID: 793407968, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+  - weaponName: Ninja
+    weaponSprite: {fileID: 1826421709, guid: d99745983906b2c458b26661e3482a9e, type: 3}
 --- !u!114 &879982545141655048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3279,10 +3282,6 @@ PrefabInstance:
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_Name
       value: Mirror
-      objectReference: {fileID: 0}
-    - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7363564424468260497, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: center

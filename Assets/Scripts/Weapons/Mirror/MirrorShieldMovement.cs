@@ -3,8 +3,8 @@ using UnityEngine;
 public class MirrorShieldMovement : MonoBehaviour
 {
     [SerializeField] Vector3 originalScale;
-    private float sizeCounter = 4f; //The time Shield stays in the original form
-    private float lifeTime = 4; //Start afte sizeCounter ended, used to reduce the size of shield.
+    private float sizeCounter = 3f; //The time Shield stays in the original form
+    private float lifeTime = 3; //Start afte sizeCounter ended, used to reduce the size of shield.
     [SerializeField] Animator playerAnim;
 
 
@@ -22,7 +22,7 @@ public class MirrorShieldMovement : MonoBehaviour
         {
             lifeTime -= Time.deltaTime;
 
-            if (lifeTime <= 2 || lifeTime > 0)
+            if (lifeTime <= 2 && lifeTime > 0)
             {
                 transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
             }
