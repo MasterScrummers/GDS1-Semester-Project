@@ -98,6 +98,7 @@ public class MapGenerator : MonoBehaviour
         {
             GenerateNeighbours(unfilledRooms, unfilledRooms.Dequeue(), RandomiseExits(0.25f, unfilledRooms.Count == 0));
         }
+
     }
 
     private void GenerateRooms()
@@ -113,9 +114,30 @@ public class MapGenerator : MonoBehaviour
         ///     else
         ///         consider the number of neighbours for the room and assign it to a random normal room accordingly
         ///             - Utilise the sorted room dictionary I made for you.
+        ///    
+
+        List<Vector2> spent = new List<Vector2>();
+        Instantiate(specialRooms[2].gameObject, new Vector2(100, 0), Quaternion.identity);
+        spent.Add(new Vector2(100, 0));
+        Instantiate(specialRooms[0], new Vector2(150, 0), Quaternion.identity);
+        spent.Add(new Vector2(150, 0));
+
         foreach (Vector2 pos in grid.Keys)
         {
-            Instantiate(startRoom, pos, Quaternion.identity);
+            string exist = "";
+            exist += grid.ContainsKey(pos + new Vector2(-50, 0)) ? "L" : "";
+            exist += grid.ContainsKey(pos + new Vector2(50, 0)) ? "R" : "";
+            exist += grid.ContainsKey(pos + new Vector2(0, 50)) ? "U" : "";
+            exist += grid.ContainsKey(pos + new Vector2(0, -50)) ? "D" : "";
+
+            if (!spent.Contains(pos))
+            {
+                List<GameObject> eligibleRoom = sortedNormalRooms[exist];
+                int spawningRoom = Random.Range(0, eligibleRoom.Count);
+                GameObject roomToSpawn = eligibleRoom[spawningRoom];
+
+                Instantiate(roomToSpawn, pos, Quaternion.identity);
+            }
         }
     }
 
