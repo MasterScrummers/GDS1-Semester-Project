@@ -1,8 +1,11 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerInvincibility))]
+
+[RequireComponent(typeof(JetAttackAnim))]
+[RequireComponent(typeof(NinjaAttackAnim))]
+
 public class PlayerAnim : MonoBehaviour
 {
     public Animator anim { get; private set; } //The player's animation
@@ -26,7 +29,6 @@ public class PlayerAnim : MonoBehaviour
     [SerializeField] GameObject[] projectiles; //Array of projectiles
     [SerializeField] GameObject mirror;
     [SerializeField] GameObject shield;
-
 
     void Start()
     {
@@ -163,7 +165,7 @@ public class PlayerAnim : MonoBehaviour
         ic.SetInputLock(true);
         Physics2D.IgnoreLayerCollision(6, 7, true);
 
-        anim.Play(health.health > 0 ? "Base Layer.KirbyHurt.KirbyHurtAir" : "Base Layer.KirbyDeath.KirbyDeathIntro");
+        anim.Play("Base Layer.Kirby" + (health.health > 0 ? "Hurt.KirbyHurtAir" : "Death.KirbyDeathIntro"));
         rb.velocity = health.health > 0 ? new Vector2(xDirectionForce, 2) * 2f : Vector2.zero;
     }
 
@@ -242,28 +244,6 @@ public class PlayerAnim : MonoBehaviour
         pi.speed = pi.orignalspeed;
     }
 
-    private void Dash(string direction)
-    {
-        switch(direction)
-        {
-            case "upward":
-                rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-                break;
-
-            case "forward":
-                rb.AddForce(transform.right* 7f, ForceMode2D.Impulse);
-                break;
-
-            case "forwardLong":
-                rb.AddForce(transform.right * 11f, ForceMode2D.Impulse);
-                break;
-
-            default:
-                Debug.Log("direction doesn't exist");
-                break;
-        }
-    }
-
 
     private void ActivateProjectile(int num)
     {
@@ -277,31 +257,12 @@ public class PlayerAnim : MonoBehaviour
 
     private void SetMirrorShield(string state)
     {
-        switch (state)
-        {
-            case "On":
-                shield.SetActive(true);
-                break;
-
-            case "Off":
-                shield.SetActive(false);
-                break;
-        }
-
+        shield.SetActive(state.Equals("On"));
     }
 
     private void SetInvincible(string state)
     {
-        switch (state)
-        {
-            case "On":
-                Physics2D.IgnoreLayerCollision(6, 7, true);
-                break;
-
-            case "Off":
-                Physics2D.IgnoreLayerCollision(6, 7, false);
-                break;
-        }
+        Physics2D.IgnoreLayerCollision(6, 7, state.Equals("On"));
     }
 
     #endregion Called through animation methods.

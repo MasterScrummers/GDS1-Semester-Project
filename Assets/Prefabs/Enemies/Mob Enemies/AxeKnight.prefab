@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 2105195040920476034}
   - component: {fileID: 7855615561232076326}
   - component: {fileID: 8715653282876995269}
-  - component: {fileID: 534492623138941765}
   m_Layer: 7
   m_Name: AxeKnight
   m_TagString: Untagged
@@ -222,16 +221,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5208333
---- !u!114 &534492623138941765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6577600788766136098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11b562fc2905bd246a850d0247e77aa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 1

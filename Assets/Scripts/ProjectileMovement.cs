@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileBase : MonoBehaviour
+public class ProjectileMovement : MonoBehaviour
 {
     [SerializeField] protected float speed; //The moving speed;
     [SerializeField] protected float lifeTime; //How long it exist
