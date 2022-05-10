@@ -11,7 +11,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     private Collider2D col; //The collider of the player. Is disabled upon death.
     private HealthComponent health; //To track the player's health.
 
-
     public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
     public enum JumpState { Waiting, StartJump, Peak, Descending }
 

@@ -41,7 +41,7 @@ public class PlayerInput : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
 
         playerAnim = GetComponentInChildren<PlayerAnim>();
-        dealer = playerAnim.GetComponent<AttackDealer>();
+        dealer = GetComponentInChildren<AttackDealer>();
         rb = GetComponent<Rigidbody2D>();
 
         originalGravity = rb.gravityScale;

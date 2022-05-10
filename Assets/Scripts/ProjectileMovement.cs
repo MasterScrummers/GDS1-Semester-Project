@@ -24,9 +24,4 @@ public class ProjectileMovement : MonoBehaviour
     {
         lifeTick = lifeTime;
     }
-
-    /// <summary>
-    /// Meant to be overridden for OnTriggerEnter Event
-    /// </summary>
-    protected virtual void OnTriggerEnter2D(Collider2D collision) { }
 }

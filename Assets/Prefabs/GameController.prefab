@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3138290750049015659}
   - component: {fileID: 9077803633783099290}
   - component: {fileID: 2002938334861128839}
+  - component: {fileID: 2058645567314398259}
   m_Layer: 6
   m_Name: Kirby
   m_TagString: Player
@@ -34,7 +35,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 749352406276851550}
-  - {fileID: 7208887957448245023}
   - {fileID: 5954393082887964401}
   - {fileID: 8245610911835613080}
   - {fileID: 4789079845187320101}
@@ -129,6 +129,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMaxHealth: 4
   health: 0
+--- !u!114 &2058645567314398259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134018831627938803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 6683203722448909238}
+  miscAnim: {fileID: 26339309559117619}
+  restartTimer: 5
 --- !u!1 &160476081816171155
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +631,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143362512357761748
 GameObject:
@@ -2293,7 +2308,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &705161152494548997
 SpriteRenderer:
@@ -2717,70 +2732,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &7128891663749715997
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7208887957448245023}
-  - component: {fileID: 7368159723253616013}
-  - component: {fileID: 8999932372027353789}
-  m_Layer: 6
-  m_Name: Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7208887957448245023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7128891663749715997}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7368159723253616013
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7128891663749715997}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.42
---- !u!114 &8999932372027353789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7128891663749715997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 6683203722448909238}
-  miscAnim: {fileID: 26339309559117619}
-  restartTimer: 5
 --- !u!1 &7237153455039077993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,7 +2973,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7785554892169719453
 GameObject:

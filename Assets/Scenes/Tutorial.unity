@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.9166667
       objectReference: {fileID: 0}
+    - target: {fileID: 7128891663749715997, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -281,6 +285,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 871578678951071138, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933269975195413176, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1736773279777994292, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[7].Array.size
       value: 4
@@ -1489,10 +1501,34 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
+    - target: {fileID: 3098169665011631758, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316159038812526774, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967724820397642444, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6208062675034898017, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
+    - target: {fileID: 7106604596434362750, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027406842606761382, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636289290176125155, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
 --- !u!1001 &2648424485569130677

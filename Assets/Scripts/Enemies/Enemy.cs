@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AttackDealer))]
 public abstract class Enemy : MonoBehaviour, IAttackReceiver
 {
+    [SerializeField] protected int strength;
     [SerializeField] protected WeaponBase.Affinity type;
     [SerializeField] protected bool randomiseAffinity = false;
     private WeaponBase.Affinity weakness; //An enemy will now have a weakness
@@ -15,6 +16,7 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
 
     // Start is called before the first frame update
     protected virtual void Start() {
+        GetComponent<AttackDealer>().SetStrengthMult(strength);
         health = GetComponent<HealthComponent>();
 
         int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
@@ -22,8 +24,8 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
         {
             type = (WeaponBase.Affinity)Random.Range(0, affinityNum);
         }
-        weakness = (WeaponBase.Affinity)(((int)type + 1) % affinityNum);
-        resist = weakness + 1;
+        weakness = (WeaponBase.Affinity)((int)(type - 1) % affinityNum);
+        resist = (WeaponBase.Affinity)(((int)type + 1) % affinityNum);
 
         SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
         outliner.SetColour(DoStatic.GetGameController<VariableController>().GetColor(type));
@@ -65,6 +67,7 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
     public virtual void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
     {
         float extra = typing == weakness ? 1.25f : typing == resist ? 0.75f : 1f;
+        Debug.Log(extra);
         int damage = (int)(strength * extra);
         health.TakeDamage(damage == 0 ? 1 : damage);
         if (health.health <= 0)

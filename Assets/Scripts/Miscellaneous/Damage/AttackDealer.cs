@@ -3,7 +3,8 @@ using UnityEngine;
 public class AttackDealer : MonoBehaviour
 {
     private int strength = 1; //The strength the hit, should be controlled by another script.
-    private float knockbackStr = 10f; //The knockback given, should be controlled by another script.
+    private int strengthMult = 1;
+    private float knockbackStr = 1f; //The knockback given, should be controlled by another script.
     private float invincibilityLength = 1.5f;
     private WeaponBase.Affinity typing;
 
@@ -14,9 +15,9 @@ public class AttackDealer : MonoBehaviour
         typing = weapon.weaponType;
     }
     
-    public void SetStrength(int str)
+    public void SetStrengthMult(int mult)
     {
-        strength = str;
+        strengthMult = mult;
     }
 
     public void SetInvincibilityLength(float length)
@@ -27,9 +28,10 @@ public class AttackDealer : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();
+        
         if (receiver != null)
         {
-            receiver.RecieveAttack(transform, strength, knockbackStr, invincibilityLength, typing);
+            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr, invincibilityLength, typing);
         }
     }
 }
