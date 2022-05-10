@@ -8,6 +8,7 @@ public abstract class WeaponBase
     protected const string basePath = "Base Layer."; //The base path.
     protected string animPath; //The animation path, to keep things simple.
     protected int specialCooldown = 10; //The cooldown of the weapon.
+    protected float knockbackStrength = 1f; //The knockback of the weapon.
 
     public enum Affinity { water, fire, grass }; //All the weapon types are here. Any changes must have been discussed.
     protected Affinity weaponType = Affinity.water; //The weapon's typing.

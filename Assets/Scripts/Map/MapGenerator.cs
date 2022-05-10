@@ -17,16 +17,17 @@ public class MapGenerator : MonoBehaviour
     {
         grid = new Dictionary<Vector2, RoomData>();
         sortedNormalRooms = new Dictionary<string, List<GameObject>>();
-        //GenerateRooms(1);
-
-        GenerateLevel();
+        SortRooms();
     }
 
-    private void GenerateLevel()
+    /// <summary>
+    /// To be called ONCE per level by external means (usually by SceneStartUp).
+    /// </summary>
+    public void GenerateLevel()
     {
-        SortRooms();
         PlanLevelStructure();
         GenerateRooms();
+        grid.Clear(); //For the next time the level needs to be generated.
     }
 
     private void SortRooms()

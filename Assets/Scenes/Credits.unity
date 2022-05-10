@@ -386,6 +386,11 @@ MonoBehaviour:
     - name: Winston
       link: 
       isLink: 0
+  - heading: 'Spitesheets used:'
+    people:
+    - name: Nintendo - Kirby
+      link: https://www.spriters-resource.com/ds_dsi/kssu/
+      isLink: 1
 --- !u!114 &931950778
 MonoBehaviour:
   m_ObjectHideFlags: 0

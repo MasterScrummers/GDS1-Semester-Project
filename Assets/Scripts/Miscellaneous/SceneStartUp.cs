@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MapGenerator))]
 public class SceneStartUp : MonoBehaviour
 {
     private GameObject player;
     private Dictionary<string, GameObject> children;
+    [SerializeField] private bool generateLevel = true;
 
     void Start()
     {
@@ -14,6 +16,11 @@ public class SceneStartUp : MonoBehaviour
         foreach(Transform child in DoStatic.GetChildren(transform))
         {
             children.Add(child.name, child.gameObject);
+        }
+
+        if (generateLevel)
+        {
+            GetComponent<MapGenerator>().GenerateLevel();
         }
 
         StartUp();
