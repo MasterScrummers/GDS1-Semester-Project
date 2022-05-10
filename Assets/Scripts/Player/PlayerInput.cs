@@ -48,9 +48,9 @@ public class PlayerInput : MonoBehaviour
         orignalspeed = speed;
         originalGravityMultiplier = gravityMultiplier;
 
-        lightWeapon = new Ninja();
-        heavyWeapon = new Ninja();
-        specialWeapon = new Jet();
+        lightWeapon = new Sword();
+        heavyWeapon = new Sword();
+        specialWeapon = new Sword();
     }
 
     void Update()

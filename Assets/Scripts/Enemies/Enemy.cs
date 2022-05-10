@@ -67,7 +67,6 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
     public virtual void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
     {
         float extra = typing == weakness ? 1.25f : typing == resist ? 0.75f : 1f;
-        Debug.Log(extra);
         int damage = (int)(strength * extra);
         health.TakeDamage(damage == 0 ? 1 : damage);
         if (health.health <= 0)
