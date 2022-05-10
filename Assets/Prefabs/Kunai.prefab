@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 5164860522757217556}
   - component: {fileID: 839662276200305458}
   - component: {fileID: 8331622921365274966}
-  - component: {fileID: 4780272670756085077}
+  - component: {fileID: 2829143237788610599}
   m_Layer: 8
   m_Name: Kunai
   m_TagString: Untagged
@@ -217,7 +217,7 @@ PolygonCollider2D:
       - {x: 0.5208334, y: -0.125}
       - {x: 0.5208334, y: 0.125}
       - {x: 0.3125, y: 0.20833334}
---- !u!114 &4780272670756085077
+--- !u!114 &2829143237788610599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +226,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8362386520587040348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93dcdd21b18258042b49ada15bafdf74, type: 3}
+  m_Script: {fileID: 11500000, guid: 72cda4baa176f50409715e352759dadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 8, y: 0}
+  speed: 8
+  lifeTime: 3
