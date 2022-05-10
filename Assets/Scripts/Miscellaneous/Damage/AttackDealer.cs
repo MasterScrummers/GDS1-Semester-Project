@@ -11,6 +11,7 @@ public class AttackDealer : MonoBehaviour
     {
         strength = weapon.baseStrength;
         knockbackStr = weapon.knockbackStr;
+        typing = weapon.weaponType;
     }
     
     public void SetStrength(int str)

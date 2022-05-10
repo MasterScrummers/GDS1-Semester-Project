@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 7419149188209356659, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8310726583514417075, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2611,10 +2615,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1551455539293942405, guid: 51adf294733d7d64bacdf430be40ba28, type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1838268605874798054, guid: 51adf294733d7d64bacdf430be40ba28, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

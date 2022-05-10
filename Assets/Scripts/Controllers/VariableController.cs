@@ -19,7 +19,7 @@ public class VariableController : MonoBehaviour
     private Dictionary<string, Sprite> allWeapons;
     private Dictionary<WeaponBase.Affinity, Color32> globalColours;
 
-    void Start()
+    void Awake()
     {
         allWeapons = new();
         foreach (WeaponInfo weapon in weapons)
@@ -29,9 +29,9 @@ public class VariableController : MonoBehaviour
 
         globalColours = new()
         {
-            [WeaponBase.Affinity.fire] = new Color32(183, 18, 52, 255),
-            [WeaponBase.Affinity.water] = new Color32(0, 70, 173, 255),
-            [WeaponBase.Affinity.grass] = new Color32(0, 155, 72, 255),
+            [WeaponBase.Affinity.fire] = new(183, 18, 52, 255),
+            [WeaponBase.Affinity.water] = new(0, 70, 173, 255),
+            [WeaponBase.Affinity.grass] = new(0, 155, 72, 255),
         };
     }
 
@@ -44,5 +44,4 @@ public class VariableController : MonoBehaviour
     {
         return globalColours[affinity];
     }
-
 }

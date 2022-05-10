@@ -142,13 +142,13 @@ public class PlayerInput : MonoBehaviour
 
         if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
-            lightWeapon.LightAttack(playerAnim.anim);
+            lightWeapon.LightAttack(playerAnim.GetAnimator());
             dealer.UpdateAttackDealer(lightWeapon);
         }
 
         if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
-            heavyWeapon.HeavyAttack(playerAnim.anim);
+            heavyWeapon.HeavyAttack(playerAnim.GetAnimator());
             dealer.UpdateAttackDealer(heavyWeapon);
         }
 
@@ -156,7 +156,7 @@ public class PlayerInput : MonoBehaviour
         {
             cooldownTimer = specialWeapon.specialCooldown;
             currCooldownTimer = cooldownTimer;
-            specialWeapon.SpecialAttack(playerAnim.anim);
+            specialWeapon.SpecialAttack(playerAnim.GetAnimator());
             dealer.UpdateAttackDealer(specialWeapon);
         }
     }

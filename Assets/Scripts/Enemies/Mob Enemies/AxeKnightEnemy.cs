@@ -29,10 +29,9 @@ public class AxeKnightEnemy : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected void Update()
     {
         Move();
-        base.Update();
     }
 
     // To be implemented

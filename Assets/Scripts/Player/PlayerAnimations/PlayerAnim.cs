@@ -1,54 +1,39 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(PlayerInvincibility))]
-
-[RequireComponent(typeof(JetAttackAnim))]
-[RequireComponent(typeof(NinjaAttackAnim))]
-
-public class PlayerAnim : MonoBehaviour
+public class PlayerAnim : MonoBehaviour, IAttackReceiver
 {
-    public Animator anim { get; private set; } //The player's animation
+    [SerializeField] private Animator anim; //The player's animation
+    [SerializeField] private PlayerMiscAnim miscAnim;
+
     private InputController ic; // Input Controller
-    private AudioController ac; // Audio Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private PlayerInput pi; //The update the animation according to player input.
     private Collider2D col; //The collider of the player. Is disabled upon death.
-    private PlayerInvincibility invincibility; //To start the player's invincibility when they take damage.
     private HealthComponent health; //To track the player's health.
 
-    private enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
-    private AnimState animState = AnimState.Idle;
 
-    private enum JumpState { Waiting, StartJump, Peak, Descending }
-    private JumpState jumpState = JumpState.Waiting;
+    public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
+    public enum JumpState { Waiting, StartJump, Peak, Descending }
 
     private float damageTimer;
     [SerializeField] private float restartTimer = 5f;
 
-    [SerializeField] GameObject[] projectiles; //Array of projectiles
-    [SerializeField] GameObject mirror;
-    [SerializeField] GameObject shield;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-
         ic = DoStatic.GetGameController<InputController>();
-        ac = ic.GetComponent<AudioController>();
 
         rb = GetComponentInParent<Rigidbody2D>();
         pi = rb.GetComponent<PlayerInput>();
         col = pi.GetComponent<Collider2D>();
         health = pi.GetComponent<HealthComponent>();
-        invincibility = GetComponent<PlayerInvincibility>();
     }
 
     void Update()
     {
         void LightAttackCheck()
         {
-            if (animState != AnimState.LightAttack)
+            if (miscAnim.animState != AnimState.LightAttack)
             {
                 return;
             }
@@ -63,7 +48,7 @@ public class PlayerAnim : MonoBehaviour
 
         void HeavyAttackCheck()
         {
-            if(animState != AnimState.HeavyAttack)
+            if(miscAnim.animState != AnimState.HeavyAttack)
             {
                 return;
             }
@@ -87,13 +72,13 @@ public class PlayerAnim : MonoBehaviour
             }
 
             anim.SetBool("IsFalling", pi.isFalling);
-            ConditionalTriggerCheck("Jump", pi.hasJumped && (animState == AnimState.Idle || animState == AnimState.Run));
-            if (animState != AnimState.Jump)
+            ConditionalTriggerCheck("Jump", pi.hasJumped && (miscAnim.animState == AnimState.Idle || miscAnim.animState == AnimState.Run));
+            if (miscAnim.animState != AnimState.Jump)
             {
                 return;
             }
 
-            switch(jumpState)
+            switch(miscAnim.jumpState)
             {
                 case JumpState.StartJump:
                     ConditionalTriggerCheck("Jump", rb.velocity.y < 3); //Takes you to peak
@@ -106,7 +91,7 @@ public class PlayerAnim : MonoBehaviour
             }
         }
 
-        switch(animState)
+        switch(miscAnim.animState)
         {
             case AnimState.Damage:
                 CheckFallenDuringDamage();
@@ -123,8 +108,7 @@ public class PlayerAnim : MonoBehaviour
                     rb.velocity = Vector2.zero;
                     anim.SetTrigger("Restart");
                     health.Restart();
-                    ic.transform.position = Vector3.zero;
-                    ic.transform.eulerAngles = Vector3.zero;
+                    rb.transform.eulerAngles = Vector3.zero;
                     restartTimer = 5f;
                 }
                 return;
@@ -137,6 +121,12 @@ public class PlayerAnim : MonoBehaviour
                 return;
         }
     }
+
+    public Animator GetAnimator()
+    {
+        return anim;
+    }
+
     /// <summary>
     /// A simple check if the player is in the middle of an attack animation.
     /// </summary>
@@ -145,28 +135,12 @@ public class PlayerAnim : MonoBehaviour
     {
         foreach (AnimState animation in new AnimState[] { AnimState.LightAttack, AnimState.HeavyAttack, AnimState.SpecialAttack })
         {
-            if (animState == animation)
+            if (miscAnim.animState == animation)
             {
                 return true;
             }
         }
         return false;
-    }
-
-    public void TakeDamage(int xDirectionForce)
-    {
-        if (animState == AnimState.Damage)
-        {
-            return;
-        }
-
-        damageTimer = 0;
-
-        ic.SetInputLock(true);
-        Physics2D.IgnoreLayerCollision(6, 7, true);
-
-        anim.Play("Base Layer.Kirby" + (health.health > 0 ? "Hurt.KirbyHurtAir" : "Death.KirbyDeathIntro"));
-        rb.velocity = health.health > 0 ? new Vector2(xDirectionForce, 2) * 2f : Vector2.zero;
     }
 
     private void CheckFallenDuringDamage()
@@ -179,91 +153,19 @@ public class PlayerAnim : MonoBehaviour
         }
     }
 
-    #region Called through animation methods.
-    private void SetAnimState(AnimState state)
+    public void RecieveAttack(Transform attackerPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
     {
-        animState = state;
-    }
+        if (miscAnim.animState == AnimState.Damage)
+        {
+            return;
+        }
 
-    private void SetJumpState(JumpState state)
-    {
-        jumpState = state;
-    }
+        damageTimer = 0;
+        health.TakeDamage(strength);
+        ic.SetInputLock(true);
+        Physics2D.IgnoreLayerCollision(6, 7, true);
 
-    private void ReenableInputAfterDamage()
-    {
-        ic.SetInputLock(false);
-        invincibility.StartInvincible();
+        anim.Play("Base Layer.Kirby" + (health.health > 0 ? "Hurt.KirbyHurtAir" : "Death.KirbyDeathIntro"));
+        rb.velocity = health.health > 0 ? new Vector2(attackerPos.position.x > transform.position.x ? -knockbackStr : knockbackStr, 2) * 2f : Vector2.zero;
     }
-
-    private void DeathJump()
-    {
-        col.enabled = false;
-        rb.velocity = Vector2.zero;
-        rb.AddForce(transform.up * 10f, ForceMode2D.Impulse);
-    }
-
-    private void DeathRotate()
-    {
-        Vector3 rot = pi.transform.eulerAngles;
-        rot.z -= 90;
-        pi.transform.eulerAngles = rot;
-    }
-
-    private void SetReasonLock(string ID)
-    {
-        ic.SetID(ID, false);
-    }
-
-    private void SetReasonUnlock(string ID)
-    {
-        ic.SetID(ID, true);
-    }
-
-    private void PlaySound(string clipName)
-    {
-        ac.PlaySound(clipName);
-    }
-    private void RestGravityMultiplier()
-    {
-        pi.gravityMultiplier = pi.originalGravityMultiplier;
-
-    }
-    private void ChangeGravityMultiplier(float gravityMultiplier)
-    {
-        pi.gravityMultiplier = gravityMultiplier;
-    }
-
-    private void ChangeSpeed(float speed)
-    {
-        pi.speed = speed;
-    }
-
-    private void ResetSpeed()
-    {
-        pi.speed = pi.orignalspeed;
-    }
-
-
-    private void ActivateProjectile(int num)
-    {
-        Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
-    }
-
-    private void ActiveMirror()
-    {
-        mirror.SetActive(true);
-    }
-
-    private void SetMirrorShield(string state)
-    {
-        shield.SetActive(state.Equals("On"));
-    }
-
-    private void SetInvincible(string state)
-    {
-        Physics2D.IgnoreLayerCollision(6, 7, state.Equals("On"));
-    }
-
-    #endregion Called through animation methods.
 }

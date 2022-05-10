@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
+[RequireComponent(typeof(AttackDealer))]
 public abstract class Enemy : MonoBehaviour, IAttackReceiver
 {
     [SerializeField] protected WeaponBase.Affinity type;
@@ -27,14 +28,6 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
         SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
         outliner.SetColour(DoStatic.GetGameController<VariableController>().GetColor(type));
     }
-    
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        if (health.health <= 0) {
-            // Death();
-        }
-    }
 
     /// <summary>
     /// Meant to be overridden for movement script. This is already called in Update()
@@ -47,40 +40,37 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
     protected virtual void Attack() {}
 
     /// <summary>
-    /// Called when health <= 0. Can override for a unique Death script, otherwise just destroys the GameObject.
+    /// Calls this once when there is death.
     /// </summary>
     protected virtual void Death()
     {
         if (inRoom)
         {
             inRoom.UpdateEnemyCount();
+            inRoom = null; //To prevent the count to go down more than once.
         }
 
         gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Can be overridden for taking damage
+    /// Should only be called once on startup.
     /// </summary>
-    /// <param name="damage">
-    /// The amount of damage the enemy should take
-    /// </param>
-    public virtual void TakeDamage(int damage)
-    {
-        if (health.health <= 0)
-        {
-            Death();
-        }
-    }
-
+    /// <param name="roomData">The roomdata needed to update upon death.</param>
     public void AssignToRoomData(RoomData roomData)
     {
         inRoom = roomData;
     }
 
-    public void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
+    public virtual void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
     {
         float extra = typing == weakness ? 1.25f : typing == resist ? 0.75f : 1f;
-        health.TakeDamage((int)(strength * extra));
+        int damage = (int)(strength * extra);
+        health.TakeDamage(damage == 0 ? 1 : damage);
+        if (health.health <= 0)
+        {
+            Death();
+        }
+        Debug.Log("You can do more stuff here.");
     }
 }

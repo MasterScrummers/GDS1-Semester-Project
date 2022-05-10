@@ -9,10 +9,9 @@ public abstract class WeaponBase
     protected string animPath; //The animation path, to keep things simple.
 
     public enum Affinity { water, fire, grass }; //All the weapon types are here. Any changes must have been discussed.
-    protected Affinity weaponType = Affinity.water; //The weapon's typing.
-    public Color32 weaponColour { get; private set; } = Color.white; //Colour of the weapon.
-    private Affinity weaponWeakness; //Weapon's weakness.
 
+    public Affinity weaponType { get; private set; } = Affinity.water; //The weapon's typing.
+    public Color32 weaponColour { get; private set; } = Color.white; //Colour of the weapon.
     public int baseStrength { get; protected set; } = 1; //The strength of the weapon.
     public int specialCooldown { get; protected set; } = 10; //The cooldown of the weapon.
     public float knockbackStr { get; protected set; } = 10; //The knockback strength of the weapon.
@@ -21,18 +20,7 @@ public abstract class WeaponBase
     {
         int affinityNum = typeof(Affinity).GetEnumValues().Length;
         weaponType = (Affinity)Random.Range(0, affinityNum);
-        weaponWeakness = (Affinity)(((int)weaponType + 1) % affinityNum);
         weaponColour = DoStatic.GetGameController<VariableController>().GetColor(weaponType);
-    }
-
-    /// <summary>
-    /// Compares two affinities.
-    /// </summary>
-    /// <param name="enemyType">The affinity to compare this weapon to.</param>
-    /// <returns>A multiplier. Should be used for damage.</returns>
-    public float AffinityCompare(Affinity enemyType)
-    {
-        return enemyType == weaponWeakness ? 0.75f : enemyType == weaponType ? 1 : 1.25f;
     }
 
     /// <summary>
