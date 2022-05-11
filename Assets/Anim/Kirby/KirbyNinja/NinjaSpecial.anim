@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NinjaHeavy
+  m_Name: NinjaSpecial
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,8 +21,8 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
-    - time: 0.5
-      value: {fileID: 113024050, guid: d99745983906b2c458b26661e3482a9e, type: 3}
+    - time: 1
+      value: {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,13 +43,13 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
-    - {fileID: 113024050, guid: d99745983906b2c458b26661e3482a9e, type: 3}
+    - {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.53333336
+    m_StopTime: 1.0333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -70,6 +70,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: SpawnSpecialKunaiProjectile
+    data: On
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
     functionName: SetReasonLock
     data: Movement
     objectReferenceParameter: {fileID: 0}
@@ -81,16 +88,16 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 4
+    intParameter: 5
     messageOptions: 0
-  - time: 0.5
-    functionName: SpawnHeavyKunaiProjectile
-    data: 
+  - time: 1.0333333
+    functionName: SpawnSpecialKunaiProjectile
+    data: Off
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 1.0333333
     functionName: SetReasonUnlock
     data: Movement
     objectReferenceParameter: {fileID: 0}

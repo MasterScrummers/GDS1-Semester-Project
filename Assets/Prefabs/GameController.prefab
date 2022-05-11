@@ -1273,6 +1273,7 @@ GameObject:
   - component: {fileID: 8165875155845660569}
   - component: {fileID: 8613701945871310263}
   - component: {fileID: 26339309559117619}
+  - component: {fileID: 987147569610692144}
   m_Layer: 0
   m_Name: Kirby Sprite
   m_TagString: Untagged
@@ -1507,6 +1508,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectiles: []
+--- !u!114 &987147569610692144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068839801118213405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223baa6babcb8454b8a202283f400e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 8245610911835613080}
 --- !u!1 &2181601175384039355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,8 +2423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 1
-  knockbackStr: 1
+  strength: 3
+  knockbackStr: 5
   invincibilityLength: 1.5
   typing: 0
 --- !u!1 &5916079178624679933
