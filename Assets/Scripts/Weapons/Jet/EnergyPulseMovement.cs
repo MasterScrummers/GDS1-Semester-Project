@@ -1,33 +1,24 @@
 using UnityEngine;
 
-public class EnergyPulseMovement : MonoBehaviour
+public class EnergyPulseMovement : ProjectileMovement
 {
-    private Animator anim; //The animation of the enegy pulse
-    private Rigidbody2D rb; //The rigidbody of the gameobject
-    [SerializeField] private Vector2 speed; //The speed of the energy pulse.
-    private float lifeTime;
-
-    void Start()
+    private Animator anim;
+    EnergyPulseMovement() : base()
     {
+        speed = 8f;
         lifeTime = 3f;
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
-        speed *= DoStatic.GetPlayer().transform.eulerAngles.y == 0 ? 1 : -1;
+        
     }
 
-    private void Update()
+    protected override void Start()
     {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0)
-        {
-            Destroy(gameObject);
-        }
-        rb.velocity = speed;
+        base.Start();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<HealthComponent>() && !collision.CompareTag("Player"))
+        if (collision.IsTouchingLayers(7))
         {
             anim.SetTrigger("End");
         }

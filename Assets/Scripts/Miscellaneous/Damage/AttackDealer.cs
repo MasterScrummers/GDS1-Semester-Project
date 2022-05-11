@@ -5,6 +5,7 @@ public class AttackDealer : MonoBehaviour
     private int strength = 1; //The strength the hit, should be controlled by another script.
     private int strengthMult = 1;
     private float knockbackStr = 1f; //The knockback given, should be controlled by another script.
+    private float knockbackStrMult = 1;
     private float invincibilityLength = 1.5f;
     private WeaponBase.Affinity typing;
 
@@ -20,6 +21,11 @@ public class AttackDealer : MonoBehaviour
         strengthMult = mult;
     }
 
+    public void SetknockbackStrMult(float mult)
+    {
+        knockbackStrMult = mult;
+    }
+
     public void SetInvincibilityLength(float length)
     {
         invincibilityLength = length;
@@ -31,7 +37,7 @@ public class AttackDealer : MonoBehaviour
         
         if (receiver != null)
         {
-            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr, invincibilityLength, typing);
+            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr * knockbackStrMult, invincibilityLength, typing);
         }
     }
 }

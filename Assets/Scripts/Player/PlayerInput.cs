@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour
 
         lightWeapon = new Sword();
         heavyWeapon = new Sword();
-        specialWeapon = new Sword();
+        specialWeapon = new Jet();
     }
 
     void Update()

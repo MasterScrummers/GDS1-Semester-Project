@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class JetAttackAnim : MonoBehaviour
 {
-    [SerializeField] private GameObject energyPulse;
     private Rigidbody2D rb; //The rigidbody of the player
 
     [SerializeField] private float upStr = 10;
     [SerializeField] private float lightStr = 7;
     [SerializeField] private float heavyStr = 11;
+    [SerializeField] Transform firePoint;
+    private PoolController poolController;
 
     private enum DashDirection
     {
@@ -19,6 +20,7 @@ public class JetAttackAnim : MonoBehaviour
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
+        poolController = DoStatic.GetGameController<PoolController>();
     }
 
     private void JetDash(DashDirection direction)
@@ -37,5 +39,12 @@ public class JetAttackAnim : MonoBehaviour
                 rb.velocity = transform.up * upStr;
                 break;
         }
+    }
+
+    private void SpawnEnergyPulse()
+    {
+        GameObject projectile = poolController.GetObjectFromPool("EnergyPool");
+        projectile.transform.position = firePoint.position;
+        projectile.transform.eulerAngles = firePoint.parent.transform.eulerAngles;
     }
 }

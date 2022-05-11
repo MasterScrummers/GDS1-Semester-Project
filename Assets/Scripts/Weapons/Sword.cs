@@ -11,6 +11,7 @@ public class Sword : WeaponBase
         specialCooldown = Random.Range(4, 9);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(3 + extra, 8 + extra);
+        knockbackStr = 10;
     }
 
     public override void LightAttack(Animator anim)

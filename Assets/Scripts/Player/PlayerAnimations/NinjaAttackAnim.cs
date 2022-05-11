@@ -37,6 +37,11 @@ public class NinjaAttackAnim : MonoBehaviour
 
     private void SpawnSpecialKunaiProject()
     {
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject projectile = SpawnKunai();
 
+        }
+        
     }
 }
