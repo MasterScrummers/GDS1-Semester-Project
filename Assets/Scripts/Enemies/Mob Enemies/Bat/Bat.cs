@@ -39,7 +39,7 @@ public class Bat : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected void Update()
     {
         switch(state) {
 
@@ -60,8 +60,6 @@ public class Bat : Enemy
         {
             attackCooldownTimer -= Time.deltaTime;
         }
-
-        base.Update();
     }
 
     // Bat movement
@@ -130,13 +128,9 @@ public class Bat : Enemy
         attackPauseTimer = 0f;
     }
 
-    /// <summary>
-    /// For bat taking damage. Should be called through Enemy class. Calls animation and then
-    /// base Enemy code.
-    /// </summary>
-    public override void TakeDamage(int damage)
+    public override void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
     {
+        base.RecieveAttack(attackPos, strength, knockbackStr, invincibilityTime, typing);
         ba.TakeDamage();
-        base.TakeDamage(damage);
     }
 }

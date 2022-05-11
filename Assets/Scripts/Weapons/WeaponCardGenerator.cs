@@ -58,12 +58,13 @@ public class WeaponCardGenerator : MonoBehaviour
         weaponIcon.SetNativeSize();
         switch(weapon.weaponName)
         {
-            case "Sword": case "Cutter":
+            case "Sword":
+            case "Cutter":
                 weaponIcon.rectTransform.eulerAngles = new Vector3(0, 0, 90);
                 weaponIcon.rectTransform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
                 return;
 
-            case "Hammer":
+            default:
                 weaponIcon.rectTransform.eulerAngles = Vector3.zero;
                 weaponIcon.rectTransform.localScale = new Vector3(0.65f, 0.65f, 0.65f); 
                 return;
@@ -74,7 +75,7 @@ public class WeaponCardGenerator : MonoBehaviour
     {
 
         weaponText.text = "<b>" + weapon.GetType().Name + "</b>" + "\n\nStrength: " + weapon.baseStrength +"\n\n" + weapon.description;
-        weaponText.text += "\n(" + weapon.GetWeaponCooldown() + " seconds cooldown)";
+        weaponText.text += "\n(" + weapon.specialCooldown + " seconds cooldown)";
     }
 }
 

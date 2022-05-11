@@ -2,42 +2,30 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(EnemyAttackDealer))]
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : AttackDealer, IAttackReceiver
 {
-    [SerializeField] protected WeaponBase.Affinity type;
     [SerializeField] protected bool randomiseAffinity = false;
+    private WeaponBase.Affinity weakness; //An enemy will now have a weakness
+    private WeaponBase.Affinity resist; //An enemy will now have a resistance
 
     protected RoomData inRoom;
     protected HealthComponent health;
 
     // Start is called before the first frame update
     protected virtual void Start() {
+        GetComponent<AttackDealer>().SetStrengthMult(strength);
         health = GetComponent<HealthComponent>();
+
+        int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
         if (randomiseAffinity)
         {
-            int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
-            type = (WeaponBase.Affinity)Random.Range(0, affinityNum);
+            typing = (WeaponBase.Affinity)Random.Range(0, affinityNum);
         }
+        weakness = (WeaponBase.Affinity)((int)(typing - 1) % affinityNum);
+        resist = (WeaponBase.Affinity)(((int)typing + 1) % affinityNum);
 
         SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
-        if (outliner)
-        {
-            outliner.SetColour(type switch {
-                WeaponBase.Affinity.fire => new Color32(183, 18, 52, 255),
-                WeaponBase.Affinity.water => new Color32(0, 70, 173, 255),
-                WeaponBase.Affinity.grass => new Color32(0, 155, 72, 255),
-                _ => new Color32(0, 0, 0, 255)
-            });
-        }
-    }
-    
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        if (health.health <= 0) {
-            // Death();
-        }
+        outliner.SetColour(DoStatic.GetGameController<VariableController>().GetColor(typing));
     }
 
     /// <summary>
@@ -51,35 +39,37 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Attack() {}
 
     /// <summary>
-    /// Called when health <= 0. Can override for a unique Death script, otherwise just destroys the GameObject.
+    /// Calls this once when there is death.
     /// </summary>
     protected virtual void Death()
     {
         if (inRoom)
         {
             inRoom.UpdateEnemyCount();
+            inRoom = null; //To prevent the count to go down more than once.
         }
 
         gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Can be overridden for taking damage
+    /// Should only be called once on startup.
     /// </summary>
-    /// <param name="damage">
-    /// The amount of damage the enemy should take
-    /// </param>
-    public virtual void TakeDamage(int damage)
+    /// <param name="roomData">The roomdata needed to update upon death.</param>
+    public void AssignToRoomData(RoomData roomData)
     {
-        Debug.Log("Taking damage in Enemy");
+        inRoom = roomData;
+    }
+
+    public virtual void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
+    {
+        float extra = typing == weakness ? 1.25f : typing == resist ? 0.75f : 1f;
+        int damage = (int)(strength * extra);
+        health.TakeDamage(damage == 0 ? 1 : damage);
         if (health.health <= 0)
         {
             Death();
         }
-    }
-
-    public void AssignToRoomData(RoomData roomData)
-    {
-        inRoom = roomData;
+        Debug.Log("You can do more stuff here.");
     }
 }

@@ -6,12 +6,12 @@ public class Hammer : WeaponBase
     public Hammer() : base()
     {
         weaponName = "Hammer";
+        description = "Light: Smash\nHeavy: Spin(Hold)\nSpecial: Enhanced Attack";
+        animPath = basePath + weaponName + "."; //Don't forget the dot!
 
         specialCooldown = Random.Range(4, 12);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(3 + extra, 12 + extra);
-        description = "Light: Smash\nHeavy: Spin(Hold)\nSpecial: Enhanced Attack";
-        animPath = basePath + weaponName + "."; //Don't forget the dot!
     }
 
     public override void LightAttack(Animator anim)

@@ -605,7 +605,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: SetInvincible
-    data: 
+    data: On
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
@@ -618,11 +618,11 @@ AnimationClip:
     intParameter: 4
     messageOptions: 0
   - time: 0
-    functionName: Dash
-    data: forwardLong
+    functionName: JetDash
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 2
     messageOptions: 0
   - time: 0
     functionName: SetReasonLock
@@ -647,7 +647,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.76666665
     functionName: SetInvincible
-    data: 
+    data: Off
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2

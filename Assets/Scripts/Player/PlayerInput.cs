@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
     private float currCooldownTimer; //Current cooldown tick
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
-    private AttackDealer detector; //The attack hitbox when attacking.
+    private AttackDealer dealer; //The attack hitbox when attacking.
     private Rigidbody2D rb; //Kirby Rigidbody2D for the movement
 
     public float speed = 5f; //Speed of the character
@@ -25,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     private float prevYVel; //Previous Highest Y Velocity
     public float originalGravity { private set; get; } //The original gravity
     public float gravityMultiplier = 3.0f; //Multiplies the gravity when falling
+    public float originalGravityMultiplier;
 
     public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     public Transform feet; //Kirby's feet, to check if it is colliding with the ground
@@ -40,14 +41,15 @@ public class PlayerInput : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
 
         playerAnim = GetComponentInChildren<PlayerAnim>();
-        detector = playerAnim.GetComponent<AttackDealer>();
+        dealer = GetComponentInChildren<AttackDealer>();
         rb = GetComponent<Rigidbody2D>();
 
         originalGravity = rb.gravityScale;
         orignalspeed = speed;
+        originalGravityMultiplier = gravityMultiplier;
 
-        lightWeapon = new Jet();
-        heavyWeapon = new Jet();
+        lightWeapon = new Sword();
+        heavyWeapon = new Sword();
         specialWeapon = new Jet();
     }
 
@@ -124,7 +126,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (ic.GetID("Movement"))
         {
-            Vector2 vel = new Vector2(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
+            Vector2 vel = new(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
             rb.velocity = vel;
         }
 
@@ -140,22 +142,22 @@ public class PlayerInput : MonoBehaviour
 
         if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
-            lightWeapon.LightAttack(playerAnim.anim);
-            detector.strength = lightWeapon.baseStrength;
+            lightWeapon.LightAttack(playerAnim.GetAnimator());
+            dealer.UpdateAttackDealer(lightWeapon);
         }
 
         if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
-            heavyWeapon.HeavyAttack(playerAnim.anim);
-            detector.strength = lightWeapon.baseStrength * 2;
+            heavyWeapon.HeavyAttack(playerAnim.GetAnimator());
+            dealer.UpdateAttackDealer(heavyWeapon);
         }
 
         if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
         {
-            cooldownTimer = specialWeapon.GetWeaponCooldown();
+            cooldownTimer = specialWeapon.specialCooldown;
             currCooldownTimer = cooldownTimer;
-            specialWeapon.SpecialAttack(playerAnim.anim);
-            detector.strength = lightWeapon.baseStrength * 3;
+            specialWeapon.SpecialAttack(playerAnim.GetAnimator());
+            dealer.UpdateAttackDealer(specialWeapon);
         }
     }
 

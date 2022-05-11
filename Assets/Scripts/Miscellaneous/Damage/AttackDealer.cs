@@ -1,43 +1,43 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackDealer : MonoBehaviour
 {
-    public int strength = 1; //The strength the hit, should be controlled by another script.
-    private Dictionary<HealthComponent, int> hitHistory; //A history of all the hit enemies.
-    private Animator anim;
+    private int strength = 1; //The strength the hit, should be controlled by another script.
+    private int strengthMult = 1;
+    private float knockbackStr = 1f; //The knockback given, should be controlled by another script.
+    private float knockbackStrMult = 1;
+    private float invincibilityLength = 1.5f;
+    private WeaponBase.Affinity typing;
 
-    private void Start()
+    public void UpdateAttackDealer(WeaponBase weapon)
     {
-        hitHistory = new Dictionary<HealthComponent, int>();
-        anim = GetComponent<Animator>();
+        strength = weapon.baseStrength;
+        knockbackStr = weapon.knockbackStr;
+        typing = weapon.weaponType;
+    }
+    
+    public void SetStrengthMult(int mult)
+    {
+        strengthMult = mult;
     }
 
-    /// <summary>
-    /// Should be called as an animation event.
-    /// Simply cleans the dictionary to allow the same enemy to be hit again.
-    /// </summary>
-    private void AttackStart()
+    public void SetknockbackStrMult(float mult)
     {
-        hitHistory.Clear();
+        knockbackStrMult = mult;
+    }
+
+    public void SetInvincibilityLength(float length)
+    {
+        invincibilityLength = length;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        HealthComponent hp = collision.GetComponent<HealthComponent>();
-        if (!hp)
+        IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();
+        
+        if (receiver != null)
         {
-            return;
-        }
-
-        if (anim && !hitHistory.ContainsKey(hp))
-        {
-            hitHistory.Add(hp, 0);
-            hp.TakeDamage(strength);
-            collision.GetComponent<Enemy>().TakeDamage(strength);
-        } else if (!anim)
-        {
-            hp.TakeDamage(strength);
+            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr * knockbackStrMult, invincibilityLength, typing);
         }
     }
 }
