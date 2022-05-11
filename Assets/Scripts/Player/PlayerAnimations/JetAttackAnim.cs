@@ -7,7 +7,8 @@ public class JetAttackAnim : MonoBehaviour
     [SerializeField] private float upStr = 10;
     [SerializeField] private float lightStr = 7;
     [SerializeField] private float heavyStr = 11;
-    [SerializeField] Transform firePoint;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private PlayerInput pi;
     private PoolController poolController;
 
     private enum DashDirection
@@ -46,5 +47,6 @@ public class JetAttackAnim : MonoBehaviour
         GameObject projectile = poolController.GetObjectFromPool("EnergyPool");
         projectile.transform.position = firePoint.position;
         projectile.transform.eulerAngles = firePoint.parent.transform.eulerAngles;
+        projectile.GetComponent<AttackDealer>()?.UpdateAttackDealer(pi.specialWeapon);
     }
 }

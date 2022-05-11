@@ -4,18 +4,13 @@ using UnityEngine;
 public class PlayerInvincibility : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    private HealthComponent health; //To set the invincibility of the health.
-
-    [SerializeField] private float invincibilityTimer = 1.5f;
     private float timer;
-
-    private bool invincible = false;
+    public bool invincible { get; private set; } = false;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         sprite.enabled = true;
-        health = DoStatic.GetPlayer<HealthComponent>();
     }
 
     void Update()
@@ -31,9 +26,9 @@ public class PlayerInvincibility : MonoBehaviour
         Physics2D.IgnoreLayerCollision(6, 7, invincible);
     }
 
-    public void StartInvincible()
+    public void StartInvincible(float invincibleLength)
     {
-        timer = invincibilityTimer;
+        timer = invincibleLength;
         Physics2D.IgnoreLayerCollision(6, 7, true);
         invincible = true;
     }

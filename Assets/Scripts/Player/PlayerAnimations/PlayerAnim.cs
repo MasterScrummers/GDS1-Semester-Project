@@ -4,8 +4,10 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 {
     [SerializeField] private Animator anim; //The player's animation
     [SerializeField] private PlayerMiscAnim miscAnim;
+    [SerializeField] private PlayerInvincibility invincibility;
 
     private InputController ic; // Input Controller
+    private SceneController sc; // Input Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private PlayerInput pi; //The update the animation according to player input.
     private Collider2D col; //The collider of the player. Is disabled upon death.
@@ -14,13 +16,14 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
     public enum JumpState { Waiting, StartJump, Peak, Descending }
 
-    private float damageTimer;
     [SerializeField] private float restartTimer = 5f;
-
+    [SerializeField] private float hurtTimer = 0.5f;
+    private float hurtTick = 0f;
 
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
+        sc = ic.GetComponent<SceneController>();
 
         rb = GetComponentInParent<Rigidbody2D>();
         pi = rb.GetComponent<PlayerInput>();
@@ -90,25 +93,21 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             }
         }
 
-        switch(miscAnim.animState)
+        Physics2D.IgnoreLayerCollision(6, 7, invincibility.invincible);
+        switch (miscAnim.animState)
         {
             case AnimState.Damage:
-                CheckFallenDuringDamage();
+                if ((hurtTick -= Time.deltaTime) < 0)
+                {
+                    anim.SetTrigger("Recover");
+                    ic.SetInputLock(false);
+                }
                 return;
 
             case AnimState.Death:
                 if ((restartTimer -= Time.deltaTime) <= 0f)
                 {
-                    DoStatic.LoadScene("MainGame");
-                    Physics2D.IgnoreLayerCollision(6, 7, false);
-                    ic.SetInputLock(false);
-                    col.enabled = true;
-                    rb.transform.position = new Vector2(0, -0.5f); //VERY HARD CODED, CHANGE LATER!
-                    rb.velocity = Vector2.zero;
-                    anim.SetTrigger("Restart");
-                    health.Restart();
-                    rb.transform.eulerAngles = Vector3.zero;
-                    restartTimer = 5f;
+                    sc.RestartScene(Restart);
                 }
                 return;
 
@@ -119,6 +118,18 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
                 CheckJumping();
                 return;
         }
+    }
+
+    private void Restart()
+    {
+        Physics2D.IgnoreLayerCollision(6, 7, false);
+        ic.SetInputLock(false);
+        col.enabled = true;
+        rb.velocity = Vector2.zero;
+        anim.SetTrigger("Restart");
+        health.Restart();
+        rb.transform.eulerAngles = Vector3.zero;
+        restartTimer = 5f;
     }
 
     public Animator GetAnimator()
@@ -142,29 +153,21 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         return false;
     }
 
-    private void CheckFallenDuringDamage()
-    {
-        damageTimer += Time.deltaTime;
-        if (damageTimer > 0.5f && pi.OnGround())
-        {
-            rb.velocity = Vector2.zero;
-            anim.SetTrigger("HurtFallenToGround");
-        }
-    }
-
     public void RecieveAttack(Transform attackerPos, int strength, float knockbackStr, float invincibilityTime, float stunTime, WeaponBase.Affinity typing)
     {
-        if (miscAnim.animState == AnimState.Damage)
+        if (invincibility.invincible)
         {
             return;
         }
 
-        damageTimer = 0;
-        health.TakeDamage(strength);
         ic.SetInputLock(true);
-        Physics2D.IgnoreLayerCollision(6, 7, true);
+        health.TakeDamage(strength);
 
-        anim.Play("Base Layer.Kirby" + (health.health > 0 ? "Hurt.KirbyHurtAir" : "Death.KirbyDeathIntro"));
-        rb.velocity = health.health > 0 ? new Vector2(attackerPos.position.x > transform.position.x ? -knockbackStr : knockbackStr, 2) * 2f : Vector2.zero;
+        bool isAlive = health.health > 0;
+        hurtTick = hurtTimer;
+
+        invincibility.StartInvincible(isAlive ? invincibilityTime : 0);
+        anim.Play(isAlive ? "KirbyHurt" : "Base Layer.KirbyDeath.KirbyDeathIntro");
+        rb.velocity = isAlive ? new Vector2(attackerPos.position.x > transform.position.x ? -knockbackStr : knockbackStr, 4) * 2f : Vector2.zero;
     }
 }

@@ -83,12 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 1
-  knockbackStr: 2
+  strength: 3
+  knockbackStr: 1
   invincibilityLength: 1.5
-  invincibilityTime: 0
   typing: 0
-  stunTime: 0.5
 --- !u!212 &1202999765444694380
 SpriteRenderer:
   m_ObjectHideFlags: 0
