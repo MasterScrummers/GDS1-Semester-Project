@@ -629,49 +629,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kirby_hurt_air_0
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 3601
-        width: 24
-        height: 24
-      alignment: 8
-      pivot: {x: 1, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f1d745a9d6a5ca4dbce44a415c4edeb
-      internalID: 1413387161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kirby_hurt_land_0
-      rect:
-        serializedVersion: 2
-        x: 301
-        y: 3601
-        width: 24
-        height: 21
-      alignment: 8
-      pivot: {x: 1, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a1d89f061199384ca7b13e9e41a3bc3
-      internalID: -886443728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kirby_hurt_land_1
+      name: kirby_hurt
       rect:
         serializedVersion: 2
         x: 330
@@ -837,7 +795,6 @@ TextureImporter:
       kirby_walk_8: 1873119803
       kirby_jump_2: 1243854306
       kirby_death_3: 1359747380
-      kirby_hurt_land_1: -1428315978
       kirby_walk_6: -481831339
       kirby_death_4: -1465190625
       kirby_jump_4: 1153074302
@@ -846,6 +803,7 @@ TextureImporter:
       kirby_jump_9: -986310726
       Kirby_Normal_0: 1616842696
       kirby_walk_3: 229626808
+      kirby_hurt: -1428315978
       kirby_walk_9: -1204278553
       kirby_walk_0: 12694197
       kirby_jump_5: 389475424

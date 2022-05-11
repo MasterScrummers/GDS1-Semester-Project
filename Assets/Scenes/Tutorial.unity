@@ -1521,6 +1521,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
+    - target: {fileID: 6755362572230055648, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7106604596434362750, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
       propertyPath: strength
       value: 0
@@ -2655,6 +2659,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1362882921011184043, guid: 51adf294733d7d64bacdf430be40ba28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1838268605874798054, guid: 51adf294733d7d64bacdf430be40ba28, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

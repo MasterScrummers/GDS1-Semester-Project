@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NinjaAttackAnim : MonoBehaviour
 {
+    [SerializeField] private PlayerInput pi;
     [SerializeField] private GameObject kunai;
     [SerializeField] private Transform firePoint;
     private PoolController poolController;
@@ -21,7 +22,8 @@ public class NinjaAttackAnim : MonoBehaviour
 
     private void SpawnLightKunaiProjectile()
     {
-        SpawnKunai();
+        AttackDealer ad = SpawnKunai().GetComponent<AttackDealer>();
+        ad.UpdateAttackDealer(pi.lightWeapon);
     }
 
     private void SpawnHeavyKunaiProjectile()
@@ -32,6 +34,8 @@ public class NinjaAttackAnim : MonoBehaviour
             Vector3 rot = projectile.transform.eulerAngles;
             rot.z = Random.Range(-45, 45);
             projectile.transform.eulerAngles = rot;
+            AttackDealer ad = projectile.GetComponent<AttackDealer>();
+            ad.UpdateAttackDealer(pi.heavyWeapon);
         }
     }
 
@@ -40,8 +44,6 @@ public class NinjaAttackAnim : MonoBehaviour
         for (int i = 0; i < 20; i++)
         {
             GameObject projectile = SpawnKunai();
-
         }
-        
     }
 }
