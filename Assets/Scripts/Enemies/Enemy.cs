@@ -2,11 +2,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(AttackDealer))]
-public abstract class Enemy : MonoBehaviour, IAttackReceiver
+public abstract class Enemy : AttackDealer, IAttackReceiver
 {
-    [SerializeField] protected int strength;
-    [SerializeField] protected WeaponBase.Affinity type;
     [SerializeField] protected bool randomiseAffinity = false;
     private WeaponBase.Affinity weakness; //An enemy will now have a weakness
     private WeaponBase.Affinity resist; //An enemy will now have a resistance
@@ -22,13 +19,13 @@ public abstract class Enemy : MonoBehaviour, IAttackReceiver
         int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
         if (randomiseAffinity)
         {
-            type = (WeaponBase.Affinity)Random.Range(0, affinityNum);
+            typing = (WeaponBase.Affinity)Random.Range(0, affinityNum);
         }
-        weakness = (WeaponBase.Affinity)((int)(type - 1) % affinityNum);
-        resist = (WeaponBase.Affinity)(((int)type + 1) % affinityNum);
+        weakness = (WeaponBase.Affinity)((int)(typing - 1) % affinityNum);
+        resist = (WeaponBase.Affinity)(((int)typing + 1) % affinityNum);
 
         SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
-        outliner.SetColour(DoStatic.GetGameController<VariableController>().GetColor(type));
+        outliner.SetColour(DoStatic.GetGameController<VariableController>().GetColor(typing));
     }
 
     /// <summary>
