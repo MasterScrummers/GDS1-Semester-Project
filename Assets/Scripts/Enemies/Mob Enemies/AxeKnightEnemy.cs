@@ -33,8 +33,6 @@ public class AxeKnightEnemy : Enemy
         if (!isStunned)
         {
             Move();
-        } else {
-            Debug.Log("Stunned");
         }
     }
 

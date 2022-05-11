@@ -150,10 +150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 1
-  type: 1
+  knockbackStr: 1
+  invincibilityLength: 1.5
+  invincibilityTime: 0
+  typing: 0
+  stunTime: 0
   randomiseAffinity: 1
-  damageKnockback: 0
-  hurt: 0
   direction: 1
   movementSpeed: 3
   leftBoundary: -1
@@ -173,7 +175,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 10
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -237,3 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 1
+  knockbackStr: 1
+  invincibilityLength: 1.5
+  invincibilityTime: 0
+  typing: 0
+  stunTime: 0

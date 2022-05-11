@@ -7,7 +7,6 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     [SerializeField] protected bool randomiseAffinity = false;
     private WeaponBase.Affinity weakness; //An enemy will now have a weakness
     private WeaponBase.Affinity resist; //An enemy will now have a resistance
-    [SerializeField] bool damageKnockback = false;
     protected bool hurt;
     public const float HurtTime = 0.2f;
     private float hurtColourTimer = HurtTime;
@@ -107,12 +106,10 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
             // rb.AddForce(Vector3.Normalize(transform.position - player.transform.position) * 500f);
             rb.AddForce(new Vector2(attackerPos.position.x > transform.position.x ? -knockbackStr : knockbackStr, 2) * 2f, ForceMode2D.Impulse);
 
-            Debug.Log("Taking damage in Enemy");
             if (health.health <= 0)
             {
                 Death();
             }
-            Debug.Log("You can do more stuff here.");
-            }
+        }
     }
 }

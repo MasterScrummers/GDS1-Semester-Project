@@ -21,6 +21,9 @@ public class Bat : Enemy
     private float attackPauseTimer;
     [SerializeField] private float attackCooldown = 2f;
     private float attackCooldownTimer;
+
+    [SerializeField] private float deathTimer = 5;
+    private float deathTick;
     
     // Start is called before the first frame update
     protected override void Start()
@@ -38,6 +41,11 @@ public class Bat : Enemy
     protected override void Update()
     {
         base.Update();
+
+        if (state == State.Death && (deathTick -= deathTick > 0 ? Time.deltaTime : 0) < 0)
+        {
+            FinishDeath();
+        }
 
         if (!isStunned)
         {
@@ -112,6 +120,7 @@ public class Bat : Enemy
     {
         cc.enabled = false;
         ba.Death();
+        deathTick = deathTimer;
     }
     /// <summary>
     /// Bat death base logic - Shouldn't need to call this unless in BatAnim
