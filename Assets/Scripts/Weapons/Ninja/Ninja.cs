@@ -10,11 +10,21 @@ public class Ninja : WeaponBase
         
         specialCooldown = Random.Range(5, 10);
         int extra = Mathf.RoundToInt(specialCooldown * 0.1f);
-        baseStrength = Random.Range(1 + extra, 2 + extra);
+        baseStrength = 3;
     }
 
     public override void LightAttack(Animator anim)
     {
         anim.Play(animPath + "NinjaLight");
+    }
+
+    public override void HeavyAttack(Animator anim)
+    {
+        anim.Play(animPath + "NinjaHeavy");
+    }
+
+    public override void SpecialAttack(Animator anim)
+    {
+        anim.Play(animPath + "NinjaSpecial");
     }
 }

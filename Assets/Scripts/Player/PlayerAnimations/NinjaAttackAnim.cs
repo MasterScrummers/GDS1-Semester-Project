@@ -5,10 +5,12 @@ public class NinjaAttackAnim : MonoBehaviour
     [SerializeField] private GameObject kunai;
     [SerializeField] private Transform firePoint;
     private PoolController poolController;
+    private float angle;
 
     private void Start()
     {
         poolController = DoStatic.GetGameController<PoolController>();
+        angle = 0f;
     }
 
     private GameObject SpawnKunai()
@@ -35,13 +37,30 @@ public class NinjaAttackAnim : MonoBehaviour
         }
     }
 
-    private void SpawnSpecialKunaiProject()
+    private void SpawnSpecialKunaiProjectile(string state)
     {
-        for (int i = 0; i < 20; i++)
+        switch (state)
         {
-            GameObject projectile = SpawnKunai();
+            case "On":
+                InvokeRepeating("BulletHell", 0f, 0.01f);
+                break;
 
+            case "Off":
+                CancelInvoke();
+                break;
         }
-        
+
+    }
+
+    private void BulletHell()
+    {
+
+        GameObject projectile = poolController.GetObjectFromPool("KunaiPool");
+        projectile.transform.position = transform.position;
+        Vector3 rot = projectile.transform.eulerAngles;
+        rot.z = angle;
+        projectile.transform.eulerAngles = rot;
+
+        angle += 20f;
     }
 }

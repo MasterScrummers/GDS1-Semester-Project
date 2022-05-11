@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 10
+  knockbackStr: 10
+  invincibilityLength: 1.5
+  typing: 0
 --- !u!212 &8955601724888445422
 SpriteRenderer:
   m_ObjectHideFlags: 0

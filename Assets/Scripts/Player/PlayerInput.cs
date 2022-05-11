@@ -48,8 +48,8 @@ public class PlayerInput : MonoBehaviour
         orignalspeed = speed;
         originalGravityMultiplier = gravityMultiplier;
 
-        lightWeapon = new Ninja();
-        heavyWeapon = new Jet();
+        lightWeapon = new Mirror();
+        heavyWeapon = new Mirror();
         specialWeapon = new Mirror();
     }
 

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Hammer : WeaponBase
 {
-    // Start is called before the first frame update
     public Hammer() : base()
     {
         weaponName = "Hammer";
@@ -12,6 +11,7 @@ public class Hammer : WeaponBase
         specialCooldown = Random.Range(4, 12);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(3 + extra, 12 + extra);
+        knockbackStr = 15f;
     }
 
     public override void LightAttack(Animator anim)
