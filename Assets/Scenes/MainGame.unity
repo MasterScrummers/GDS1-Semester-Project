@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -9.699951
       objectReference: {fileID: 0}
+    - target: {fileID: 3688587229057480951, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_Name
+      value: WormBulletPool
+      objectReference: {fileID: 0}
     - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 1
@@ -446,6 +450,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8808728798813333230, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 8053696504465152122, guid: 03af3c6d57a1c554dac0bc7cfdd632af, type: 3}
     - target: {fileID: 9077803633783099290, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_CollisionDetection
       value: 1

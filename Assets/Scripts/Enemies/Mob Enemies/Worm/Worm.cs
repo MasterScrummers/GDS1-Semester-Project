@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Worm : Enemy
 {
-    private WormAnim wa; // WormAnim script 
+    private WormAnim wa; // WormAnim script
     public enum State { Idle, Attack, Hiding, Death };
     public State state = State.Idle;
 
@@ -17,7 +17,6 @@ public class Worm : Enemy
     {
         base.Start();
         wa = GetComponentInChildren<WormAnim>();
-
         stateTimer = Random.Range(idleTimeMin, idleTimeMax);
     }
 
@@ -61,9 +60,15 @@ public class Worm : Enemy
         }
     }
 
-    protected override void Attack()
-    {
-        
+    void OnCollisionEnter2D(Collision2D other) {
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (state == State.Death)
+            {
+                Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
+            }
+        }
     }
 
     protected override void Death()

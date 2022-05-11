@@ -17,6 +17,7 @@ public class AttackDealer : MonoBehaviour
     {
         strength = weapon.baseStrength;
         knockbackStr = weapon.knockbackStr;
+        invincibilityLength = weapon.invincibilityTime;
         stunTime = weapon.stunTime;
         typing = weapon.weaponType;
     }

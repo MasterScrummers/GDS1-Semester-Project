@@ -86,7 +86,9 @@ MonoBehaviour:
   strength: 3
   knockbackStr: 1
   invincibilityLength: 1.5
+  invincibilityTime: 0
   typing: 0
+  stunTime: 0
 --- !u!212 &1202999765444694380
 SpriteRenderer:
   m_ObjectHideFlags: 0
