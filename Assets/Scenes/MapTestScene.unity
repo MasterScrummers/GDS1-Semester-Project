@@ -131,58 +131,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: maxRooms
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: startRoom
-      value: 
-      objectReference: {fileID: 566843985077766670, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[5]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 0e10eda6fbdbf8b40b581701c83c693b, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[6]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 1c0c1c20d7f333f4083061950c67b85e, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[7]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 41cc5560d29787a48bc9e7c4c845f397, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[8]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 9a2080108b2be5041a57649265c69d17, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[9]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 0c3ff5ec0fd53f145ade585db1aced0f, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[10]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 9f0307545d85b6f48b2fb1700c628d82, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[11]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: bdf1c06c84ed72c4582fd4ba3977975b, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[12]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: 2a0f53e3b94a4e44a9b5f31b5ffcb518, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[13]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: b94dd585fcab0044dbd6f3ce97f2eba2, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[14]
-      value: 
-      objectReference: {fileID: 3727170749172240764, guid: ed0d49b49ca60a1498842f0ea0fb68d2, type: 3}
-    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
       propertyPath: rooms.Array.data[15]
       value: 
       objectReference: {fileID: 5522571226001360581, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}

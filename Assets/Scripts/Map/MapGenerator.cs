@@ -104,29 +104,13 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRooms()
     {
-        /// Work for Richard
-        /// 
-        /// First get list of all the predefined rooms from grid.
-        /// Randomly select rooms and assign it to special rooms (Hard code the minotaur room for now)
-        ///     - Keep in mind of the number of exits in the speical rooms
-        /// 
-        /// Loop through all rooms
-        ///     if rooom has been assigned, skip iteration
-        ///     else
-        ///         consider the number of neighbours for the room and assign it to a random normal room accordingly
-        ///             - Utilise the sorted room dictionary I made for you.
-        ///    
+        string[] cell = new string[sortedNormalRooms.Count];
+        sortedNormalRooms.Keys.CopyTo(cell, 0);
 
-        List<Vector2> spent = new List<Vector2>();
-        Instantiate(specialRooms[2], new Vector2(100, 0), Quaternion.identity);
-        if (!grid.ContainsKey(new Vector2(100, 0))){
-            grid.Add(new Vector2(100, 0), null);
-        }
-        spent.Add(new Vector2(100, 0));
-        Instantiate(specialRooms[0], new Vector2(150, 0), Quaternion.identity);
-        spent.Add(new Vector2(150, 0));
+        Vector2[] rooms = new Vector2[grid.Count];
+        grid.Keys.CopyTo(rooms, 0);
 
-        foreach (Vector2 pos in grid.Keys)
+        foreach (Vector2 pos in rooms)
         {
             string exist = "";
             exist += grid.ContainsKey((pos + new Vector2(-50, 0))) ? "L" : "";
@@ -134,104 +118,14 @@ public class MapGenerator : MonoBehaviour
             exist += grid.ContainsKey(pos + new Vector2(0, 50)) ? "U" : "";
             exist += grid.ContainsKey(pos + new Vector2(0, -50)) ? "D" : "";
 
-            if (!spent.Contains(pos))
+            if (!grid[pos])
             {
                 List<GameObject> eligibleRoom = sortedNormalRooms[exist];
                 int spawningRoom = Random.Range(0, eligibleRoom.Count);
                 GameObject roomToSpawn = eligibleRoom[spawningRoom];
 
-                Instantiate(roomToSpawn, pos, Quaternion.identity);
+                grid[pos] = Instantiate(roomToSpawn, pos, Quaternion.identity).GetComponent<RoomData>();
             }
         }
     }
-
-    /*    void GenerateRooms(int level)
-        {
-            mapRoom = new int[5+level,5+level];
-            //-1 = starting room; 0:empty, 1:uend, 2:rend, 3:dend, 4:lend, 5:4way,
-            Debug.Log(mapRoom.Length);
-            int x = RandRoomCord(4 + level);
-            int y = RandRoomCord(4 + level);
-            mapRoom[x, y] = -1;
-            roomCount = 1;
-            maxRooms = 7 + level;
-
-            while (roomCount < maxRooms)
-            {
-                mapRoom = RandomRoom(mapRoom, x, y, 4 + level);
-            }
-
-
-            InstantiateMap(5+level);
-
-        }
-
-        void InstantiateMap(int grid)
-        {
-            for(int i = 0; i < grid; i++)
-            {
-                for(int j = 0; j < grid; j++)
-                {
-                    if (mapRoom[i, j] > 0)
-                    {
-                        GameObject NewRoom = Instantiate(rooms[mapRoom[i,j]], new Vector3(i * 50, j * 50, 0), Quaternion.identity);
-                    }else if(mapRoom[i,j] == -1)
-                    {
-                        GameObject start = Instantiate(startRoom, new Vector3(i * 50, j * 50, 0), Quaternion.identity);
-                    }
-                }
-            }
-        }
-
-        int RandRoomCord(int maxX)
-        {
-           return Random.Range(0, maxX);
-        }
-
-        int[,] RandomRoom(int[,] map, int x, int y, int max)
-        {
-            if (roomCount > maxRooms)
-            {
-                return map;
-            }
-            if (x <= max && y <= max && x >= 0 && y >= 0)
-            {
-                if (CheckRoomEmpty(map, x, y))
-                {
-                    map[x, y] = Random.Range(1,13);
-                    roomCount++;
-                }
-                else
-                {
-                    int dir = Random.Range(1, 5);
-                    switch (dir)
-                    {
-                        case 1:
-                            map = RandomRoom(map, x, y + 1, max);
-                            break;
-
-                        case 2:
-                            map = RandomRoom(map, x+1, y, max);
-                            break;
-
-                        case 3:
-                            map = RandomRoom(map, x, y-1, max);
-                            break;
-
-                        case 4:
-                            map = RandomRoom(map, x-1, y, max);
-                            break;
-                        default:
-                            map = RandomRoom(map, x, y, max);
-                            break;
-                    }
-                }
-            }
-            return map;
-        }
-
-        bool CheckRoomEmpty(int[,] map, int x, int y)
-        {
-            return map[x, y] == 0;
-        }*/
 }

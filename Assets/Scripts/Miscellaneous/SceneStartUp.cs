@@ -40,7 +40,7 @@ public class SceneStartUp : MonoBehaviour
                 TutorialStartUp();
                 return;
 
-            case "MainGame":
+            default:
                 player.transform.position = new();
                 return;
         }
