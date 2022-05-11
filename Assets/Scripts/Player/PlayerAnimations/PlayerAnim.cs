@@ -7,6 +7,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     [SerializeField] private PlayerInvincibility invincibility;
 
     private InputController ic; // Input Controller
+    private SceneController sc; // Input Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private PlayerInput pi; //The update the animation according to player input.
     private Collider2D col; //The collider of the player. Is disabled upon death.
@@ -22,6 +23,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
+        sc = ic.GetComponent<SceneController>();
 
         rb = GetComponentInParent<Rigidbody2D>();
         pi = rb.GetComponent<PlayerInput>();
@@ -105,16 +107,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             case AnimState.Death:
                 if ((restartTimer -= Time.deltaTime) <= 0f)
                 {
-                    DoStatic.LoadScene("MainGame");
-                    Physics2D.IgnoreLayerCollision(6, 7, false);
-                    ic.SetInputLock(false);
-                    col.enabled = true;
-                    rb.transform.position = new Vector2(0, -0.5f); //VERY HARD CODED, CHANGE LATER!
-                    rb.velocity = Vector2.zero;
-                    anim.SetTrigger("Restart");
-                    health.Restart();
-                    rb.transform.eulerAngles = Vector3.zero;
-                    restartTimer = 5f;
+                    sc.RestartScene(Restart);
                 }
                 return;
 
@@ -125,6 +118,18 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
                 CheckJumping();
                 return;
         }
+    }
+
+    private void Restart()
+    {
+        Physics2D.IgnoreLayerCollision(6, 7, false);
+        ic.SetInputLock(false);
+        col.enabled = true;
+        rb.velocity = Vector2.zero;
+        anim.SetTrigger("Restart");
+        health.Restart();
+        rb.transform.eulerAngles = Vector3.zero;
+        restartTimer = 5f;
     }
 
     public Animator GetAnimator()

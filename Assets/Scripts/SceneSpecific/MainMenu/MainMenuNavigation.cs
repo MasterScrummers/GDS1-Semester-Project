@@ -11,6 +11,9 @@ public class MainMenuNavigation : MonoBehaviour
 
     private int currentIndex = 0;
 
+    private enum Menu { Starting, Main, TutorialPrompt }
+    private Menu menu = Menu.Starting;
+
     private void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
@@ -29,7 +32,8 @@ public class MainMenuNavigation : MonoBehaviour
             switch (menuOptions[currentIndex].name)
             {
                 case "StartGame":
-                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.Tutorial);
+                    menu++;
+                    currentIndex = 0;
                     return;
 
                 case "Credits":
@@ -43,22 +47,31 @@ public class MainMenuNavigation : MonoBehaviour
         }
 
         bool spacePressed = Input.GetKeyDown(KeyCode.Space);
-        if (start.activeInHierarchy)
+        switch(menu)
         {
-            start.SetActive(!spacePressed);
+            case Menu.Starting:
+                start.SetActive(!spacePressed);
+                menu = spacePressed ? menu + 1 : menu;
+                return;
 
-            bool startIsActive = start.activeInHierarchy;
-            pointer.gameObject.SetActive(!startIsActive);
-            optionList.SetActive(!startIsActive);
-            instructions.SetActive(!startIsActive);
-        } else if (spacePressed)
-        {
-            DoOption();
-            return;
+            case Menu.Main:
+                if (spacePressed)
+                {
+                    DoOption();
+                }
+                bool isInMenu = menu == Menu.Main;
+                pointer.gameObject.SetActive(isInMenu);
+                optionList.SetActive(isInMenu);
+                instructions.SetActive(isInMenu);
+                currentIndex -= ic.GetButtonDown("MenuNavigation", "Vertical") ? (int)ic.GetAxisRawValues("MenuNavigation", "Vertical") : 0;
+                currentIndex = currentIndex < 0 ? menuOptions.Length - 1 : currentIndex % menuOptions.Length;
+                pointer.position = menuOptions[currentIndex].position;
+                return;
+
+            case Menu.TutorialPrompt:
+
+                return;
         }
 
-        currentIndex -= ic.GetButtonDown("MenuNavigation", "Vertical") ? (int)ic.GetAxisRawValues("MenuNavigation", "Vertical") : 0;
-        currentIndex = currentIndex < 0 ? menuOptions.Length - 1 : currentIndex % menuOptions.Length;
-        pointer.position = menuOptions[currentIndex].position;
     }
 }

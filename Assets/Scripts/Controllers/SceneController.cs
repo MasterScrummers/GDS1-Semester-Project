@@ -49,6 +49,7 @@ public class SceneController : MonoBehaviour
     /// <summary>
     /// Changes the scene accordingly.
     /// </summary>
+    /// <param name="notify">A method called once the new scene has finished coding.</param>
     /// <param name="sceneName">The new scene to load.</param>
     public void ChangeScene(SceneName sceneName, DoStatic.SimpleDelegate notify = null, string transitionName = "")
     {
@@ -57,6 +58,16 @@ public class SceneController : MonoBehaviour
             isTransitioning = true;
             StartCoroutine(Transition(sceneName, notify, transitionName));
         }
+    }
+
+    /// <summary>
+    /// Restarts the scene.
+    /// </summary>
+    /// <param name="notify">A method called once the new scene has finished coding.</param>
+    /// <param name="transitionName"></param>
+    public void RestartScene(DoStatic.SimpleDelegate notify = null, string transitionName = "")
+    {
+        ChangeScene(currentScene, notify, transitionName);
     }
 
     private IEnumerator Transition(SceneName newSceneName, DoStatic.SimpleDelegate notify, string transitionName)

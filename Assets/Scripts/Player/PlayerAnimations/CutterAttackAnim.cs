@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CutterAttackAnim : MonoBehaviour
 {
+    [SerializeField] private PlayerInput pi;
     [SerializeField] private Transform firePoint;
     private PoolController poolController;
 
@@ -17,6 +16,7 @@ public class CutterAttackAnim : MonoBehaviour
         GameObject projectile = poolController.GetObjectFromPool("CutterPool");
         projectile.transform.position = firePoint.position;
         projectile.transform.eulerAngles = firePoint.parent.transform.eulerAngles;
+        projectile.GetComponent<AttackDealer>()?.UpdateAttackDealer(pi.specialWeapon);
         return projectile;
     }
 }
