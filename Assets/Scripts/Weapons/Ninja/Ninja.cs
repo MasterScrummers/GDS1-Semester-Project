@@ -5,7 +5,7 @@ public class Ninja : WeaponBase
     public Ninja() : base()
     {
         weaponName = "Ninja";
-        description = "Light: Kunai\nHeavy: Invincible\n Special: Spawn 4 Shield around ";
+        description = "Light: Kunai\nHeavy: Shotgun like Kunai\n Special: Kunai bullet hell";
         animPath = basePath + weaponName + ".";
         
         specialCooldown = Random.Range(5, 10);
