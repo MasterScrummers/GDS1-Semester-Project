@@ -99,11 +99,11 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             case AnimState.Death:
                 if ((restartTimer -= Time.deltaTime) <= 0f)
                 {
-                    DoStatic.LoadScene(0, false);
+                    DoStatic.LoadScene("MainGame");
                     Physics2D.IgnoreLayerCollision(6, 7, false);
                     ic.SetInputLock(false);
                     col.enabled = true;
-                    rb.transform.position = new Vector2(4.91f, -0.5f); //VERY HARD CODED, CHANGE LATER!
+                    rb.transform.position = new Vector2(0, -0.5f); //VERY HARD CODED, CHANGE LATER!
                     rb.velocity = Vector2.zero;
                     anim.SetTrigger("Restart");
                     health.Restart();

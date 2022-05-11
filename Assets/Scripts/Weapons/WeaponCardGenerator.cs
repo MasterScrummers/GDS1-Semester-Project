@@ -38,11 +38,14 @@ public class WeaponCardGenerator : MonoBehaviour
 
     private WeaponBase RandomWeapon()
     {
-        return Random.Range(1, 4) switch
+        return Random.Range(1, 7) switch
         {
             1 => new Sword(),
             2 => new Hammer(),
             3 => new Cutter(),
+            4 => new Mirror(),
+            5 => new Jet(),
+            6 => new Ninja(),
             _ => new Sword(),
         };
     }

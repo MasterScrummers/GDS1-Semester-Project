@@ -7,7 +7,7 @@ public class MinotaurBoss : Enemy
     protected GameObject player; // Player
 
     private Rigidbody2D rb;
-    private Animator anim;
+    [SerializeField] private Animator anim;
 
     [SerializeField] private int direction = 1; //The direction of the enemy.
     [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
@@ -24,8 +24,6 @@ public class MinotaurBoss : Enemy
 
         rb = GetComponent<Rigidbody2D>();
 
-        anim = GetComponent<Animator>();
-
         if (leftBoundary > rightBoundary)
         {
             float temp = leftBoundary;
@@ -39,22 +37,12 @@ public class MinotaurBoss : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) < attackRadius)
-        {
-            anim.SetBool("Attack", true);
-            Debug.Log("in range " + anim.GetBool("Attack"));
-        }
-        else
-        {
-            anim.SetBool("Attack", false);
-            Debug.Log("Player gone " + anim.GetBool("Attack"));
-        }
+        anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius);
         if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
         {
             Move();
-            base.Update();
         }
 
     }
@@ -113,8 +101,6 @@ public class MinotaurBoss : Enemy
     protected override void Death()
     {
         anim.SetBool("Dead", true);
-        Debug.Log(anim.GetBool("Dead"));
-
     }
 
     public void FinishDeath()

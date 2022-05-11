@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class AttackDealer : MonoBehaviour
 {
-    private int strength = 1; //The strength the hit, should be controlled by another script.
-    private int strengthMult = 1;
-    private float knockbackStr = 1f; //The knockback given, should be controlled by another script.
-    private float knockbackStrMult = 1;
-    private float invincibilityLength = 1.5f;
-    private WeaponBase.Affinity typing;
+    [SerializeField] protected int strength = 1; //The strength the hit, should be controlled by another script.
+    protected int strengthMult = 1;
+
+    [SerializeField] protected float knockbackStr = 1f; //The knockback given, should be controlled by another script.
+    protected float knockbackStrMult = 1;
+
+    [SerializeField] protected float invincibilityLength = 1.5f;
+    [SerializeField] protected WeaponBase.Affinity typing;
 
     public void UpdateAttackDealer(WeaponBase weapon)
     {

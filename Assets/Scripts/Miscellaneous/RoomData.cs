@@ -40,7 +40,7 @@ public class RoomData : MonoBehaviour
                 enemyCount++;
             }
         }
-        //ChildrenSetActive(false);
+        ChildrenSetActive(false);
     }
 
     void Update()

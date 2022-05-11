@@ -13,7 +13,6 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     // Start is called before the first frame update
     protected virtual void Start() {
-        GetComponent<AttackDealer>().SetStrengthMult(strength);
         health = GetComponent<HealthComponent>();
 
         int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;

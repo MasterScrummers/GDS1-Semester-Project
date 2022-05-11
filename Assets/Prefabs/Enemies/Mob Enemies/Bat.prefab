@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 2
+  startMaxHealth: 20
   health: 0
 --- !u!114 &544042796527561103
 MonoBehaviour:
@@ -260,7 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3200a86c4b81b84c97c87134bcebf81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  strength: 1
+  knockbackStr: 1
+  invincibilityLength: 1.5
+  typing: 0
   randomiseAffinity: 1
   state: 0
   attackState: 0
