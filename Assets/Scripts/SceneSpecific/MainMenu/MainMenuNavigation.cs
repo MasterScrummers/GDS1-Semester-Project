@@ -7,7 +7,9 @@ public class MainMenuNavigation : MonoBehaviour
     [SerializeField] private RectTransform pointer;
     [SerializeField] private GameObject optionList;
     [SerializeField] private GameObject instructions;
+    [SerializeField] private GameObject tutorialPrompt;
     private RectTransform[] menuOptions;
+    private RectTransform[] promptOptions;
 
     private int currentIndex = 0;
 
@@ -17,13 +19,20 @@ public class MainMenuNavigation : MonoBehaviour
     private void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
-        Transform[] children = DoStatic.GetChildren(optionList.transform);
-        menuOptions = new RectTransform[children.Length];
+        menuOptions = GetOptions(DoStatic.GetChildren(optionList.transform));
+        promptOptions = GetOptions(DoStatic.GetChildren(tutorialPrompt.transform));
+    }
+
+    private RectTransform[] GetOptions(Transform[] children)
+    {
+        RectTransform[] options = new RectTransform[children.Length];
         for (int i = 0; i < children.Length; i++)
         {
-            menuOptions[i] = children[i].GetComponent<RectTransform>();
+            options[i] = children[i].GetComponent<RectTransform>();
         }
+        return options;
     }
+
 
     void Update()
     {
@@ -46,6 +55,27 @@ public class MainMenuNavigation : MonoBehaviour
             }
         }
 
+        void SetPointerPosition(int increments, RectTransform[] options)
+        {
+            currentIndex += increments;
+            currentIndex = currentIndex < 0 ? options.Length - 1 : currentIndex % options.Length;
+            pointer.position = options[currentIndex].position;
+        }
+
+        void DoGameOption()
+        {
+            switch (promptOptions[currentIndex].name)
+            {
+                case "Yes":
+                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.Tutorial);
+                    return;
+
+                case "No":
+                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.MainGame);
+                    return;
+            }
+        }
+
         bool spacePressed = Input.GetKeyDown(KeyCode.Space);
         switch(menu)
         {
@@ -59,19 +89,23 @@ public class MainMenuNavigation : MonoBehaviour
                 {
                     DoOption();
                 }
-                bool isInMenu = menu == Menu.Main;
-                pointer.gameObject.SetActive(isInMenu);
-                optionList.SetActive(isInMenu);
-                instructions.SetActive(isInMenu);
-                currentIndex -= ic.GetButtonDown("MenuNavigation", "Vertical") ? (int)ic.GetAxisRawValues("MenuNavigation", "Vertical") : 0;
-                currentIndex = currentIndex < 0 ? menuOptions.Length - 1 : currentIndex % menuOptions.Length;
-                pointer.position = menuOptions[currentIndex].position;
+                optionList.SetActive(menu == Menu.Main);
+                pointer.gameObject.SetActive(true);
+                instructions.SetActive(true);
+
+                SetPointerPosition(ic.GetButtonDown("MenuNavigation", "Vertical") ? (int)-ic.GetAxisRawValues("MenuNavigation", "Vertical") : 0, menuOptions);
                 return;
 
             case Menu.TutorialPrompt:
-
+                if (spacePressed)
+                {
+                    DoGameOption();
+                }
+                tutorialPrompt.SetActive(true);
+                SetPointerPosition(ic.GetButtonDown("MenuNavigation", "Horizontal") ? (int)ic.GetAxisRawValues("MenuNavigation", "Horizontal") : 0, promptOptions);
                 return;
         }
 
+        
     }
 }
