@@ -15,9 +15,6 @@ public class BatAnim : MonoBehaviour
     private int facingDirection;
 
     private bool deathLanded; // To track ground contact after death
-    public bool hurt;
-    public const float HurtTime = 0.2f;
-    private float hurtColourTimer = HurtTime;
 
     // Start is called before the first frame update
     void Start()
@@ -43,17 +40,6 @@ public class BatAnim : MonoBehaviour
             bat.state = Bat.State.DeathEnd;
         }
 
-        if (hurt)
-        {
-            if (hurtColourTimer < 0f)
-            {
-                sr.color = Color.white;
-                hurt = false;
-                hurtColourTimer = HurtTime;
-            } else {
-                hurtColourTimer -= Time.deltaTime;
-            }
-        }
     }
 
     // Flips bat sprite according to direction of movement
@@ -76,9 +62,6 @@ public class BatAnim : MonoBehaviour
     /// </summary>
     public void TakeDamage()
     {
-        sr.color = Color.red;
-        hurt = true;
-        rb.AddForce(Vector3.Normalize(transform.position - player.transform.position) * 500f);
     }
 
     /// <summary>

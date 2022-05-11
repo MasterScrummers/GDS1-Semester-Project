@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MinotaurBoss : Enemy
 {
-    protected GameObject player; // Player
-
-    private Rigidbody2D rb;
     [SerializeField] private Animator anim;
 
     [SerializeField] private int direction = 1; //The direction of the enemy.
@@ -37,7 +34,7 @@ public class MinotaurBoss : Enemy
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected override void Update()
     {
         anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius);
         if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))

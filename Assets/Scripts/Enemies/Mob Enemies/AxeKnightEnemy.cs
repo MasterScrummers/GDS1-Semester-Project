@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class AxeKnightEnemy : Enemy
 {
-    private Rigidbody2D rb;
 
     [SerializeField] private int direction = 1; //The direction of the enemy.
     [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
@@ -13,8 +12,6 @@ public class AxeKnightEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-
-        rb = GetComponent<Rigidbody2D>();
         
         if (leftBoundary > rightBoundary)
         {
@@ -29,9 +26,16 @@ public class AxeKnightEnemy : Enemy
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected override void Update()
     {
-        Move();
+        base.Update();
+        
+        if (!isStunned)
+        {
+            Move();
+        } else {
+            Debug.Log("Stunned");
+        }
     }
 
     // To be implemented

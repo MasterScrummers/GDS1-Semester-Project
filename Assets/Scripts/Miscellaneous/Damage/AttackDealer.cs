@@ -9,12 +9,15 @@ public class AttackDealer : MonoBehaviour
     protected float knockbackStrMult = 1;
 
     [SerializeField] protected float invincibilityLength = 1.5f;
+    [SerializeField] protected float invincibilityTime;
     [SerializeField] protected WeaponBase.Affinity typing;
+    [SerializeField] protected float stunTime;
 
     public void UpdateAttackDealer(WeaponBase weapon)
     {
         strength = weapon.baseStrength;
         knockbackStr = weapon.knockbackStr;
+        stunTime = weapon.stunTime;
         typing = weapon.weaponType;
     }
     
@@ -39,7 +42,7 @@ public class AttackDealer : MonoBehaviour
         
         if (receiver != null)
         {
-            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr * knockbackStrMult, invincibilityLength, typing);
+            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr * knockbackStrMult, invincibilityLength, stunTime, typing);
         }
     }
 }

@@ -15,6 +15,7 @@ public abstract class WeaponBase
     public int baseStrength { get; protected set; } = 1; //The strength of the weapon.
     public int specialCooldown { get; protected set; } = 10; //The cooldown of the weapon.
     public float knockbackStr { get; protected set; } = 10; //The knockback strength of the weapon.
+    public float stunTime { get; protected set; } = 0.5f; // The stun time the weapon inflicts
 
     public WeaponBase()
     {
