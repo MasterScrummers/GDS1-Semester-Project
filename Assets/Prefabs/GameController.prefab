@@ -68,7 +68,7 @@ MonoBehaviour:
   speed: 5
   orignalspeed: 0
   canInteract: 0
-  baseJumpForce: 10
+  baseJumpForce: 8
   jumpHoldTimer: 0.25
   gravityMultiplier: 1.2
   originalGravityMultiplier: 0

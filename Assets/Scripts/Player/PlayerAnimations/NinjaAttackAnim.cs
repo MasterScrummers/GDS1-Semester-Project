@@ -3,12 +3,14 @@ using UnityEngine;
 public class NinjaAttackAnim : MonoBehaviour
 {
     [SerializeField] private PlayerInput pi;
+    private PlayerInvincibility invincibility;
     [SerializeField] private Transform firePoint;
     private PoolController poolController;
     private float angle;
 
     private void Start()
     {
+        invincibility = GetComponent<PlayerInvincibility>();
         poolController = DoStatic.GetGameController<PoolController>();
         angle = 0f;
     }
@@ -44,6 +46,7 @@ public class NinjaAttackAnim : MonoBehaviour
         {
             case "On":
                 InvokeRepeating("BulletHell", 0f, 0.01f);
+                invincibility.StartInvincible(1);
                 break;
 
             case "Off":
@@ -55,7 +58,6 @@ public class NinjaAttackAnim : MonoBehaviour
 
     private void BulletHell()
     {
-
         GameObject projectile = poolController.GetObjectFromPool("KunaiPool");
         projectile.transform.position = transform.position;
         Vector3 rot = projectile.transform.eulerAngles;
