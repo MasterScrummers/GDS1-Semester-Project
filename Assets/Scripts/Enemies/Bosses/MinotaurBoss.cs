@@ -36,6 +36,7 @@ public class MinotaurBoss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
+        base.Update();
         anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius);
         if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
         {

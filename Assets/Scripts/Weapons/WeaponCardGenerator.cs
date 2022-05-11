@@ -44,7 +44,7 @@ public class WeaponCardGenerator : MonoBehaviour
             2 => new Hammer(),
             3 => new Cutter(),
             4 => new Mirror(),
-            5 => new Jet(),
+            5 => new Sword(), //Used to be jet. But jetlaggy
             6 => new Ninja(),
             _ => new Sword(),
         };
