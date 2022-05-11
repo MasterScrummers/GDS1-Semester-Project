@@ -5,7 +5,9 @@ using UnityEngine;
 public class WormAnim : MonoBehaviour
 {
     private Worm worm; // Worm parent
+    private PoolController pc;
     private Animator anim; // Worm sprite Animator
+    [SerializeField] private Transform firePoint;
     private Worm.State state; // Tracks worm current state
     private Worm.State prevState;
 
@@ -14,6 +16,8 @@ public class WormAnim : MonoBehaviour
     {
         worm = GetComponentInParent<Worm>();
         anim = GetComponent<Animator>();
+        pc = DoStatic.GetGameController<PoolController>();
+
 
         state = worm.state;
     }
@@ -50,21 +54,19 @@ public class WormAnim : MonoBehaviour
         }
     }
 
+    public void Attack(float angle)
+    {
+        GameObject bullet = pc.GetObjectFromPool("WormBulletPool");
+        bullet.transform.position = firePoint.position;
+        Vector3 rot = bullet.transform.eulerAngles;
+        rot.z = angle;
+        bullet.transform.eulerAngles = rot;
+    }
+
     public void Death()
     {
         worm.state = Worm.State.Death;
         anim.Play("Base Layer.WormDeath");
-    }
-
-    void OnCollisionEnter2D(Collision2D other) {
-
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (worm.state == Worm.State.Death)
-            {
-                Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
-            }
-        }
     }
 
     private void FinishDeath()

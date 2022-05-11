@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: worm_bullets_0
+      name: Worm Bullets_0
       rect:
         serializedVersion: 2
         x: 1
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c2e4c20710e1c49bf5b1e011256317
-      internalID: -2085031045
+      spriteID: 3b26b7a4debea7043b22e144f4368437
+      internalID: -310019006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worm_bullets_1
+      name: Worm Bullets_1
       rect:
         serializedVersion: 2
         x: 18
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f0b3828213a3994480585c40b8b0478
-      internalID: 1136034946
+      spriteID: 0d053aa785d6a3549bbd1d4d2fa71086
+      internalID: -1944973265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worm_bullets_2
+      name: Worm Bullets_2
       rect:
         serializedVersion: 2
         x: 35
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 603039736f9678a4886247d75557417b
-      internalID: 1161200581
+      spriteID: 059dfcfd56c68904aa99bc2dfc4d50bf
+      internalID: -1867113904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worm_bullets_3
+      name: Worm Bullets_3
       rect:
         serializedVersion: 2
         x: 49
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30a4c7ac162eb1841a8ab6f971395ef5
-      internalID: -1230446220
+      spriteID: ba675a9c0721ac84c90ca4a9b58196a5
+      internalID: -1868182184
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      worm_bullets_1: 1136034946
-      worm_bullets_2: 1161200581
-      worm_bullets_0: -2085031045
-      worm_bullets_3: -1230446220
+      Worm Bullets_3: -1868182184
+      Worm Bullets_2: -1867113904
+      Worm Bullets_0: -310019006
+      Worm Bullets_1: -1944973265
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
