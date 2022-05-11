@@ -8,6 +8,7 @@ public class EnemyAttackDealer : AttackDealer
         if (collision.CompareTag("Player"))
         {
             collision.GetComponentInChildren<PlayerAnim>().TakeDamage(collision.transform.position.x < transform.position.x ? -1 : 1);
+            Debug.Log("Damage Dealt to player");
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MinotaurBoss : Enemy
 {
+    protected GameObject player; // Player
+
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -11,11 +13,14 @@ public class MinotaurBoss : Enemy
     [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
     [SerializeField] private float leftBoundary = -1; //The right boundary?
     [SerializeField] private float rightBoundary = 1; //The left boundary?
+    [SerializeField] private float attackRadius = 2.0f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
+        player = DoStatic.GetPlayer();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -36,6 +41,16 @@ public class MinotaurBoss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
+        if (Vector2.Distance(transform.position, player.transform.position) < attackRadius)
+        {
+            anim.SetBool("Attack", true);
+            Debug.Log("in range " + anim.GetBool("Attack"));
+        }
+        else
+        {
+            anim.SetBool("Attack", false);
+            Debug.Log("Player gone " + anim.GetBool("Attack"));
+        }
         if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
         {
             Move();
@@ -77,7 +92,7 @@ public class MinotaurBoss : Enemy
         Gizmos.DrawLine(new Vector2(posX + rightBoundary, int.MinValue), new Vector2(posX + rightBoundary, int.MaxValue));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -93,7 +108,7 @@ public class MinotaurBoss : Enemy
             anim.SetBool("Attack", false);
             Debug.Log("Player gone " + anim.GetBool("Attack"));
         }
-    }
+    }*/
 
     protected override void Death()
     {
