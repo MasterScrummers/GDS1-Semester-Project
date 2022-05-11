@@ -153,7 +153,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         return false;
     }
 
-    public void RecieveAttack(Transform attackerPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
+    public void RecieveAttack(Transform attackerPos, int strength, float knockbackStr, float invincibilityTime, float stunTime, WeaponBase.Affinity typing)
     {
         if (invincibility.invincible)
         {

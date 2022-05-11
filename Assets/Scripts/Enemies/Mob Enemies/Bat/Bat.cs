@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
-    protected GameObject player; // Player
     
-    protected Rigidbody2D rb; // Bat Rigidbody
+    // protected Rigidbody2D rb; // Bat Rigidbody
     private CircleCollider2D cc; // Bat CircleCollider
     private BatAnim ba; // BatAnim script
 
@@ -28,9 +27,6 @@ public class Bat : Enemy
     {
         base.Start();
         
-        player = DoStatic.GetPlayer();
-        
-        rb = GetComponent<Rigidbody2D>();
         ba = GetComponentInChildren<BatAnim>();
         cc = GetComponent<CircleCollider2D>();
 
@@ -39,23 +35,28 @@ public class Bat : Enemy
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected override void Update()
     {
-        switch(state) {
+        base.Update();
 
-            case State.Move:
-                Move();
-                break;
-            
-            case State.Attack:
-                if (ba.hurt)
-                {
-                    InterruptAttack();
-                }
-                Attack();
-                break;
+        if (!isStunned)
+        {
+            switch(state) {
+
+                case State.Move:
+                    Move();
+                    break;
+                
+                case State.Attack:
+                    if (hurt)
+                    {
+                        InterruptAttack();
+                    }
+                    Attack();
+                    break;
+            }
         }
-        
+          
         if (attackCooldownTimer > 0f)
         {
             attackCooldownTimer -= Time.deltaTime;
@@ -68,7 +69,7 @@ public class Bat : Enemy
         if (rb) 
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, player.transform.position) < attackRadius && attackCooldownTimer <= 0f && !ba.hurt)
+            if (Vector2.Distance(transform.position, player.transform.position) < attackRadius && attackCooldownTimer <= 0f && hurt)
             {
                 state = State.Attack;
                 attackTargetPos = player.transform.position;
@@ -128,9 +129,9 @@ public class Bat : Enemy
         attackPauseTimer = 0f;
     }
 
-    public override void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
-    {
-        base.RecieveAttack(attackPos, strength, knockbackStr, invincibilityTime, typing);
-        ba.TakeDamage();
-    }
+    // public override void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
+    // {
+    //     base.RecieveAttack(attackPos, strength, knockbackStr, invincibilityTime, typing);
+    //     ba.TakeDamage();
+    // }
 }
