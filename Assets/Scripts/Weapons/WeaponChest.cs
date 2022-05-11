@@ -34,6 +34,11 @@ public class WeaponChest : InteractableObject
     {
         base.Interact();
         anim.SetTrigger("Open");
+       
+    }
+
+    private void OpenUI()
+    {
         ic.GetComponent<UIController>().GetUI<UIWeaponSwapSystem>("WeaponSwapSystem").Activate(); //bring up WeaponSwap UI
     }
 
