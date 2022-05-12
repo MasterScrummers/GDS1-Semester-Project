@@ -153,7 +153,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         return false;
     }
 
-    public void RecieveAttack(Transform attackerPos, int strength, float knockbackStr, float invincibilityTime, float stunTime, WeaponBase.Affinity typing)
+    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
     {
         if (invincibility.invincible)
         {
@@ -168,6 +168,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
         invincibility.StartInvincible(isAlive ? invincibilityTime : 0);
         anim.Play(isAlive ? "KirbyHurt" : "Base Layer.KirbyDeath.KirbyDeathIntro");
-        rb.velocity = isAlive ? new Vector2(attackerPos.position.x > transform.position.x ? -knockbackStr : knockbackStr, 4) * 2f : Vector2.zero;
+        rb.velocity = isAlive ? attackerPos.position.x > transform.position.x ? -knockback: knockback : Vector2.zero;
     }
 }

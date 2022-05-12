@@ -8,22 +8,13 @@ public abstract class WeaponBase
     protected const string basePath = "Base Layer."; //The base path.
     protected string animPath; //The animation path, to keep things simple.
 
-    public enum Affinity { water, fire, grass }; //All the weapon types are here. Any changes must have been discussed.
-
-    public Affinity weaponType { get; private set; } = Affinity.water; //The weapon's typing.
-    public Color32 weaponColour { get; private set; } = Color.white; //Colour of the weapon.
     public int baseStrength { get; protected set; } = 1; //The strength of the weapon.
     public int specialCooldown { get; protected set; } = 10; //The cooldown of the weapon.
-    public float knockbackStr { get; protected set; } = 10; //The knockback strength of the weapon.
+    public Vector2 knockbackStr { get; protected set; } = Vector2.one; //The knockback strength of the weapon.
     public float invincibilityTime { get; protected set; } = 1.5f; // The invincibility time the weapon causes
     public float stunTime { get; protected set; } = 0.5f; // The stun time the weapon inflicts
 
-    public WeaponBase()
-    {
-        int affinityNum = typeof(Affinity).GetEnumValues().Length;
-        weaponType = (Affinity)Random.Range(0, affinityNum);
-        weaponColour = DoStatic.GetGameController<VariableController>().GetColor(weaponType);
-    }
+    public WeaponBase() {}
 
     /// <summary>
     /// Meant to be overridden for the lignt attack.

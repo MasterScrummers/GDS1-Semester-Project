@@ -7,14 +7,12 @@ public class WeaponCardGenerator : MonoBehaviour
 {
     public WeaponBase weapon;
     private VariableController vc; //To grab the dictionary of weapons
-    private Image weaponCard;
     [SerializeField] private Image weaponIcon;
     [SerializeField] private TextMeshProUGUI weaponText;
 
     void Start()
     {
         vc = DoStatic.GetGameController<VariableController>();
-        weaponCard = GetComponent<Image>();
     }
 
     public void SetWeapon(WeaponBase weapon)
@@ -31,7 +29,6 @@ public class WeaponCardGenerator : MonoBehaviour
 
     private void SetCard()
     {
-        SetColor();
         SetWeaponImage();
         SetWeaponText();
     }
@@ -50,14 +47,9 @@ public class WeaponCardGenerator : MonoBehaviour
         };
     }
 
-    private void SetColor()
-    {
-        weaponCard.color = weapon.weaponColour; 
-    }
-
     private void SetWeaponImage()
     {
-        weaponIcon.sprite = vc.GetWeapon(weapon.weaponName); //The weapon name must be the same as the class name.
+        weaponIcon.sprite = vc.GetIcon(weapon.weaponName); //The weapon name must be the same as the class name.
         weaponIcon.SetNativeSize();
         switch(weapon.weaponName)
         {

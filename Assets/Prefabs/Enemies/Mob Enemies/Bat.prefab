@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 544042795803737197}
   - component: {fileID: 7872287134686123668}
   - component: {fileID: 497637805599027644}
-  - component: {fileID: 7552103182900361066}
   m_Layer: 7
   m_Name: Bat (Sprite)
   m_TagString: Untagged
@@ -146,21 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2117b977c7cffb4e82904991266ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurt: 0
---- !u!114 &7552103182900361066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544042795803737195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b50591fd6af8aa941be47a91af858101, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineSizeMultiplier: 1.1
-  mat: {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
 --- !u!1 &544042796527561100
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,9 +245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 1
-  knockbackStr: 1
+  knockback: {x: 1, y: 1}
   invincibilityLength: 1.5
-  typing: 0
+  invincibilityTime: 0
+  stunTime: 0
   randomiseAffinity: 1
   state: 0
   attackState: 0
@@ -272,3 +257,4 @@ MonoBehaviour:
   attackTargetPos: {x: 0, y: 0, z: 0}
   attackPauseTime: 0.5
   attackCooldown: 2
+  deathTimer: 5

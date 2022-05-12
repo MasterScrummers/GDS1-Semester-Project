@@ -4,44 +4,49 @@ using UnityEngine;
 public class VariableController : MonoBehaviour
 {
     [System.Serializable]
-    private class WeaponInfo
+    private class IconPedia
     {
-        [SerializeField] private string weaponName;
-        [SerializeField] private Sprite weaponSprite;
+        [SerializeField] private string iconName;
+        [SerializeField] private Sprite iconSprite;
 
         public void AddIntoDictionary(ref Dictionary<string, Sprite> allWeapons)
         {
-            allWeapons.Add(weaponName, weaponSprite);
+            allWeapons.Add(iconName, iconSprite);
         }
     }
 
-    [SerializeField] private WeaponInfo[] weapons;
-    private Dictionary<string, Sprite> allWeapons;
-    private Dictionary<WeaponBase.Affinity, Color32> globalColours;
+    [SerializeField] private IconPedia[] icons;
+    private Dictionary<string, Sprite> allIcons;
+    private Dictionary<string, Color32> globalColours;
 
     void Awake()
     {
-        allWeapons = new();
-        foreach (WeaponInfo weapon in weapons)
+        allIcons = new();
+        foreach (IconPedia icon in icons)
         {
-            weapon.AddIntoDictionary(ref allWeapons);
+            icon.AddIntoDictionary(ref allIcons);
         }
 
         globalColours = new()
         {
-            [WeaponBase.Affinity.fire] = new(183, 18, 52, 255),
-            [WeaponBase.Affinity.water] = new(0, 70, 173, 255),
-            [WeaponBase.Affinity.grass] = new(0, 155, 72, 255),
+            ["Rubik Red"] = new(183, 18, 52, 255),
+            ["Rubik Green"] = new(0, 155, 72, 255),
+            ["Rubik White"] = Color.white,
+            ["Rubik Orange"] = new(255, 88, 0, 255),
+            ["Rubik Blue"] = new(0, 70, 173, 255),
+            ["Rubik Yellow"] = new(255, 213, 0, 255),
+
+            ["Gray"] = Color.gray,
         };
     }
 
-    public Sprite GetWeapon(string name)
+    public Sprite GetIcon(string name)
     {
-        return allWeapons[name];
+        return allIcons[name];
     }
 
-    public Color32 GetColor(WeaponBase.Affinity affinity)
+    public Color32 GetColour(string colour)
     {
-        return globalColours[affinity];
+        return globalColours[colour];
     }
 }

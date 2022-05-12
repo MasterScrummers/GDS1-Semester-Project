@@ -587,7 +587,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sword_icon
+      name: sword_weapon_icon
       rect:
         serializedVersion: 2
         x: 233
@@ -629,13 +629,13 @@ TextureImporter:
       sword_light_4: 1718870937
       sword_special_1: 628119977
       sword_special_0: 604588221
-      sword_icon: 1927591234
       sword_special_6: 1791956043
       sword_light_3: -893095830
       sword_heavy_1: 530003335
       sword_light_5: 1473207747
       sword_heavy_0: 270496081
       sword_light_8: 2084342299
+      sword_weapon_icon: 1927591234
       sword_light_1: -1681458192
       sword_special_3: -1445406992
       sword_light_2: 1057669473

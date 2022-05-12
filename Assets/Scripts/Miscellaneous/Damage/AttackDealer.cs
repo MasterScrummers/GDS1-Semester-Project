@@ -5,21 +5,18 @@ public class AttackDealer : MonoBehaviour
     [SerializeField] protected int strength = 1; //The strength the hit, should be controlled by another script.
     protected int strengthMult = 1;
 
-    [SerializeField] protected float knockbackStr = 1f; //The knockback given, should be controlled by another script.
-    protected float knockbackStrMult = 1;
+    [SerializeField] protected Vector2 knockback = Vector2.one; //The knockback given, should be controlled by another script.
 
     [SerializeField] protected float invincibilityLength = 1.5f;
     [SerializeField] protected float invincibilityTime;
-    [SerializeField] protected WeaponBase.Affinity typing;
     [SerializeField] protected float stunTime;
 
     public void UpdateAttackDealer(WeaponBase weapon)
     {
         strength = weapon.baseStrength;
-        knockbackStr = weapon.knockbackStr;
+        knockback = weapon.knockbackStr;
         invincibilityLength = weapon.invincibilityTime;
         stunTime = weapon.stunTime;
-        typing = weapon.weaponType;
     }
     
     public void SetStrengthMult(int mult)
@@ -27,9 +24,14 @@ public class AttackDealer : MonoBehaviour
         strengthMult = mult;
     }
 
-    public void SetknockbackStrMult(float mult)
+    public void SetKnockbackX(float x)
     {
-        knockbackStrMult = mult;
+        knockback.x = x;
+    }
+
+    public void SetKnockbackY(float y)
+    {
+        knockback.y = y;
     }
 
     public void SetInvincibilityLength(float length)
@@ -43,7 +45,7 @@ public class AttackDealer : MonoBehaviour
         
         if (receiver != null)
         {
-            receiver.RecieveAttack(transform, strength * strengthMult, knockbackStr * knockbackStrMult, invincibilityLength, stunTime, typing);
+            receiver.RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
         }
     }
 }

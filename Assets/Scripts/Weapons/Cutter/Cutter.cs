@@ -11,7 +11,7 @@ public class Cutter : WeaponBase
         specialCooldown = Random.Range(3, 5);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(4 + extra, 5 + extra);
-        knockbackStr = 8f;
+        knockbackStr = new(8f, 0);
     }
 
     public override void LightAttack(Animator anim)

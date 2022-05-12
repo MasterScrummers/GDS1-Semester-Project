@@ -5,8 +5,6 @@ using UnityEngine;
 public abstract class Enemy : AttackDealer, IAttackReceiver
 {
     [SerializeField] protected bool randomiseAffinity = false;
-    private WeaponBase.Affinity weakness; //An enemy will now have a weakness
-    private WeaponBase.Affinity resist; //An enemy will now have a resistance
     protected bool hurt;
     public const float HurtTime = 0.2f;
     private float hurtColourTimer = HurtTime;
@@ -22,20 +20,9 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     protected virtual void Start() {
         health = GetComponent<HealthComponent>();
 
-        int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
         player = DoStatic.GetPlayer();
-
-        if (randomiseAffinity)
-        {
-            typing = (WeaponBase.Affinity)Random.Range(0, affinityNum);
-        }
-        weakness = (WeaponBase.Affinity)((int)(typing - 1) % affinityNum);
-        resist = (WeaponBase.Affinity)(((int)typing + 1) % affinityNum);
-
-        SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
-        outliner.SetColour(DoStatic.GetGameController<VariableController>().GetColor(typing));
     }
     
     // Update is called once per frame
@@ -90,22 +77,18 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         inRoom = roomData;
     }
 
-    public virtual void RecieveAttack(Transform attackerPos, int strength, float knockbackStr, float invincibilityTime, float stunTime, WeaponBase.Affinity typing)
+    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
     {
         if (this.invincibilityTime !<= 0f)
         {
-            float extra = typing == weakness ? 1.25f : typing == resist ? 0.75f : 1f;
-            int damage = (int)(strength * extra);
-            health.TakeDamage(damage == 0 ? 1 : damage);
+            health.TakeDamage(strength);
             
             sr.color = Color.red;
             hurt = true;
             this.stunTime = stunTime;
             this.invincibilityTime = invincibilityTime;
 
-            // rb.AddForce(Vector3.Normalize(transform.position - player.transform.position) * 500f);
-            rb.AddForce(new Vector2(attackerPos.position.x > transform.position.x ? -knockbackStr : knockbackStr, 2) * 2f, ForceMode2D.Impulse);
-
+            rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
             if (health.health <= 0)
             {
                 Death();
