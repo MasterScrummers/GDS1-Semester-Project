@@ -33,7 +33,7 @@ public class PlayerMiscAnim : MonoBehaviour
         ic.SetID(ID, false);
     }
 
-    private void SetReasonUnlock(string ID)
+    public void SetReasonUnlock(string ID)
     {
         ic.SetID(ID, true);
     }

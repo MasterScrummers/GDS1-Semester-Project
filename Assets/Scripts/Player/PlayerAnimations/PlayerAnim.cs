@@ -101,6 +101,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
                 {
                     anim.SetTrigger("Recover");
                     ic.SetInputLock(false);
+                    miscAnim.SetReasonUnlock("Movement");
                 }
                 return;
 
