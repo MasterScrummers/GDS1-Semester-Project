@@ -38,6 +38,7 @@ public class MinotaurBoss : Enemy
         anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius);
         if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
         {
+            Debug.Log("Attacking: " + anim.GetBool("Attack"));
             Move();
         }
 
@@ -74,6 +75,7 @@ public class MinotaurBoss : Enemy
         float posX = rb ? 0 : transform.position.x;
         Gizmos.DrawLine(new Vector2(posX + leftBoundary, int.MinValue), new Vector2(posX + leftBoundary, int.MaxValue));
         Gizmos.DrawLine(new Vector2(posX + rightBoundary, int.MinValue), new Vector2(posX + rightBoundary, int.MaxValue));
+
     }
 
     /*private void OnTriggerEnter2D(Collider2D collision)
