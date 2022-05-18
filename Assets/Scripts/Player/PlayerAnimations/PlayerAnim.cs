@@ -131,6 +131,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         health.Restart();
         rb.transform.eulerAngles = Vector3.zero;
         restartTimer = 5f;
+        pi.RandomiseWeapons();
     }
 
     public Animator GetAnimator()

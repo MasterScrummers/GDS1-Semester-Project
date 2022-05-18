@@ -3251,14 +3251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4676922193017336992}
     m_Modifications:
-    - target: {fileID: 4030648275961640549, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: leftBoundary
-      value: -3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030648275961640549, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: rightBoundary
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4030648275961640601, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
       propertyPath: m_Name
       value: Minotaur

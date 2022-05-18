@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool hasJumped { private set; get; } = false;//Was the jump pressed?
     public bool isFalling { private set; get; } = false;//Is player falling?
+    public bool isSliding = false;
 
     private bool isJumpHeld = false; //Was the jump button held after inital jump?
     public bool canInteract = false;
@@ -48,9 +49,23 @@ public class PlayerInput : MonoBehaviour
         orignalspeed = speed;
         originalGravityMultiplier = gravityMultiplier;
 
-        lightWeapon = new Hammer();
-        heavyWeapon = new Hammer();
-        specialWeapon = new Hammer();
+        RandomiseWeapons();
+    }
+
+    public void RandomiseWeapons()
+    {
+        bool isSword = DoStatic.RandomBool();
+        if (isSword)
+        {
+            lightWeapon = new Sword();
+            heavyWeapon = new Sword();
+            specialWeapon = new Sword();
+        } else
+        {
+            lightWeapon = new Hammer();
+            heavyWeapon = new Hammer();
+            specialWeapon = new Hammer();
+        }
     }
 
     void Update()
@@ -124,12 +139,11 @@ public class PlayerInput : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        if (ic.GetID("Movement"))
+        if (!isSliding)
         {
             Vector2 vel = new(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
             rb.velocity = vel;
         }
-
     }
 
     private void AttackChecks()
