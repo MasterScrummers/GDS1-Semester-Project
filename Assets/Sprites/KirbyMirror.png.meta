@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mirror_Special_0
+      name: Mirror_Heavy_
       rect:
         serializedVersion: 2
         x: 185
@@ -125,11 +125,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mirror_Special_1
+      name: Mirror_Heavy_1
       rect:
         serializedVersion: 2
-        x: 224
-        y: 250
+        x: 223
+        y: 249
         width: 29
         height: 46
       alignment: 9
@@ -565,6 +565,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Mirror_Special_0
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 413
+        width: 30
+        height: 28
+      alignment: 9
+      pivot: {x: 0.9037303, y: 0.06687927}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18e5da3fb3e609e4d9f587690cfb7c6c
+      internalID: -1981837945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Special_1
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 413
+        width: 29
+        height: 28
+      alignment: 9
+      pivot: {x: 0.79742855, y: 0.06838008}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1046bba1bf8645140bdb8ba67db6f92f
+      internalID: 1464953121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Special_2
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 413
+        width: 26
+        height: 27
+      alignment: 9
+      pivot: {x: 0.77286, y: 0.0707307}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c26930ade7d7aa54e946315e9adad5ce
+      internalID: -1691024035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Special_3
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 414
+        width: 31
+        height: 29
+      alignment: 9
+      pivot: {x: 0.97270447, y: 0.06487195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfb19663bbd92a64e8f8af8680dc3fd7
+      internalID: -39685382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mirror_Special_4
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 414
+        width: 35
+        height: 30
+      alignment: 9
+      pivot: {x: 0.94681007, y: 0.061658733}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d63a00b1419dbb64da94ae38b23b8db2
+      internalID: -341157521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -584,20 +689,25 @@ TextureImporter:
       Mirror_3: -169187102
       Mirror_6: -2098701386
       Mirror_5: 1665728220
+      Mirror_Special_3: -39685382
       Mirror_11: 1060616224
       Mirror_12: -2108475996
       Mirror_Light_0: -1356301248
-      Mirror_Special_0: 321989413
-      Mirror_Special_1: 1422575610
       MirrorShield: -629275206
+      Mirror_Special_0: -1981837945
+      Mirror_Special_1: 1464953121
       Mirror_2: -608480026
       Mirror_1: 1814784656
       Mirror_Light_1: -607372801
       Mirror_8: -1360146358
       Mirror_13: 1324659474
+      Mirror_Special_4: -341157521
+      Mirror_Special_2: -1691024035
       Mirror_0: 376309215
       Mirror_10: -742342393
+      Mirror_Heavy_: 321989413
       Mirror_7: 793407968
+      Mirror_Heavy_1: 1422575610
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -5,7 +5,7 @@ public class Mirror : WeaponBase
     public Mirror() : base()
     {
         weaponName = "Mirror";
-        description = "Light: Shield\nHeavy: Invincible\n Special: Spawn 4 Shield around ";
+        description = " ";
         animPath = basePath + weaponName + ".";
 
         specialCooldown = Random.Range(5, 10);

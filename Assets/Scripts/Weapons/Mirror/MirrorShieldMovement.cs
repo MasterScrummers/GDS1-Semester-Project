@@ -2,42 +2,67 @@ using UnityEngine;
 
 public class MirrorShieldMovement : MonoBehaviour
 {
-    [SerializeField] Vector3 originalScale;
-    private float sizeCounter = 3f; //The time Shield stays in the original form
-    private float lifeTime = 3; //Start afte sizeCounter ended, used to reduce the size of shield.
-    [SerializeField] Animator playerAnim;
+    private Vector3 originalScale;
+    public Vector3 scaleIncraseOverTime; //Amount of Scale Increase Over Time
+    public float scaleIncrasedTo; //The scale want to incrased to
+    [HideInInspector] public bool IsSpecialAttack;
+    private Animator anim;
 
+    private float originalLifeTime;
+    private float lifeTime;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        OnEnable();
+        originalLifeTime = 0.5f;
+        originalScale = transform.localScale;
+        anim = this.GetComponent<Animator>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        sizeCounter -= Time.deltaTime;
-        if (sizeCounter <= 0)
+        if (IsSpecialAttack)
         {
-            lifeTime -= Time.deltaTime;
+            SpecialAttack();
+        }
 
-            if (lifeTime <= 2 && lifeTime > 0)
-            {
-                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
-            }
+        else if (!IsSpecialAttack)
+        {
+            LightAttack();
+        }
 
-            if (lifeTime <= 0)
-            {
-                playerAnim.SetTrigger("ShieldBadEnd");
-            }
+    }
+
+    private void OnEnable()
+    {
+        lifeTime = originalLifeTime;
+        transform.localScale = originalScale;
+    }
+
+    private void SpecialAttack()
+    {
+        transform.localScale += scaleIncraseOverTime * Time.deltaTime;
+        if (transform.localScale.x >= scaleIncrasedTo)
+        {
+            anim.SetTrigger("End");
+        }
+
+    }
+
+    private void LightAttack()
+    {
+        lifeTime -= Time.deltaTime;
+        //transform.localScale += scaleIncraseOverTime * Time.deltaTime;
+        if (lifeTime <= 0)
+        {
+            DisableSelf();
         }
     }
 
-    void OnEnable()
+    //Animation Related
+    private void DisableSelf()
     {
-        transform.localScale = originalScale;
-        sizeCounter = 4f;
-        lifeTime = 4;
+        gameObject.SetActive(false);
     }
+
 }
