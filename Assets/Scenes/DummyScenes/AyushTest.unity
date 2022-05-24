@@ -220,27 +220,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de905da36588aa44884e3c4721a4f817, type: 3}
---- !u!1 &819517540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6578448685811648485, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-  m_PrefabInstance: {fileID: 4030648275144417764}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &819517546
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819517540}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.12489772, y: 2.2386475}
-  serializedVersion: 2
-  m_Radius: 2.8
 --- !u!1 &1128309275
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,26 +382,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 819517545, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 819517545, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.1084988
-      objectReference: {fileID: 0}
-    - target: {fileID: 819517545, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.01211548
-      objectReference: {fileID: 0}
-    - target: {fileID: 819517545, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 5.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 819517545, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4030648275961640601, guid: ec4c19ca349b0324a941623794bf0a94, type: 3}
       propertyPath: m_Name
       value: Minotaur

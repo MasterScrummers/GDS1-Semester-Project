@@ -161,7 +161,6 @@ GameObject:
   - component: {fileID: 2183858454646680952}
   - component: {fileID: 5381895912741021031}
   - component: {fileID: 819517545}
-  - component: {fileID: 819517546}
   m_Layer: 7
   m_Name: Minotaur Sprite
   m_TagString: Untagged
@@ -294,19 +293,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.69, y: 1.24}
   m_EdgeRadius: 0
---- !u!58 &819517546
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6578448685811648485}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.12489772, y: 2.2386475}
-  serializedVersion: 2
-  m_Radius: 2.8
