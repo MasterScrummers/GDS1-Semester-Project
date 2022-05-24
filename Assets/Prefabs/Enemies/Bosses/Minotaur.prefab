@@ -78,7 +78,7 @@ MonoBehaviour:
   randomiseAffinity: 0
   anim: {fileID: 2183858454646680952}
   direction: 1
-  movementSpeed: 3
+  movementSpeed: 2.5
   leftBoundary: -5
   rightBoundary: 3
   attackRadius: 5.01

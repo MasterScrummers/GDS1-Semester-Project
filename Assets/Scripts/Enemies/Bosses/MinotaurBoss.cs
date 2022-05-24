@@ -5,7 +5,7 @@ public class MinotaurBoss : Enemy
     [SerializeField] private Animator anim;
 
     [SerializeField] private int direction = 1; //The direction of the enemy.
-    [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
+    [SerializeField] private float movementSpeed = 2; //The movement of the enemy.
     [SerializeField] private float leftBoundary = -1; //The right boundary?
     [SerializeField] private float rightBoundary = 1; //The left boundary?
     [SerializeField] private float attackRadius = 2.0f;
@@ -35,12 +35,27 @@ public class MinotaurBoss : Enemy
     protected override void Update()
     {
         base.Update();
-        anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius);
-        if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
+        Vector3 dir = transform.position - player.transform.position; //to check if player is to the right or left of player
+        if (direction == 1)
         {
-            Debug.Log("Attacking: " + anim.GetBool("Attack"));
-            Move();
+            anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius && dir.x < 0); 
+            //Debug.Log(transform.position - player.transform.position);
+            if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
+            {
+                //Debug.Log("Attacking: " + anim.GetBool("Attack"));
+                Move();
+            }
         }
+        else
+        {
+            anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position)  < attackRadius && dir.x > 0);
+            if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
+            {
+                Debug.Log("Attacking: " + anim.GetBool("Attack"));
+                Move();
+            }
+        }
+        
 
     }
 
