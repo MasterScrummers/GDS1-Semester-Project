@@ -31,9 +31,10 @@ public class PlayerMiscAnim : MonoBehaviour
     private void SetReasonLock(string ID)
     {
         ic.SetID(ID, false);
+
     }
 
-    private void SetReasonUnlock(string ID)
+    public void SetReasonUnlock(string ID)
     {
         ic.SetID(ID, true);
     }

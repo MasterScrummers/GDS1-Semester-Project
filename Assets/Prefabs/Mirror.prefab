@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1545559194862053039}
   - component: {fileID: 243889875694792912}
   - component: {fileID: 5236731500094315287}
-  - component: {fileID: 2477564358023993755}
   - component: {fileID: 5144137518872365802}
   m_Layer: 0
   m_Name: Mirror
@@ -75,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -190601041
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 376309215, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,9 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 6
-  knockbackStr: 5
+  knockback: {x: 1, y: 1}
   invincibilityLength: 1.5
-  typing: 0
+  invincibilityTime: 0
+  stunTime: 0
 --- !u!58 &5236731500094315287
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -141,18 +141,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6666667
---- !u!114 &2477564358023993755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5027557552688006826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdcc26d6e9402e2479cd77e10f5542d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5144137518872365802
 MonoBehaviour:
   m_ObjectHideFlags: 0

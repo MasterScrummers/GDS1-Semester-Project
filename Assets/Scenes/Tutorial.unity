@@ -418,30 +418,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndingTutorialRoom
       objectReference: {fileID: 0}
-    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041540509353586343, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_text
-      value: Last but not least, when you die you restart the level. (0.o)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6220325223475044499, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 573766888}
-    - target: {fileID: 6296222954918392628, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_Name
-      value: TutorialFinish
-      objectReference: {fileID: 0}
-    - target: {fileID: 6296222954918392628, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
 --- !u!1001 &6939716434147823479
