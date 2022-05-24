@@ -51,7 +51,7 @@ public class MinotaurBoss : Enemy
             anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position)  < attackRadius && dir.x > 0);
             if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
             {
-                Debug.Log("Attacking: " + anim.GetBool("Attack"));
+                //Debug.Log("Attacking: " + anim.GetBool("Attack"));
                 Move();
             }
         }
@@ -114,6 +114,18 @@ public class MinotaurBoss : Enemy
     protected override void Death()
     {
         anim.SetBool("Dead", true);
+        //Debug.Log("Death Called");
+        BoxCollider2D[] col = GetComponents<BoxCollider2D>();
+        foreach (BoxCollider2D collider in col)
+        {
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), collider);
+        }
+        
+        BoxCollider2D[] colChildren = GetComponentsInChildren<BoxCollider2D>();
+        foreach (BoxCollider2D collider in colChildren)
+        {
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), collider);
+        }
     }
 
     public void FinishDeath()
