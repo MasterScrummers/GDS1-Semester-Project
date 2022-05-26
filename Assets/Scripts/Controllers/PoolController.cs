@@ -31,4 +31,14 @@ public class PoolController : MonoBehaviour
     {
         return pools[poolName].GetObject(autoActive);
     }
+
+    /// <summary>
+    /// Add an GameObject into a specified pool.
+    /// </summary>
+    /// <param name="poolName">The pool to add the GameObject into.</param>
+    /// <param name="gameObject">The GameObject to be added into the pool.</param>
+    public void AddObjectIntoPool(string poolName, GameObject gameObject)
+    {
+        gameObject.transform.parent = pools[poolName].transform;
+    }
 }
