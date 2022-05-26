@@ -121,9 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 6
   knockback: {x: 3, y: 0}
-  invincibilityLength: 0.2
+  invincibilityLength: 0.3
   invincibilityTime: 0
-  stunTime: 0.5
+  stunTime: 0.2
 --- !u!58 &5236731500094315287
 CircleCollider2D:
   m_ObjectHideFlags: 0

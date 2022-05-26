@@ -37,6 +37,7 @@ public class MirrorShieldMovement : MonoBehaviour
     {
         lifeTime = originalLifeTime;
         transform.localScale = originalScale;
+
     }
 
     private void SpecialAttack()
@@ -57,6 +58,7 @@ public class MirrorShieldMovement : MonoBehaviour
         {
             DisableSelf();
         }
+
     }
 
     //Animation Related

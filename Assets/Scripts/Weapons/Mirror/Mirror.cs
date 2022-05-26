@@ -8,8 +8,7 @@ public class Mirror : WeaponBase
         description = "Light: Short Invincibility + Pushback\nHeavy: Summon 4 small mirror\nSpecial: Mirror Bomb";
         animPath = basePath + weaponName + ".";
 
-        specialCooldown = Random.Range(5, 10);
-        baseStrength = 3;
+        specialCooldown = 6;
     }
 
     public override void LightAttack(Animator anim)

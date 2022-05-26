@@ -2919,3 +2919,10 @@ AnimationClip:
     floatParameter: 17
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: SetInvincibilityLength
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.3
+    intParameter: 0
+    messageOptions: 0
