@@ -8,7 +8,6 @@ public class JetAttackAnim : MonoBehaviour
     [SerializeField] private float lightStr = 7;
     [SerializeField] private float heavyStr = 11;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private PlayerInput pi;
     private PoolController poolController;
 
     private enum DashDirection

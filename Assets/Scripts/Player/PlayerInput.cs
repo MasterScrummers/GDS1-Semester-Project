@@ -49,23 +49,9 @@ public class PlayerInput : MonoBehaviour
         orignalspeed = speed;
         originalGravityMultiplier = gravityMultiplier;
 
-        RandomiseWeapons();
-    }
-
-    public void RandomiseWeapons()
-    {
-        bool isSword = DoStatic.RandomBool();
-        if (isSword)
-        {
-            lightWeapon = new Sword();
-            heavyWeapon = new Sword();
-            specialWeapon = new Sword();
-        } else
-        {
-            lightWeapon = new Hammer();
-            heavyWeapon = new Hammer();
-            specialWeapon = new Hammer();
-        }
+        lightWeapon = new Ninja();
+        heavyWeapon = new Ninja();
+        specialWeapon = new Ninja();
     }
 
     void Update()

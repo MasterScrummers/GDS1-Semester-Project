@@ -44,18 +44,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             {
                 anim.SetTrigger("FollowUp");
             }
-
-            anim.SetBool("Shield", ic.GetButtonStates("Attack", "Light"));
-        }
-
-        void HeavyAttackCheck()
-        {
-            if(miscAnim.animState != AnimState.HeavyAttack)
-            {
-                return;
-            }
-
-            anim.SetBool("Spin", ic.GetButtonStates("Attack", "Heavy"));
         }
 
         void CheckWalking()
@@ -114,7 +102,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
             default:
                 LightAttackCheck();
-                HeavyAttackCheck();
                 CheckWalking();
                 CheckJumping();
                 return;

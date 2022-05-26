@@ -12,6 +12,7 @@ public class Sword : WeaponBase
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(3 + extra, 8 + extra);
         knockbackStr = new(10f, 0);
+        invincibilityTime = 0.3f;
     }
 
     public override void LightAttack(Animator anim)

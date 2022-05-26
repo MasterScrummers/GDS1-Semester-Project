@@ -20,11 +20,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 321989413, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+      value: {fileID: -1981837945, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - time: 0.1
+      value: {fileID: 1464953121, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     - time: 0.2
-      value: {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - time: 0.33333334
-      value: {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+      value: {fileID: -1691024035, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - time: 0.3
+      value: {fileID: -39685382, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - time: 4
+      value: {fileID: -341157521, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,15 +48,17 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 321989413, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - {fileID: -1981837945, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - {fileID: 1464953121, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - {fileID: -1691024035, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - {fileID: -39685382, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
+    - {fileID: -341157521, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.36666667
+    m_StopTime: 4.0333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -73,6 +79,27 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: SetAnimState
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 5
+    messageOptions: 0
+  - time: 0
+    functionName: StartAnimInvincible
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 4
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: SetMirrorShield
+    data: On
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
     functionName: SetReasonLock
     data: Movement
     objectReferenceParameter: {fileID: 0}
@@ -80,20 +107,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: SetAnimState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 5
-    messageOptions: 0
-  - time: 0.2
-    functionName: ActiveMirror
-    data: 
+    functionName: SetIsMirrorSpecial
+    data: True
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.36666667
+  - time: 4.0333333
     functionName: SetReasonUnlock
     data: Movement
     objectReferenceParameter: {fileID: 0}

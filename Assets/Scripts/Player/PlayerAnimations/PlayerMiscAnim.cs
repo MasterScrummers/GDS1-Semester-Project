@@ -68,9 +68,4 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
     }
-
-    private void SetInvincible(string state)
-    {
-        Physics2D.IgnoreLayerCollision(6, 7, state.Equals("On"));
-    }
 }
