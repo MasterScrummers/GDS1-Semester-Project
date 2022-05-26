@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour
     private GameObject player; //To toggle player on/off
 
     private UITransitionSystem transitionSystem; //To transition between scenes.
+    private AudioController ac;
 
     /// <summary>
     /// All the scenes in the build. MUST MATCH NAME CORRECTLY.
@@ -28,22 +29,28 @@ public class SceneController : MonoBehaviour
         player = DoStatic.GetChildWithTag("Player", transform);
         currentScene = (SceneName)System.Enum.Parse(typeof(SceneName), DoStatic.GetSceneName());
         transitionSystem = GetComponent<UIController>().GetUI<UITransitionSystem>("TransitionSystem");
-        GenericSceneStartUp();
+        ac = GetComponent<AudioController>();
+        GenericSceneStartUp(currentScene);
     }
     
-    private void GenericSceneStartUp()
+    private void GenericSceneStartUp(SceneName sceneName)
     {
-        bool isTitleScreen = false;
-        foreach(SceneName sceneName in new SceneName[] { SceneName.TitleScreen, SceneName.Credits })
-        {
-            if (isTitleScreen = currentScene == sceneName)
-            {
-                break;
-            }
-        }
-
+        bool isTitleScreen = (int)sceneName < 2;
         player.SetActive(!isTitleScreen);
         inGameUI.SetActive(!isTitleScreen);
+
+        string[] mainGameTrackPool = new string[] {
+            "Normal1", //Dance
+            "Normal2", //Extreme Action (Might be better as a boss track??)
+            "Normal3", //Sqz
+        };
+
+        ac.PlayMusic(sceneName switch
+        {
+            SceneName.TitleScreen => "TitleScreen",
+            SceneName.Credits => "Credits",
+            _ => mainGameTrackPool[Random.Range(0, mainGameTrackPool.Length)],
+        });
     }
 
     /// <summary>
@@ -94,7 +101,7 @@ public class SceneController : MonoBehaviour
         yield return StartCoroutine(Wait(transitionSystem));
 
         currentScene = newSceneName;
-        GenericSceneStartUp();
+        GenericSceneStartUp(currentScene);
         yield return StartCoroutine(LoadProgress(DoStatic.LoadScene(newSceneName.ToString())));
         if (notify != null)
         {

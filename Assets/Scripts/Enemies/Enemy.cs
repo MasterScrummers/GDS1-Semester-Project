@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthComponent))]
 public abstract class Enemy : AttackDealer, IAttackReceiver
 {
-    [SerializeField] protected bool randomiseAffinity = false;
+    [SerializeField] protected bool allowKnockback = false;
     protected bool hurt;
     public const float HurtTime = 0.2f;
     private float hurtColourTimer = HurtTime;
@@ -77,7 +77,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         inRoom = roomData;
     }
 
-    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
     {
         if (this.invincibilityTime !<= 0f)
         {
@@ -88,7 +88,11 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
             this.stunTime = stunTime;
             this.invincibilityTime = invincibilityTime;
 
-            rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
+            if (allowKnockback)
+            {
+                rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
+            }
+
             if (health.health <= 0)
             {
                 Death();

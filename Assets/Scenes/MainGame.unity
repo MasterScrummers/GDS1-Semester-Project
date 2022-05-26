@@ -130,18 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 544042795907165969, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 544042795965757132, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 544042796110783183, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 432317735170450738, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1762223729}
     - target: {fileID: 5579775396398784289, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -466,12 +458,13 @@ PrefabInstance:
       propertyPath: prefab
       value: 
       objectReference: {fileID: 8053696504465152122, guid: 03af3c6d57a1c554dac0bc7cfdd632af, type: 3}
-    - target: {fileID: 9077803633783099290, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+--- !u!20 &1762223729 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4475950011010744415, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+  m_PrefabInstance: {fileID: 1762223728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &562525936460703211
 PrefabInstance:
   m_ObjectHideFlags: 0
