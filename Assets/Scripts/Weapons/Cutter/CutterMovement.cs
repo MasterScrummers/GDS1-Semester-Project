@@ -2,58 +2,52 @@ using UnityEngine;
 
 public class CutterMovement : ProjectileMovement
 {
-    private GameObject player;
     private PoolController poolController;
-    private Transform playerTransform;
-    private VectorLerper lerp;
-    private float tick;
-    public CutterMovement() : base()
-    {
-    }
+    private Transform player;
+    private Lerper lerp;
+    private float originalSpd;
+    private bool isComingBack = false;
+    [SerializeField] float acceleration = 0.5f;
 
     private void Awake()
     {
-        lerp = new VectorLerper();
-        player = DoStatic.GetPlayer();
-        playerTransform = player.transform;
+        lerp = new();
+        originalSpd = speed;
     }
+
     protected override void Start()
     {
         base.Start();
+        player = DoStatic.GetPlayer<Transform>();
         poolController = DoStatic.GetGameController<PoolController>();
     }
 
     protected override void Update()
     {
-
-        if (lerp.isLerping)
+        lerp.Update(Time.deltaTime);
+        rb.velocity = lerp.currentValue * transform.right; //Allow the object to move in the direction it is facing.
+        if (!isComingBack)
         {
-            lerp.Update(Time.deltaTime);
-            transform.position = lerp.currentValue;
-            tick = 3f;
-        }
-
-        else
+            isComingBack = !lerp.isLerping;
+            if (isComingBack)
+            {
+                lerp.SetValues(0, originalSpd, 1 / acceleration);
+            }
+        } else
         {
-            transform.position = Vector3.Lerp(transform.position, playerTransform.position, 1 / (tick -= Time.deltaTime));
-            gameObject.SetActive(tick > 0);
-        }
-        
-
-        gameObject.SetActive((lifeTick -= Time.deltaTime) > 0);
-
-        if (!gameObject.activeInHierarchy)
-        {
-            poolController.AddObjectIntoPool("CutterPool", gameObject);
+            transform.rotation = DoStatic.LookAt(transform.position, player.position);
+            if (Vector3.Distance(transform.position, player.position) < 0.5f)
+            {
+                poolController.AddObjectIntoPool("CutterPool", gameObject);
+                gameObject.SetActive(false);
+            }
         }
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (lerp != null)
-        {
-            lerp.SetValues(playerTransform.position, playerTransform.position + new Vector3(5, 0, 0), 1f);
-        }
+        isComingBack = false;
+        lerp.SetValues(originalSpd, 0, 1 / acceleration);
     }
 }

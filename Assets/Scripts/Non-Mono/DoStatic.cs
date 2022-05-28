@@ -173,4 +173,18 @@ public class DoStatic
         a = b;
         b = temp;
     }
+
+    /// <summary>
+    /// Get the rotation to look at.
+    /// </summary>
+    /// <param name="from">The starting position to look</param>
+    /// <param name="target">The target position to look</param>
+    /// <returns>The Quaternion angle to look at the target</returns>
+    public static Quaternion LookAt(Vector2 from, Vector2 target)
+    {
+        float opposite = target.y - from.y;
+        float adjacent = target.x - from.x;
+        float angle = Mathf.Atan2(opposite, adjacent) * Mathf.Rad2Deg;
+        return Quaternion.Euler(new(0, 0, angle));
+    }
 }

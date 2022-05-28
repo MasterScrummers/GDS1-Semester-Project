@@ -143,42 +143,6 @@ PrefabInstance:
       propertyPath: rotationSpeed.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4475950011010744480, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_Size.x
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_Size.y
-      value: 1.5416666
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.36749995
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.7708333
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.9166667
-      objectReference: {fileID: 0}
     - target: {fileID: 7128891663749715997, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -237,36 +201,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de905da36588aa44884e3c4721a4f817, type: 3}
---- !u!1 &1931925500 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2834517392197775664, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-  m_PrefabInstance: {fileID: 970244638}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1931925502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931925500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e4181158c2c3f4fa0a64476329bdad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1931925503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931925500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126a8e6a00503ff4d839709485ca34f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 0, y: 0, z: 0.1}
 --- !u!1001 &1116429674872153025
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -37,9 +37,8 @@ Transform:
   - {fileID: 749352406276851550}
   - {fileID: 5954393082887964401}
   - {fileID: 4789079845187320101}
-  - {fileID: 3778822654277405955}
   m_Father: {fileID: 8310726583514417075}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &521440045666724191
 MonoBehaviour:
@@ -459,7 +458,7 @@ Transform:
   - {fileID: 3114128945873263297}
   - {fileID: 2429430746033378215}
   m_Father: {fileID: 8310726583514417075}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931947045949380929
 GameObject:
@@ -1681,7 +1680,7 @@ Transform:
   - {fileID: 8441322147785272328}
   - {fileID: 5073334236650673534}
   m_Father: {fileID: 8310726583514417075}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &951237380800489672
 MonoBehaviour:
@@ -1730,6 +1729,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3778822654277405955}
+  - component: {fileID: 241644969132482310}
+  - component: {fileID: 6503319130095825607}
   m_Layer: 0
   m_Name: Cutter Pivot
   m_TagString: Untagged
@@ -1749,9 +1750,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 3
+  m_Father: {fileID: 8310726583514417075}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &241644969132482310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834517392197775664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126a8e6a00503ff4d839709485ca34f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 0, z: 0.5}
+--- !u!114 &6503319130095825607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834517392197775664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e4181158c2c3f4fa0a64476329bdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2868533006415726624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,6 +3162,7 @@ Transform:
   m_Children:
   - {fileID: 4475950011010744480}
   - {fileID: 1615780684181331837}
+  - {fileID: 3778822654277405955}
   - {fileID: 2344408869410372167}
   - {fileID: 134018831627938800}
   - {fileID: 3558329760775852066}
