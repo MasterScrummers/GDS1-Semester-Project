@@ -43,9 +43,5 @@ public class JetAttackAnim : MonoBehaviour
 
     private void SpawnEnergyPulse()
     {
-        GameObject projectile = poolController.GetObjectFromPool("EnergyPool");
-        projectile.transform.position = firePoint.position;
-        projectile.transform.eulerAngles = firePoint.parent.transform.eulerAngles;
-        projectile.GetComponent<AttackDealer>()?.UpdateAttackDealer(pi.specialWeapon);
     }
 }
