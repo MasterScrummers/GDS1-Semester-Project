@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1762223729}
+    - target: {fileID: 1009001176262693732, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1762223729}
     - target: {fileID: 5579775396398784289, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -181,6 +185,18 @@ PrefabInstance:
     - target: {fileID: 5579775396398784295, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
       propertyPath: m_Name
       value: MinotaurRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916238979146886605, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916238979146886605, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916238979146886605, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb43d3d161fab75459934cb32b3f0121, type: 3}
@@ -370,22 +386,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 908795106552820488, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 961019237750710834, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 12.399902
-      objectReference: {fileID: 0}
-    - target: {fileID: 961019237750710834, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -9.699951
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688587229057480951, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_Name
-      value: WormBulletPool
-      objectReference: {fileID: 0}
     - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 1
@@ -402,10 +402,6 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.9166667
       objectReference: {fileID: 0}
-    - target: {fileID: 5900323457753328119, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: projectiles.Array.data[1]
-      value: 
-      objectReference: {fileID: 3425233335716605277, guid: c79bcaf9d8869834582d98b1b5c921b9, type: 3}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -454,10 +450,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8808728798813333230, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: prefab
-      value: 
-      objectReference: {fileID: 8053696504465152122, guid: 03af3c6d57a1c554dac0bc7cfdd632af, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de905da36588aa44884e3c4721a4f817, type: 3}
 --- !u!20 &1762223729 stripped

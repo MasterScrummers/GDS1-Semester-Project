@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WormAnim : MonoBehaviour
@@ -71,6 +69,6 @@ public class WormAnim : MonoBehaviour
 
     private void FinishDeath()
     {
-        worm.FinishDeath();
+        worm.RemoveEnemy();
     }
 }

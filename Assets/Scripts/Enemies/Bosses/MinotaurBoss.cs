@@ -9,6 +9,7 @@ public class MinotaurBoss : Enemy
     [SerializeField] private float leftBoundary = -1; //The right boundary?
     [SerializeField] private float rightBoundary = 1; //The left boundary?
     [SerializeField] private float attackRadius = 2.0f;
+    private GameObject player;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -39,34 +40,21 @@ public class MinotaurBoss : Enemy
         if (direction == 1)
         {
             anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius && dir.x < 0); 
-            //Debug.Log(transform.position - player.transform.position);
-            if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
-            {
-                //Debug.Log("Attacking: " + anim.GetBool("Attack"));
-                Move();
-            }
         }
         else
         {
             anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position)  < attackRadius && dir.x > 0);
-            if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
-            {
-                //Debug.Log("Attacking: " + anim.GetBool("Attack"));
-                Move();
-            }
         }
         
+        if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
+        {
+            Move();
+        }
 
     }
 
-    // To be implemented
-    protected override void Move()
+    protected void Move()
     {
-        if (!rb)
-        {
-            return;
-        }
-
         Vector3 sca = transform.localScale;
         if (sca.x < 0 && transform.position.x < leftBoundary || sca.x > 0 && transform.position.x > rightBoundary)
         {
@@ -80,11 +68,6 @@ public class MinotaurBoss : Enemy
         rb.velocity = vel;
     }
 
-    // To be implemented
-    protected override void Attack()
-    {
-    }
-
     void OnDrawGizmosSelected()
     {
         float posX = rb ? 0 : transform.position.x;
@@ -93,43 +76,14 @@ public class MinotaurBoss : Enemy
 
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            anim.SetBool("Attack", true);
-            Debug.Log("in range " + anim.GetBool("Attack"));
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            anim.SetBool("Attack", false);
-            Debug.Log("Player gone " + anim.GetBool("Attack"));
-        }
-    }*/
-
     protected override void Death()
     {
         anim.SetBool("Dead", true);
-        //Debug.Log("Death Called");
-        BoxCollider2D[] col = GetComponents<BoxCollider2D>();
-        foreach (BoxCollider2D collider in col)
-        {
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), collider);
-        }
         
         BoxCollider2D[] colChildren = GetComponentsInChildren<BoxCollider2D>();
         foreach (BoxCollider2D collider in colChildren)
         {
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), collider);
         }
-    }
-
-    public void FinishDeath()
-    {
-        base.Death();
     }
 }

@@ -11,6 +11,6 @@ public class MinotaurAnim : MonoBehaviour
 
     private void FinishDeath()
     {
-        boss.FinishDeath();
+        boss.RemoveEnemy();
     }
 }

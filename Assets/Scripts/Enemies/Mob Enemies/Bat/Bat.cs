@@ -1,29 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bat : Enemy
 {
-    
-    // protected Rigidbody2D rb; // Bat Rigidbody
     private CircleCollider2D cc; // Bat CircleCollider
     private BatAnim ba; // BatAnim script
 
-    public enum State { Move, Attack, Death, DeathEnd }; // Bat states
-    public State state = State.Move; // Tracks bat current state
-    public enum AttackState { AttackStart, Attacking, AttackEnd };
-    public AttackState attackState = AttackState.AttackStart;
-    
-    [SerializeField] private float movementSpeed = 0.01f; //The movement of the enemy
-    [SerializeField] private float attackRadius = 2.0f;
-    public Vector3 attackTargetPos;
-    [SerializeField] private float attackPauseTime = 0.5f;
-    private float attackPauseTimer;
-    [SerializeField] private float attackCooldown = 2f;
-    private float attackCooldownTimer;
+    private Transform player;
+    private Transform playerPointer;
+    private Vector2 vel;
 
+    public enum State { Move, Attack, Death, DeathEnd }; // Bat states
+    public State state { get; private set; } = State.Move; // Tracks bat current state
+    private enum AttackState { AttackStart, Attacking, AttackEnd };
+    private AttackState attackState = AttackState.AttackStart;
+    
+    [SerializeField] private float movementSpeed = 1; //The movement of the enemy
+    [SerializeField] private float attackSpeed = 1;
+    [SerializeField] private float attackRadius = 2.0f;
+
+    [SerializeField] private float idleTimer = 0.5f;
+    [SerializeField] private float anticipationTimer = 0.5f;
+    [SerializeField] private float attackTimer = 0.5f;
     [SerializeField] private float deathTimer = 5;
-    private float deathTick;
+    private float tick;
+
     
     // Start is called before the first frame update
     protected override void Start()
@@ -32,85 +32,76 @@ public class Bat : Enemy
         
         ba = GetComponentInChildren<BatAnim>();
         cc = GetComponent<CircleCollider2D>();
-
-        attackPauseTimer = 0f;
-        attackCooldownTimer = 0f;
+        player = DoStatic.GetPlayer<Transform>();
+        playerPointer = GetComponentInChildren<PlayerPointer>().transform;
+        tick = 0f;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+        float delta = Time.deltaTime;
 
-        if (state == State.Death && (deathTick -= deathTick > 0 ? Time.deltaTime : 0) < 0)
+        tick -= tick <= 0 ? 0 : delta;
+        if (isStunned)
         {
-            FinishDeath();
+            return;
         }
 
-        if (!isStunned)
+        DoStatic.SimpleDelegate simple = state switch
         {
-            switch(state) {
-
-                case State.Move:
-                    Move();
-                    break;
-                
-                case State.Attack:
-                    if (hurt)
-                    {
-                        InterruptAttack();
-                    }
-                    Attack();
-                    break;
-            }
-        }
-          
-        if (attackCooldownTimer > 0f)
+            State.Move => Move,
+            State.Attack => hurt ? InterruptAttack : Attack,
+            State.Death => tick < 0 ? RemoveEnemy : null,
+            _ => null
+        };
+        if (simple != null)
         {
-            attackCooldownTimer -= Time.deltaTime;
+            simple();
         }
     }
 
     // Bat movement
-    protected override void Move()
+    protected void Move()
     {
-        if (rb) 
+        rb.velocity = movementSpeed * playerPointer.right;
+        if (Vector2.Distance(transform.position, player.position) < attackRadius && tick <= 0f && !hurt)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, player.transform.position) < attackRadius && attackCooldownTimer <= 0f && hurt)
-            {
-                state = State.Attack;
-                attackTargetPos = player.transform.position;
-                attackPauseTimer = attackPauseTime;
-            }
+            state = State.Attack;
+            tick = anticipationTimer;
+            vel = playerPointer.right * attackSpeed;
         }
+        Vector3 rot = transform.eulerAngles;
+        rot.y = transform.position.x < player.transform.position.x ? 0 : 180;
+        transform.eulerAngles = rot;
     }
 
-    protected override void Attack()
+    protected void Attack()
     {
         switch(attackState) {
 
             case AttackState.AttackStart:
-                if (attackPauseTimer <= 0f)
+                rb.velocity = Vector2.zero;
+                if (tick <= 0f)
                 {
                     attackState = AttackState.Attacking;
-                } else {
-                    attackPauseTimer -= Time.deltaTime;
+                    tick = attackTimer;
                 }
                 break;
 
             case AttackState.Attacking:
-                rb.AddForce(Vector3.Normalize(attackTargetPos - transform.position) * 1000f);
-                attackState = AttackState.AttackEnd;
+                rb.velocity = vel;
+                if (tick <= 0f)
+                {
+                    attackState = AttackState.AttackEnd;
+                }
                 break;
 
             case AttackState.AttackEnd:
-                if (Vector2.Distance(transform.position, attackTargetPos) < 0.01f || Vector2.Distance(rb.velocity, Vector2.zero) <= 0.01f)
-                {
-                    state = State.Move;
-                    attackState = AttackState.AttackStart;
-                    attackCooldownTimer = attackCooldown;
-                }
+                state = State.Move;
+                attackState = AttackState.AttackStart;
+                tick = idleTimer;
                 break;            
         }
     }
@@ -118,29 +109,22 @@ public class Bat : Enemy
     // Bat death
     protected override void Death()
     {
+        state = State.Death;
         cc.enabled = false;
         ba.Death();
-        deathTick = deathTimer;
-    }
-    /// <summary>
-    /// Bat death base logic - Shouldn't need to call this unless in BatAnim
-    /// </summary>
-    public void FinishDeath()
-    {
-        base.Death();
+        tick = deathTimer;
     }
 
     private void InterruptAttack()
     {
         state = State.Move;
         attackState = AttackState.AttackStart;
-        attackCooldownTimer = 0f;
-        attackPauseTimer = 0f;
+        rb.velocity = Vector2.zero;
+        tick = 0f;
     }
 
-    // public override void RecieveAttack(Transform attackPos, int strength, float knockbackStr, float invincibilityTime, WeaponBase.Affinity typing)
-    // {
-    //     base.RecieveAttack(attackPos, strength, knockbackStr, invincibilityTime, typing);
-    //     ba.TakeDamage();
-    // }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
 }

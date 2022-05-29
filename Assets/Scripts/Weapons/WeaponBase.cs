@@ -30,4 +30,18 @@ public abstract class WeaponBase
     /// Meant to be overridden for the special attack.
     /// </summary>
     public virtual void SpecialAttack(Animator anim) {}
+
+    public static WeaponBase RandomWeapon()
+    {
+        return Random.Range(1, 7) switch
+        {
+            1 => new Sword(),
+            2 => new Hammer(),
+            3 => new Cutter(),
+            4 => new Mirror(),
+            5 => new Jet(), //Used to be jet. But jetlaggy
+            6 => new Ninja(),
+            _ => new Sword(),
+        };
+    }
 }
