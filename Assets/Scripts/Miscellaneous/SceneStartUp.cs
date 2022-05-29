@@ -34,6 +34,7 @@ public class SceneStartUp : MonoBehaviour
             player.transform.position = startPos;
         }
 
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         switch(DoStatic.GetSceneName())
         {
             case "Tutorial":

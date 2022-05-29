@@ -74,7 +74,7 @@ public class SceneController : MonoBehaviour
     /// <param name="transitionName"></param>
     public void RestartScene(DoStatic.SimpleDelegate notify = null, string transitionName = "")
     {
-        ChangeScene(currentScene, notify, transitionName);
+        ChangeScene(SceneName.MainGame, notify, transitionName);
     }
 
     private IEnumerator Transition(SceneName newSceneName, DoStatic.SimpleDelegate notify, string transitionName)

@@ -113,7 +113,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         Physics2D.IgnoreLayerCollision(6, 7, false);
         ic.SetInputLock(false);
         col.enabled = true;
-        rb.velocity = Vector2.zero;
         anim.SetTrigger("Restart");
         health.Restart();
         rb.transform.eulerAngles = Vector3.zero;
