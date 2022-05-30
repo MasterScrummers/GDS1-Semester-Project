@@ -39,6 +39,11 @@ public class AttackDealer : MonoBehaviour
         invincibilityLength = length;
     }
 
+    public void SetStunTime(float time)
+    {
+        stunTime = time;
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();

@@ -8,11 +8,10 @@ public class Jet : WeaponBase
         description = "Light: Dash\nHeavy: Long Dash\n Special: Dash with energy pulse";
         animPath = basePath + weaponName + "."; 
 
-        specialCooldown = Random.Range(2, 4);
-        int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        baseStrength = Random.Range(4 + extra, 7 + extra);
-        knockbackStr = new(18f, 0);
-        invincibilityTime = 0.4f;
+        specialCooldown = Random.Range(3, 5);
+        baseStrength = Random.Range(5 , 8);
+        knockbackStr = new(30f, 0);
+        invincibilityTime = 0.2f;
     }
 
     public override void LightAttack(Animator anim)

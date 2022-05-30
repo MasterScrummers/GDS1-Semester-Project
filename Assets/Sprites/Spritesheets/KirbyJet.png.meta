@@ -406,7 +406,7 @@ TextureImporter:
         width: 54
         height: 27
       alignment: 9
-      pivot: {x: 0.7432494, y: 0.096628256}
+      pivot: {x: 0.76893336, y: 0.014040912}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -427,7 +427,7 @@ TextureImporter:
         width: 49
         height: 27
       alignment: 9
-      pivot: {x: 0.7185971, y: 0.09339763}
+      pivot: {x: 0.7481282, y: 0.017949704}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -456,27 +456,6 @@ TextureImporter:
       bones: []
       spriteID: e4193f90c7e93cc44b07e86bef817e6e
       internalID: 1590195136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jet_Special_3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 62
-        width: 31
-        height: 28
-      alignment: 9
-      pivot: {x: 0.8120412, y: 0.03187997}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e1f6d3cd55fe364e920c1f1c44338b5
-      internalID: 146555580
       vertices: []
       indices: 
       edges: []
@@ -573,8 +552,8 @@ TextureImporter:
         y: 20
         width: 31
         height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5459339, y: 0.0173956}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -582,6 +561,111 @@ TextureImporter:
       bones: []
       spriteID: 5f236d7ceae5c734fb38081819c88540
       internalID: -1162353043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jet_Special_3
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 157
+        width: 26
+        height: 14
+      alignment: 9
+      pivot: {x: 0.7371075, y: 0.028276715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 495dfb64955677241aa4df943cd30706
+      internalID: 146555580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jet_Special_4
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 222
+        width: 32
+        height: 24
+      alignment: 9
+      pivot: {x: 0.61380005, y: 0.017810186}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3479462b0e7b0640afbfaef49999ea5
+      internalID: 1791047125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jet_Special_5
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 279
+        width: 18
+        height: 18
+      alignment: 9
+      pivot: {x: 0.54682755, y: 0.01717631}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75a4fe5d66da8d44b184b294926f498
+      internalID: -547840098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jet_Special_6
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 245
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.51493835, y: 0.03000323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a2e2c254ff7b042991f1c6e8df19af
+      internalID: 1094920087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jet_Special_7
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 206
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.52602947, y: 0.02093048}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dc7a349fb636e4089667b6630ff7d1
+      internalID: 1898852992
       vertices: []
       indices: 
       edges: []
@@ -601,9 +685,11 @@ TextureImporter:
       Jet_Heavy_3: 1091818404
       Jet_Special_1: 1953149686
       Energy_Pulse_0: -1057819676
+      Jet_Special_6: 1094920087
       jet_light_3: -40096545
       Jet_Special_2: 1590195136
       Energy_Pulse_3: -55483330
+      Jet_Special_5: -547840098
       Energy_Pulse_1: 1769444613
       Energy_Pulse_2: 1474269677
       jet_light_6: 507135477
@@ -611,15 +697,17 @@ TextureImporter:
       jet_light_0: -175960976
       jet_light_2: 465603355
       jet_light_4: 15981300
+      Jet_Special_4: 1791047125
       Jet_Heavy_4: -1170348470
       Jet_Special_0: 1767882895
+      Jet_Special_7: 1898852992
       jet_light_5: 741517496
       Jet_Icon: -1162353043
       Jet_Heavy_0: 1054813011
       jet_light_7: 2130309554
       jet_light_1: -533277040
-      Jet_Heavy_1: -932504939
       Jet_Special_3: 146555580
+      Jet_Heavy_1: -932504939
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -10,6 +10,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -68,4 +69,10 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
     }
+
+    private void ResetGravityScale()
+    {
+        rb.gravityScale = pi.originalGravity;
+    }
+
 }

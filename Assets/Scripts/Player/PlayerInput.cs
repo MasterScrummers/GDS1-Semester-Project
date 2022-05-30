@@ -56,8 +56,8 @@ public class PlayerInput : MonoBehaviour
     public void Restart()
     {
         lightWeapon = WeaponBase.RandomWeapon();
-        heavyWeapon = WeaponBase.RandomWeapon();
-        specialWeapon = WeaponBase.RandomWeapon();
+        heavyWeapon =  WeaponBase.RandomWeapon();
+        specialWeapon = WeaponBase.RandomWeapon(); 
     }
 
     void Update()
@@ -83,7 +83,10 @@ public class PlayerInput : MonoBehaviour
 
     private void VerticalMovement()
     {
-        rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
+        if (!isSliding)
+        {
+            rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
+        }
         isFalling = rb.velocity.y < -1f;
         if (isFalling && coyoteTick < 0)
         {
