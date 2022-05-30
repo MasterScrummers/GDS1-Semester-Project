@@ -45,6 +45,7 @@ public class AttackDealer : MonoBehaviour
         
         if (receiver != null)
         {
+            Debug.Log("Received attack from: " + collision.gameObject.name);
             receiver.RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Worm : Enemy
 {
     private WormAnim wa; // WormAnim script
+    private BoxCollider2D bc; // Worm BoxCollider
     public enum State { Idle, Attack, Hiding, Death };
     public State state = State.Idle;
 
@@ -15,6 +16,7 @@ public class Worm : Enemy
     {
         base.Start();
         wa = GetComponentInChildren<WormAnim>();
+        bc = GetComponent<BoxCollider2D>();
         stateTimer = Random.Range(idleTimeMin, idleTimeMax);
     }
 
@@ -42,6 +44,17 @@ public class Worm : Enemy
                     break;
             }
             wa.updateState();
+
+            switch (state) {
+                case State.Hiding:
+                case State.Death:
+                    bc.enabled = false;
+                    break;
+                case State.Idle:
+                case State.Attack:
+                    bc.enabled = true;
+                    break;
+            }
         }
     }
 
@@ -49,6 +62,7 @@ public class Worm : Enemy
 
         if (other.gameObject.CompareTag("Player") && state == State.Death)
         {
+            Debug.Log("Ignoring collision");
             Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
         }
     }
@@ -56,5 +70,13 @@ public class Worm : Enemy
     protected override void Death()
     {
         wa.Death();
+    }
+
+    public override void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    {
+        if (state != State.Death)
+        {
+            base.RecieveAttack(attackerPos, strength, knockback, invincibilityTime, stunTime);
+        }
     }
 }
