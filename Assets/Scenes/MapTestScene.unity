@@ -131,9 +131,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
-      propertyPath: rooms.Array.data[15]
+      propertyPath: vCont
       value: 
-      objectReference: {fileID: 5522571226001360581, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}
+      objectReference: {fileID: 1127869284}
     - target: {fileID: 2194689467201349317, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -253,3 +253,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+--- !u!114 &1127869284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 536907125051284781, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+  m_PrefabInstance: {fileID: 741305587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e923aba26e8ea64d91d9923eb46d6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

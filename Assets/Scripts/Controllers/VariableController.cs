@@ -19,6 +19,17 @@ public class VariableController : MonoBehaviour
     private Dictionary<string, Sprite> allIcons;
     private Dictionary<string, Color32> globalColours;
     private SceneController.SceneName scene = SceneController.SceneName.MainGame;
+    private int level = 0;
+
+    public void SetLevel(int newLevel)
+    {
+        level = newLevel;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
 
     void Awake()
     {

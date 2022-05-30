@@ -4,10 +4,12 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     //private int[,] mapRoom;
+    [SerializeField] private VariableController vCont;
     [SerializeField] private int maxRooms; // The max amount of rooms
     public GameObject startRoom; //The start room, could be hardcoded.
     public RoomData[] specialRooms; //The special room pool
     public RoomData[] rooms; //The room pools
+
     //public int roomCount;
 
     private Dictionary<Vector2, RoomData> grid;
@@ -25,6 +27,7 @@ public class MapGenerator : MonoBehaviour
     /// </summary>
     public void GenerateLevel()
     {
+        vCont.SetLevel(vCont.GetLevel()+1);
         PlanLevelStructure();
         GenerateRooms();
         grid.Clear(); //For the next time the level needs to be generated.
@@ -37,12 +40,12 @@ public class MapGenerator : MonoBehaviour
             "L", "R", "U", "D",
 
             "LR", "LU", "LD",
-            "RU", "RD",
+            "UR", "DR",
             "UD",
 
-            "LRU", "LRD", "LUD", "RUD",
+            "LUR", "LDR", "LUD", "UDR",
 
-            "LRUD"
+            "LUDR"
         })
         {
             sortedNormalRooms.Add(combination, new List<GameObject>());
@@ -52,9 +55,9 @@ public class MapGenerator : MonoBehaviour
         {
             string exits = "";
             exits += room.HasExit(RoomData.Direction.left) ? "L" : "";
-            exits += room.HasExit(RoomData.Direction.right) ? "R" : "";
             exits += room.HasExit(RoomData.Direction.up) ? "U" : "";
             exits += room.HasExit(RoomData.Direction.down) ? "D" : "";
+            exits += room.HasExit(RoomData.Direction.right) ? "R" : "";
             sortedNormalRooms[exits].Add(room.gameObject);
         }
     }
@@ -104,6 +107,11 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRooms()
     {
+        int level = vCont.GetLevel();
+        Vector2 maxRight = Vector2.zero;
+        string finalCode = ""; 
+        GameObject finalRoom = null;
+
         string[] cell = new string[sortedNormalRooms.Count];
         sortedNormalRooms.Keys.CopyTo(cell, 0);
 
@@ -114,9 +122,9 @@ public class MapGenerator : MonoBehaviour
         {
             string exist = "";
             exist += grid.ContainsKey((pos + new Vector2(-50, 0))) ? "L" : "";
-            exist += grid.ContainsKey(pos + new Vector2(50, 0)) ? "R" : "";
             exist += grid.ContainsKey(pos + new Vector2(0, 50)) ? "U" : "";
             exist += grid.ContainsKey(pos + new Vector2(0, -50)) ? "D" : "";
+            exist += grid.ContainsKey(pos + new Vector2(50, 0)) ? "R" : "";
 
             if (!grid[pos])
             {
@@ -124,8 +132,27 @@ public class MapGenerator : MonoBehaviour
                 int spawningRoom = Random.Range(0, eligibleRoom.Count);
                 GameObject roomToSpawn = eligibleRoom[spawningRoom];
 
-                grid[pos] = Instantiate(roomToSpawn, pos, Quaternion.identity).GetComponent<RoomData>();
-            }
+                GameObject spawned = Instantiate(roomToSpawn, pos, Quaternion.identity);
+                grid[pos] = spawned.GetComponent<RoomData>();
+
+                if (pos.x > maxRight.x)
+                {
+                    maxRight = pos;
+                    finalRoom = spawned;
+                    finalCode = exist;
+                }
+            }            
         }
-    }
+
+        Destroy(finalRoom);
+        finalCode += "R";
+        List<GameObject> roomsT = sortedNormalRooms[finalCode];
+        int randR = Random.Range(0, roomsT.Count);
+        GameObject room = roomsT[randR];
+        Instantiate(room, maxRight, Quaternion.identity);
+        Instantiate(specialRooms[1], maxRight + new Vector2(50,0), Quaternion.identity);
+        Instantiate(specialRooms[level + 1], maxRight + new Vector2(100, 0), Quaternion.identity);
+        Instantiate(specialRooms[0], maxRight + new Vector2(150,0),Quaternion.identity);
+
+    } 
 }
