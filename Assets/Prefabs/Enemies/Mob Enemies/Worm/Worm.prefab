@@ -217,7 +217,7 @@ MonoBehaviour:
   invincibilityLength: 1.5
   invincibilityTime: 0
   stunTime: 0
-  randomiseAffinity: 1
+  allowKnockback: 1
   state: 0
   stateTimer: 0
   idleTimeMin: 5
@@ -239,7 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 2
-  health: 0
 --- !u!1 &3493965079819558133
 GameObject:
   m_ObjectHideFlags: 0
