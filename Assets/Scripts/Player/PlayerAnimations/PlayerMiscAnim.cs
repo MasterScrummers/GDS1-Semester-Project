@@ -10,12 +10,14 @@ public class PlayerMiscAnim : MonoBehaviour
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
+    private GameObject player;
 
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
         ac = ic.GetComponent<AudioController>();
         pi = GetComponentInParent<PlayerInput>();
+        player = DoStatic.GetPlayer();
     }
 
     private void SetAnimState(PlayerAnim.AnimState state)
@@ -67,5 +69,10 @@ public class PlayerMiscAnim : MonoBehaviour
     private void ActivateProjectile(int num)
     {
         Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
+    }
+
+    public void ResetRotation()
+    {
+        player.transform.eulerAngles = (Vector2)player.transform.eulerAngles;
     }
 }

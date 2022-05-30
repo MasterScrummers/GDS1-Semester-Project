@@ -35,6 +35,7 @@ public class SceneStartUp : MonoBehaviour
         }
 
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.transform.eulerAngles = Vector3.zero;
         switch(DoStatic.GetSceneName())
         {
             case "Tutorial":
