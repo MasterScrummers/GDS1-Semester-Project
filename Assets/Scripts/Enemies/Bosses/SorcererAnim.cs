@@ -49,7 +49,7 @@ public class SorcererAnim : MonoBehaviour
     {
         if (on)
         {
-            InvokeRepeating("AttackCircle", 0f, 0.1f);
+            InvokeRepeating("AttackCircle", 0f, 0.05f);
         } else {
             CancelInvoke();
         }
@@ -72,7 +72,7 @@ public class SorcererAnim : MonoBehaviour
                 break;
         }
 
-        circleAngle += circleDirection == 1 ? 10f : -10f;
+        circleAngle += circleDirection == 1 ? -10f : 10f;
     }
 
     public void UpdateState() {

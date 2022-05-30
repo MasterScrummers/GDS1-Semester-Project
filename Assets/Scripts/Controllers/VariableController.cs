@@ -18,7 +18,7 @@ public class VariableController : MonoBehaviour
     [SerializeField] private IconPedia[] icons;
     private Dictionary<string, Sprite> allIcons;
     private Dictionary<string, Color32> globalColours;
-    private SceneController.SceneName scene = SceneController.SceneName.MainGame;
+    private SceneController.SceneName scene = SceneController.SceneName.MapTestScene;
     private int level = 1;
 
     public void SetLevel(int newLevel)

@@ -11,8 +11,8 @@ public class Sorcerer : Enemy
     public float stateTimer;
     public float moveTimeMin, moveTimeMax, attackTimeMin, attackTimeMax;
 
-    private float upperBoundary = 0;
-    private float lowerBoundary = -6;
+    [SerializeField]private float upperBoundary = 0;
+    [SerializeField]private float lowerBoundary = -6;
 
     [SerializeField] private float movementSpeed = 1;
     private float direction = 1; // Up, -1 for down
@@ -23,6 +23,10 @@ public class Sorcerer : Enemy
         base.Start();
         sa = GetComponentInChildren<SorcererAnim>();
         cc = GetComponent<CapsuleCollider2D>();
+
+        float oY = transform.position.y;
+        upperBoundary += oY;
+        lowerBoundary += oY;
     }
 
     // Update is called once per frame
@@ -76,5 +80,12 @@ public class Sorcerer : Enemy
         {
             Physics2D.IgnoreCollision(other.collider, cc);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        float posY = rb ? 0 : transform.position.y;
+        Gizmos.DrawLine(new Vector2(int.MinValue, posY + upperBoundary), new Vector2(int.MaxValue, posY + upperBoundary));
+        Gizmos.DrawLine(new Vector2(int.MinValue, posY + lowerBoundary), new Vector2(int.MaxValue, posY + lowerBoundary));
     }
 }
