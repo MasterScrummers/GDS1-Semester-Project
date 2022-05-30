@@ -173,4 +173,14 @@ public class DoStatic
         a = b;
         b = temp;
     }
+
+    /// <summary>
+    /// Get the rotation to look at.
+    /// </summary>
+    /// <param name="from">The starting position to look</param>
+    /// <param name="target">The target position to look</param>
+    public static void LookAt(Transform from, Transform target)
+    {
+        from.right = target.position - from.position;
+    }
 }

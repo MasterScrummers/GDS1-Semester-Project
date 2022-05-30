@@ -6,7 +6,6 @@ public abstract class UIWeaponCircle : UICircleBarBase
     protected PlayerInput playerInput;
     protected Image weaponIcon;
     protected VariableController variableController;
-    protected Color prevColor;
 
     protected override void Start()
     {
@@ -19,19 +18,14 @@ public abstract class UIWeaponCircle : UICircleBarBase
                 break;
             }
         }
-
         variableController = DoStatic.GetGameController<VariableController>();
         playerInput = DoStatic.GetPlayer().GetComponent<PlayerInput>();
-    }
-
-    protected void UpdateColour(WeaponBase weapon)
-    {
-        circle.color = weapon.weaponColour;
+        circle.color = variableController.GetColour("Rubik Green");
     }
 
     protected void UpdateSprite(WeaponBase weapon)
     {
-        weaponIcon.sprite = variableController.GetWeapon(weapon.weaponName);
+        weaponIcon.sprite = variableController.GetIcon(weapon.weaponName);
         weaponIcon.SetNativeSize();
         switch (weapon.weaponName)
         {

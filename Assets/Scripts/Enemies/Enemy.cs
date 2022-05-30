@@ -2,84 +2,93 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(EnemyAttackDealer))]
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : AttackDealer, IAttackReceiver
 {
-    [SerializeField] protected WeaponBase.Affinity type;
-    [SerializeField] protected bool randomiseAffinity = false;
+    [SerializeField] protected bool allowKnockback = true;
+    protected bool hurt;
+    public const float HurtTime = 0.2f;
+    private float hurtColourTimer = HurtTime;
+    protected bool isStunned = false;
+    protected Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     protected RoomData inRoom;
     protected HealthComponent health;
 
-    // Start is called before the first frame update
     protected virtual void Start() {
         health = GetComponent<HealthComponent>();
-        if (randomiseAffinity)
-        {
-            int affinityNum = typeof(WeaponBase.Affinity).GetEnumValues().Length;
-            type = (WeaponBase.Affinity)Random.Range(0, affinityNum);
-        }
 
-        SpriteOutliner outliner = GetComponentInChildren<SpriteOutliner>();
-        if (outliner)
-        {
-            outliner.SetColour(type switch {
-                WeaponBase.Affinity.fire => new Color32(183, 18, 52, 255),
-                WeaponBase.Affinity.water => new Color32(0, 70, 173, 255),
-                WeaponBase.Affinity.grass => new Color32(0, 155, 72, 255),
-                _ => new Color32(0, 0, 0, 255)
-            });
-        }
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
     
-    // Update is called once per frame
     protected virtual void Update()
     {
-        if (health.health <= 0) {
-            // Death();
+        if (hurt)
+        {
+            if (hurtColourTimer < 0f)
+            {
+                sr.color = Color.white;
+                hurt = false;
+                hurtColourTimer = HurtTime;
+            } else {
+                sr.color = Color.red;
+                hurtColourTimer -= Time.deltaTime;
+            }
         }
+
+        isStunned = (stunTime -= Time.deltaTime) > 0f;
+        invincibilityTime -= Time.deltaTime;
     }
 
     /// <summary>
-    /// Meant to be overridden for movement script. This is already called in Update()
-    /// </summary>
-    protected virtual void Move() {}
-
-    /// <summary>
-    /// Meant to be overridden for attack script
-    /// </summary>
-    protected virtual void Attack() {}
-
-    /// <summary>
-    /// Called when health <= 0. Can override for a unique Death script, otherwise just destroys the GameObject.
+    /// Meant to be COMPLETELY overridden.
     /// </summary>
     protected virtual void Death()
+    {
+        RemoveEnemy();
+    }
+
+    public void RemoveEnemy()
     {
         if (inRoom)
         {
             inRoom.UpdateEnemyCount();
+            inRoom = null; //To prevent the count to go down more than once.
         }
 
         gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Can be overridden for taking damage
+    /// Should only be called once on startup.
     /// </summary>
-    /// <param name="damage">
-    /// The amount of damage the enemy should take
-    /// </param>
-    public virtual void TakeDamage(int damage)
+    /// <param name="roomData">The roomdata needed to update upon death.</param>
+    public void AssignToRoomData(RoomData roomData)
     {
-        Debug.Log("Taking damage in Enemy");
+        inRoom = roomData;
+    }
+
+    public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    {
+        if (this.invincibilityTime > 0f)
+        {
+            return;
+        }
+        health.OffsetHP(-strength);
+
+        hurt = true;
+        this.stunTime = stunTime;
+        this.invincibilityTime = invincibilityTime;
+
+        if (allowKnockback)
+        {
+            rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
+        }
+
         if (health.health <= 0)
         {
             Death();
         }
-    }
-
-    public void AssignToRoomData(RoomData roomData)
-    {
-        inRoom = roomData;
     }
 }

@@ -386,6 +386,33 @@ MonoBehaviour:
     - name: Winston
       link: 
       isLink: 0
+  - heading: 'Spitesheets used:'
+    people:
+    - name: Nintendo - Kirby
+      link: https://www.spriters-resource.com/ds_dsi/kssu/
+      isLink: 1
+  - heading: Title Screen
+    people:
+    - name: muddle
+      link: https://wallpapers.com/wallpapers/simple-fan-art-kirby-ug1nabhcbvpkz5z7.html
+      isLink: 1
+  - heading: Music
+    people:
+    - name: BenSound - Adventure
+      link: https://www.bensound.com/
+      isLink: 1
+    - name: BenSound - Dance
+      link: https://www.bensound.com/
+      isLink: 1
+    - name: BenSound - Extreme Action
+      link: https://www.bensound.com/
+      isLink: 1
+    - name: BenSound - Enigmatic
+      link: https://www.bensound.com/
+      isLink: 1
+    - name: Shane Ivers - SQZ
+      link: https://www.silvermansound.com/free-music/sqz
+      isLink: 1
 --- !u!114 &931950778
 MonoBehaviour:
   m_ObjectHideFlags: 0

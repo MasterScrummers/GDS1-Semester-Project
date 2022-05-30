@@ -5,11 +5,14 @@ public class Sword : WeaponBase
     public Sword() : base()
     {
         weaponName = "Sword";
+        description = "Light: Slash\nHeavy: Stab\n Special: Spin";
+        animPath = basePath + weaponName + "."; //Don't forget the dot!
+
         specialCooldown = Random.Range(4, 9);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(3 + extra, 8 + extra);
-        description = "Light: Slash\nHeavy: Stab\n Special: Spin";
-        animPath = basePath + weaponName + "."; //Don't forget the dot!
+        knockbackStr = new(10f, 0);
+        invincibilityTime = 0.3f;
     }
 
     public override void LightAttack(Animator anim)

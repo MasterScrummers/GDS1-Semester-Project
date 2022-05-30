@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MapGenerator))]
 public class SceneStartUp : MonoBehaviour
 {
     private GameObject player;
     private Dictionary<string, GameObject> children;
+    [SerializeField] private bool generateLevel = true;
 
     void Start()
     {
@@ -14,6 +16,11 @@ public class SceneStartUp : MonoBehaviour
         foreach(Transform child in DoStatic.GetChildren(transform))
         {
             children.Add(child.name, child.gameObject);
+        }
+
+        if (generateLevel)
+        {
+            GetComponent<MapGenerator>().GenerateLevel();
         }
 
         StartUp();
@@ -27,10 +34,15 @@ public class SceneStartUp : MonoBehaviour
             player.transform.position = startPos;
         }
 
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         switch(DoStatic.GetSceneName())
         {
             case "Tutorial":
                 TutorialStartUp();
+                return;
+
+            default:
+                player.transform.position = new();
                 return;
         }
     }

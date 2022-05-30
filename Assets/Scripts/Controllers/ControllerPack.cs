@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(InputController))]
 [RequireComponent(typeof(SaveController))]
 [RequireComponent(typeof(UIController))]
+[RequireComponent(typeof(PoolController))]
 public class ControllerPack : MonoBehaviour
 {
     /* This script does nothing but ensures all the

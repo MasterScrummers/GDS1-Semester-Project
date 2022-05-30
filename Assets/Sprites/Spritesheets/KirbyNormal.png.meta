@@ -1,0 +1,852 @@
+fileFormatVersion: 2
+guid: ea0280e442edeb14a8ed7a3adbe391ed
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KirbyIdle_0
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 4376
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa6a191c719c145419ca5ab736d1e305
+      internalID: 1948870930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbyIdle_1
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 4376
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04078598da04cae45a796b128f3f4f9c
+      internalID: 1080570564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbyIdle_2
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 4376
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c12deb625de0e4abaa0a999ece4e9a
+      internalID: 1660923632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_0
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 4268
+        width: 26
+        height: 23
+      alignment: 9
+      pivot: {x: 0.9083234, y: 0.028108016}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b568ba6cd6a2f9f4e831d6b41cdf5cee
+      internalID: 12694197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 4268
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea707f8a79a143548a0892a9d2c14410
+      internalID: -1506021748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_2
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 4268
+        width: 23
+        height: 20
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b57af5db48a0845bb11727d94cd79e
+      internalID: 1728868239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 4268
+        width: 23
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e99403252284c944aa8014717b1789b
+      internalID: 229626808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_4
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 4268
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bdfbf013155c824a969ebc270e2ccf2
+      internalID: -549318915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_5
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 4268
+        width: 26
+        height: 23
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2ebf630dcecfa4f9df0d28cd42724a
+      internalID: 1195330781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_6
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 4268
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05528e2f9d269934e976ce6dafdba74e
+      internalID: -481831339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_7
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 4268
+        width: 23
+        height: 20
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8be7fdecac29b46a975a83c1ce68ff
+      internalID: 1648456648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_8
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 4268
+        width: 21
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b7a43456d8e7948b45657fde21a2d1
+      internalID: 1873119803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_walk_9
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 4268
+        width: 22
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681521ddeac46e64091cc21c754b8cce
+      internalID: -1204278553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_0
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 4158
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e01ad4be6c73477488d505c9f379d3b0
+      internalID: 105720551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 4159
+        width: 27
+        height: 23
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05aaadc6c3341c54db1eb49b2f6d9980
+      internalID: 933192447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 4161
+        width: 28
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2de38382b8f06d49b09ef28b2fda4c5
+      internalID: 1243854306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_3
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 4160
+        width: 24
+        height: 22
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190973065d05d214b8f02d48c0e07619
+      internalID: -1967757045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_4
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 4160
+        width: 22
+        height: 25
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc3c982699ab134db0cc11b75d33d8d
+      internalID: 1153074302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_5
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 4161
+        width: 24
+        height: 25
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2377e5c5655ecde4882e2a2243674a7c
+      internalID: 389475424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 4161
+        width: 26
+        height: 21
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5519eede009f08f408603638553dc2c8
+      internalID: -233020116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_7
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 4158
+        width: 25
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a1623df4ad7c345af9ab371621e8ce
+      internalID: 1213005188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_8
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 4158
+        width: 27
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b47dc35d88c57946bb09265bccd6a44
+      internalID: -1071219015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_9
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 4160
+        width: 23
+        height: 23
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5e5366d2953e546994f5b14b57cd5a
+      internalID: -986310726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_10
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 4159
+        width: 24
+        height: 25
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4386eb8f311a2d46b5b55a0e1fd4d05
+      internalID: 1043929324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_jump_11
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 4158
+        width: 26
+        height: 16
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa6759bb63f5a848bcab6aad5415600
+      internalID: 1268743112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_hurt
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 3601
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1b7bf4929312049b77a7eb3f3b887b
+      internalID: -1428315978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_0
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 3635
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5149de924f6c54d8b37b9e1054bee2
+      internalID: -1841467584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_1
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3634
+        width: 25
+        height: 28
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac112fad5dc16a646b61e84b68c0d80c
+      internalID: 630630911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_2
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 3634
+        width: 28
+        height: 28
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdbff28b007c29149ac8580949deb07b
+      internalID: 1906352005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_3
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 3635
+        width: 28
+        height: 25
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001cefeca6b1ed44599a416bf37bf890
+      internalID: 1359747380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_death_4
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 3636
+        width: 24
+        height: 24
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7fb84a4b15ab4443bd3cab5d725def8
+      internalID: -1465190625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirby_Normal_0
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 64
+        width: 34
+        height: 23
+      alignment: 9
+      pivot: {x: 0.6495424, y: 0.08199344}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d6333032d9ef74982e082bed2c7674
+      internalID: 1616842696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirby_Icon
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 4455
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c55b26027d4a7d46a52b46237a59db1
+      internalID: 1991523877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      kirby_death_0: -1841467584
+      kirby_walk_5: 1195330781
+      kirby_walk_7: 1648456648
+      kirby_jump_1: 933192447
+      kirby_walk_1: -1506021748
+      KirbyIdle_1: 1080570564
+      kirby_walk_8: 1873119803
+      kirby_jump_2: 1243854306
+      kirby_death_3: 1359747380
+      kirby_walk_6: -481831339
+      kirby_death_4: -1465190625
+      kirby_jump_4: 1153074302
+      kirby_jump_7: 1213005188
+      kirby_jump_8: -1071219015
+      kirby_jump_9: -986310726
+      Kirby_Normal_0: 1616842696
+      kirby_walk_3: 229626808
+      kirby_hurt: -1428315978
+      kirby_walk_9: -1204278553
+      kirby_walk_0: 12694197
+      kirby_jump_5: 389475424
+      kirby_jump_6: -233020116
+      kirby_jump_0: 105720551
+      kirby_walk_4: -549318915
+      kirby_jump_11: 1268743112
+      kirby_hurt_ground_0: 1281851979
+      kirby_walk_2: 1728868239
+      kirby_jump_3: -1967757045
+      kirby_hurt_air_0: 1413387161
+      KirbyIdle_0: 1948870930
+      KirbyIdle_2: 1660923632
+      kirby_death_1: 630630911
+      kirby_jump_10: 1043929324
+      kirby_hurt_land_0: -886443728
+      Kirby_Icon: 1991523877
+      kirby_death_2: 1906352005
+      kirby_hurt_air_1: -1256315750
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

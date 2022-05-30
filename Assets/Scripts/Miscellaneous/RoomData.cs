@@ -97,7 +97,10 @@ public class RoomData : MonoBehaviour
     {
         foreach(GameObject child in children)
         {
-            child.SetActive(setActive);
+            if (!child.name.Equals("Tilemaps"))
+            {
+                child.SetActive(setActive);
+            }
         }
     }
 

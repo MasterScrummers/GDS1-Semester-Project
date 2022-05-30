@@ -1,43 +1,51 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackDealer : MonoBehaviour
 {
-    public int strength = 1; //The strength the hit, should be controlled by another script.
-    private Dictionary<HealthComponent, int> hitHistory; //A history of all the hit enemies.
-    private Animator anim;
+    [SerializeField] protected int strength = 1; //The strength the hit, should be controlled by another script.
+    protected int strengthMult = 1;
 
-    private void Start()
+    [SerializeField] protected Vector2 knockback = Vector2.one; //The knockback given, should be controlled by another script.
+
+    [SerializeField] protected float invincibilityLength = 1.5f;
+    [SerializeField] protected float invincibilityTime;
+    [SerializeField] protected float stunTime;
+
+    public void UpdateAttackDealer(WeaponBase weapon)
     {
-        hitHistory = new Dictionary<HealthComponent, int>();
-        anim = GetComponent<Animator>();
+        strength = weapon.baseStrength;
+        knockback = weapon.knockbackStr;
+        invincibilityLength = weapon.invincibilityTime;
+        stunTime = weapon.stunTime;
+    }
+    
+    public void SetStrengthMult(int mult)
+    {
+        strengthMult = mult;
     }
 
-    /// <summary>
-    /// Should be called as an animation event.
-    /// Simply cleans the dictionary to allow the same enemy to be hit again.
-    /// </summary>
-    private void AttackStart()
+    public void SetKnockbackX(float x)
     {
-        hitHistory.Clear();
+        knockback.x = x;
+    }
+
+    public void SetKnockbackY(float y)
+    {
+        knockback.y = y;
+    }
+
+    public void SetInvincibilityLength(float length)
+    {
+        invincibilityLength = length;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        HealthComponent hp = collision.GetComponent<HealthComponent>();
-        if (!hp)
+        IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();
+        
+        if (receiver != null)
         {
-            return;
-        }
-
-        if (anim && !hitHistory.ContainsKey(hp))
-        {
-            hitHistory.Add(hp, 0);
-            hp.TakeDamage(strength);
-            collision.GetComponent<Enemy>().TakeDamage(strength);
-        } else if (!anim)
-        {
-            hp.TakeDamage(strength);
+            receiver.RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
         }
     }
 }

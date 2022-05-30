@@ -1,31 +1,53 @@
 using UnityEngine;
 
-public class CutterMovement : MonoBehaviour
+public class CutterMovement : ProjectileMovement
 {
-    private Rigidbody2D rb;
-    private float lifeTime = 5.0f;
-    HealthComponent hp;
+    private PoolController poolController;
+    private Transform player;
+    private Lerper lerp;
+    private float originalSpd;
+    private bool isComingBack = false;
+    [SerializeField] float acceleration = 0.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        hp = GetComponent<HealthComponent>();
-        Vector2 velocity = new(Random.Range(-5f, 8f), Random.Range(-5f, 5f));
-        rb.AddForce(velocity , ForceMode2D.Impulse);
+        lerp = new();
+        originalSpd = speed;
     }
 
-    void Update()
+    protected override void Start()
     {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0 || hp.health <= 0)
+        base.Start();
+        player = DoStatic.GetPlayer<Transform>();
+        poolController = DoStatic.GetGameController<PoolController>();
+    }
+
+    protected override void Update()
+    {
+        lerp.Update(Time.deltaTime);
+        rb.velocity = lerp.currentValue * transform.right; //Allow the object to move in the direction it is facing.
+        if (!isComingBack)
         {
-            Destroy(gameObject);
+            isComingBack = !lerp.isLerping;
+            if (isComingBack)
+            {
+                lerp.SetValues(0, originalSpd, 1 / acceleration);
+            }
+        } else
+        {
+            DoStatic.LookAt(transform, player);
+            if (Vector3.Distance(transform.position, player.position) < 0.5f)
+            {
+                poolController.AddObjectIntoPool("CutterPool", gameObject);
+                gameObject.SetActive(false);
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnEnable()
     {
-        //Debug.Log(collision.name);
+        base.OnEnable();
+        isComingBack = false;
+        lerp.SetValues(originalSpd, 0, 1 / acceleration);
     }
 }

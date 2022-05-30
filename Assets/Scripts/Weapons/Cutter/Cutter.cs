@@ -5,11 +5,14 @@ public class Cutter : WeaponBase
     public Cutter() : base()
     {
         weaponName = "Cutter";
-        specialCooldown = Random.Range(3, 8);
+        description = "Light: Slash\nHeavy: Range Cutter\nSpecial: Cutter Hell";
+        animPath = basePath + weaponName + "."; 
+
+        specialCooldown = Random.Range(3, 5);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(4 + extra, 5 + extra);
-        description = "Light: Slash\nHeavy: Jump Attack\nSpecial: Throw Cutter";
-        animPath = basePath + weaponName + "."; //Don't forget the dot!
+        knockbackStr = new(8f, 0);
+        invincibilityTime = 0.1f;
     }
 
     public override void LightAttack(Animator anim)
