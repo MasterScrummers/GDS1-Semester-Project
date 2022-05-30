@@ -64,6 +64,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (ic.lockedInput)
         {
+            rb.velocity = Vector3.zero;
             return;
         }
 
@@ -98,6 +99,7 @@ public class PlayerInput : MonoBehaviour
 
         if (canInteract && ic.GetButtonDown("Movement", "Interact"))
         {
+            //ic.SetInputLock(true);
             canInteract = false;
             return;
         }

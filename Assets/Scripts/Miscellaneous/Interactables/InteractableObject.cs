@@ -27,6 +27,7 @@ public class InteractableObject : MonoBehaviour
 
     protected virtual void Interact()
     {
+        ic.SetInputLock(true);
         col.enabled = false;
         nearPlayer = false;
     }

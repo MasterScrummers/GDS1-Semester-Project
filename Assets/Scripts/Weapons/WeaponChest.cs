@@ -34,11 +34,13 @@ public class WeaponChest : InteractableObject
     {
         base.Interact();
         anim.SetTrigger("Open");
+        //ic.SetInputLock(true);
        
     }
 
     private void OpenUI()
     {
+        ic.SetInputLock(false);
         ic.GetComponent<UIController>().GetUI<UIWeaponSwapSystem>("WeaponSwapSystem").Activate(); //bring up WeaponSwap UI
     }
 
