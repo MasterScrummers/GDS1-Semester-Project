@@ -64,16 +64,12 @@ public class MainMenuNavigation : MonoBehaviour
 
         void DoGameOption()
         {
-            switch (promptOptions[currentIndex].name)
+            if (promptOptions[currentIndex].name.Equals("Yes"))
             {
-                case "Yes":
-                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.Tutorial);
-                    return;
-
-                case "No":
-                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.MainGame);
-                    return;
+                ic.GetComponent<VariableController>().SetScene(SceneController.SceneName.Tutorial);
             }
+
+            ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.OpeningCutscene);
         }
 
         bool spacePressed = Input.GetKeyDown(KeyCode.Space);

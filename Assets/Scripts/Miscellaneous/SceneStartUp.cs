@@ -30,7 +30,7 @@ public class SceneStartUp : MonoBehaviour
     {
         void TutorialStartUp()
         {
-            Vector2 startPos = new Vector2(0, 5.5f); //Hardcoded, not to my liking...
+            Vector2 startPos = new(0, 5.5f); //Hardcoded, not to my liking...
             player.transform.position = startPos;
         }
 
