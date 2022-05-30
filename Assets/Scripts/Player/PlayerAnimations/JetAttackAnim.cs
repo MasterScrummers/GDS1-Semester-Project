@@ -4,7 +4,6 @@ public class JetAttackAnim : MonoBehaviour
 {
     private Rigidbody2D rb; //The rigidbody of the player
 
-    [SerializeField] private float upStr = 10;
     [SerializeField] private float lightStr = 7;
     [SerializeField] private float heavyStr = 11;
     [SerializeField] private Transform firePoint;
@@ -35,13 +34,11 @@ public class JetAttackAnim : MonoBehaviour
                 rb.velocity = transform.right * heavyStr;
                 break;
 
-            case DashDirection.Upward:
-                rb.velocity = transform.up * upStr;
-                break;
         }
     }
 
-    private void SpawnEnergyPulse()
+    private void LockYConstraints(string state)
     {
+        rb.constraints = state.Equals("Lock") ? RigidbodyConstraints2D.FreezePositionY : RigidbodyConstraints2D.None;
     }
 }

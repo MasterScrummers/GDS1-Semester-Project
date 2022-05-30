@@ -49,8 +49,8 @@ public class PlayerInput : MonoBehaviour
         orignalspeed = speed;
         originalGravityMultiplier = gravityMultiplier;
 
-        lightWeapon = new Cutter();
-        heavyWeapon = new Cutter();
+        lightWeapon = new Jet();
+        heavyWeapon = new Jet();
         specialWeapon = new Cutter();
     }
 

@@ -158,9 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 25
+  strength: 5
   knockback: {x: 1, y: 1}
-  invincibilityLength: 1.5
+  invincibilityLength: 0.2
   invincibilityTime: 0
   stunTime: 0
 --- !u!114 &1207319007718614911
@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  lifeTime: 3
+  lifeTime: 5
   acceleration: 3

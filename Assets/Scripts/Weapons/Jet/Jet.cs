@@ -12,6 +12,7 @@ public class Jet : WeaponBase
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
         baseStrength = Random.Range(4 + extra, 7 + extra);
         knockbackStr = new(18f, 0);
+        invincibilityTime = 0.4f;
     }
 
     public override void LightAttack(Animator anim)

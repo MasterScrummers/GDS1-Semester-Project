@@ -3,7 +3,7 @@ using UnityEngine;
 public class ProjectileMovement : MonoBehaviour
 {
     [SerializeField] protected float speed; //The moving speed;
-    [SerializeField] protected float lifeTime; //How long it exist
+    public float lifeTime; //How long it exist
     protected float lifeTick; //The current lifetimer
 
     protected Rigidbody2D rb; //Rigidbody 2D
