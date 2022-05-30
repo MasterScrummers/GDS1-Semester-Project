@@ -1858,6 +1858,10 @@ PrefabInstance:
       value: -70000000
       objectReference: {fileID: 0}
     - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 3530229456432614396}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
       propertyPath: hasRight
       value: 0
       objectReference: {fileID: 0}
@@ -1987,3 +1991,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+--- !u!1 &3530229456432614396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4735327986184645884, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+  m_PrefabInstance: {fileID: 8163521212875089664}
+  m_PrefabAsset: {fileID: 0}
