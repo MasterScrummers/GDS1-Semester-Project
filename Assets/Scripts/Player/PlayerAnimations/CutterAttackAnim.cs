@@ -6,6 +6,7 @@ public class CutterAttackAnim : MonoBehaviour
     private PoolController poolController;
     [SerializeField] GameObject cutterPivot;
     private bool hasSecondWave = false;
+    private bool hasThirdWave = false;
 
     private void Start()
     {
@@ -18,6 +19,12 @@ public class CutterAttackAnim : MonoBehaviour
         {
             hasSecondWave = false;
             CutterSpecial2();
+        }
+
+        else if (hasThirdWave && DoStatic.GetChildren(cutterPivot.transform).Length == 0)
+        {
+            hasThirdWave = false;
+            CutterSpecial3();
         }
     }
 
@@ -56,6 +63,16 @@ public class CutterAttackAnim : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             GameObject projectile = SpawnSpecialCutter(new Vector3(cutterPivot.transform.eulerAngles.x, cutterPivot.transform.eulerAngles.y, 45 * i));
+            projectile.transform.parent = cutterPivot.transform;
+        }
+        hasThirdWave = true;
+    }
+
+    private void CutterSpecial3()
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            GameObject projectile = SpawnSpecialCutter(new Vector3(cutterPivot.transform.eulerAngles.x, cutterPivot.transform.eulerAngles.y, 22.5f * i));
             projectile.transform.parent = cutterPivot.transform;
         }
     }

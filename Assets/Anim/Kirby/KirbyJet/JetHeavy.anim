@@ -31,7 +31,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.3
-        value: 2.7509506
+        value: 3.3024936
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -123,7 +123,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.3
-        value: -0.5157888
+        value: -0.3188091
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -344,7 +344,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.76666665
+    m_StopTime: 0.73333335
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -374,7 +374,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.3
-        value: 2.7509506
+        value: 3.3024936
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -466,7 +466,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.3
-        value: -0.5157888
+        value: -0.3188091
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -604,13 +604,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetInvincible
-    data: On
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0
     functionName: SetAnimState
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -639,10 +632,31 @@ AnimationClip:
     intParameter: 2
     messageOptions: 0
   - time: 0
-    functionName: SetknockbackStrMult
+    functionName: SetKnockbackX
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1.3
+    floatParameter: 40
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: StartAnimInvincible
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.76
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: LockYConstraints
+    data: Lock
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: SetisSliding
+    data: True
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.73333335
@@ -652,10 +666,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.76666665
-    functionName: SetInvincible
-    data: Off
+  - time: 0.73333335
+    functionName: LockYConstraints
+    data: Unlock
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.73333335
+    functionName: SetisSliding
+    data: False
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0

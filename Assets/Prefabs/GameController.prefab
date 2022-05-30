@@ -1471,7 +1471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df78bc73199084344b0ed5aad590187e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upStr: 10
   lightStr: 7
   heavyStr: 11
   firePoint: {fileID: 8245610911835613080}
@@ -2752,7 +2751,7 @@ MonoBehaviour:
   knockback: {x: 10, y: 0}
   invincibilityLength: 0.01
   invincibilityTime: 0.01
-  stunTime: 0.2
+  stunTime: 1
 --- !u!95 &1746890965445384494
 Animator:
   serializedVersion: 4

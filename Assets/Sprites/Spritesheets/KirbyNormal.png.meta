@@ -784,7 +784,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -792,6 +792,27 @@ TextureImporter:
       bones: []
       spriteID: 2c55b26027d4a7d46a52b46237a59db1
       internalID: 1991523877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirby_back
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1755
+        width: 22
+        height: 27
+      alignment: 9
+      pivot: {x: 0.8859142, y: 0.018622505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02af94e18c45a5d4ea4bb441ef4515ff
+      internalID: 1935149136
       vertices: []
       indices: 
       edges: []
@@ -826,6 +847,7 @@ TextureImporter:
       kirby_walk_3: 229626808
       kirby_hurt: -1428315978
       kirby_walk_9: -1204278553
+      Kirby_back: 1935149136
       kirby_walk_0: 12694197
       kirby_jump_5: 389475424
       kirby_jump_6: -233020116

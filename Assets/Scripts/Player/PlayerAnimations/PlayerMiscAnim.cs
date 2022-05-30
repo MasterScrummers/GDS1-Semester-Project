@@ -11,6 +11,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
     private GameObject player;
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -75,4 +76,10 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         player.transform.eulerAngles = (Vector2)player.transform.eulerAngles;
     }
+    
+    private void ResetGravityScale()
+    {
+        rb.gravityScale = pi.originalGravity;
+    }
+
 }

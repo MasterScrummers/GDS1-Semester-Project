@@ -10,7 +10,7 @@ public class Cutter : WeaponBase
 
         specialCooldown = Random.Range(3, 5);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        baseStrength = Random.Range(4 + extra, 5 + extra);
+        baseStrength = Random.Range(4 + extra, 6 + extra);
         knockbackStr = new(8f, 0);
         invincibilityTime = 0.1f;
     }
