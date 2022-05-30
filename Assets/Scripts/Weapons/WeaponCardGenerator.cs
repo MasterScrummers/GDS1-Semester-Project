@@ -23,7 +23,7 @@ public class WeaponCardGenerator : MonoBehaviour
 
     public void GenerateWeapon()
     {
-        weapon = RandomWeapon();
+        weapon = WeaponBase.RandomWeapon();
         SetCard();
     }
 
@@ -31,20 +31,6 @@ public class WeaponCardGenerator : MonoBehaviour
     {
         SetWeaponImage();
         SetWeaponText();
-    }
-
-    private WeaponBase RandomWeapon()
-    {
-        return Random.Range(1, 3) switch
-        {
-            1 => new Sword(),
-            2 => new Hammer(),
-/*          3 => new Cutter(),
-            4 => new Mirror(),
-            5 => new Sword(), //Used to be jet. But jetlaggy
-            6 => new Ninja(),*/
-            _ => new Sword(),
-        };
     }
 
     private void SetWeaponImage()

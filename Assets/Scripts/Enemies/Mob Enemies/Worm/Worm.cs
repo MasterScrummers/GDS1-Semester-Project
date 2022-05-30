@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Worm : Enemy
@@ -31,53 +29,32 @@ public class Worm : Enemy
             switch(state) {
 
                 case State.Idle:
-                    state = DoStatic.RandomBool() == true ? State.Attack : State.Hiding;
-                    break;
-                case State.Attack:
-                    state = DoStatic.RandomBool() == true ? State.Idle : State.Hiding;
-                    
-                    break;
-                case State.Hiding:
-                    state = DoStatic.RandomBool() == true ? State.Attack : State.Idle;
-                    stateTimer = Random.Range(idleTimeMin, idleTimeMax);
-                    break;
-            }
-
-            switch(state) {
-
-                case State.Idle:
+                    state = DoStatic.RandomBool() ? State.Attack : State.Hiding;
                     stateTimer = Random.Range(idleTimeMin, idleTimeMax);
                     break;
                 case State.Attack:
+                    state = DoStatic.RandomBool() ? State.Idle : State.Hiding;
                     stateTimer = Random.Range(attackTimeMin, attackTimeMax);
                     break;
                 case State.Hiding:
+                    state = DoStatic.RandomBool() ? State.Attack : State.Idle;
                     stateTimer = Random.Range(hidingTimeMin, hidingTimeMax);
                     break;
             }
-
-        wa.updateState();
+            wa.updateState();
         }
     }
 
     void OnCollisionEnter2D(Collision2D other) {
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && state == State.Death)
         {
-            if (state == State.Death)
-            {
-                Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
-            }
+            Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
         }
     }
 
     protected override void Death()
     {
         wa.Death();
-    }
-
-    public void FinishDeath()
-    {
-        base.Death();
     }
 }

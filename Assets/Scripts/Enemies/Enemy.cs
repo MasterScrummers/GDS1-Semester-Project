@@ -4,28 +4,24 @@ using UnityEngine;
 [RequireComponent(typeof(HealthComponent))]
 public abstract class Enemy : AttackDealer, IAttackReceiver
 {
-    [SerializeField] protected bool allowKnockback = false;
+    [SerializeField] protected bool allowKnockback = true;
     protected bool hurt;
     public const float HurtTime = 0.2f;
     private float hurtColourTimer = HurtTime;
     protected bool isStunned = false;
     protected Rigidbody2D rb;
     private SpriteRenderer sr;
-    protected GameObject player; // Player
 
     protected RoomData inRoom;
     protected HealthComponent health;
 
-    // Start is called before the first frame update
     protected virtual void Start() {
         health = GetComponent<HealthComponent>();
 
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
-        player = DoStatic.GetPlayer();
     }
     
-    // Update is called once per frame
     protected virtual void Update()
     {
         if (hurt)
@@ -36,6 +32,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
                 hurt = false;
                 hurtColourTimer = HurtTime;
             } else {
+                sr.color = Color.red;
                 hurtColourTimer -= Time.deltaTime;
             }
         }
@@ -45,19 +42,14 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     }
 
     /// <summary>
-    /// Meant to be overridden for movement script. This is already called in Update()
-    /// </summary>
-    protected virtual void Move() {}
-
-    /// <summary>
-    /// Meant to be overridden for attack script
-    /// </summary>
-    protected virtual void Attack() {}
-
-    /// <summary>
-    /// Calls this once when there is death.
+    /// Meant to be COMPLETELY overridden.
     /// </summary>
     protected virtual void Death()
+    {
+        RemoveEnemy();
+    }
+
+    public void RemoveEnemy()
     {
         if (inRoom)
         {
@@ -79,24 +71,24 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
     {
-        if (this.invincibilityTime !<= 0f)
+        if (this.invincibilityTime > 0f)
         {
-            health.TakeDamage(strength);
-            
-            sr.color = Color.red;
-            hurt = true;
-            this.stunTime = stunTime;
-            this.invincibilityTime = invincibilityTime;
+            return;
+        }
+        health.OffsetHP(-strength);
 
-            if (allowKnockback)
-            {
-                rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
-            }
+        hurt = true;
+        this.stunTime = stunTime;
+        this.invincibilityTime = invincibilityTime;
 
-            if (health.health <= 0)
-            {
-                Death();
-            }
+        if (allowKnockback)
+        {
+            rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
+        }
+
+        if (health.health <= 0)
+        {
+            Death();
         }
     }
 }

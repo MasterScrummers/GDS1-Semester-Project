@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 475724108390712465, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -98.424805
+      objectReference: {fileID: 0}
     - target: {fileID: 2487152057857153135, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: rotationSpeed.z
       value: 0.5
@@ -382,6 +386,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndingTutorialRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 86.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 13.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220325223475044499, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 573766888}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
 --- !u!1001 &6939716434147823479

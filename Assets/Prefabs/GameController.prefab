@@ -65,18 +65,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  orignalspeed: 0
   isSliding: 0
   canInteract: 0
   baseJumpForce: 8
   jumpHoldTimer: 0.25
+  coyoteTimer: 0.2
   gravityMultiplier: 1.2
   originalGravityMultiplier: 0
   radius: 0.2
   feet: {fileID: 5954393082887964401}
-  Ground:
-    serializedVersion: 2
-    m_Bits: 8
   firePoint: {fileID: 8245610911835613080}
 --- !u!58 &3138290750049015659
 CircleCollider2D:
@@ -128,7 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 4
-  health: 0
 --- !u!114 &2058645567314398259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,7 +648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014319414612861916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.147, y: 0.52, z: 0}
+  m_LocalPosition: {x: 0.1, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2007,7 +2003,7 @@ GameObject:
   - component: {fileID: 2429430746033378215}
   - component: {fileID: 8808728798813333230}
   m_Layer: 0
-  m_Name: WorkPool
+  m_Name: WormBulletPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2040,7 +2036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad25f97a003bf9248a99cb958913baae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 544042796527561100, guid: 47011b07ad5690649b41856ed01f6616, type: 3}
+  prefab: {fileID: 8053696504465152122, guid: 03af3c6d57a1c554dac0bc7cfdd632af, type: 3}
 --- !u!1 &3827664765685807789
 GameObject:
   m_ObjectHideFlags: 0

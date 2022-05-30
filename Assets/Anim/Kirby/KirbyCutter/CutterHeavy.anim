@@ -21,21 +21,21 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -1162875234, guid: 424ab6931467a5643b05f1d845212853, type: 3}
-    - time: 0.1
+    - time: 0.05
       value: {fileID: 318035713, guid: 424ab6931467a5643b05f1d845212853, type: 3}
-    - time: 0.2
+    - time: 0.1
       value: {fileID: 1335068248, guid: 424ab6931467a5643b05f1d845212853, type: 3}
-    - time: 0.3
+    - time: 0.15
       value: {fileID: -107265330, guid: 424ab6931467a5643b05f1d845212853, type: 3}
-    - time: 0.4
+    - time: 0.2
       value: {fileID: 313718817, guid: 424ab6931467a5643b05f1d845212853, type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: 313718817, guid: 424ab6931467a5643b05f1d845212853, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 30
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -61,7 +61,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.53333336
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -89,22 +89,15 @@ AnimationClip:
     intParameter: 5
     messageOptions: 0
   - time: 0
-    functionName: SetReasonLock
-    data: Movement
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5
-    functionName: SpawnCutter
+    functionName: ChangeSpeed
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 2
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
-    functionName: SetReasonUnlock
-    data: Movement
+  - time: 0.25
+    functionName: SpawnCutter
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

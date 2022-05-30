@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2105195040920476034}
   - component: {fileID: 7855615561232076326}
   - component: {fileID: 8715653282876995269}
-  - component: {fileID: 5205655144772016196}
   - component: {fileID: 6626975357289722432}
   m_Layer: 7
   m_Name: AxeKnight
@@ -55,7 +54,7 @@ MonoBehaviour:
   invincibilityLength: 1.5
   invincibilityTime: 0
   stunTime: 0
-  randomiseAffinity: 1
+  allowKnockback: 1
   direction: 1
   movementSpeed: 3
   leftBoundary: -1
@@ -110,7 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 25
-  health: 0
 --- !u!58 &8715653282876995269
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -127,23 +125,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5208333
---- !u!114 &5205655144772016196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6577600788766136098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 1
-  knockback: {x: 1, y: 1}
-  invincibilityLength: 1.5
-  invincibilityTime: 0
-  stunTime: 0
 --- !u!212 &6626975357289722432
 SpriteRenderer:
   m_ObjectHideFlags: 0

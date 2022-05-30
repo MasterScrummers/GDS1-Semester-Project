@@ -35,7 +35,7 @@ public class CutterMovement : ProjectileMovement
             }
         } else
         {
-            transform.rotation = DoStatic.LookAt(transform.position, player.position);
+            DoStatic.LookAt(transform, player);
             if (Vector3.Distance(transform.position, player.position) < 0.5f)
             {
                 poolController.AddObjectIntoPool("CutterPool", gameObject);

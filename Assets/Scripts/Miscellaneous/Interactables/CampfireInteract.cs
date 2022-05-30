@@ -11,6 +11,6 @@ public class CampfireInteract : InteractableObject
     protected override void Interact()
     {
         base.Interact();
-        hp.HealDamage(1,0);
+        hp.OffsetHP(1);
     }
 }

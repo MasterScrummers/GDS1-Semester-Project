@@ -7,7 +7,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     [SerializeField] private PlayerInvincibility invincibility;
 
     private InputController ic; // Input Controller
-    private SceneController sc; // Input Controller
+    private SceneController sc; // Scene Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private PlayerInput pi; //The update the animation according to player input.
     private Collider2D col; //The collider of the player. Is disabled upon death.
@@ -113,11 +113,11 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         Physics2D.IgnoreLayerCollision(6, 7, false);
         ic.SetInputLock(false);
         col.enabled = true;
-        rb.velocity = Vector2.zero;
         anim.SetTrigger("Restart");
-        health.Restart();
+        health.SetHP();
         rb.transform.eulerAngles = Vector3.zero;
         restartTimer = 5f;
+        pi.Restart();
     }
 
     public Animator GetAnimator()
@@ -149,7 +149,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         }
 
         ic.SetInputLock(true);
-        health.TakeDamage(strength);
+        health.OffsetHP(-strength);
 
         bool isAlive = health.health > 0;
         hurtTick = hurtTimer;
