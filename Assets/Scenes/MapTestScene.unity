@@ -131,9 +131,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
+      propertyPath: rooms.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
       propertyPath: rooms.Array.data[15]
       value: 
-      objectReference: {fileID: 5522571226001360581, guid: 6bdbbad81af721449936bf82c948bc5b, type: 3}
+      objectReference: {fileID: 4541870960931518685, guid: c3ae03794c5bab240bd5a4f7ef280237, type: 3}
     - target: {fileID: 2194689467201349317, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
       propertyPath: m_RootOrder
       value: 1
