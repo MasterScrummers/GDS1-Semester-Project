@@ -57,6 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+--- !u!1 &6674549643395362254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4735327986184645884, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+  m_PrefabInstance: {fileID: 2096285161745940786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4022203687931859775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1941,6 +1946,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[19].Y
       value: 10000000
       objectReference: {fileID: 0}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 6674549643395362254}
     - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
       propertyPath: hasUp
       value: 0

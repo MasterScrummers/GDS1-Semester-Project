@@ -236,6 +236,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 9022354452087782004}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: hasDown
       value: 0
       objectReference: {fileID: 0}
@@ -3545,7 +3549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 975200689877583182, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_Name
-      value: Lcorner
+      value: RUcorner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
@@ -3611,6 +3615,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+--- !u!1 &9022354452087782004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4735327986184645884, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+  m_PrefabInstance: {fileID: 4360210274638845576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6051003165768196213
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -350,6 +350,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+--- !u!1 &2448964634707456031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4735327986184645884, guid: 59b0b2f6999b11f4097a34eba0877548, type: 3}
+  m_PrefabInstance: {fileID: 6938705530336255203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9026248760472624368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,6 +362,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 2448964634707456031}
     - target: {fileID: 975200689073842377, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 14
