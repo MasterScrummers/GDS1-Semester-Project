@@ -117,6 +117,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         health.SetHP();
         rb.transform.eulerAngles = Vector3.zero;
         restartTimer = 5f;
+        ic.GetComponent<VariableController>().SetLevel(1);
         pi.Restart();
     }
 
