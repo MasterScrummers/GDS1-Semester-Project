@@ -18,6 +18,17 @@ public class VariableController : MonoBehaviour
     [SerializeField] private IconPedia[] icons;
     private Dictionary<string, Sprite> allIcons;
     private Dictionary<string, Color32> globalColours;
+    private int level = 0;
+
+    public void SetLevel(int newLevel)
+    {
+        level = newLevel;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
 
     void Awake()
     {
