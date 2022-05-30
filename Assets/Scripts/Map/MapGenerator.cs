@@ -4,7 +4,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     //private int[,] mapRoom;
-    [SerializeField] private VariableController vCont;
+    private VariableController vCont;
     [SerializeField] private int maxRooms; // The max amount of rooms
     public GameObject startRoom; //The start room, could be hardcoded.
     public RoomData[] specialRooms; //The special room pool
@@ -19,6 +19,7 @@ public class MapGenerator : MonoBehaviour
     {
         grid = new Dictionary<Vector2, RoomData>();
         sortedNormalRooms = new Dictionary<string, List<GameObject>>();
+        vCont = DoStatic.GetGameController<VariableController>();
         SortRooms();
     }
 
@@ -27,7 +28,6 @@ public class MapGenerator : MonoBehaviour
     /// </summary>
     public void GenerateLevel()
     {
-        vCont.SetLevel(vCont.GetLevel()+1);
         PlanLevelStructure();
         GenerateRooms();
         grid.Clear(); //For the next time the level needs to be generated.
@@ -141,7 +141,7 @@ public class MapGenerator : MonoBehaviour
                     finalRoom = spawned;
                     finalCode = exist;
                 }
-            }            
+            }
         }
 
         Destroy(finalRoom);
@@ -153,6 +153,5 @@ public class MapGenerator : MonoBehaviour
         Instantiate(specialRooms[1], maxRight + new Vector2(50,0), Quaternion.identity);
         Instantiate(specialRooms[level + 1], maxRight + new Vector2(100, 0), Quaternion.identity);
         Instantiate(specialRooms[0], maxRight + new Vector2(150,0),Quaternion.identity);
-
     } 
 }

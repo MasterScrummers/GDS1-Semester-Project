@@ -18,6 +18,7 @@ public class PlayerMiscAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         ac = ic.GetComponent<AudioController>();
         pi = GetComponentInParent<PlayerInput>();
+        rb = pi.GetComponent<Rigidbody2D>();
         player = DoStatic.GetPlayer();
     }
 

@@ -66,7 +66,9 @@ public class MainMenuNavigation : MonoBehaviour
         {
             if (promptOptions[currentIndex].name.Equals("Yes"))
             {
-                ic.GetComponent<VariableController>().SetScene(SceneController.SceneName.Tutorial);
+                VariableController var = ic.GetComponent<VariableController>();
+                var.SetScene(SceneController.SceneName.Tutorial);
+                var.SetLevel(0);
             }
 
             ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.OpeningCutscene);

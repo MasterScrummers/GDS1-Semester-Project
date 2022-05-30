@@ -33,9 +33,9 @@ public class WeaponChest : InteractableObject
     protected override void Interact()
     {
         base.Interact();
+        ic.SetInputLock(true);
         anim.SetTrigger("Open");
-        //ic.SetInputLock(true);
-       
+
     }
 
     private void OpenUI()

@@ -264,10 +264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 247532526989750604, guid: 7edb1ee2013093b4fa18c77ed0f49e78, type: 3}
-      propertyPath: nextScene
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4130535372147975833, guid: 7edb1ee2013093b4fa18c77ed0f49e78, type: 3}
       propertyPath: m_Name
       value: BonfireRoom

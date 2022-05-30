@@ -8,5 +8,6 @@ public class NextLevel : InteractableObject
     {
         base.Interact();
         ic.GetComponent<SceneController>().ChangeScene(nextScene);
+        ic.GetComponent<VariableController>().OffsetLevel(1);
     }
 }

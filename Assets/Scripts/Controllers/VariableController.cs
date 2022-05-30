@@ -19,7 +19,7 @@ public class VariableController : MonoBehaviour
     private Dictionary<string, Sprite> allIcons;
     private Dictionary<string, Color32> globalColours;
     private SceneController.SceneName scene = SceneController.SceneName.MainGame;
-    private int level = 0;
+    private int level = 1;
 
     public void SetLevel(int newLevel)
     {
@@ -29,6 +29,11 @@ public class VariableController : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    public void OffsetLevel(int amount)
+    {
+        level += amount;
     }
 
     void Awake()
