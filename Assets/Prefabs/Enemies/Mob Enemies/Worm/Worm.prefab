@@ -184,7 +184,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.041439056, y: 0.50149155}
@@ -335,7 +335,6 @@ GameObject:
   - component: {fileID: 3493965080032516254}
   - component: {fileID: 3493965080032516255}
   - component: {fileID: 1414113640}
-  - component: {fileID: 1096990228}
   m_Layer: 7
   m_Name: Worm (Sprite)
   m_TagString: Untagged
@@ -443,32 +442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2014056342}
---- !u!61 &1096990228
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3493965080032516253}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.041439056, y: 0.50149155}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.44444445, y: 0}
-    oldSize: {x: 0.75, y: 1.0833334}
-    newSize: {x: 0.75, y: 1.0833334}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7471323, y: 1.1657362}
-  m_EdgeRadius: 0
 --- !u!1 &5647259139093081162
 GameObject:
   m_ObjectHideFlags: 0
