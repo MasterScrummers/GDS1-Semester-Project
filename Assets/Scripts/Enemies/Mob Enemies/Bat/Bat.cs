@@ -119,7 +119,7 @@ public class Bat : Enemy
     {
         state = State.Move;
         attackState = AttackState.AttackStart;
-        rb.velocity = Vector2.zero;
+        // rb.velocity = Vector2.zero;
         tick = 0f;
     }
 

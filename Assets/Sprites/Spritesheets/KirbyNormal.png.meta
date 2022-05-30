@@ -817,6 +817,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: kirby_rest_4
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 349
+        width: 40
+        height: 31
+      alignment: 9
+      pivot: {x: 0.49983674, y: 0.006623299}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49bbfefcddeab84ca5b9eabec5ad515
+      internalID: -998610633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_rest_0
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 349
+        width: 40
+        height: 33
+      alignment: 9
+      pivot: {x: 0.49968186, y: 0.0050955107}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c691d72046c60b4885ae89f4b23224b
+      internalID: 1418743156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_rest_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 349
+        width: 40
+        height: 33
+      alignment: 9
+      pivot: {x: 0.49958497, y: 0.0052934126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f342cb7a86b5512479042a1eaa836b58
+      internalID: -2015487550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_rest_2
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 349
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0054101944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9f9c0389efcc347b69dd5c4d7f3c5a
+      internalID: -1176573622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kirby_rest_3
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 349
+        width: 40
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5000008, y: 0.0057811737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 036852222204e5940bd44ff5fe0530b1
+      internalID: 2104963133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -828,44 +933,49 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      kirby_walk_1: -1506021748
+      kirby_walk_8: 1873119803
+      kirby_death_3: 1359747380
+      kirby_walk_6: -481831339
+      kirby_death_4: -1465190625
+      kirby_jump_7: 1213005188
+      Kirby_Normal_0: 1616842696
+      kirby_hurt: -1428315978
+      kirby_walk_3: 229626808
+      kirby_rest_1: -2015487550
+      kirby_jump_6: -233020116
+      kirby_jump_0: 105720551
+      kirby_rest_3: 2104963133
+      kirby_jump_11: 1268743112
+      kirby_hurt_ground_0: 1281851979
+      kirby_walk_2: 1728868239
+      kirby_hurt_air_0: 1413387161
+      KirbyIdle_2: 1660923632
+      kirby_death_1: 630630911
+      kirby_jump_10: 1043929324
+      kirby_death_2: 1906352005
+      kirby_hurt_air_1: -1256315750
       kirby_death_0: -1841467584
       kirby_walk_5: 1195330781
       kirby_walk_7: 1648456648
       kirby_jump_1: 933192447
-      kirby_walk_1: -1506021748
       KirbyIdle_1: 1080570564
-      kirby_walk_8: 1873119803
       kirby_jump_2: 1243854306
-      kirby_death_3: 1359747380
-      kirby_walk_6: -481831339
-      kirby_death_4: -1465190625
       kirby_jump_4: 1153074302
-      kirby_jump_7: 1213005188
-      kirby_jump_8: -1071219015
       kirby_jump_9: -986310726
-      Kirby_Normal_0: 1616842696
-      kirby_walk_3: 229626808
-      kirby_hurt: -1428315978
+      kirby_jump_8: -1071219015
+      kirby_rest_0: 1418743156
       kirby_walk_9: -1204278553
       Kirby_back: 1935149136
       kirby_walk_0: 12694197
       kirby_jump_5: 389475424
-      kirby_jump_6: -233020116
-      kirby_jump_0: 105720551
+      kirby_rest_4: -998610633
       kirby_walk_4: -549318915
-      kirby_jump_11: 1268743112
-      kirby_hurt_ground_0: 1281851979
-      kirby_walk_2: 1728868239
+      kirby_rest_2: -1176573622
       kirby_jump_3: -1967757045
-      kirby_hurt_air_0: 1413387161
       KirbyIdle_0: 1948870930
-      KirbyIdle_2: 1660923632
-      kirby_death_1: 630630911
-      kirby_jump_10: 1043929324
-      kirby_hurt_land_0: -886443728
       Kirby_Icon: 1991523877
-      kirby_death_2: 1906352005
-      kirby_hurt_air_1: -1256315750
+      kirby_hurt_land_0: -886443728
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

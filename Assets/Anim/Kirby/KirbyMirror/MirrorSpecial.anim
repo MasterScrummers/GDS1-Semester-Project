@@ -27,7 +27,7 @@ AnimationClip:
       value: {fileID: -1691024035, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     - time: 0.3
       value: {fileID: -39685382, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - time: 4
+    - time: 3
       value: {fileID: -341157521, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     attribute: m_Sprite
     path: 
@@ -58,7 +58,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 4.0333333
+    m_StopTime: 3.0333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,6 +79,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: SetMirrorShield
+    data: On
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
     functionName: SetAnimState
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -93,8 +100,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: SetMirrorShield
-    data: On
+    functionName: SetIsMirrorSpecial
+    data: True
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -106,14 +113,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: SetIsMirrorSpecial
-    data: True
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 4.0333333
+  - time: 3.0333333
     functionName: SetReasonUnlock
     data: Movement
     objectReferenceParameter: {fileID: 0}

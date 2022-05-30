@@ -1473,6 +1473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightStr: 7
   heavyStr: 11
+  SpecialStr: 20
   firePoint: {fileID: 8245610911835613080}
 --- !u!114 &2615119021619725357
 MonoBehaviour:
@@ -2748,7 +2749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 1
-  knockback: {x: 10, y: 0}
+  knockback: {x: 20, y: 0}
   invincibilityLength: 0.01
   invincibilityTime: 0.01
   stunTime: 1
