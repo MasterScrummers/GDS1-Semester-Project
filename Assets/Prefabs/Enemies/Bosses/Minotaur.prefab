@@ -75,7 +75,7 @@ MonoBehaviour:
   invincibilityLength: 1.5
   invincibilityTime: 0
   stunTime: 0
-  randomiseAffinity: 0
+  allowKnockback: 0
   anim: {fileID: 2183858454646680952}
   direction: 1
   movementSpeed: 2.5
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMaxHealth: 200
-  health: 0
 --- !u!61 &1371395974
 BoxCollider2D:
   m_ObjectHideFlags: 0
