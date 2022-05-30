@@ -5,7 +5,7 @@ public class Jet : WeaponBase
     public Jet() : base()
     {
         weaponName = "Jet";
-        description = "Light: Dash\nHeavy: Long Dash\n Special: Dash with energy pulse";
+        description = "Light: Dash\nHeavy: Long Dash\n Special: Dash Explosion";
         animPath = basePath + weaponName + "."; 
 
         specialCooldown = Random.Range(3, 5);
