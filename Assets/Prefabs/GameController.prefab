@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feb527eb855fd5469957de8a31abf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSliding: 0
   speed:
     <originalValue>k__BackingField: 5
     value: 5
@@ -164,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 4
+  <maxHealth>k__BackingField: 4
 --- !u!114 &2058645567314398259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,11 +178,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 6683203722448909238}
+  <anim>k__BackingField: {fileID: 6683203722448909238}
   miscAnim: {fileID: 26339309559117619}
   invincibility: {fileID: 2116864603084409345}
-  restartTimer: 5
-  hurtTimer: 0.5
+  restartTimer:
+    <timer>k__BackingField: 5
+    <timeScale>k__BackingField: -1
+  hurtTimer:
+    <timer>k__BackingField: 0.5
+    <timeScale>k__BackingField: -1
 --- !u!114 &4443857753356487881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +212,9 @@ MonoBehaviour:
   normalGravity:
     <originalValue>k__BackingField: 5
     value: 5
+  <fallGravity>k__BackingField:
+    <originalValue>k__BackingField: 6
+    value: 6
   feet: {fileID: 5954393082887964401}
   radius: 0.2
   ground:
@@ -1516,7 +1524,6 @@ MonoBehaviour:
   strength: 1
   knockback: {x: 1, y: 1}
   invincibilityLength: 1.5
-  invincibilityTime: 0
   stunTime: 0
 --- !u!114 &2116864603084409345
 MonoBehaviour:
@@ -1542,10 +1549,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df78bc73199084344b0ed5aad590187e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightStr: 7
-  heavyStr: 11
-  SpecialStr: 20
-  firePoint: {fileID: 8245610911835613080}
+  lightSpd: 7
+  heavySpd: 11
+  specialSpd: 20
 --- !u!114 &2615119021619725357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,7 +1604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5b449763c96ac43a8a07f9d94206c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectiles: []
 --- !u!114 &987147569610692144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,7 +2827,6 @@ MonoBehaviour:
   strength: 1
   knockback: {x: 20, y: 0}
   invincibilityLength: 0.01
-  invincibilityTime: 0.01
   stunTime: 1
 --- !u!95 &1746890965445384494
 Animator:

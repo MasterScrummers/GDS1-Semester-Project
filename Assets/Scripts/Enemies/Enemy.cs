@@ -5,9 +5,8 @@ using UnityEngine;
 public abstract class Enemy : AttackDealer, IAttackReceiver
 {
     [SerializeField] protected bool allowKnockback = true;
-    protected bool hurt;
-    
     [SerializeField] private Timer hurtTimer = new(0.2f);
+    [SerializeField] protected float invincibilityTime;
 
     protected bool isStunned = false;
     protected Rigidbody2D rb;
@@ -26,16 +25,12 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     protected virtual void Update()
     {
         float delta = Time.deltaTime;
-        if (hurt)
+        
+        hurtTimer.Update(delta);
+        if (hurtTimer.tick == 0)
         {
-            hurtTimer.Update(delta);
-            sr.color = Color.red;
-            if (hurtTimer.tick == 0)
-            {
-                sr.color = Color.white;
-                hurt = false;
-                hurtTimer.Reset();
-            }
+            sr.color = Color.white;
+            hurtTimer.Reset();
         }
 
         isStunned = (stunTime -= delta) > 0f;
@@ -78,7 +73,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         }
         health.OffsetHP(-strength);
 
-        hurt = true;
+        sr.color = Color.red;
         this.stunTime = stunTime;
         this.invincibilityTime = invincibilityTime;
 

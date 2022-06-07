@@ -1,3 +1,4 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,7 +16,7 @@ public class JumpComponent : MonoBehaviour
     [SerializeField] private Timer coyoteTimer = new(0.2f); //The timer for jumping after walking off edge.
 
     [SerializeField] private OriginalValue<float> normalGravity = new(5); //The original gravity
-    [SerializeField] public OriginalValue<float> fallGravity { get; private set; } = new(6); //Gravity when falling
+    [field: SerializeField] public OriginalValue<float> fallGravity { get; private set; } = new(6); //Gravity when falling
     [SerializeField] private Transform feet; //Kirby's feet, to check if it is colliding with the ground
     [SerializeField] private float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
 

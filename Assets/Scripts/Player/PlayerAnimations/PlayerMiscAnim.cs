@@ -1,11 +1,10 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 public class PlayerMiscAnim : MonoBehaviour
 {
     public PlayerAnim.AnimState animState { get; private set; } = PlayerAnim.AnimState.Idle;
     public PlayerAnim.JumpState jumpState { get; private set; } = PlayerAnim.JumpState.Waiting;
-
-    [SerializeField] private GameObject[] projectiles; //Array of projectiles
 
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
@@ -26,6 +25,7 @@ public class PlayerMiscAnim : MonoBehaviour
         player = DoStatic.GetPlayer();
     }
 
+#pragma warning disable IDE0051
     private void SetAnimState(PlayerAnim.AnimState state)
     {
         animState = state;
@@ -52,13 +52,14 @@ public class PlayerMiscAnim : MonoBehaviour
         ac.PlaySound(clipName);
     }
 
-    private void RestGravityMultiplier()
-    {
-        jump.fallGravity.Reset();
-    }
-    private void ChangeGravityMultiplier(float gravityMultiplier)
+    private void ChangeGravityFall(float gravityMultiplier)
     {
         jump.fallGravity.value = gravityMultiplier;
+    }
+
+    private void ResetGravityFall()
+    {
+        jump.fallGravity.Reset();
     }
 
     private void ChangeSpeed(float speed)
@@ -71,18 +72,8 @@ public class PlayerMiscAnim : MonoBehaviour
         pi.speed.Reset();
     }
 
-    private void ActivateProjectile(int num)
-    {
-        Instantiate(projectiles[num], pi.firePoint.position, Quaternion.identity);
-    }
-
     public void ResetRotation()
     {
         player.transform.eulerAngles = (Vector2)player.transform.eulerAngles;
-    }
-    
-    private void ResetGravityScale()
-    {
-        jump.fallGravity.Reset();
     }
 }

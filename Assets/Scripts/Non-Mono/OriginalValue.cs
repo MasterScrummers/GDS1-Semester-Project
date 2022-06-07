@@ -1,3 +1,4 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 [System.Serializable]

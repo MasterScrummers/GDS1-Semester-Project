@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour, IAttackReceiver
 {
-    [SerializeField] private Animator anim; //The player's animation
+    public Animator anim { get; private set; } //The player's animation
     [SerializeField] private PlayerMiscAnim miscAnim;
     [SerializeField] private PlayerInvincibility invincibility;
 
@@ -16,12 +16,12 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
     public enum JumpState { Waiting, StartJump, Peak, Descending }
 
-    [SerializeField] private float restartTimer = 5f;
-    [SerializeField] private float hurtTimer = 0.5f;
-    private float hurtTick = 0f;
+    [SerializeField] private Timer restartTimer = new(5f);
+    [SerializeField] private Timer hurtTimer = new(0.5f);
 
-    void Start()
+    private void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         ic = DoStatic.GetGameController<InputController>();
         sc = ic.GetComponent<SceneController>();
 
@@ -31,61 +31,15 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         health = jump.GetComponent<HealthComponent>();
     }
 
-    void Update()
+    private void Update()
     {
-        void LightAttackCheck()
-        {
-            if (miscAnim.animState != AnimState.LightAttack)
-            {
-                return;
-            }
-
-            if (ic.GetButtonDown("Attack", "Light"))
-            {
-                anim.SetTrigger("FollowUp");
-            }
-        }
-
-        void CheckWalking()
-        {
-            anim.SetBool("IsWalking", ic.GetAxisRawValues("Movement", "Horizontal") != 0);
-        }
-
-        void CheckJumping()
-        {
-            void ConditionalTriggerCheck(string animParameter, bool condition)
-            {
-                if (condition)
-                {
-                    anim.SetTrigger(animParameter);
-                }
-            }
-
-            anim.SetBool("IsFalling", jump.isFalling);
-            ConditionalTriggerCheck("Jump", jump.hasJumped && (miscAnim.animState == AnimState.Idle || miscAnim.animState == AnimState.Run));
-            if (miscAnim.animState != AnimState.Jump)
-            {
-                return;
-            }
-
-            switch(miscAnim.jumpState)
-            {
-                case JumpState.StartJump:
-                    ConditionalTriggerCheck("Jump", rb.velocity.y < 3); //Takes you to peak
-                    return;
-
-
-                case JumpState.Descending:
-                    ConditionalTriggerCheck("Jump", !jump.isFalling);
-                    return;
-            }
-        }
-
         Physics2D.IgnoreLayerCollision(6, 7, invincibility.invincible);
+        float delta = Time.deltaTime;
         switch (miscAnim.animState)
         {
             case AnimState.Damage:
-                if ((hurtTick -= Time.deltaTime) < 0)
+                hurtTimer.Update(delta);
+                if (hurtTimer.tick == 0)
                 {
                     anim.SetTrigger("Recover");
                     ic.SetInputLock(false);
@@ -94,7 +48,8 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
                 return;
 
             case AnimState.Death:
-                if ((restartTimer -= Time.deltaTime) <= 0f)
+                restartTimer.Update(delta);
+                if (restartTimer.tick == 0)
                 {
                     sc.RestartScene(Restart);
                 }
@@ -108,6 +63,52 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         }
     }
 
+    private void LightAttackCheck()
+    {
+        if (ic.GetButtonDown("Attack", "Light") && miscAnim.animState == AnimState.LightAttack)
+        {
+            anim.SetTrigger("FollowUp");
+        } else if (miscAnim.animState != AnimState.LightAttack)
+        {
+            anim.ResetTrigger("FollowUp");
+        }
+    }
+
+    private void CheckWalking()
+    {
+        anim.SetBool("IsWalking", ic.GetAxisRawValues("Movement", "Horizontal") != 0);
+    }
+
+    private void CheckJumping()
+    {
+        void ConditionalTriggerCheck(string animParameter, bool condition)
+        {
+            if (condition)
+            {
+                anim.SetTrigger(animParameter);
+            }
+        }
+
+        anim.SetBool("IsFalling", jump.isFalling);
+        ConditionalTriggerCheck("Jump", jump.hasJumped && (miscAnim.animState == AnimState.Idle || miscAnim.animState == AnimState.Run));
+        if (miscAnim.animState != AnimState.Jump)
+        {
+            return;
+        }
+
+        switch (miscAnim.jumpState)
+        {
+            case JumpState.StartJump:
+                ConditionalTriggerCheck("Jump", rb.velocity.y < 3); //Takes you to peak
+                return;
+
+
+            case JumpState.Descending:
+                ConditionalTriggerCheck("Jump", !jump.isFalling);
+                return;
+        }
+    }
+
     private void Restart()
     {
         Physics2D.IgnoreLayerCollision(6, 7, false);
@@ -115,15 +116,9 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         col.enabled = true;
         anim.SetTrigger("Restart");
         health.SetHP();
-        rb.transform.eulerAngles = Vector3.zero;
-        restartTimer = 5f;
+        restartTimer.Reset();
         ic.GetComponent<VariableController>().SetLevel(1);
         rb.GetComponent<PlayerInput>().Restart();
-    }
-
-    public Animator GetAnimator()
-    {
-        return anim;
     }
 
     /// <summary>
@@ -153,10 +148,10 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         health.OffsetHP(-strength);
 
         bool isAlive = health.health > 0;
-        hurtTick = hurtTimer;
+        hurtTimer.Reset();
 
         invincibility.StartInvincible(isAlive ? invincibilityTime : 0);
         anim.Play(isAlive ? "KirbyHurt" : "Base Layer.KirbyDeath.KirbyDeathIntro");
-        rb.velocity = isAlive ? attackerPos.position.x > transform.position.x ? -knockback: knockback : Vector2.zero;
+        rb.velocity = isAlive ? attackerPos.position.x > transform.position.x ? -knockback : knockback : Vector2.zero;
     }
 }

@@ -1,10 +1,11 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 public class Lerper
 {
-    private float start; //The start value
-    public float currentValue; //The current value depending on the current time between start and end value.
-    private float end; //The destination value
+    [SerializeField] private float start; //The start value
+    public float currentValue { get; protected set; } //The current value depending on the current time between start and end value.
+    [SerializeField] private float end; //The destination value
     private Timer timer; //The timer
     
     public bool isLerping { get; protected set; } = false; //A flag used to check if this class is still lerping.

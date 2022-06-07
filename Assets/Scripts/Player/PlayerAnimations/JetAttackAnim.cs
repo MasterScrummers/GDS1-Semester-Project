@@ -3,14 +3,12 @@ using UnityEngine;
 public class JetAttackAnim : MonoBehaviour
 {
     private Rigidbody2D rb; //The rigidbody of the player
+    private PlayerInput pi;
 
-    [SerializeField] private float lightStr = 7;
-    [SerializeField] private float heavyStr = 11;
-    [SerializeField] private float SpecialStr = 20;
-
-    [SerializeField] private Transform firePoint;
-    private PoolController poolController;
-    private JumpComponent jump;
+    [SerializeField] private float backSpd = 5;
+    [SerializeField] private float lightSpd = 7;
+    [SerializeField] private float heavySpd = 11;
+    [SerializeField] private float specialSpd = 20;
 
     private enum DashDirection
     {
@@ -23,40 +21,23 @@ public class JetAttackAnim : MonoBehaviour
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
-        poolController = DoStatic.GetGameController<PoolController>();
-        jump = DoStatic.GetPlayer<JumpComponent>();
+        pi = rb.GetComponent<PlayerInput>();
     }
 
     private void JetDash(DashDirection direction)
     {
-        switch (direction)
+        rb.velocity = transform.right * direction switch
         {
-            case DashDirection.Light:
-                rb.velocity = transform.right * lightStr;
-                break;
-
-            case DashDirection.Heavy:
-                rb.velocity = transform.right * heavyStr;
-                break;
-
-            case DashDirection.Special:
-                rb.velocity = transform.right * SpecialStr;
-                break;
-
-            case DashDirection.backward:
-                rb.velocity = transform.right * -lightStr;
-                break;
-
-        }
+            DashDirection.Light => lightSpd,
+            DashDirection.Heavy => heavySpd,
+            DashDirection.Special => specialSpd,
+            DashDirection.backward => -backSpd,
+            _ => 0
+        };
     }
 
-    private void LockYConstraints(bool doLock)
+    private void SetSliding(int slidingState)
     {
-        jump.fallGravity.value = doLock ? 0 : jump.fallGravity.originalValue;
-    }
-
-    private void SetisSliding(string state)
-    {
-        //pi.isSliding = state.Equals("True");
+        pi.isSliding = slidingState == 1;
     }
 }

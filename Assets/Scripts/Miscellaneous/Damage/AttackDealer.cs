@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class AttackDealer : MonoBehaviour
 {
+    [Header("Attack Dealer Parameters")]
     [SerializeField] protected int strength = 1; //The strength the hit, should be controlled by another script.
     protected int strengthMult = 1;
 
-    [SerializeField] protected Vector2 knockback = Vector2.one; //The knockback given, should be controlled by another script.
-
+    [SerializeField] protected Vector2 knockback = Vector2.one; //The knockback to give.
     [SerializeField] protected float invincibilityLength = 1.5f;
-    [SerializeField] protected float invincibilityTime;
     [SerializeField] protected float stunTime;
 
-    private Dictionary<Collider2D, IAttackReceiver> victims = new();
+    private readonly Dictionary<Collider2D, IAttackReceiver> victims = new();
 
     public void UpdateAttackDealer(WeaponBase weapon)
     {
@@ -49,8 +48,12 @@ public class AttackDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();
-        if (receiver != null)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            return;
+        }
+
+        if (collision.TryGetComponent<IAttackReceiver>(out var receiver))
         {
             victims.Add(collision, receiver);
             OnTriggerStay2D(collision);
@@ -59,7 +62,7 @@ public class AttackDealer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (victims.ContainsKey(collision) && victims[collision] != null)
+        if (victims.ContainsKey(collision))
         {
             victims[collision].RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
         }
@@ -67,6 +70,9 @@ public class AttackDealer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        victims.Remove(other);
+        if (victims.ContainsKey(other))
+        {
+            victims.Remove(other);
+        }
     }
 }

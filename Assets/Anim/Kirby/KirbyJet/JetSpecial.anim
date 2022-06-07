@@ -1340,11 +1340,11 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: SetisSliding
-    data: True
+    functionName: SetSliding
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0
     functionName: SetStrengthMult
@@ -1396,8 +1396,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: LockYConstraints
-    data: Lock
+    functionName: ChangeGravityFall
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -1410,8 +1410,8 @@ AnimationClip:
     intParameter: 3
     messageOptions: 0
   - time: 1
-    functionName: SetisSliding
-    data: False
+    functionName: SetSliding
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -1424,8 +1424,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: LockYConstraints
-    data: Unlock
+    functionName: ResetGravityFall
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

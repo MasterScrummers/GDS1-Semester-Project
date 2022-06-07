@@ -4,14 +4,13 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //Input controller to check inputs.
-    private float cooldownTimer = 10f; //The cooldown timer
-    private float currCooldownTimer; //Current cooldown tick
+    private Timer cooldownTimer = new(10f); //The cooldown timer
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
     private AttackDealer dealer; //The attack hitbox when attacking.
     private Rigidbody2D rb; //Kirby Rigidbody2D for the movement
 
-    public bool isSliding { get; private set; } = false;
+    [HideInInspector] public bool isSliding = false;
     public OriginalValue<float> speed = new(5);
 
     private JumpComponent jump; //The main jump process.
@@ -31,7 +30,6 @@ public class PlayerInput : MonoBehaviour
         dealer = GetComponentInChildren<AttackDealer>();
         rb = GetComponent<Rigidbody2D>();
         jump = GetComponent<JumpComponent>();
-
         Restart();
     }
 
@@ -39,11 +37,20 @@ public class PlayerInput : MonoBehaviour
     {
         lightWeapon = WeaponBase.RandomWeapon();
         heavyWeapon =  WeaponBase.RandomWeapon();
-        specialWeapon = WeaponBase.RandomWeapon(); 
+        specialWeapon = WeaponBase.RandomWeapon();
+#if UNITY_EDITOR
+        lightWeapon = heavyWeapon = specialWeapon = new Ninja();
+#endif
+        cooldownTimer.Finish();
     }
 
     void Update()
     {
+        if (ic.lockedInput) //Allows knockback when taking damage.
+        {
+            return;
+        }
+
         HorizontalMovement();
         VerticalMovement();
         AttackChecks();
@@ -55,15 +62,14 @@ public class PlayerInput : MonoBehaviour
     /// <returns>1 for finished cooldown.</returns>
     public float CooldownPercentage()
     {
-        return 1 - Mathf.Clamp(currCooldownTimer / cooldownTimer, 0, 1);
+        return 1 - Mathf.Clamp(cooldownTimer.tick / cooldownTimer.timer, 0, 1);
     }
 
     private void HorizontalMovement()
     {
         if (!isSliding)
         {
-            Vector2 vel = new(speed.value * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
-            rb.velocity = vel;
+            rb.velocity = new(speed.value * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
         }
     }
 
@@ -86,7 +92,6 @@ public class PlayerInput : MonoBehaviour
 
     private void AttackChecks()
     {
-        currCooldownTimer -= Time.deltaTime;
         if (playerAnim.IsAttacking())
         {
             return;
@@ -94,21 +99,21 @@ public class PlayerInput : MonoBehaviour
 
         if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
         {
-            lightWeapon.LightAttack(playerAnim.GetAnimator());
+            lightWeapon.LightAttack(playerAnim.anim);
             dealer.UpdateAttackDealer(lightWeapon);
         }
 
         if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
         {
-            heavyWeapon.HeavyAttack(playerAnim.GetAnimator());
+            heavyWeapon.HeavyAttack(playerAnim.anim);
             dealer.UpdateAttackDealer(heavyWeapon);
         }
 
-        if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
+        cooldownTimer.Update(Time.deltaTime);
+        if (cooldownTimer.tick == 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
         {
-            cooldownTimer = specialWeapon.specialCooldown;
-            currCooldownTimer = cooldownTimer;
-            specialWeapon.SpecialAttack(playerAnim.GetAnimator());
+            cooldownTimer.SetTimer(specialWeapon.specialCooldown);
+            specialWeapon.SpecialAttack(playerAnim.anim);
             dealer.UpdateAttackDealer(specialWeapon);
         }
     }
