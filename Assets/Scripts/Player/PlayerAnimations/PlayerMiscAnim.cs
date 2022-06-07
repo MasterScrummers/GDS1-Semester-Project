@@ -10,6 +10,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
+    private JumpComponent jump;
     private GameObject player;
     private Rigidbody2D rb;
 
@@ -17,7 +18,10 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         ic = DoStatic.GetGameController<InputController>();
         ac = ic.GetComponent<AudioController>();
+        
         pi = GetComponentInParent<PlayerInput>();
+        jump = pi.GetComponent<JumpComponent>();
+
         rb = pi.GetComponent<Rigidbody2D>();
         player = DoStatic.GetPlayer();
     }
@@ -50,22 +54,21 @@ public class PlayerMiscAnim : MonoBehaviour
 
     private void RestGravityMultiplier()
     {
-        pi.gravityMultiplier = pi.originalGravityMultiplier;
-
+        jump.fallGravity.Reset();
     }
     private void ChangeGravityMultiplier(float gravityMultiplier)
     {
-        pi.gravityMultiplier = gravityMultiplier;
+        jump.fallGravity.value = gravityMultiplier;
     }
 
     private void ChangeSpeed(float speed)
     {
-        pi.speed = speed;
+        pi.speed.value = speed;
     }
 
     private void ResetSpeed()
     {
-        pi.speed = pi.orignalspeed;
+        pi.speed.Reset();
     }
 
     private void ActivateProjectile(int num)
@@ -80,7 +83,6 @@ public class PlayerMiscAnim : MonoBehaviour
     
     private void ResetGravityScale()
     {
-        rb.gravityScale = pi.originalGravity;
+        jump.fallGravity.Reset();
     }
-
 }

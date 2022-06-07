@@ -5,9 +5,7 @@ public class Lerper
     private float start; //The start value
     public float currentValue; //The current value depending on the current time between start and end value.
     private float end; //The destination value
-
-    private float currentTime; //The current time
-    private float timeLimit; //The destination valye of current time
+    private Timer timer; //The timer
     
     public bool isLerping { get; protected set; } = false; //A flag used to check if this class is still lerping.
 
@@ -17,8 +15,7 @@ public class Lerper
         currentValue = start;
         end = endValue;
 
-        currentTime = 0;
-        timeLimit = time;
+        timer = new Timer(time, 1);
         isLerping = startLerping;
     }
 
@@ -29,8 +26,8 @@ public class Lerper
             return;
         }
 
-        currentTime += deltaTime;
-        float clamp = Mathf.Clamp(currentTime / timeLimit, 0, 1);
+        timer.Update(deltaTime);
+        float clamp = Mathf.Clamp(timer.tick / timer.timer, 0, 1);
         currentValue = clamp * (end - start) + start;
         if (clamp == 1)
         {
@@ -40,7 +37,7 @@ public class Lerper
 
     private void Reset()
     {
-        currentTime = 0;
+        timer.Reset();
         isLerping = false;
     }
 }

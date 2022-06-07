@@ -10,7 +10,7 @@ public class JetAttackAnim : MonoBehaviour
 
     [SerializeField] private Transform firePoint;
     private PoolController poolController;
-    private PlayerInput pi;
+    private JumpComponent jump;
 
     private enum DashDirection
     {
@@ -24,7 +24,7 @@ public class JetAttackAnim : MonoBehaviour
     {
         rb = GetComponentInParent<Rigidbody2D>();
         poolController = DoStatic.GetGameController<PoolController>();
-        pi = DoStatic.GetPlayer<PlayerInput>();
+        jump = DoStatic.GetPlayer<JumpComponent>();
     }
 
     private void JetDash(DashDirection direction)
@@ -50,13 +50,13 @@ public class JetAttackAnim : MonoBehaviour
         }
     }
 
-    private void LockYConstraints(string state)
+    private void LockYConstraints(bool doLock)
     {
-        rb.gravityScale = state.Equals("Lock") ? 0 : pi.originalGravity;
+        jump.fallGravity.value = doLock ? 0 : jump.fallGravity.originalValue;
     }
 
     private void SetisSliding(string state)
     {
-        pi.isSliding = state.Equals("True");
+        //pi.isSliding = state.Equals("True");
     }
 }

@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    public int startMaxHealth = 4; //For editor to set the max health.
-    public int maxHealth { get; private set; } //The max health.
+    [field: SerializeField] public int maxHealth { get; private set; } = 4; //The max health.
     public int health { get; private set; } //The current health.
 
     void Start()
     {
-        maxHealth = startMaxHealth;
         SetHP();
     }
 

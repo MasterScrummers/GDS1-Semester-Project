@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 25
+  <maxHealth>k__BackingField: 25
 --- !u!58 &8715653282876995269
 CircleCollider2D:
   m_ObjectHideFlags: 0

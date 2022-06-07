@@ -62,7 +62,6 @@ public class Worm : Enemy
 
         if (other.gameObject.CompareTag("Player") && state == State.Death)
         {
-            Debug.Log("Ignoring collision");
             Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
         }
     }

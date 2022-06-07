@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 500
+  <maxHealth>k__BackingField: 500
 --- !u!114 &2225151482990213595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +126,8 @@ MonoBehaviour:
   moveTimeMax: 3
   attackTimeMin: 2
   attackTimeMax: 2
+  upperBoundary: 0
+  lowerBoundary: -6
   movementSpeed: 1
 --- !u!70 &2118518894
 CapsuleCollider2D:

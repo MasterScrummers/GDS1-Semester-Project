@@ -9,7 +9,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     private InputController ic; // Input Controller
     private SceneController sc; // Scene Controller
     private Rigidbody2D rb; //The rigidbody of the player
-    private PlayerInput pi; //The update the animation according to player input.
+    private JumpComponent jump; //The update the animation according to player input.
     private Collider2D col; //The collider of the player. Is disabled upon death.
     private HealthComponent health; //To track the player's health.
 
@@ -26,9 +26,9 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         sc = ic.GetComponent<SceneController>();
 
         rb = GetComponentInParent<Rigidbody2D>();
-        pi = rb.GetComponent<PlayerInput>();
-        col = pi.GetComponent<Collider2D>();
-        health = pi.GetComponent<HealthComponent>();
+        jump = rb.GetComponent<JumpComponent>();
+        col = jump.GetComponent<Collider2D>();
+        health = jump.GetComponent<HealthComponent>();
     }
 
     void Update()
@@ -61,8 +61,8 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
                 }
             }
 
-            anim.SetBool("IsFalling", pi.isFalling);
-            ConditionalTriggerCheck("Jump", pi.hasJumped && (miscAnim.animState == AnimState.Idle || miscAnim.animState == AnimState.Run));
+            anim.SetBool("IsFalling", jump.isFalling);
+            ConditionalTriggerCheck("Jump", jump.hasJumped && (miscAnim.animState == AnimState.Idle || miscAnim.animState == AnimState.Run));
             if (miscAnim.animState != AnimState.Jump)
             {
                 return;
@@ -76,7 +76,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
 
                 case JumpState.Descending:
-                    ConditionalTriggerCheck("Jump", !pi.isFalling);
+                    ConditionalTriggerCheck("Jump", !jump.isFalling);
                     return;
             }
         }
@@ -118,7 +118,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         rb.transform.eulerAngles = Vector3.zero;
         restartTimer = 5f;
         ic.GetComponent<VariableController>().SetLevel(1);
-        pi.Restart();
+        rb.GetComponent<PlayerInput>().Restart();
     }
 
     public Animator GetAnimator()

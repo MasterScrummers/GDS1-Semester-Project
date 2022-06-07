@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackDealer : MonoBehaviour
@@ -10,6 +11,8 @@ public class AttackDealer : MonoBehaviour
     [SerializeField] protected float invincibilityLength = 1.5f;
     [SerializeField] protected float invincibilityTime;
     [SerializeField] protected float stunTime;
+
+    private Dictionary<Collider2D, IAttackReceiver> victims = new();
 
     public void UpdateAttackDealer(WeaponBase weapon)
     {
@@ -44,14 +47,26 @@ public class AttackDealer : MonoBehaviour
         stunTime = time;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();
-        
         if (receiver != null)
         {
-            Debug.Log("Received attack from: " + collision.gameObject.name);
-            receiver.RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
+            victims.Add(collision, receiver);
+            OnTriggerStay2D(collision);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (victims.ContainsKey(collision) && victims[collision] != null)
+        {
+            victims[collision].RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        victims.Remove(other);
     }
 }

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxHealth: 200
+  <maxHealth>k__BackingField: 200
 --- !u!61 &1371395974
 BoxCollider2D:
   m_ObjectHideFlags: 0

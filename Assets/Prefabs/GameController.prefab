@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 9077803633783099290}
   - component: {fileID: 2002938334861128839}
   - component: {fileID: 2058645567314398259}
+  - component: {fileID: 4443857753356487881}
   m_Layer: 6
   m_Name: Kirby
   m_TagString: Player
@@ -75,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134018831627938803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 4.99, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -109,17 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feb527eb855fd5469957de8a31abf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  isSliding: 0
+  speed:
+    <originalValue>k__BackingField: 5
+    value: 5
   canInteract: 0
-  baseJumpForce: 8
-  jumpHoldTimer: 0.25
-  coyoteTimer: 0.2
-  gravityMultiplier: 1.2
-  originalGravityMultiplier: 0
-  radius: 0.2
-  feet: {fileID: 5954393082887964401}
-  firePoint: {fileID: 8245610911835613080}
+  <firePoint>k__BackingField: {fileID: 8245610911835613080}
 --- !u!58 &3138290750049015659
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -187,6 +182,36 @@ MonoBehaviour:
   invincibility: {fileID: 2116864603084409345}
   restartTimer: 5
   hurtTimer: 0.5
+--- !u!114 &4443857753356487881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134018831627938803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c9593eb58b4b4429d827d65aa9ba4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumps:
+    <originalValue>k__BackingField: 1
+    value: 1
+  baseJumpForce: 8
+  jumpHeldTimer:
+    <timer>k__BackingField: 0.3
+    <timeScale>k__BackingField: -1
+  coyoteTimer:
+    <timer>k__BackingField: 0.2
+    <timeScale>k__BackingField: -1
+  normalGravity:
+    <originalValue>k__BackingField: 5
+    value: 5
+  feet: {fileID: 5954393082887964401}
+  radius: 0.2
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &160476081816171155
 GameObject:
   m_ObjectHideFlags: 0

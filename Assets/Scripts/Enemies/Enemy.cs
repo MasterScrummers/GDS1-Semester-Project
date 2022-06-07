@@ -6,8 +6,9 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 {
     [SerializeField] protected bool allowKnockback = true;
     protected bool hurt;
-    public const float HurtTime = 0.2f;
-    private float hurtColourTimer = HurtTime;
+    
+    [SerializeField] private Timer hurtTimer = new(0.2f);
+
     protected bool isStunned = false;
     protected Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -24,21 +25,21 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     
     protected virtual void Update()
     {
+        float delta = Time.deltaTime;
         if (hurt)
         {
-            if (hurtColourTimer < 0f)
+            hurtTimer.Update(delta);
+            sr.color = Color.red;
+            if (hurtTimer.tick == 0)
             {
                 sr.color = Color.white;
                 hurt = false;
-                hurtColourTimer = HurtTime;
-            } else {
-                sr.color = Color.red;
-                hurtColourTimer -= Time.deltaTime;
+                hurtTimer.Reset();
             }
         }
 
-        isStunned = (stunTime -= Time.deltaTime) > 0f;
-        invincibilityTime -= Time.deltaTime;
+        isStunned = (stunTime -= delta) > 0f;
+        invincibilityTime -= delta;
     }
 
     /// <summary>
@@ -71,7 +72,6 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
     {
-        Debug.Log("Receiving attack");
         if (this.invincibilityTime > 0f)
         {
             return;
