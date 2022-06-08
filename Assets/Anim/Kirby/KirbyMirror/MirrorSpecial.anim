@@ -83,7 +83,7 @@ AnimationClip:
     data: On
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0
     functionName: SetAnimState
@@ -104,7 +104,7 @@ AnimationClip:
     data: True
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0
     functionName: SetReasonLock

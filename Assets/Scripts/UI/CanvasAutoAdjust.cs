@@ -9,7 +9,6 @@ public class CanvasAutoAdjust : MonoBehaviour
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
         canvas.pixelPerfect = true;
         canvas.worldCamera = DoStatic.GetGameController<Transform>().GetComponentInChildren<Camera>();
-        canvas.sortingLayerName = gameObject.tag.Equals("Transition") ? "Transition" : canvas.sortingLayerName;
 
         CanvasScaler scaler = GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;

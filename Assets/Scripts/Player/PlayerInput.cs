@@ -1,10 +1,11 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 [RequireComponent(typeof(JumpComponent))]
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //Input controller to check inputs.
-    private Timer cooldownTimer = new(10f); //The cooldown timer
+    private readonly Timer cooldownTimer = new(10f); //The cooldown timer
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
     private AttackDealer dealer; //The attack hitbox when attacking.
@@ -39,7 +40,7 @@ public class PlayerInput : MonoBehaviour
         heavyWeapon =  WeaponBase.RandomWeapon();
         specialWeapon = WeaponBase.RandomWeapon();
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Ninja();
+        lightWeapon = heavyWeapon = specialWeapon = new Mirror();
 #endif
         cooldownTimer.Finish();
     }

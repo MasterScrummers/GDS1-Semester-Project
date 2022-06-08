@@ -1,4 +1,5 @@
 #pragma warning disable IDE1006 // Naming Styles
+#pragma warning disable IDE0051
 using UnityEngine;
 
 public class PlayerMiscAnim : MonoBehaviour
@@ -12,20 +13,196 @@ public class PlayerMiscAnim : MonoBehaviour
     private JumpComponent jump;
     private GameObject player;
     private Rigidbody2D rb;
+    private PoolController poolController;
+    private Collider2D col; //The collider of the player. Is disabled upon death.
 
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
+        poolController = ic.GetComponent<PoolController>();
         ac = ic.GetComponent<AudioController>();
         
         pi = GetComponentInParent<PlayerInput>();
         jump = pi.GetComponent<JumpComponent>();
-
+        col = pi.GetComponent<Collider2D>();
         rb = pi.GetComponent<Rigidbody2D>();
+
         player = DoStatic.GetPlayer();
+
+        ms = shield.GetComponent<MirrorShieldMovement>();
     }
 
-#pragma warning disable IDE0051
+    private void Update()
+    {
+        void CutterUpdate()
+        {
+            if (nextWave != 0 && DoStatic.GetChildren(cutterPivot.transform).Length == 0)
+            {
+                CutterSpecial(nextWave);
+                nextWave = nextWave >= 32 ? 0 : nextWave;
+            }
+        }
+
+        void NinjaUpdate()
+        {
+            ninjaTimer.Update(Time.deltaTime);
+            if (bulletHellWaves-- > 0 && ninjaTimer.tick == 0)
+            {
+                ninjaTimer.Reset();
+                float num = 10;
+                for (int i = 0; i < num; i++)
+                {
+                    SpawnKunai((360 / num * i) + angle).GetComponent<AttackDealer>().UpdateAttackDealer(pi.specialWeapon);
+                }
+                angle += 20;
+            }
+        }
+
+        CutterUpdate();
+        NinjaUpdate();
+    }
+
+    #region Cutter
+    [Header("Cutter Parameters")]
+    [SerializeField] GameObject cutterPivot;
+    private int nextWave = 0;
+    private void SpawnCutter()
+    {
+        GameObject projectile = poolController.GetObjectFromPool("CutterPool");
+        projectile.transform.position = cutterPivot.transform.position;
+        projectile.transform.eulerAngles = new(0, 0, pi.transform.eulerAngles.y < 90 ? 0 : 180);
+        projectile.GetComponent<AttackDealer>().UpdateAttackDealer(pi.heavyWeapon);
+    }
+
+    private void CutterSpecial(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            GameObject projectile = poolController.GetObjectFromPool("CutterPool");
+            projectile.transform.position = cutterPivot.transform.position;
+
+            Vector3 rot = projectile.transform.eulerAngles;
+            rot.z = 360 / number * i;
+            projectile.transform.eulerAngles = rot;
+
+            projectile.transform.parent = cutterPivot.transform;
+            projectile.GetComponent<AttackDealer>().UpdateAttackDealer(pi.specialWeapon);
+        }
+        nextWave = number * 2;
+    }
+    #endregion
+
+    #region Ninja
+    [Header("Ninja Parameters")]
+    [SerializeField] private Transform firePoint;
+    private float angle;
+    private int bulletHellWaves = 0;
+    private readonly Timer ninjaTimer = new(0.05f);
+    private GameObject SpawnKunai(float angle)
+    {
+        GameObject projectile = poolController.GetObjectFromPool("KunaiPool");
+        projectile.transform.position = firePoint.position;
+
+        Vector3 rot = projectile.transform.eulerAngles;
+        rot.z = angle;
+        projectile.transform.eulerAngles = rot;
+
+        return projectile;
+    }
+
+    private void SpawnLightKunaiProjectile()
+    {
+        for (int i = -1; i <= 1; i++)
+        {
+            SpawnKunai(i * 45).GetComponent<AttackDealer>().UpdateAttackDealer(pi.lightWeapon);
+        }
+    }
+
+    private void SpawnHeavyKunaiProjectile()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnKunai(Random.Range(-45, 45)).GetComponent<AttackDealer>().UpdateAttackDealer(pi.heavyWeapon);
+        }
+    }
+
+    private void SpawnSpecialKunaiProjectile()
+    {
+        bulletHellWaves = 300;
+    }
+    #endregion
+
+    #region Mirror
+    [Header("Mirror Parameters")]
+    [SerializeField] GameObject mirror;
+    [SerializeField] GameObject shield;
+    private MirrorShieldMovement ms;
+
+    private void ActiveMirror()
+    {
+        mirror.SetActive(true);
+    }
+
+    private void SetMirrorShield(int isOn)
+    {
+        shield.SetActive(isOn == 1);
+    }
+
+    private void SetIsMirrorSpecial(int isOn)
+    {
+        ms.IsSpecialAttack = isOn == 1;
+    }
+    #endregion
+
+    #region Jet
+    [Header("Jet Parameters")]
+    [SerializeField] private float backSpd = 5;
+    [SerializeField] private float lightSpd = 7;
+    [SerializeField] private float heavySpd = 11;
+    [SerializeField] private float specialSpd = 20;
+
+    private enum DashDirection
+    {
+        Light,
+        Heavy,
+        Special,
+        backward,
+    }
+    private void JetDash(DashDirection direction)
+    {
+        rb.velocity = transform.right * direction switch
+        {
+            DashDirection.Light => lightSpd,
+            DashDirection.Heavy => heavySpd,
+            DashDirection.Special => specialSpd,
+            DashDirection.backward => -backSpd,
+            _ => 0
+        };
+    }
+
+    private void SetSliding(int slidingState)
+    {
+        pi.isSliding = slidingState == 1;
+    }
+    #endregion
+
+    #region Hurt
+    private void DeathJump()
+    {
+        col.enabled = false;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(transform.up * 20f, ForceMode2D.Impulse);
+    }
+
+    private void DeathRotate()
+    {
+        Vector3 rot = pi.transform.eulerAngles;
+        rot.z -= 90;
+        pi.transform.eulerAngles = rot;
+    }
+    #endregion
+
+    #region Miscellaneous
     private void SetAnimState(PlayerAnim.AnimState state)
     {
         animState = state;
@@ -76,4 +253,5 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         player.transform.eulerAngles = (Vector2)player.transform.eulerAngles;
     }
+    #endregion
 }
