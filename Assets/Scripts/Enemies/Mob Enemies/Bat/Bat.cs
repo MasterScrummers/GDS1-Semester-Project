@@ -56,7 +56,7 @@ public class Bat : Enemy
         {
             State.Move => Move,
             State.Attack => Attack,
-            State.Death => aiTimer.tick < 0 ? RemoveEnemy : null,
+            State.Death => aiTimer.tick == 0 ? RemoveEnemy : null,
             _ => null
         };
         simple?.Invoke();
