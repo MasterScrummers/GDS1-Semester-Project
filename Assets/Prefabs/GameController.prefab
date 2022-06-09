@@ -178,13 +178,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffect: {fileID: 8126368881675022783, guid: 2d95d09982390fb4c822a3b1ae50ee62, type: 3}
   miscAnim: {fileID: 26339309559117619}
   invincibility: {fileID: 2116864603084409345}
   restartTimer:
-    <timer>k__BackingField: 5
+    <timer>k__BackingField: 3
     <timeScale>k__BackingField: -1
   hurtTimer:
-    <timer>k__BackingField: 0.5
+    <timer>k__BackingField: 1
     <timeScale>k__BackingField: -1
 --- !u!114 &4443857753356487881
 MonoBehaviour:
@@ -1363,9 +1364,9 @@ GameObject:
   - component: {fileID: 6683203722448909238}
   - component: {fileID: 4852649817807651453}
   - component: {fileID: 5538128225330328590}
-  - component: {fileID: 1630066109760787327}
-  - component: {fileID: 2116864603084409345}
   - component: {fileID: 26339309559117619}
+  - component: {fileID: 2116864603084409345}
+  - component: {fileID: 1630066109760787327}
   m_Layer: 0
   m_Name: Kirby Sprite
   m_TagString: Untagged
@@ -1503,34 +1504,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.75, y: 1.5416666}
   m_EdgeRadius: 0
---- !u!114 &1630066109760787327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068839801118213405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 1
-  knockback: {x: 1, y: 1}
-  invincibilityLength: 1.5
-  stunTime: 0
---- !u!114 &2116864603084409345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068839801118213405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &26339309559117619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,6 +1524,34 @@ MonoBehaviour:
   lightSpd: 7
   heavySpd: 11
   specialSpd: 20
+--- !u!114 &2116864603084409345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068839801118213405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1630066109760787327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068839801118213405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 1
+  knockback: {x: 1, y: 1}
+  invincibilityLength: 1.5
+  stunTime: 0
 --- !u!1 &2181601175384039355
 GameObject:
   m_ObjectHideFlags: 0

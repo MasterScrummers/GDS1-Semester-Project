@@ -27,13 +27,13 @@ AnimationClip:
       value: {fileID: -1691024035, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     - time: 0.3
       value: {fileID: -39685382, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - time: 3
+    - time: 0.4
       value: {fileID: -341157521, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 30
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -58,7 +58,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 3.0333333
+    m_StopTime: 3
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,43 +79,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetMirrorShield
-    data: On
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0
-    functionName: SetAnimState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 5
-    messageOptions: 0
-  - time: 0
-    functionName: StartAnimInvincible
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 4
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: SetIsMirrorSpecial
-    data: True
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0
-    functionName: SetReasonLock
-    data: Movement
+    functionName: AnimMethod
+    data: MirrorSpecialStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.0333333
-    functionName: SetReasonUnlock
-    data: Movement
+  - time: 3
+    functionName: AnimMethod
+    data: MirrorSpecialEnd
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

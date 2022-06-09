@@ -15,6 +15,8 @@ public class PlayerMiscAnim : MonoBehaviour
     private Rigidbody2D rb;
     private PoolController poolController;
     private Collider2D col; //The collider of the player. Is disabled upon death.
+    private AttackDealer attacker;
+    private PlayerInvincibility invincibility;
 
     void Start()
     {
@@ -28,6 +30,8 @@ public class PlayerMiscAnim : MonoBehaviour
         rb = pi.GetComponent<Rigidbody2D>();
 
         player = DoStatic.GetPlayer();
+        attacker = GetComponent<AttackDealer>();
+        invincibility = GetComponent<PlayerInvincibility>();
 
         ms = shield.GetComponent<MirrorShieldMovement>();
     }
@@ -62,10 +66,242 @@ public class PlayerMiscAnim : MonoBehaviour
         NinjaUpdate();
     }
 
+    private void AnimMethod(string methodName)
+    {
+        switch (methodName)
+        {
+            case "IdleStart":
+                SetAnimState(PlayerAnim.AnimState.Idle);
+                pi.isSliding = false;
+                break;
+
+            case "WalkStart":
+                SetAnimState(PlayerAnim.AnimState.Run);
+                //ResetSpeed();
+                break;
+
+            case "JumpStart":
+                SetAnimState(PlayerAnim.AnimState.Jump);
+                SetJumpState(PlayerAnim.JumpState.StartJump);
+                break;
+
+            case "JumpFallStart":
+                SetAnimState(PlayerAnim.AnimState.Jump);
+                SetJumpState(PlayerAnim.JumpState.Descending);
+                break;
+
+            #region Sword
+            case "SwordLightStart":
+                SetAnimState(PlayerAnim.AnimState.LightAttack);
+                attacker.SetKnockbackX(10);
+                attacker.SetInvincibilityLength(0.3f);
+                break;
+
+            case "SwordHeavyStart":
+                SetAnimState(PlayerAnim.AnimState.HeavyAttack);
+                ChangeSpeed(3);
+                attacker.SetStrengthMult(2);
+                attacker.SetKnockbackX(15);
+                attacker.SetInvincibilityLength(0.5f);
+                break;
+
+            case "SwordHeavyEnd":
+                attacker.SetStrengthMult(1);
+                SetReasonUnlock("Movement"); //Locked halfway through.
+                ResetSpeed();
+                break;
+
+            case "SwordSpecialStart":
+                SetAnimState(PlayerAnim.AnimState.SpecialAttack);
+                ChangeSpeed(13);
+                attacker.SetStrengthMult(2);
+                //invincibility.StartAnimInvincible(1.2f);
+                attacker.SetKnockbackX(8);
+                attacker.SetInvincibilityLength(0.3f);
+                break;
+
+            case "SwordSpecialEnd":
+                ResetSpeed();
+                attacker.SetStrengthMult(1);
+                break;
+            #endregion
+
+            #region Hammer
+            case "HammerLightStart":
+                SetAnimState(PlayerAnim.AnimState.LightAttack);
+                //Lock movement replaced with slowed movement
+                ChangeSpeed(3);
+                attacker.SetKnockbackX(17);
+                attacker.SetInvincibilityLength(0.3f);
+                break;
+
+            case "HammerHeavyStart":
+                SetAnimState(PlayerAnim.AnimState.HeavyAttack);
+                attacker.SetStrengthMult(2);
+                attacker.SetKnockbackX(17);
+                attacker.SetInvincibilityLength(0.3f);
+
+                //Considering making Hammer Heavy have sliding of Jet Light.
+                break;
+
+            case "HammerHeavyEnd":
+                attacker.SetStrengthMult(1);
+                SetReasonUnlock("Movement"); //Gets locked halfway through
+                break;
+
+            case "HammerSpecialStart":
+                SetAnimState(PlayerAnim.AnimState.SpecialAttack);
+                attacker.SetInvincibilityLength(0.3f);
+
+                ChangeSpeed(1);
+                attacker.SetKnockbackX(10);
+                PlaySound("HammerSpecial_0");
+                break;
+
+            case "HammerFlip":
+                attacker.SetKnockbackX(27);
+                attacker.SetKnockbackX(35);
+                SetReasonLock("Movement");
+                attacker.SetStrengthMult(3);
+                break;
+
+            case "HammerSpecialEnd":
+                ResetSpeed();
+                attacker.SetStrengthMult(1);
+                SetReasonUnlock("Movement");
+                break;
+            #endregion
+
+            #region Cutter
+            case "CutterLightStart":
+                CutterStart(PlayerAnim.AnimState.LightAttack, 7);
+                break;
+
+            case "CutterHeavyStart":
+                CutterStart(PlayerAnim.AnimState.HeavyAttack, 2);
+                break;
+            #endregion
+
+            #region Jet
+            case "JetLightStart":
+                JetStart(PlayerAnim.AnimState.LightAttack, DashDirection.Light);
+                //Set invincible for 0.5 seconds
+                break;
+
+            case "JetHeavyStart":
+                JetStart(PlayerAnim.AnimState.HeavyAttack, DashDirection.Heavy);
+                attacker.SetStrengthMult(2);
+                attacker.SetKnockbackX(40);
+                //Set invincible for 1 second
+                break;
+
+            case "JetSpecialStart":
+                JetStart(PlayerAnim.AnimState.SpecialAttack, DashDirection.Special);
+                attacker.SetStrengthMult(3);
+                attacker.SetKnockbackX(50);
+                attacker.SetStunTime(1);
+                attacker.SetInvincibilityLength(0.5f);
+                //Set invincible for 1 second
+                break;
+
+            case "JetEnd":
+                ResetGravityFall();
+                SetReasonUnlock("Movement");
+                attacker.SetStrengthMult(1);
+                pi.isSliding = false;
+                break;
+            #endregion
+
+            #region Mirror
+            case "MirrorLightStart":
+                SetAnimState(PlayerAnim.AnimState.LightAttack);
+                //SetReasonLock("Movement");
+                ChangeSpeed(3);
+                break;
+
+            case "MirrorLightActivate":
+                //invincibility.StartAnimInvincible(0.5f);
+                ChangeSpeed(2);
+                shield.SetActive(true);
+                ms.IsSpecialAttack = false;
+                break;
+
+            case "MirrorHeavyStart":
+                SetAnimState(PlayerAnim.AnimState.HeavyAttack);
+                SetReasonLock("Movement");
+                break;
+
+            case "MirrorSpecialStart":
+                SetAnimState(PlayerAnim.AnimState.HeavyAttack);
+                shield.SetActive(true);
+                ms.IsSpecialAttack = true;
+                //invincibility.StartAnimInvincible(4);
+                SetReasonLock("Movement");
+                break;
+            #endregion
+
+            #region Ninja
+            case "NinjaLightStart":
+                SetAnimState(PlayerAnim.AnimState.LightAttack);
+                break;
+
+            case "NinjaLightEnd":
+                for (int i = -1; i <= 1; i++)
+                {
+                    SpawnKunai(i * 45).GetComponent<AttackDealer>().UpdateAttackDealer(pi.lightWeapon);
+                }
+                break;
+
+            case "NinjaHeavyStart":
+                SetAnimState(PlayerAnim.AnimState.HeavyAttack);
+                ChangeSpeed(2);
+                break;
+
+            case "NinjaHeavyEnd":
+                for (int i = 0; i < 10; i++)
+                {
+                    SpawnKunai(Random.Range(-45, 45)).GetComponent<AttackDealer>().UpdateAttackDealer(pi.heavyWeapon);
+                }
+                ResetSpeed();
+                break;
+
+            case "NinjaSpecialStart":
+                SetAnimState(PlayerAnim.AnimState.SpecialAttack);
+                break;
+
+            case "NinjaSpecialEnd":
+                bulletHellWaves = 300;
+                break;
+            #endregion
+
+            case "MirrorHeavyEnd":
+            case "MirrorSpecialEnd":
+                SetReasonUnlock("Movement");
+                break;
+
+            case "HammerLightEnd":
+            case "MirrorLightEnd":
+                ResetSpeed();
+                break;
+
+            default:
+                Debug.Log("Unknown method name: " + methodName);
+                break;
+        }
+    }
+
+    //Extra methods.
     #region Cutter
     [Header("Cutter Parameters")]
     [SerializeField] GameObject cutterPivot;
     private int nextWave = 0;
+
+    private void CutterStart(PlayerAnim.AnimState state, float speed)
+    {
+        SetAnimState(state);
+        ChangeSpeed(speed);
+    }
+
     private void SpawnCutter()
     {
         GameObject projectile = poolController.GetObjectFromPool("CutterPool");
@@ -109,27 +345,6 @@ public class PlayerMiscAnim : MonoBehaviour
 
         return projectile;
     }
-
-    private void SpawnLightKunaiProjectile()
-    {
-        for (int i = -1; i <= 1; i++)
-        {
-            SpawnKunai(i * 45).GetComponent<AttackDealer>().UpdateAttackDealer(pi.lightWeapon);
-        }
-    }
-
-    private void SpawnHeavyKunaiProjectile()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnKunai(Random.Range(-45, 45)).GetComponent<AttackDealer>().UpdateAttackDealer(pi.heavyWeapon);
-        }
-    }
-
-    private void SpawnSpecialKunaiProjectile()
-    {
-        bulletHellWaves = 300;
-    }
     #endregion
 
     #region Mirror
@@ -137,21 +352,6 @@ public class PlayerMiscAnim : MonoBehaviour
     [SerializeField] GameObject mirror;
     [SerializeField] GameObject shield;
     private MirrorShieldMovement ms;
-
-    private void ActiveMirror()
-    {
-        mirror.SetActive(true);
-    }
-
-    private void SetMirrorShield(int isOn)
-    {
-        shield.SetActive(isOn == 1);
-    }
-
-    private void SetIsMirrorSpecial(int isOn)
-    {
-        ms.IsSpecialAttack = isOn == 1;
-    }
     #endregion
 
     #region Jet
@@ -168,6 +368,7 @@ public class PlayerMiscAnim : MonoBehaviour
         Special,
         backward,
     }
+
     private void JetDash(DashDirection direction)
     {
         rb.velocity = transform.right * direction switch
@@ -180,30 +381,19 @@ public class PlayerMiscAnim : MonoBehaviour
         };
     }
 
-    private void SetSliding(int slidingState)
+    private void JetStart(PlayerAnim.AnimState state, DashDirection direction)
     {
-        pi.isSliding = slidingState == 1;
-    }
-    #endregion
-
-    #region Hurt
-    private void DeathJump()
-    {
-        col.enabled = false;
-        rb.velocity = Vector2.zero;
-        rb.AddForce(transform.up * 20f, ForceMode2D.Impulse);
+        SetAnimState(state);
+        SetReasonLock("Movement");
+        JetDash(direction);
+        pi.isSliding = true;
+        jump.fallGravity.value = 0f;
     }
 
-    private void DeathRotate()
-    {
-        Vector3 rot = pi.transform.eulerAngles;
-        rot.z -= 90;
-        pi.transform.eulerAngles = rot;
-    }
     #endregion
 
     #region Miscellaneous
-    private void SetAnimState(PlayerAnim.AnimState state)
+    public void SetAnimState(PlayerAnim.AnimState state) //Public as it is used in PlayerAnim
     {
         animState = state;
     }
@@ -216,7 +406,6 @@ public class PlayerMiscAnim : MonoBehaviour
     private void SetReasonLock(string ID)
     {
         ic.SetID(ID, false);
-
     }
 
     public void SetReasonUnlock(string ID)
@@ -227,11 +416,6 @@ public class PlayerMiscAnim : MonoBehaviour
     private void PlaySound(string clipName)
     {
         ac.PlaySound(clipName);
-    }
-
-    private void ChangeGravityFall(float gravityMultiplier)
-    {
-        jump.fallGravity.value = gravityMultiplier;
     }
 
     private void ResetGravityFall()
@@ -247,11 +431,6 @@ public class PlayerMiscAnim : MonoBehaviour
     private void ResetSpeed()
     {
         pi.speed.Reset();
-    }
-
-    public void ResetRotation()
-    {
-        player.transform.eulerAngles = (Vector2)player.transform.eulerAngles;
     }
     #endregion
 }

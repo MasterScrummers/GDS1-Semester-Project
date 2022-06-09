@@ -625,30 +625,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetAnimState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 3
-    messageOptions: 0
-  - time: 0
-    functionName: SetStrengthMult
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0
-    functionName: SetKnockbackX
-    data: 
+    functionName: AnimMethod
+    data: SwordLightStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 10
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: SetInvincibilityLength
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.3
     intParameter: 0
     messageOptions: 0

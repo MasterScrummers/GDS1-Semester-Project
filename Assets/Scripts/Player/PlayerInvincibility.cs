@@ -4,9 +4,8 @@ using UnityEngine;
 public class PlayerInvincibility : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    private float timer;
     public bool invincible { get; private set; } = false;
-    private bool allowNoFlashing = true;
+    private bool allowFlashing = false;
 
     void Start()
     {
@@ -16,28 +15,13 @@ public class PlayerInvincibility : MonoBehaviour
 
     void Update()
     {
-        if (!invincible)
-        {
-            return;
-        }
+        sprite.enabled = !invincible || !allowFlashing || !sprite.enabled;
+    }
 
-        timer -= Time.deltaTime;
-        invincible = timer > 0;
-        sprite.enabled = invincible ? !sprite.enabled || allowNoFlashing: true;
+    public void SetPlayerInvincible(bool invincible, bool allowFlashing = true)
+    {
+        this.invincible = invincible;
         Physics2D.IgnoreLayerCollision(6, 7, invincible);
-    }
-
-    public void StartInvincible(float invincibleLength)
-    {
-        timer = invincibleLength;
-        Physics2D.IgnoreLayerCollision(6, 7, true);
-        invincible = true;
-        allowNoFlashing = false;
-    }
-
-    public void StartAnimInvincible(float invincibleLength)
-    {
-        StartInvincible(invincibleLength);
-        allowNoFlashing = true;
+        this.allowFlashing = allowFlashing;
     }
 }

@@ -23,13 +23,11 @@ AnimationClip:
       value: {fileID: 321989413, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     - time: 0.2
       value: {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - time: 0.33333334
-      value: {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 30
+  m_SampleRate: 5
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -46,13 +44,12 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 321989413, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
     - {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
-    - {fileID: 1422575610, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.36666667
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -73,18 +70,11 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetReasonLock
-    data: Movement
+    functionName: AnimMethod
+    data: MirrorHeavyStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: SetAnimState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 5
     messageOptions: 0
   - time: 0.2
     functionName: ActiveMirror
@@ -93,9 +83,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.36666667
-    functionName: SetReasonUnlock
-    data: Movement
+  - time: 0.4
+    functionName: AnimMethod
+    data: MirrorHeavyEnd
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

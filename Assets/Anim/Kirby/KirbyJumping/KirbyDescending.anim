@@ -67,22 +67,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetAnimState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 2
-    messageOptions: 0
-  - time: 0
-    functionName: SetJumpState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 3
-    messageOptions: 0
-  - time: 0
-    functionName: ResetSpeed
-    data: 
+    functionName: AnimMethod
+    data: JumpFallStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -943,6 +943,174 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: hammer_light_4
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 656
+        width: 45
+        height: 38
+      alignment: 9
+      pivot: {x: 0.35156107, y: 0.339545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff64d5241f994144aaf3cd014f03865e
+      internalID: 1933146244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer_light_5
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 647
+        width: 43
+        height: 46
+      alignment: 9
+      pivot: {x: 0.36991563, y: 0.45766547}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b062de832ddd3ab42b53a78db614ee9b
+      internalID: 1163604836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer_light_6
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 650
+        width: 38
+        height: 45
+      alignment: 9
+      pivot: {x: 0.46270633, y: 0.4780938}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6673cf8e18af0f648b0972c1982228cd
+      internalID: 1343050518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer_light_7
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 647
+        width: 26
+        height: 47
+      alignment: 9
+      pivot: {x: 0.67544323, y: 0.5038816}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e6966d230438d46b14ca98caf0a752
+      internalID: -1870795834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer_light_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 649
+        width: 33
+        height: 45
+      alignment: 9
+      pivot: {x: 0.73273075, y: 0.5041138}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e354bc1a79c26bf499c16ab40ab2ba40
+      internalID: -444582092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer_light_9
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 651
+        width: 41
+        height: 43
+      alignment: 9
+      pivot: {x: 0.8046734, y: 0.49056935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8338f0eabff950e4ea409448283cef2d
+      internalID: -1542304041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hammer_light_10
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 657
+        width: 41
+        height: 36
+      alignment: 9
+      pivot: {x: 0.7944366, y: 0.3817732}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f798b4539630bb4da2f75568c297930
+      internalID: 1522444877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KirbyHammer_11
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 670
+        width: 42
+        height: 24
+      alignment: 9
+      pivot: {x: 0.8072713, y: 0.061271667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b602ce9c747e64c9a2f49199751c2e
+      internalID: -1459341093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -954,47 +1122,54 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hammer_heavy_4: 1856279930
-      hammer_special_18: -1042243244
       hammer_special_11: 719079284
       hammer_special_0: -1277089916
-      hammer_special_6: -1087143445
+      hammer_light_8: -444582092
       hammer_special_16: 963954127
-      hammer_heavy_8: 1511626117
-      hammer_heavy_9: -1413569232
-      KirbyHammer_0: -1437226738
       hammer_light_1: -906870665
       hammer_special_1: 1453454967
       hammer_special_2: -1075543637
       hammer_special_15: -2053721428
+      KirbyHammer_11: -1459341093
+      hammer_special_19: -1886866560
+      hammer_heavy_10: 1309848277
+      hammer_heavy_3: 1359837071
+      hammer_light_3: 2094711356
+      hammer_special_4: 830160358
+      hammer_special_8: 281359815
+      hammer_heavy_5: 1379871983
+      hammer_special_7: 1555539414
+      hammer_light_7: -1870795834
+      hammer_special_13: 1582311053
+      hammer_special_9: 1490800634
+      hammer_light_6: 1343050518
+      hammer_light_10: 1522444877
+      hammer_special_14: 1907759767
+      hammer_heavy_2: 330245269
+      hammer_light_2: -1051893010
+      hammer_light_9: -1542304041
+      hammer_special_21: 2072775605
+      hammer_heavy_4: 1856279930
+      hammer_special_18: -1042243244
+      hammer_special_6: -1087143445
+      hammer_heavy_8: 1511626117
+      hammer_heavy_9: -1413569232
       hammer_special_20: 639255020
       hammer_special_23: 540125732
       hammer_light_0: 1731142781
       hammer_heavy_7: 2141511189
       hammer_special_5: 1582294066
-      hammer_heavy_10: 1309848277
-      hammer_heavy_6: -1550020953
-      hammer_heavy_3: 1359837071
       hammer_icon: 1374518297
-      hammer_light_3: 2094711356
-      hammer_special_4: 830160358
-      hammer_special_8: 281359815
-      hammer_heavy_5: 1379871983
-      hammer_heavy_0: -1041283179
-      hammer_special_7: 1555539414
-      hammer_special_3: 1020249947
-      hammer_special_13: 1582311053
-      hammer_heavy_1: -643670484
-      hammer_special_9: 1490800634
-      hammer_special_10: 318420445
+      hammer_heavy_6: -1550020953
       hammer_special_17: 461917665
+      hammer_heavy_0: -1041283179
+      hammer_special_3: 1020249947
+      hammer_heavy_1: -643670484
+      hammer_special_10: 318420445
       hammer_special_22: -1978788965
-      hammer_special_19: -1886866560
-      hammer_special_14: 1907759767
-      hammer_heavy_2: 330245269
+      hammer_light_4: -1437226738
+      hammer_light_5: 1163604836
       hammer_special_12: -1070564875
-      hammer_light_2: -1051893010
-      hammer_special_21: 2072775605
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

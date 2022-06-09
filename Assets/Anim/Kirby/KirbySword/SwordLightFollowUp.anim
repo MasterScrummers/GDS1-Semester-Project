@@ -505,9 +505,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetStrengthMult
-    data: 
+    functionName: AnimMethod
+    data: SwordLightStart
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
+    floatParameter: 10
+    intParameter: 0
     messageOptions: 0

@@ -40,7 +40,7 @@ public class PlayerInput : MonoBehaviour
         heavyWeapon =  WeaponBase.RandomWeapon();
         specialWeapon = WeaponBase.RandomWeapon();
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Mirror();
+        lightWeapon = heavyWeapon = specialWeapon = new Hammer();
 #endif
         cooldownTimer.Finish();
     }

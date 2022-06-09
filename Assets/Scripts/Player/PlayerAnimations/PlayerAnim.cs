@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerAnim : MonoBehaviour, IAttackReceiver
 {
     public Animator anim { get; private set; } //The player's animation
+    private SpriteRenderer sprite;
+    [SerializeField] private GameObject deathEffect;
     [SerializeField] private PlayerMiscAnim miscAnim;
     [SerializeField] private PlayerInvincibility invincibility;
 
@@ -14,15 +16,18 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     private Collider2D col; //The collider of the player. Is disabled upon death.
     private HealthComponent health; //To track the player's health.
 
-    public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack, Damage, Death };
+    public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
     public enum JumpState { Waiting, StartJump, Peak, Descending }
 
     [SerializeField] private Timer restartTimer = new(5f);
     [SerializeField] private Timer hurtTimer = new(0.5f);
+    private bool isHurt = false;
+    private bool isDead = false;
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        sprite = anim.GetComponent<SpriteRenderer>();
         ic = DoStatic.GetGameController<InputController>();
         sc = ic.GetComponent<SceneController>();
 
@@ -34,34 +39,37 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     private void Update()
     {
-        Physics2D.IgnoreLayerCollision(6, 7, invincibility.invincible);
         float delta = Time.deltaTime;
-        switch (miscAnim.animState)
+
+        if (isDead)
         {
-            case AnimState.Damage:
-                hurtTimer.Update(delta);
-                if (hurtTimer.tick == 0)
-                {
-                    anim.SetTrigger("Recover");
-                    ic.SetInputLock(false);
-                    miscAnim.SetReasonUnlock("Movement");
-                }
-                return;
-
-            case AnimState.Death:
-                restartTimer.Update(delta);
-                if (restartTimer.tick == 0)
-                {
-                    sc.RestartScene(Restart);
-                }
-                return;
-
-            default:
-                LightAttackCheck();
-                CheckWalking();
-                CheckJumping();
-                return;
+            restartTimer.Update(delta);
+            if (restartTimer.tick == 0)
+            {
+                sc.RestartScene(Restart);
+            }
+            return;
         }
+
+        if (isHurt)
+        {
+            hurtTimer.Update(delta);
+            if (ic.lockedInput && hurtTimer.timer - hurtTimer.tick > 0.5f)
+            {
+                anim.SetTrigger("Recover");
+                ic.SetInputLock(false);
+            }
+            else if (hurtTimer.tick == 0)
+            {
+                isHurt = false;
+                invincibility.SetPlayerInvincible(false);
+            }
+            return;
+        }
+
+        LightAttackCheck();
+        CheckWalking();
+        CheckJumping();
     }
 
     private void LightAttackCheck()
@@ -112,10 +120,10 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     private void Restart()
     {
-        Physics2D.IgnoreLayerCollision(6, 7, false);
+        isDead = false;
+        invincibility.enabled = true;
+        invincibility.SetPlayerInvincible(false);
         ic.SetInputLock(false);
-        col.enabled = true;
-        anim.SetTrigger("Restart");
         health.SetHP();
         restartTimer.Reset();
         ic.GetComponent<VariableController>().SetLevel(1);
@@ -151,8 +159,18 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         bool isAlive = health.health > 0;
         hurtTimer.Reset();
 
-        invincibility.StartInvincible(isAlive ? invincibilityTime : 0);
-        anim.Play(isAlive ? "KirbyHurt" : "Base Layer.KirbyDeath.KirbyDeathIntro");
-        rb.velocity = isAlive ? attackerPos.position.x > transform.position.x ? -knockback : knockback : Vector2.zero;
+        invincibility.SetPlayerInvincible(true);
+        if (isAlive)
+        {
+            isHurt = true;
+            anim.Play("KirbyHurt");
+            rb.velocity = attackerPos.position.x > transform.position.x ? -knockback : knockback;
+        } else
+        {
+            isDead = true;
+            invincibility.enabled = false;
+            sprite.enabled = false;
+            Instantiate(deathEffect).transform.position = transform.position;
+        }
     }
 }
