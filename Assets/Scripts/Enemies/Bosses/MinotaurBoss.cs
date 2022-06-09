@@ -55,6 +55,7 @@ public class MinotaurBoss : Enemy
 
     protected void Move()
     {
+        Debug.Log("Moving");
         Vector3 sca = transform.localScale;
         if (sca.x < 0 && transform.position.x < leftBoundary || sca.x > 0 && transform.position.x > rightBoundary)
         {
@@ -79,7 +80,7 @@ public class MinotaurBoss : Enemy
     protected override void Death()
     {
         anim.SetBool("Dead", true);
-        
+        rb.velocity = Vector3.zero; //Stops Minotaur sliding after death
         BoxCollider2D[] colChildren = GetComponentsInChildren<BoxCollider2D>();
         foreach (BoxCollider2D collider in colChildren)
         {
