@@ -77,15 +77,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.2
-    functionName: ActiveMirror
-    data: 
+    functionName: AnimMethod
+    data: MirrorHeavyActivate
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.4
-    functionName: AnimMethod
-    data: MirrorHeavyEnd
+    functionName: AnimReset
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

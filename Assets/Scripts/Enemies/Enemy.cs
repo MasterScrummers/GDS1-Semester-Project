@@ -65,21 +65,17 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         inRoom = roomData;
     }
 
-    public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
     {
-        if (this.invincibilityTime > 0f)
-        {
-            return;
-        }
         health.OffsetHP(-strength);
 
         sr.color = Color.red;
         this.stunTime = stunTime;
-        this.invincibilityTime = invincibilityTime;
 
         if (allowKnockback)
         {
-            rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
+            Vector2 knockbackCalc = calcFromAttackerPos ? (transform.position - attackerPos.position).normalized * knockback : attackerPos.position.x > transform.position.x ? -knockback : knockback;
+            rb.AddForce(knockbackCalc, ForceMode2D.Impulse);
         }
 
         if (health.health <= 0)

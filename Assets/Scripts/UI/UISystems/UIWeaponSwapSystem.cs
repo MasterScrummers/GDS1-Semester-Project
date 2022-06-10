@@ -35,8 +35,8 @@ public class UIWeaponSwapSystem : UISystemBase
             return;
         }
 
-        ic.SetID("Attack", false);
-        ic.SetID("Movement", false);
+        ic.SetInputReason("Attack", false);
+        ic.SetInputReason("Movement", false);
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
@@ -82,7 +82,7 @@ public class UIWeaponSwapSystem : UISystemBase
     protected override void OnDisable()
     {
         base.OnDisable();
-        ic.SetID("Attack", true);
-        ic.SetID("Movement", true);
+        ic.SetInputReason("Attack", true);
+        ic.SetInputReason("Movement", true);
     }
 }

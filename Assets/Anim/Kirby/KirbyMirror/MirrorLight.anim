@@ -90,8 +90,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.73333335
-    functionName: AnimMethod
-    data: MirrorLightEnd
+    functionName: AnimReset
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

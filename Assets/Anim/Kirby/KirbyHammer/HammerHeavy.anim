@@ -2660,15 +2660,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.0666667
-    functionName: SetReasonLock
-    data: Movement
+    functionName: AnimMethod
+    data: HammerHeavySleep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.2666667
-    functionName: AnimMethod
-    data: HammerHeavyEnd
+    functionName: AnimReset
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

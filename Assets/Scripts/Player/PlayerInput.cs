@@ -40,14 +40,14 @@ public class PlayerInput : MonoBehaviour
         heavyWeapon =  WeaponBase.RandomWeapon();
         specialWeapon = WeaponBase.RandomWeapon();
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Hammer();
+        lightWeapon = heavyWeapon = specialWeapon = new Sword();
 #endif
         cooldownTimer.Finish();
     }
 
     void Update()
     {
-        if (ic.lockedInput) //Allows knockback when taking damage.
+        if (ic.isInputLocked) //Allows knockback when taking damage.
         {
             return;
         }
@@ -98,24 +98,24 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
+        if (ic.GetButtonDown("Attack", "Light"))
         {
             lightWeapon.LightAttack(playerAnim.anim);
-            dealer.UpdateAttackDealer(lightWeapon);
+            dealer.SetAttack(lightWeapon);
         }
 
-        if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
+        if (ic.GetButtonDown("Attack", "Heavy"))
         {
             heavyWeapon.HeavyAttack(playerAnim.anim);
-            dealer.UpdateAttackDealer(heavyWeapon);
+            dealer.SetAttack(heavyWeapon);
         }
 
         cooldownTimer.Update(Time.deltaTime);
-        if (cooldownTimer.tick == 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
+        if (cooldownTimer.tick == 0 && ic.GetButtonDown("Attack", "Special"))
         {
             cooldownTimer.SetTimer(specialWeapon.specialCooldown);
             specialWeapon.SpecialAttack(playerAnim.anim);
-            dealer.UpdateAttackDealer(specialWeapon);
+            dealer.SetAttack(specialWeapon);
         }
     }
 }

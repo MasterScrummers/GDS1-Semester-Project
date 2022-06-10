@@ -67,15 +67,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: JetDash
-    data: 
+    functionName: AnimMethod
+    data: JetBackStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 3
     messageOptions: 0
   - time: 0.25
-    functionName: AnimMethod
-    data: JetEnd
+    functionName: AnimReset
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

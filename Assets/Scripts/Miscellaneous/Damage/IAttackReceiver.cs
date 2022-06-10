@@ -8,7 +8,6 @@ interface IAttackReceiver
     /// <param name="attackerPos">The attacker's position.</param>
     /// <param name="strength">The damage dealt.</param>
     /// <param name="knockback">The proposed knockback (Will only be positive)</param>
-    /// <param name="invincibilityTime">The invincibility time before the next hit arrives.</param>
     /// <param name="stunTime">The stun time to allow the knockback</param>
-    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime);
+    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false);
 }

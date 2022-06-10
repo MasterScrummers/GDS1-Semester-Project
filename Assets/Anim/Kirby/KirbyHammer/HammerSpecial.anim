@@ -724,8 +724,6 @@ AnimationClip:
       value: {fileID: -1978788965, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
     - time: 1.2
       value: {fileID: 540125732, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
-    - time: 1.4
-      value: {fileID: 540125732, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -805,7 +803,6 @@ AnimationClip:
     - {fileID: 2072775605, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
     - {fileID: 2072775605, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
     - {fileID: -1978788965, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
-    - {fileID: 540125732, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
     - {fileID: 540125732, guid: 8073e00ad47d8964ba68d80d766fa242, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -1500,15 +1497,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.0666667
-    functionName: PlaySound
-    data: HammerSpecial_1
+    functionName: AnimMethod
+    data: HammerFlipExplode
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.4333333
-    functionName: AnimMethod
-    data: HammerSpecialEnd
+    functionName: AnimReset
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

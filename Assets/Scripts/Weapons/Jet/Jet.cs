@@ -10,8 +10,8 @@ public class Jet : WeaponBase
 
         specialCooldown = Random.Range(3, 5);
         baseStrength = Random.Range(5 , 8);
-        knockbackStr = new(30f, 0);
-        invincibilityTime = 0.2f;
+        //knockbackStr = new(30f, 0);
+        //hitInterval = 0.2f;
     }
 
     public override void LightAttack(Animator anim)

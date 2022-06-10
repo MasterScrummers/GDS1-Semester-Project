@@ -382,22 +382,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5538128225330328590, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.9166667
-      objectReference: {fileID: 0}
     - target: {fileID: 7237153455039077993, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_Name
       value: GameController

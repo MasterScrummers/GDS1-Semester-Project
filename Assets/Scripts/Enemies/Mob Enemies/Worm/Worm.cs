@@ -71,11 +71,11 @@ public class Worm : Enemy
         wa.Death();
     }
 
-    public override void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    public override void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
     {
         if (state != State.Death)
         {
-            base.RecieveAttack(attackerPos, strength, knockback, invincibilityTime, stunTime);
+            base.RecieveAttack(attackerPos, strength, knockback, stunTime, false);
         }
     }
 }

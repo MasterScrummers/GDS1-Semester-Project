@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public bool lockedInput { get; private set; } = false; //Bool to (un)lock all inputs.
-    private Dictionary<string, bool> IDList; //Allows inputs depending on the boolean set. Has to be part of IDList to work.
+    public bool isInputLocked { get; private set; } = false; //Bool to (un)lock all inputs.
+    private Dictionary<string, bool> inputReasons; //Allows inputs depending on the boolean set. Has to be part of IDList to work.
 
     private Dictionary<string, float> axisRawValues; //All inputs that checks Input.GetAxisRaw.
     private Dictionary<string, bool> buttonDowns; //All inputs that checks Input.GetButtonDown.
@@ -15,7 +15,7 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         //Initiation + Default values
-        IDList = new Dictionary<string, bool>();
+        inputReasons = new Dictionary<string, bool>();
         foreach(string input in new string[] { //Treat the ID list like they are GameObject tags
             "Attack", //Related to attack inputs.
             "Movement", //Related to movement
@@ -24,7 +24,7 @@ public class InputController : MonoBehaviour
             "Credits", //To exit the credits.
         })
         {
-            IDList.Add(input, true);
+            inputReasons.Add(input, true);
         }
 
         //Add the inputs in the correct dictionary here!
@@ -86,9 +86,9 @@ public class InputController : MonoBehaviour
     /// Enables/Disables all input.
     /// Perfect for cutscenes.
     /// </summary>
-    public void SetInputLock(bool doLock)
+    public void SetInputLock(bool isLocked)
     {
-        lockedInput = doLock;
+        isInputLocked = isLocked;
     }
 
     /// <summary>
@@ -96,64 +96,55 @@ public class InputController : MonoBehaviour
     /// Makes InputController return negative for that reason.
     /// </summary>
     /// <param name="ID">The reason</param>
-    public void SetID(string ID, bool state)
+    public void SetInputReason(string ID, bool state)
     {
-        if (IDList.ContainsKey(ID))
+        if (inputReasons.ContainsKey(ID))
         {
-            IDList[ID] = state;
+            inputReasons[ID] = state;
         }
     }
 
     /// <summary>
     /// Get the state of an ID.
     /// </summary>
-    /// <param name="ID">The reason to check.</param>
+    /// <param name="reason">The reason to check.</param>
     /// <returns>Will always return false if the ID does not exist.</returns>
-    public bool GetID(string ID)
+    public bool GetInputReason(string reason)
     {
-        if (IDList.ContainsKey(ID))
-        {
-            return IDList[ID];
-        }
-        return false;
+        return inputReasons[reason];
     }
 
-    public bool DebugBool = false;
     /// <summary>
     /// Get the value of assigned buttons pressed
     /// </summary>
-    /// <param name="ID">Purpose</param>
+    /// <param name="reason">Purpose</param>
     /// <param name="button">The button to request</param>
     /// <returns>The value of the button.</returns>
-    public float GetAxisRawValues(string ID, string button)
+    public float GetAxisRawValues(string reason, string button)
     {
-        if (DebugBool)
-        {
-            Debug.Log(!lockedInput && IDList[ID] ? axisRawValues[button] : 0);
-        }
-        return !lockedInput && IDList[ID] ? axisRawValues[button] : 0;
+        return !isInputLocked && inputReasons[reason] ? axisRawValues[button] : 0;
     }
 
     /// <summary>
     /// Get the value of if the button is pressed.
-    /// Usually lasts one frame.
+    /// Lasts one frame.
     /// </summary>
-    /// <param name="ID">Purpose</param>
+    /// <param name="reason">Purpose</param>
     /// <param name="button">The button to request</param>
     /// <returns>The boolean value of the button getting pressed down.</returns>
-    public bool GetButtonDown(string ID, string button)
+    public bool GetButtonDown(string reason, string button)
     {
-        return !lockedInput && IDList[ID] && buttonDowns[button];
+        return !isInputLocked && inputReasons[reason] && buttonDowns[button];
     }
 
     /// <summary>
     /// Get the sate of the button.
     /// </summary>
-    /// <param name="ID">Purpose</param>
+    /// <param name="reason">Purpose</param>
     /// <param name="button">The button to request</param>
     /// <returns>The boolean value of the button state. True if it is pressed.</returns>
-    public bool GetButtonStates(string ID, string button)
+    public bool GetButtonStates(string reason, string button)
     {
-        return !lockedInput && IDList[ID] && buttonStates[button];
+        return !isInputLocked && inputReasons[reason] && buttonStates[button];
     }
 }

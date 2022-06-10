@@ -79,16 +79,16 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: set_animState
-    data: 
+    functionName: AnimMethod
+    data: CutterSpecialStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 5
     messageOptions: 0
-  - time: 0.2
-    functionName: CutterSpecial
+  - time: 0.25
+    functionName: AnimReset
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 4
-    intParameter: 4
+    intParameter: 2
     messageOptions: 0

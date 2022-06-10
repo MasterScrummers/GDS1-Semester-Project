@@ -5,66 +5,61 @@ public class AttackDealer : MonoBehaviour
 {
     [Header("Attack Dealer Parameters")]
     [SerializeField] protected int strength = 1; //The strength the hit, should be controlled by another script.
-    protected int strengthMult = 1;
+    protected float strengthMult = 1;
 
-    [SerializeField] protected Vector2 knockback = Vector2.one; //The knockback to give.
-    [SerializeField] protected float invincibilityLength = 1.5f;
-    [SerializeField] protected float stunTime;
+    [field: SerializeField] public Vector2 knockback { get; protected set; } = Vector2.one; //The knockback to give.
+    [field: SerializeField] public float hitInterval { get; protected set; } = 0.3f;
+    [field: SerializeField] public float stunTime { get; protected set; } = 0.5f;
+    [field: SerializeField] public bool calcFromAttackerPos { get; protected set; } = false;
+    private readonly Dictionary<Collider2D, KeyValuePair<IAttackReceiver, Timer>> victims = new();
 
-    private readonly Dictionary<Collider2D, IAttackReceiver> victims = new();
-
-    public void UpdateAttackDealer(WeaponBase weapon)
+    private void Update()
     {
-        strength = weapon.baseStrength;
-        knockback = weapon.knockbackStr;
-        invincibilityLength = weapon.invincibilityTime;
-        stunTime = weapon.stunTime;
-    }
-    
-    public void SetStrengthMult(int mult)
-    {
-        strengthMult = mult;
-    }
-
-    public void SetKnockbackX(float x)
-    {
-        knockback.x = x;
-    }
-
-    public void SetKnockbackY(float y)
-    {
-        knockback.y = y;
-    }
-
-    public void SetInvincibilityLength(float length)
-    {
-        invincibilityLength = length;
-    }
-
-    public void SetStunTime(float time)
-    {
-        stunTime = time;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        float delta = Time.deltaTime;
+        if (victims.Count == 0)
         {
             return;
         }
 
-        if (collision.TryGetComponent<IAttackReceiver>(out var receiver))
+        Collider2D[] keys = new Collider2D[victims.Keys.Count];
+        victims.Keys.CopyTo(keys, 0);
+        foreach (Collider2D key in keys)
         {
-            victims.Add(collision, receiver);
-            OnTriggerStay2D(collision);
+            if (!victims.TryGetValue(key, out var value))
+            {
+                return;
+            }
+
+            Timer time = value.Value;
+            time.Update(delta);
+            if (time.tick == 0)
+            {
+                time.Reset();
+                value.Key.RecieveAttack(transform, Mathf.RoundToInt(strength * strengthMult), knockback, stunTime, calcFromAttackerPos);
+            }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void SetAttack(WeaponBase weapon)
     {
-        if (victims.ContainsKey(collision))
+        strength = weapon.baseStrength;
+    }
+
+    public void SetAttack(float mult, Vector2 knockback, float hitInterval, float stunTime, bool towardsAttacker = false)
+    {
+        strengthMult = mult;
+        this.knockback = knockback;
+        this.hitInterval = hitInterval;
+        this.stunTime = stunTime;
+        this.calcFromAttackerPos = towardsAttacker;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground") && collision.TryGetComponent<IAttackReceiver>(out var receiver))
         {
-            victims[collision].RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
+            victims.Add(collision, new(receiver, new(hitInterval)));
+            receiver.RecieveAttack(transform, Mathf.RoundToInt(strength * strengthMult), knockback, stunTime, calcFromAttackerPos);
         }
     }
 

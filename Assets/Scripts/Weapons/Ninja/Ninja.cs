@@ -11,8 +11,8 @@ public class Ninja : WeaponBase
         specialCooldown = Random.Range(5, 10);
         int extra = Mathf.RoundToInt(specialCooldown * 0.1f);
         baseStrength = Random.Range(3 + extra, 5 + extra);
-        knockbackStr = new(2.0f, 0f);
-        invincibilityTime = 0.2f;
+        //knockbackStr = new(2.0f, 0f);
+        //hitInterval = 0.2f;
     }
 
     public override void LightAttack(Animator anim)

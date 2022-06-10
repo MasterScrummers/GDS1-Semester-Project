@@ -13,7 +13,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     private SceneController sc; // Scene Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private JumpComponent jump; //The update the animation according to player input.
-    private Collider2D col; //The collider of the player. Is disabled upon death.
     private HealthComponent health; //To track the player's health.
 
     public enum AnimState { Idle, Run, Jump, LightAttack, HeavyAttack, SpecialAttack };
@@ -33,7 +32,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
         rb = GetComponentInParent<Rigidbody2D>();
         jump = rb.GetComponent<JumpComponent>();
-        col = jump.GetComponent<Collider2D>();
         health = jump.GetComponent<HealthComponent>();
     }
 
@@ -54,7 +52,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         if (isHurt)
         {
             hurtTimer.Update(delta);
-            if (ic.lockedInput && hurtTimer.timer - hurtTimer.tick > 0.5f)
+            if (ic.isInputLocked && hurtTimer.timer - hurtTimer.tick > 0.5f)
             {
                 anim.SetTrigger("Recover");
                 ic.SetInputLock(false);
@@ -64,7 +62,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
                 isHurt = false;
                 invincibility.SetPlayerInvincible(false);
             }
-            return;
         }
 
         LightAttackCheck();
@@ -146,7 +143,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         return false;
     }
 
-    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
     {
         if (invincibility.invincible)
         {

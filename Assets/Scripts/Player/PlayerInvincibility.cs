@@ -1,3 +1,4 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -5,7 +6,7 @@ public class PlayerInvincibility : MonoBehaviour
 {
     private SpriteRenderer sprite;
     public bool invincible { get; private set; } = false;
-    private bool allowFlashing = false;
+    public bool allowFlashing { get; private set; } = false;
 
     void Start()
     {
