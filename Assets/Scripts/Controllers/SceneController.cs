@@ -4,7 +4,7 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     private bool isTransitioning; //A check to know when the scene is transitioning.
-    
+
     [SerializeField] private GameObject inGameUI; //To toggle it on/off.
     private GameObject player; //To toggle player on/off
 
@@ -25,7 +25,7 @@ public class SceneController : MonoBehaviour
     };
     private SceneName currentScene; //The current scene's name
 
-    void Start()
+    private void Start()
     {
         player = DoStatic.GetChildWithTag("Player", transform);
         currentScene = (SceneName)System.Enum.Parse(typeof(SceneName), DoStatic.GetSceneName());
@@ -33,7 +33,7 @@ public class SceneController : MonoBehaviour
         ac = GetComponent<AudioController>();
         GenericSceneStartUp(currentScene);
     }
-    
+
     private void GenericSceneStartUp(SceneName sceneName)
     {
         bool isTitleScreen = (int)sceneName < 3;
@@ -105,10 +105,7 @@ public class SceneController : MonoBehaviour
         currentScene = newSceneName;
         GenericSceneStartUp(currentScene);
         yield return StartCoroutine(LoadProgress(DoStatic.LoadScene(newSceneName.ToString())));
-        if (notify != null)
-        {
-            notify();
-        }
+        notify?.Invoke();
 
         transitionSystem.Deactivate();
         yield return StartCoroutine(Wait(transitionSystem));

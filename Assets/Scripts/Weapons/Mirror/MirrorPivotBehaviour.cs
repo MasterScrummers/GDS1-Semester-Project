@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class MirrorPivotBehaviour : MonoBehaviour
 {
-    private float lifeTime;
-    [SerializeField] private float originalLifeTime = 3f;
+    [SerializeField] private Timer lifeTime = new(3);
 
     private void Start()
     {
         OnEnable();
     }
-    // Update is called once per frame
+
     void Update()
     {
-        lifeTime -= Time.deltaTime;
-        gameObject.SetActive(lifeTime > 0);
+        lifeTime.Update(Time.deltaTime);
+        gameObject.SetActive(lifeTime.tick == 0);
     }
 
     private void OnEnable()
     {
-        lifeTime = originalLifeTime;
+        lifeTime.Reset();
         foreach (Transform child in DoStatic.GetChildren(transform))
         {
             child.gameObject.SetActive(true);

@@ -24,12 +24,23 @@ public class PoolController : MonoBehaviour
     /// <summary>
     /// Get a GameObject from the specified pool.
     /// </summary>
-    /// <param name="poolName">The pool to the GameObject from.</param>
+    /// <param name="poolName">The pool the GameObject is from.</param>
     /// <param name="autoActive">Activate given GameObject or not? Defaults to true.</param>
     /// <returns>The GameObject from the specified pool.</returns>
     public GameObject GetObjectFromPool(string poolName, bool autoActive = true)
     {
         return pools[poolName].GetObject(autoActive);
+    }
+
+    /// <summary>
+    /// Get a component from a GameObject from the specified pool.
+    /// </summary>
+    /// <param name="poolName">The pool the GameObject is from.</param>
+    /// <param name="autoActive">Activate given GameObject or not? Defaults to true.</param>
+    /// <returns>The component of the game GameObject from the specified pool.</returns>
+    public T GetObjectFromPool<T>(string poolName, bool autoActive = true)
+    {
+        return pools[poolName].GetObject(autoActive).GetComponentInChildren<T>();
     }
 
     /// <summary>

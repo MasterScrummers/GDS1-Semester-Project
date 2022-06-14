@@ -42,7 +42,7 @@ AnimationClip:
     - time: 0.6333333
       value: {fileID: -1204278553, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
     attribute: m_Sprite
-    path: 
+    path: KirbySpritePivot/Kirby Sprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 30

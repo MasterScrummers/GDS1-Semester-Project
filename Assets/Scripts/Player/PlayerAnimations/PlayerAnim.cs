@@ -6,8 +6,8 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     public Animator anim { get; private set; } //The player's animation
     private SpriteRenderer sprite;
     [SerializeField] private GameObject deathEffect;
-    [SerializeField] private PlayerMiscAnim miscAnim;
-    [SerializeField] private PlayerInvincibility invincibility;
+    private PlayerMiscAnim miscAnim;
+    private PlayerInvincibility invincibility;
 
     private InputController ic; // Input Controller
     private SceneController sc; // Scene Controller
@@ -25,14 +25,16 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     private void Start()
     {
-        anim = GetComponentInChildren<Animator>();
-        sprite = anim.GetComponent<SpriteRenderer>();
         ic = DoStatic.GetGameController<InputController>();
         sc = ic.GetComponent<SceneController>();
 
-        rb = GetComponentInParent<Rigidbody2D>();
-        jump = rb.GetComponent<JumpComponent>();
-        health = jump.GetComponent<HealthComponent>();
+        anim = GetComponent<Animator>();
+        miscAnim = GetComponent<PlayerMiscAnim>();
+        rb = GetComponent<Rigidbody2D>();
+        jump = GetComponent<JumpComponent>();
+        health = GetComponent<HealthComponent>();
+        invincibility = GetComponent<PlayerInvincibility>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()

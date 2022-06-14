@@ -1,3 +1,5 @@
+#pragma warning disable IDE1006 // Naming Styles
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +17,6 @@ public class AttackDealer : MonoBehaviour
 
     private void Update()
     {
-        float delta = Time.deltaTime;
         if (victims.Count == 0)
         {
             return;
@@ -31,7 +32,7 @@ public class AttackDealer : MonoBehaviour
             }
 
             Timer time = value.Value;
-            time.Update(delta);
+            time.Update(Time.deltaTime);
             if (time.tick == 0)
             {
                 time.Reset();
@@ -51,13 +52,14 @@ public class AttackDealer : MonoBehaviour
         this.knockback = knockback;
         this.hitInterval = hitInterval;
         this.stunTime = stunTime;
-        this.calcFromAttackerPos = towardsAttacker;
+        calcFromAttackerPos = towardsAttacker;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground") && collision.TryGetComponent<IAttackReceiver>(out var receiver))
         {
+            Debug.Log(strength * strengthMult);
             victims.Add(collision, new(receiver, new(hitInterval)));
             receiver.RecieveAttack(transform, Mathf.RoundToInt(strength * strengthMult), knockback, stunTime, calcFromAttackerPos);
         }

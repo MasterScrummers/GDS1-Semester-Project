@@ -7,11 +7,12 @@ public class PlayerMiscAnim : MonoBehaviour
     public PlayerAnim.AnimState animState { get; private set; } = PlayerAnim.AnimState.Idle;
     public PlayerAnim.JumpState jumpState { get; private set; } = PlayerAnim.JumpState.Waiting;
 
-    private enum AnimEndTypes { None, CutterHeavy, CutterSpecial, MirrorHeavy, NinjaLight, NinjaHeavy, NinjaSpecial}
+    private enum AnimEndTypes { None, CutterHeavy, CutterSpecial, MirrorHeavy, NinjaLight, NinjaHeavy, NinjaSpecial }
 
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
+    private Animator anim;
     private JumpComponent jump;
     private Rigidbody2D rb;
     private PoolController poolController;
@@ -23,15 +24,16 @@ public class PlayerMiscAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         poolController = ic.GetComponent<PoolController>();
         ac = ic.GetComponent<AudioController>();
-        
-        pi = GetComponentInParent<PlayerInput>();
-        jump = pi.GetComponent<JumpComponent>();
-        rb = pi.GetComponent<Rigidbody2D>();
 
-        attacker = GetComponent<AttackDealer>();
+        pi = GetComponent<PlayerInput>();
+        anim = GetComponent<Animator>();
+        jump = GetComponent<JumpComponent>();
+        rb = GetComponent<Rigidbody2D>();
         invincibility = GetComponent<PlayerInvincibility>();
+        attacker = GetComponentInChildren<AttackDealer>();
 
         ms = shield.GetComponent<MirrorShieldMovement>();
+        hammerHeavySpins.Reset();
     }
 
     private void Update()
@@ -113,13 +115,21 @@ public class PlayerMiscAnim : MonoBehaviour
 
             #region Hammer
             case "HammerLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 3, 1, new(17, 0), 0.3f, 0.3f);
+                AnimAttack(PlayerAnim.AnimState.LightAttack, 3, 1, new(17, 0), 0.5f, 0.3f, true);
                 break;
 
             case "HammerHeavyStart":
                 AnimAttack(PlayerAnim.AnimState.HeavyAttack, pi.speed.originalValue, 2, new(17, 0), 0.3f, 0.3f);
-                //Considering making Hammer Heavy have sliding of Jet Light.
                 DashStart(jetLightSpd, false);
+                if (hammerHeavySpins.value-- == 0)
+                {
+                    anim.SetTrigger("Finish");
+                }
+                break;
+
+            case "HammerHeavySleep":
+                ic.SetInputReason("Movement", false);
+                pi.isSliding = false;
                 break;
 
             case "HammerSpecialStart":
@@ -215,7 +225,6 @@ public class PlayerMiscAnim : MonoBehaviour
             #endregion
 
             case "SwordHeavyStop":
-            case "HammerHeavySleep":
                 ic.SetInputReason("Movement", false);
                 break;
 
@@ -266,6 +275,9 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
         }
 
+        hammerHeavySpins.Reset();
+        anim.ResetTrigger("Finish");
+
         ic.SetInputReason("Movement", true);
         if (!invincibility.allowFlashing)
         {
@@ -277,6 +289,11 @@ public class PlayerMiscAnim : MonoBehaviour
     }
 
     //Extra methods.
+    #region Hammer
+    [Header("Hammer Parameters")]
+    [SerializeField] private OriginalValue<int> hammerHeavySpins = new(3);
+    #endregion
+
     #region Cutter
     [Header("Cutter Parameters")]
     [SerializeField] GameObject cutterPivot;
@@ -351,7 +368,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private void DashStart(float speed, bool affectGravity = true)
     {
         ic.SetInputReason("Movement", false);
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * speed * rb.transform.localScale.x;
         pi.isSliding = true;
         if (affectGravity)
         {

@@ -10,7 +10,7 @@ public class PlatformBehaviour : MonoBehaviour
     {
         platform = GetComponent<CompositeCollider2D>();
         ic = DoStatic.GetGameController<InputController>();
-        playerCollider = DoStatic.GetPlayer<Collider2D>();
+        playerCollider = DoStatic.GetPlayer<PlayerBody>().col;
     }
 
     void Update()

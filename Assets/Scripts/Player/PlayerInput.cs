@@ -17,7 +17,6 @@ public class PlayerInput : MonoBehaviour
     private JumpComponent jump; //The main jump process.
 
     [HideInInspector] public bool canInteract = false;
-    [field: SerializeField] public Transform firePoint { get; private set; } // Fire Point for all sort of range weapon
 
     [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
@@ -27,20 +26,20 @@ public class PlayerInput : MonoBehaviour
     {
         ic = DoStatic.GetGameController<InputController>();
 
-        playerAnim = GetComponentInChildren<PlayerAnim>();
-        dealer = GetComponentInChildren<AttackDealer>();
+        playerAnim = GetComponent<PlayerAnim>();
         rb = GetComponent<Rigidbody2D>();
         jump = GetComponent<JumpComponent>();
+        dealer = GetComponentInChildren<AttackDealer>();
         Restart();
     }
 
     public void Restart()
     {
         lightWeapon = WeaponBase.RandomWeapon();
-        heavyWeapon =  WeaponBase.RandomWeapon();
+        heavyWeapon = WeaponBase.RandomWeapon();
         specialWeapon = WeaponBase.RandomWeapon();
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Sword();
+        lightWeapon = heavyWeapon = specialWeapon = new Cutter();
 #endif
         cooldownTimer.Finish();
     }
@@ -86,7 +85,7 @@ public class PlayerInput : MonoBehaviour
         if (ic.GetButtonDown("Movement", "Jump"))
         {
             jump.Jump();
-            
+
         }
         jump.JumpHeld(isJumpHeld, Time.deltaTime);
     }

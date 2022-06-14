@@ -6,7 +6,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 {
     [SerializeField] protected bool allowKnockback = true;
     [SerializeField] private Timer hurtTimer = new(0.2f);
-    [SerializeField] protected float invincibilityTime;
+    [SerializeField] protected bool isInvincibile = false;
 
     protected bool isStunned = false;
     protected Rigidbody2D rb;
@@ -15,17 +15,18 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     protected RoomData inRoom;
     protected HealthComponent health;
 
-    protected virtual void Start() {
+    protected virtual void Start()
+    {
         health = GetComponent<HealthComponent>();
 
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
     }
-    
+
     protected virtual void Update()
     {
         float delta = Time.deltaTime;
-        
+
         hurtTimer.Update(delta);
         if (hurtTimer.tick == 0)
         {
@@ -34,7 +35,6 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         }
 
         isStunned = (stunTime -= delta) > 0f;
-        invincibilityTime -= delta;
     }
 
     /// <summary>
@@ -67,6 +67,11 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
     {
+        if (isInvincibile)
+        {
+            return;
+        }
+
         health.OffsetHP(-strength);
 
         sr.color = Color.red;
