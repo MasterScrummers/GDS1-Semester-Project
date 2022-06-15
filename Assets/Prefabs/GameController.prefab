@@ -63,8 +63,6 @@ GameObject:
   - component: {fileID: 8684894114443428548}
   - component: {fileID: 7272239079409307307}
   - component: {fileID: 8653313013604842796}
-  - component: {fileID: 322593912598554095}
-  - component: {fileID: 275725980862318942}
   m_Layer: 0
   m_Name: Kirby
   m_TagString: Player
@@ -86,7 +84,6 @@ Transform:
   m_Children:
   - {fileID: 4899436723441869486}
   - {fileID: 8505649557184873641}
-  - {fileID: 5306725565935885463}
   - {fileID: 4789079845187320101}
   - {fileID: 2344408869410372167}
   - {fileID: 3778822654277405955}
@@ -241,6 +238,7 @@ MonoBehaviour:
   jetLightSpd: 7
   jetHeavySpd: 11
   jetSpecialSpd: 20
+  spritePivot: {fileID: 8505649557184873641}
 --- !u!114 &7272239079409307307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 4809644456388783305}
+  <invincible>k__BackingField: 0
+  <allowFlashing>k__BackingField: 0
 --- !u!114 &8653313013604842796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,35 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <col>k__BackingField: {fileID: 8707351742812823566}
---- !u!114 &322593912598554095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134018831627938803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64599fcaf15130f4d818758931f321d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &275725980862318942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134018831627938803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 1
-  <knockback>k__BackingField: {x: 1, y: 1}
-  <hitInterval>k__BackingField: 0.3
-  <stunTime>k__BackingField: 0.5
-  <calcFromAttackerPos>k__BackingField: 0
 --- !u!1 &150477236967585447
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +276,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5306725565935885463}
-  m_Layer: 0
+  - component: {fileID: 3922110275805670206}
+  - component: {fileID: 4660317548504110636}
+  m_Layer: 8
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,9 +299,47 @@ Transform:
   m_Children:
   - {fileID: 5419300011037508492}
   - {fileID: 5618074690630150756}
-  m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 2
+  m_Father: {fileID: 749352406276851550}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3922110275805670206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150477236967585447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 1
+  <knockback>k__BackingField: {x: 1, y: 1}
+  <hitInterval>k__BackingField: 0.3
+  <stunTime>k__BackingField: 0.5
+  <calcFromAttackerPos>k__BackingField: 0
+--- !u!50 &4660317548504110636
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150477236967585447}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &160476081816171155
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +852,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143362512357761748
 GameObject:
@@ -1488,7 +1499,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5306725565935885463}
   m_Father: {fileID: 8505649557184873641}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1677,7 +1689,7 @@ Transform:
   - {fileID: 8441322147785272328}
   - {fileID: 5073334236650673534}
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &951237380800489672
 MonoBehaviour:
@@ -1717,6 +1729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4899436723441869486}
   - component: {fileID: 8707351742812823566}
+  - component: {fileID: 1544674289702900727}
   m_Layer: 6
   m_Name: KirbyBody
   m_TagString: Player
@@ -1755,6 +1768,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.42
+--- !u!114 &1544674289702900727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2674505506040958243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262aa32187aa7d443b9e878685b1db76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiver: {fileID: 134018831627938803}
 --- !u!1 &2834517392197775664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1811,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &241644969132482310
 MonoBehaviour:
@@ -1990,6 +2016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8505649557184873641}
+  - component: {fileID: 3043938418577320531}
   m_Layer: 0
   m_Name: KirbySpritePivot
   m_TagString: Untagged
@@ -2013,6 +2040,18 @@ Transform:
   m_Father: {fileID: 134018831627938800}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3043938418577320531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289613526606647155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64599fcaf15130f4d818758931f321d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3656306153090612756
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5618074690630150756}
   - component: {fileID: 596509041799508865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HitCircle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2769,11 +2808,11 @@ Transform:
   m_GameObject: {fileID: 5899896138594468200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &705161152494548997
 SpriteRenderer:
@@ -3438,7 +3477,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7785554892169719453
 GameObject:
@@ -3638,7 +3677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5419300011037508492}
   - component: {fileID: 8495732666524921877}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hitbox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

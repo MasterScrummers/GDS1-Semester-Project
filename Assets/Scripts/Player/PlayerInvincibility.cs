@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerInvincibility : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
-    public bool invincible { get; private set; } = false;
-    public bool allowFlashing { get; private set; } = false;
+    [field: SerializeField] public bool invincible { get; private set; } = false;
+    [field: SerializeField] public bool allowFlashing { get; private set; } = false;
 
     void Start()
     {

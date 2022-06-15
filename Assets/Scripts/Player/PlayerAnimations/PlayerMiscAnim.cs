@@ -248,7 +248,7 @@ public class PlayerMiscAnim : MonoBehaviour
             case AnimEndTypes.CutterHeavy:
                 GameObject projectile = poolController.GetObjectFromPool("CutterPool");
                 projectile.transform.position = cutterPivot.transform.position;
-                projectile.transform.eulerAngles = new(0, 0, pi.transform.eulerAngles.y < 90 ? 0 : 180);
+                projectile.transform.eulerAngles = new(0, 0, spritePivot.localScale.x > 0 ? 0 : 180);
                 projectile.GetComponent<AttackDealer>().SetAttack(pi.heavyWeapon);
                 break;
 
@@ -356,6 +356,7 @@ public class PlayerMiscAnim : MonoBehaviour
     [SerializeField] private float jetLightSpd = 7;
     [SerializeField] private float jetHeavySpd = 11;
     [SerializeField] private float jetSpecialSpd = 20;
+    [SerializeField] private Transform spritePivot;
 
     private enum DashDirection
     {
@@ -368,7 +369,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private void DashStart(float speed, bool affectGravity = true)
     {
         ic.SetInputReason("Movement", false);
-        rb.velocity = transform.right * speed * rb.transform.localScale.x;
+        rb.velocity = transform.right * speed * spritePivot.localScale.x;
         pi.isSliding = true;
         if (affectGravity)
         {

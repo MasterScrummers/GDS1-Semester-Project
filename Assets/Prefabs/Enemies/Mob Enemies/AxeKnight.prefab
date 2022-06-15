@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 25
-  <health>k__BackingField: 0
 --- !u!58 &8715653282876995269
 CircleCollider2D:
   m_ObjectHideFlags: 0

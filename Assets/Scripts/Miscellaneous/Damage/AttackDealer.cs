@@ -59,7 +59,6 @@ public class AttackDealer : MonoBehaviour
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground") && collision.TryGetComponent<IAttackReceiver>(out var receiver))
         {
-            Debug.Log(strength * strengthMult);
             victims.Add(collision, new(receiver, new(hitInterval)));
             receiver.RecieveAttack(transform, Mathf.RoundToInt(strength * strengthMult), knockback, stunTime, calcFromAttackerPos);
         }
