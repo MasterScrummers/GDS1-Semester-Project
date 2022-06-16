@@ -2,30 +2,30 @@ using UnityEngine;
 
 public class Jet : WeaponBase
 {
-    public Jet() : base()
+    public Jet() : base("Jet")
     {
-        weaponName = "Jet";
         description = "Light: Dash\nHeavy: Long Dash\n Special: Dash with energy pulse";
-        animPath = basePath + weaponName + "."; 
 
-        specialCooldown = Random.Range(3, 5);
-        baseStrength = Random.Range(5 , 8);
-        //knockbackStr = new(30f, 0);
-        //hitInterval = 0.2f;
+        specialCooldown = Random.Range(2, 3);
+        int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
+        strength = Random.Range(5 + extra, 7 + extra);
     }
 
     public override void LightAttack(Animator anim)
     {
-        anim.Play(animPath + "JetLight");
+        UpdateValues(1, new(20, 0), 0.3f, 0.2f);
+        base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        anim.Play(animPath + "JetHeavy");
+        UpdateValues(2, new(40, 0), 0.3f, 0.2f);
+        base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        anim.Play(animPath + "JetSpecial");
+        UpdateValues(3, new(50, 0), 0.5f, 1f);
+        base.SpecialAttack(anim);
     }
 }

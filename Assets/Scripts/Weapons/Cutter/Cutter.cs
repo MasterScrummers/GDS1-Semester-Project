@@ -2,33 +2,36 @@ using UnityEngine;
 
 public class Cutter : WeaponBase
 {
-    public Cutter() : base()
+    public Cutter() : base("Cutter")
     {
-        weaponName = "Cutter";
         description = "Light: Slash\nHeavy: Range Cutter\nSpecial: Cutter Hell";
-        animPath = basePath + weaponName + "."; 
 
         specialCooldown = Random.Range(3, 5);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        baseStrength = Random.Range(4 + extra, 6 + extra);
-        //knockbackStr = new(8f, 0);
-        //hitInterval = 0.1f;
+        strength = Random.Range(5 + extra, 7 + extra);
+
+        knockback = new(10, 0);
+        hitInterval = 0.3f;
+        stunTime = 0.3f;
     }
 
     public override void LightAttack(Animator anim)
     {
-        anim.Play(animPath + "CutterLight");
+        //set player speed to 7 (slightly faster)
+        UpdateValues(1, knockback, hitInterval, stunTime);
+        base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        anim.Play(animPath + "CutterHeavy");
-        
+        UpdateValues(2, knockback, hitInterval, stunTime);
+        //set player speed to 2 (slower)
+        base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        anim.Play(animPath + "CutterSpecial");
+        UpdateValues(3, knockback, hitInterval, stunTime);
+        base.SpecialAttack(anim);
     }
-
 }

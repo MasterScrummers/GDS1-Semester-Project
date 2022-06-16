@@ -10,8 +10,8 @@ public class AttackRelayer : MonoBehaviour, IAttackReceiver
         attackReceiver = receiver.GetComponent<IAttackReceiver>();
     }
 
-    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
+    public void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {
-        attackReceiver?.RecieveAttack(attackerPos, strength, knockback, stunTime, calcFromAttackerPos);
+        attackReceiver?.RecieveAttack(attackerPos, weapon);
     }
 }

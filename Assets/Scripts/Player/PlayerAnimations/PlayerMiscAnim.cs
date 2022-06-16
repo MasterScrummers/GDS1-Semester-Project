@@ -55,7 +55,7 @@ public class PlayerMiscAnim : MonoBehaviour
                 float num = 10;
                 for (int i = 0; i < num; i++)
                 {
-                    SpawnKunai((360 / num * i) + angle).GetComponent<AttackDealer>().SetAttack(pi.specialWeapon);
+                    SpawnProjectile("CutterPool", (360 / num * i) + angle, pi.specialWeapon);
                 }
                 angle += 20;
             }
@@ -63,6 +63,21 @@ public class PlayerMiscAnim : MonoBehaviour
 
         CutterUpdate();
         NinjaUpdate();
+    }
+
+    private void LightAttack()
+    {
+        AnimAttack(PlayerAnim.AnimState.LightAttack, pi.lightWeapon);
+    }
+
+    private void HeavyAttack()
+    {
+        AnimAttack(PlayerAnim.AnimState.HeavyAttack, pi.heavyWeapon);
+    }
+
+    private void SpecialAttack()
+    {
+        AnimAttack(PlayerAnim.AnimState.SpecialAttack, pi.specialWeapon);
     }
 
     private void AnimMethod(string methodName)
@@ -97,31 +112,9 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
             #endregion
 
-            #region Sword
-            case "SwordLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, pi.speed.originalValue, 1, new(15, 0), 0.2f, 0.25f);
-                break;
-
-            case "SwordHeavyStart":
-                AnimAttack(PlayerAnim.AnimState.HeavyAttack, 3, 2, new(20, 0), 0.3f, 0.25f);
-                break;
-
-            case "SwordHeavyStop":
-                ic.SetInputReason("Movement", false);
-                break;
-
-            case "SwordSpecialStart":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, 15, 0.5f, new(-15, -15), 0.1f, 0.5f, true);
-                break;
-            #endregion
-
             #region Hammer
-            case "HammerLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 3, 1, new(17, 0), 0.5f, 0.3f, true);
-                break;
-
             case "HammerHeavyStart":
-                AnimAttack(PlayerAnim.AnimState.HeavyAttack, pi.speed.originalValue, 2, new(17, 0), 0.3f, 0.3f);
+                LightAttack();
                 DashStart(jetLightSpd, false);
                 if (hammerHeavySpins.value-- == 0)
                 {
@@ -129,14 +122,8 @@ public class PlayerMiscAnim : MonoBehaviour
                 }
                 break;
 
-            case "HammerSpecialStart":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, 1, 2, new(10, 0), 0.1f, 0.2f);
-                ac.PlaySound("HammerSpecial_0");
-                break;
-
             case "HammerFlip":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, 1, 5, new(27, 35), 1f, 1f);
-                ic.SetInputReason("Movement", false);
+                ((Hammer)attacker.weapon).HammerFlip();
                 break;
 
             case "HammerFlipExplode":
@@ -144,72 +131,24 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
             #endregion
 
-            #region Cutter
-            case "CutterLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 7, 1, new(10, 0), 0.3f, 0.2f);
-                break;
-
-            case "CutterHeavyStart": //This uses projectile, fix this.
-                AnimAttack(PlayerAnim.AnimState.HeavyAttack, 2, 2, new(10, 0), 0.3f, 0.2f);
-                break;
-
-            case "CutterSpecialStart":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, pi.speed.originalValue, 3, new(10, 0), 0.3f, 0.2f);
-                break;
-            #endregion
-
             #region Jet
             case "JetLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 1, 1, new(20, 0), 0.3f, 0.2f);
+                LightAttack();
                 DashStart(jetLightSpd);
                 break;
 
             case "JetHeavyStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 1, 2, new(40, 0), 0.3f, 0.2f);
+                HeavyAttack();
                 DashStart(jetHeavySpd);
                 break;
 
             case "JetSpecialStart":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, 1, 3, new(50, 0), 0.5f, 1);
+                SpecialAttack();
                 DashStart(jetSpecialSpd);
                 break;
 
             case "JetBackStart":
                 DashStart(-jetBackSpd);
-                break;
-            #endregion
-
-            #region Mirror
-            case "MirrorLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 3, 1, new(20, 0), 0.5f, 1);
-                break;
-
-            case "MirrorLightActivate":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, 2, 1, new(20, 0), 0.5f, 1);
-                break;
-
-            case "MirrorHeavyStart":
-                AnimAttack(PlayerAnim.AnimState.HeavyAttack, 1, 1, new(0, 0), 0.5f, 1);
-                ic.SetInputReason("Movement", false);
-                break;
-
-            case "MirrorSpecialStart":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, 1, 1, new(0, 0), 0.1f, 1);
-                ic.SetInputReason("Movement", false);
-                break;
-            #endregion
-
-            #region Ninja
-            case "NinjaLightStart":
-                AnimAttack(PlayerAnim.AnimState.LightAttack, pi.speed.originalValue, 1, new(1f, 0), 0.1f, 0.1f);
-                break;
-
-            case "NinjaHeavyStart":
-                AnimAttack(PlayerAnim.AnimState.HeavyAttack, 2, 1, new(1f, 0), 0.1f, 0.1f);
-                break;
-
-            case "NinjaSpecialStart":
-                AnimAttack(PlayerAnim.AnimState.SpecialAttack, pi.speed.originalValue, 1, new(1f, 0), 0.1f, 0.1f);
                 break;
             #endregion
 
@@ -219,11 +158,20 @@ public class PlayerMiscAnim : MonoBehaviour
         }
     }
 
-    private void AnimAttack(PlayerAnim.AnimState state, float playerSpeed, float strengthMult, Vector2 knockback, float hitInterval, float stunTime, bool calcFromAttackerPos = false)
+    private void AnimAttack(PlayerAnim.AnimState state, WeaponBase weapon = null)
     {
         animState = state;
-        attacker.SetAttack(strengthMult, knockback, hitInterval, stunTime, calcFromAttackerPos);
-        pi.speed.value = playerSpeed;
+        if (weapon == null)
+        {
+            return;
+        }
+
+        attacker.SetWeapon(weapon);
+        string sfx = weapon.sfx;
+        if (!sfx.Equals(""))
+        {
+            ac.PlaySound(sfx);
+        }
     }
 
     private void AnimReset(AnimEndTypes animEnd)
@@ -231,31 +179,34 @@ public class PlayerMiscAnim : MonoBehaviour
         switch (animEnd)
         {
             case AnimEndTypes.CutterHeavy:
-                GameObject projectile = poolController.GetObjectFromPool("CutterPool");
-                projectile.transform.position = cutterPivot.transform.position;
-                projectile.transform.eulerAngles = new(0, 0, spritePivot.localScale.x > 0 ? 0 : 180);
-                projectile.GetComponent<AttackDealer>().SetAttack(pi.heavyWeapon);
+                AnimAttack(PlayerAnim.AnimState.HeavyAttack);
+                Debug.Log(spritePivot.localScale.x);
+                SpawnProjectile("CutterPool", spritePivot.localScale.x > 0 ? 0 : 180, pi.heavyWeapon);
                 break;
 
             case AnimEndTypes.CutterSpecial:
+                AnimAttack(PlayerAnim.AnimState.SpecialAttack);
                 CutterSpecial(4);
                 break;
 
             case AnimEndTypes.NinjaLight:
+                AnimAttack(PlayerAnim.AnimState.LightAttack);
                 for (int i = -1; i <= 1; i++)
                 {
-                    SpawnKunai(i * 45).GetComponent<AttackDealer>().SetAttack(pi.lightWeapon);
+                    SpawnProjectile("KunaiPool", i * 45, pi.lightWeapon);
                 }
                 break;
 
             case AnimEndTypes.NinjaHeavy:
+                AnimAttack(PlayerAnim.AnimState.HeavyAttack);
                 for (int i = 0; i < 10; i++)
                 {
-                    SpawnKunai(Random.Range(-45, 45)).GetComponent<AttackDealer>().SetAttack(pi.heavyWeapon);
+                    SpawnProjectile("KunaiPool", Random.Range(-45, 45), pi.heavyWeapon);
                 }
                 break;
 
             case AnimEndTypes.NinjaSpecial:
+                AnimAttack(PlayerAnim.AnimState.SpecialAttack);
                 bulletHellWaves = 300;
                 break;
         }
@@ -263,11 +214,11 @@ public class PlayerMiscAnim : MonoBehaviour
         hammerHeavySpins.Reset();
         anim.ResetTrigger("Finish");
 
-        ic.SetInputReason("Movement", true);
         if (!invincibility.allowFlashing)
         {
             invincibility.SetPlayerInvincible(false);
         }
+        pi.allowMovement = true;
         pi.speed.Reset();
         pi.isSliding = false;
         jump.fallGravity.Reset();
@@ -279,6 +230,15 @@ public class PlayerMiscAnim : MonoBehaviour
     [SerializeField] private OriginalValue<int> hammerHeavySpins = new(3);
     #endregion
 
+    private void SpawnProjectile(string pool, float angle, WeaponBase weapon)
+    {
+        GameObject projectile = poolController.GetObjectFromPool(pool);
+        projectile.transform.position = firePoint.position;
+        projectile.transform.eulerAngles = new(0, 0, angle);
+
+        projectile.GetComponent<AttackDealer>().SetWeapon(weapon);
+    }
+
     #region Cutter
     [Header("Cutter Parameters")]
     [SerializeField] private GameObject cutterPivot;
@@ -288,15 +248,7 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject projectile = poolController.GetObjectFromPool("CutterPool");
-            projectile.transform.position = cutterPivot.transform.position;
-
-            Vector3 rot = projectile.transform.eulerAngles;
-            rot.z = 360 / number * i;
-            projectile.transform.eulerAngles = rot;
-
-            projectile.transform.parent = cutterPivot.transform;
-            projectile.GetComponent<AttackDealer>().SetAttack(pi.specialWeapon);
+            SpawnProjectile("CutterPool", 360 / number * i, pi.specialWeapon);
         }
         nextWave = number * 2;
     }
@@ -308,17 +260,6 @@ public class PlayerMiscAnim : MonoBehaviour
     private float angle;
     private int bulletHellWaves = 0;
     private readonly Timer ninjaTimer = new(0.05f);
-    private GameObject SpawnKunai(float angle)
-    {
-        GameObject projectile = poolController.GetObjectFromPool("KunaiPool");
-        projectile.transform.position = firePoint.position;
-
-        Vector3 rot = projectile.transform.eulerAngles;
-        rot.z = angle;
-        projectile.transform.eulerAngles = rot;
-
-        return projectile;
-    }
     #endregion
 
     #region Jet
@@ -331,8 +272,8 @@ public class PlayerMiscAnim : MonoBehaviour
 
     private void DashStart(float speed, bool affectGravity = true)
     {
-        ic.SetInputReason("Movement", false);
         rb.velocity = transform.right * speed * spritePivot.localScale.x;
+        pi.allowMovement = false;
         pi.isSliding = true;
         if (affectGravity)
         {

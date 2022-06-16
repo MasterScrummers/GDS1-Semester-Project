@@ -13,11 +13,11 @@ public class PlayerInput : MonoBehaviour
 
     public bool isSliding = false;
     public OriginalValue<float> speed = new(5);
+    public bool allowMovement = true; //Can be manipulated by the animator.
 
     private JumpComponent jump; //The main jump process.
 
     [HideInInspector] public bool canInteract = false;
-
     [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
     [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
     [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
@@ -39,13 +39,14 @@ public class PlayerInput : MonoBehaviour
         heavyWeapon = WeaponBase.RandomWeapon();
         specialWeapon = WeaponBase.RandomWeapon();
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Sword();
+        lightWeapon = heavyWeapon = specialWeapon = new Cutter();
 #endif
         cooldownTimer.Finish();
     }
 
     void Update()
     {
+        ic.SetInputReason("Movement", allowMovement);
         if (ic.isInputLocked) //Allows knockback when taking damage.
         {
             return;
@@ -100,13 +101,13 @@ public class PlayerInput : MonoBehaviour
         if (ic.GetButtonDown("Attack", "Light"))
         {
             lightWeapon.LightAttack(playerAnim.anim);
-            dealer.SetAttack(lightWeapon);
+            dealer.SetWeapon(lightWeapon);
         }
 
         if (ic.GetButtonDown("Attack", "Heavy"))
         {
             heavyWeapon.HeavyAttack(playerAnim.anim);
-            dealer.SetAttack(heavyWeapon);
+            dealer.SetWeapon(heavyWeapon);
         }
 
         cooldownTimer.Update(Time.deltaTime);
@@ -114,7 +115,7 @@ public class PlayerInput : MonoBehaviour
         {
             cooldownTimer.SetTimer(specialWeapon.specialCooldown);
             specialWeapon.SpecialAttack(playerAnim.anim);
-            dealer.SetAttack(specialWeapon);
+            dealer.SetWeapon(specialWeapon);
         }
     }
 }

@@ -36,7 +36,7 @@ public class UIWeaponSwapSystem : UISystemBase
         }
 
         ic.SetInputReason("Attack", false);
-        ic.SetInputReason("Movement", false);
+        input.allowMovement = false;
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
@@ -83,6 +83,6 @@ public class UIWeaponSwapSystem : UISystemBase
     {
         base.OnDisable();
         ic.SetInputReason("Attack", true);
-        ic.SetInputReason("Movement", true);
+        input.allowMovement = true;
     }
 }

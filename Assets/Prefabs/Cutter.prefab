@@ -158,11 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 5
-  knockback: {x: 1, y: 1}
-  invincibilityLength: 0.2
-  invincibilityTime: 0
-  stunTime: 0
 --- !u!114 &1207319007718614911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbad3c3858a916d42a490d6c1b63b54c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  lifeTime: 5
+  speed:
+    <originalValue>k__BackingField: 20
+    value: 1
+  lifeTime:
+    <timer>k__BackingField: 3
+    <timeScale>k__BackingField: -1
   acceleration: 3

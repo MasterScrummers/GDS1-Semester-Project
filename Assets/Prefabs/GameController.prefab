@@ -56,11 +56,11 @@ GameObject:
   - component: {fileID: 134018831627938800}
   - component: {fileID: 9077803633783099290}
   - component: {fileID: 180192883728885551}
+  - component: {fileID: 2058645567314398259}
+  - component: {fileID: 8684894114443428548}
   - component: {fileID: 2558724336605235957}
   - component: {fileID: 2002938334861128839}
   - component: {fileID: 4443857753356487881}
-  - component: {fileID: 2058645567314398259}
-  - component: {fileID: 8684894114443428548}
   - component: {fileID: 7272239079409307307}
   - component: {fileID: 8653313013604842796}
   m_Layer: 0
@@ -87,7 +87,6 @@ Transform:
   - {fileID: 4789079845187320101}
   - {fileID: 2344408869410372167}
   - {fileID: 3778822654277405955}
-  - {fileID: 8245610911835613080}
   - {fileID: 5954393082887964401}
   m_Father: {fileID: 8310726583514417075}
   m_RootOrder: 3
@@ -133,6 +132,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2058645567314398259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134018831627938803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEffect: {fileID: 8126368881675022783, guid: 2d95d09982390fb4c822a3b1ae50ee62, type: 3}
+  restartTimer:
+    <timer>k__BackingField: 3
+    <timeScale>k__BackingField: -1
+  hurtTimer:
+    <timer>k__BackingField: 1
+    <timeScale>k__BackingField: -1
+--- !u!114 &8684894114443428548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134018831627938803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5b449763c96ac43a8a07f9d94206c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hammerHeavySpins:
+    <originalValue>k__BackingField: 3
+    value: 5
+  cutterPivot: {fileID: 2834517392197775664}
+  firePoint: {fileID: 8245610911835613080}
+  jetBackSpd: 5
+  jetLightSpd: 7
+  jetHeavySpd: 11
+  jetSpecialSpd: 20
+  spritePivot: {fileID: 8505649557184873641}
 --- !u!114 &2558724336605235957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +189,7 @@ MonoBehaviour:
   speed:
     <originalValue>k__BackingField: 5
     value: 5
+  allowMovement: 1
   canInteract: 0
 --- !u!114 &2002938334861128839
 MonoBehaviour:
@@ -196,49 +237,6 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &2058645567314398259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134018831627938803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d497bfc5a49d934287a36230f0f7eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathEffect: {fileID: 8126368881675022783, guid: 2d95d09982390fb4c822a3b1ae50ee62, type: 3}
-  restartTimer:
-    <timer>k__BackingField: 3
-    <timeScale>k__BackingField: -1
-  hurtTimer:
-    <timer>k__BackingField: 1
-    <timeScale>k__BackingField: -1
---- !u!114 &8684894114443428548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134018831627938803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5b449763c96ac43a8a07f9d94206c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hammerHeavySpins:
-    <originalValue>k__BackingField: 3
-    value: 5
-  cutterPivot: {fileID: 2834517392197775664}
-  firePoint: {fileID: 8245610911835613080}
-  mirror: {fileID: 2219970565129338950}
-  shield: {fileID: 5899896138594468200}
-  jetBackSpd: 5
-  jetLightSpd: 7
-  jetHeavySpd: 11
-  jetSpecialSpd: 20
-  spritePivot: {fileID: 8505649557184873641}
 --- !u!114 &7272239079409307307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,11 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 1
-  <knockback>k__BackingField: {x: 1, y: 1}
-  <hitInterval>k__BackingField: 0.3
-  <stunTime>k__BackingField: 0.5
-  <calcFromAttackerPos>k__BackingField: 0
 --- !u!50 &4660317548504110636
 Rigidbody2D:
   serializedVersion: 4
@@ -851,8 +844,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 5
+  m_Father: {fileID: 8505649557184873641}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143362512357761748
 GameObject:
@@ -2037,6 +2030,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 749352406276851550}
+  - {fileID: 8245610911835613080}
   m_Father: {fileID: 134018831627938800}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2879,7 +2873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMultiplier: 5.2
-  IsSpecialAttack: 0
+  isSpecialAttack: 0
 --- !u!114 &6748391770886071008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2892,11 +2886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 1
-  <knockback>k__BackingField: {x: 1, y: 1}
-  <hitInterval>k__BackingField: 0.3
-  <stunTime>k__BackingField: 0.5
-  <calcFromAttackerPos>k__BackingField: 0
 --- !u!95 &1746890965445384494
 Animator:
   serializedVersion: 4
@@ -3477,7 +3466,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134018831627938800}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7785554892169719453
 GameObject:

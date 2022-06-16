@@ -2,31 +2,32 @@ using UnityEngine;
 
 public class Sword : WeaponBase
 {
-    public Sword() : base()
+    public Sword() : base("Sword")
     {
-        weaponName = "Sword";
         description = "Light: Slash\nHeavy: Stab\n Special: Spin";
-        animPath = basePath + weaponName + "."; //Don't forget the dot!
 
-        specialCooldown = Random.Range(4, 9);
+        specialCooldown = Random.Range(5, 9);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        baseStrength = Random.Range(3 + extra, 8 + extra);
-        //knockbackStr = new(10f, 0);
-        //hitInterval = 0.3f;
+        strength = Random.Range(5 + extra, 8 + extra);
     }
 
     public override void LightAttack(Animator anim)
     {
-        anim.Play(animPath + "SwordLight");
+        UpdateValues(1, new(15, 0), 0.2f, 0.25f);
+        base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        anim.Play(animPath + "SwordHeavy");
+        //set player speed to 3 (slightly slower)
+        UpdateValues(2, new(20, 0), 0.3f, 0.25f);
+        base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        anim.Play(animPath + "SwordSpecial");
+        //set player speed to 15 (Much faster)
+        UpdateValues(1, new(-15, -15), 0.1f, 0.5f);
+        anim.Play(animPath + weaponName + "Special");
     }
 }

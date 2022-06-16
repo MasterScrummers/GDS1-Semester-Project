@@ -3,12 +3,6 @@ using UnityEngine;
 public class EnergyPulseMovement : ProjectileMovement
 {
     private Animator anim;
-    EnergyPulseMovement() : base()
-    {
-        speed = 8f;
-        lifeTime = 3f;
-        
-    }
 
     protected override void Start()
     {

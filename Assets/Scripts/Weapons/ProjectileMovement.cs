@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
 {
-    [SerializeField] protected float speed; //The moving speed;
-    public float lifeTime; //How long it exist
-    protected float lifeTick; //The current lifetimer
+    [SerializeField] protected OriginalValue<float> speed = new(1); //The moving speed;
+    [SerializeField] protected Timer lifeTime = new(3);
 
     protected Rigidbody2D rb; //Rigidbody 2D
 
@@ -16,12 +15,13 @@ public class ProjectileMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        rb.velocity = speed * transform.right; //Allow the object to move in the direction it is facing.
-        gameObject.SetActive((lifeTick -= Time.deltaTime) > 0);
+        rb.velocity = speed.value * transform.right; //Allow the object to move in the direction it is facing.
+        lifeTime.Update(Time.deltaTime);
+        gameObject.SetActive(lifeTime.tick > 0);
     }
 
     protected virtual void OnEnable()
     {
-        lifeTick = lifeTime;
+        lifeTime.Reset();
     }
 }

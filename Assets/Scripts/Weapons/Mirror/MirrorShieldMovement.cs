@@ -7,7 +7,7 @@ public class MirrorShieldMovement : MonoBehaviour
     public bool isSpecialAttack;
     private Animator anim;
     private VectorLerper lerp;
-    private Timer lifeTime = new(0.5f);
+    private readonly Timer lifeTime = new(0.5f);
 
     private void Awake()
     {

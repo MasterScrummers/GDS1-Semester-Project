@@ -6,6 +6,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 {
     [SerializeField] protected bool allowKnockback = true;
     [SerializeField] private Timer hurtTimer = new(0.2f);
+    [SerializeField] private Timer stunnedTimer = new(0f);
     [SerializeField] protected bool isInvincibile = false;
 
     protected bool isStunned = false;
@@ -34,7 +35,8 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
             hurtTimer.Reset();
         }
 
-        isStunned = (stunTime -= delta) > 0f;
+        stunnedTimer.Update(delta);
+        isStunned = stunnedTimer.tick > 0f;
     }
 
     /// <summary>
@@ -65,22 +67,21 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         inRoom = roomData;
     }
 
-    public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
+    public virtual void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {
         if (isInvincibile)
         {
             return;
         }
 
-        health.OffsetHP(-strength);
+        health.OffsetHP(-weapon.strength * weapon.strengthMult);
 
         sr.color = Color.red;
-        this.stunTime = stunTime;
+        stunnedTimer.SetTimer(weapon.stunTime);
 
         if (allowKnockback)
         {
-            Vector2 knockbackCalc = calcFromAttackerPos ? (transform.position - attackerPos.position).normalized * knockback : attackerPos.position.x > transform.position.x ? -knockback : knockback;
-            rb.AddForce(knockbackCalc, ForceMode2D.Impulse);
+            rb.AddForce((transform.position - attackerPos.position).normalized * weapon.knockback, ForceMode2D.Impulse);
         }
 
         if (health.health <= 0)

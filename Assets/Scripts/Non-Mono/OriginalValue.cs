@@ -12,10 +12,13 @@ public class OriginalValue<T>
         SetOriginalValue(originalValue);
     }
 
-    public void SetOriginalValue(T newValue)
+    public void SetOriginalValue(T newValue, bool autoReset = true)
     {
         originalValue = newValue;
-        Reset();
+        if (autoReset)
+        {
+            Reset();
+        }
     }
 
     public void Reset()

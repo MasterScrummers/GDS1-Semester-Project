@@ -2,31 +2,34 @@ using UnityEngine;
 
 public class Ninja : WeaponBase
 {
-    public Ninja() : base()
+    public Ninja() : base("Ninja")
     {
-        weaponName = "Ninja";
         description = "Light: Kunai\nHeavy: Shotgun like Kunai\n Special: Kunai bullet hell";
-        animPath = basePath + weaponName + ".";
         
         specialCooldown = Random.Range(5, 10);
         int extra = Mathf.RoundToInt(specialCooldown * 0.1f);
-        baseStrength = Random.Range(3 + extra, 5 + extra);
-        //knockbackStr = new(2.0f, 0f);
-        //hitInterval = 0.2f;
+        strength = Random.Range(3 + extra, 5 + extra);
+
+        knockback = new(1, 0);
+        hitInterval = 1f;
+        stunTime = 1f;
     }
 
     public override void LightAttack(Animator anim)
     {
-        anim.Play(animPath + "NinjaLight");
+        UpdateValues(1, knockback, hitInterval, stunTime);
+        base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        anim.Play(animPath + "NinjaHeavy");
+        UpdateValues(2, knockback, hitInterval, stunTime);
+        base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        anim.Play(animPath + "NinjaSpecial");
+        UpdateValues(3, knockback, hitInterval, stunTime);
+        base.SpecialAttack(anim);
     }
 }

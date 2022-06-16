@@ -1,3 +1,4 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -33,8 +34,7 @@ public class RoomData : MonoBehaviour
 
         foreach(Transform child in DoStatic.GetChildren(enemies.transform))
         {
-            Enemy enemy = child.GetComponent<Enemy>();
-            if (enemy && child.gameObject.activeInHierarchy)
+            if (child.TryGetComponent<Enemy>(out var enemy) && child.gameObject.activeInHierarchy)
             {
                 enemy.AssignToRoomData(this);
                 enemyCount++;

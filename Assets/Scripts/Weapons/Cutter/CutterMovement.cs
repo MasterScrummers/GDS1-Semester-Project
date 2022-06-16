@@ -5,14 +5,12 @@ public class CutterMovement : ProjectileMovement
     private PoolController poolController;
     private Transform player;
     private Lerper lerp;
-    private float originalSpd;
     private bool isComingBack = false;
     [SerializeField] float acceleration = 0.5f;
 
     private void Awake()
     {
         lerp = new();
-        originalSpd = speed;
     }
 
     protected override void Start()
@@ -25,13 +23,15 @@ public class CutterMovement : ProjectileMovement
     protected override void Update()
     {
         lerp.Update(Time.deltaTime);
-        rb.velocity = lerp.currentValue * transform.right; //Allow the object to move in the direction it is facing.
+        speed.value = lerp.currentValue;
+        base.Update();
+
         if (!isComingBack)
         {
             isComingBack = !lerp.isLerping;
             if (isComingBack)
             {
-                lerp.SetValues(0, originalSpd, 1 / acceleration);
+                lerp.SetValues(0, speed.originalValue, 1 / acceleration);
             }
         } else
         {
@@ -48,6 +48,6 @@ public class CutterMovement : ProjectileMovement
     {
         base.OnEnable();
         isComingBack = false;
-        lerp.SetValues(originalSpd, 0, 1 / acceleration);
+        lerp.SetValues(speed.originalValue, 0, 1 / acceleration);
     }
 }

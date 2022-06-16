@@ -145,7 +145,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         return false;
     }
 
-    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float stunTime, bool calcFromAttackerPos = false)
+    public void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {
         if (invincibility.invincible)
         {
@@ -153,7 +153,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         }
 
         ic.SetInputLock(true);
-        health.OffsetHP(-strength);
+        health.OffsetHP(-weapon.strength);
 
         bool isAlive = health.health > 0;
         hurtTimer.Reset();
@@ -163,7 +163,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         {
             isHurt = true;
             anim.Play("KirbyHurt");
-            rb.velocity = attackerPos.position.x > transform.position.x ? -knockback : knockback;
+            rb.velocity = attackerPos.position.x > transform.position.x ? -weapon.knockback : weapon.knockback;
         } else
         {
             isDead = true;
