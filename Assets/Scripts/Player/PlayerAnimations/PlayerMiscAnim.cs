@@ -158,7 +158,7 @@ public class PlayerMiscAnim : MonoBehaviour
         }
     }
 
-    private void AnimAttack(PlayerAnim.AnimState state, WeaponBase weapon = null)
+    private void AnimAttack(PlayerAnim.AnimState state, PlayerWeaponBase weapon = null)
     {
         animState = state;
         if (weapon == null)
@@ -180,7 +180,6 @@ public class PlayerMiscAnim : MonoBehaviour
         {
             case AnimEndTypes.CutterHeavy:
                 AnimAttack(PlayerAnim.AnimState.HeavyAttack);
-                Debug.Log(spritePivot.localScale.x);
                 SpawnProjectile("CutterPool", spritePivot.localScale.x > 0 ? 0 : 180, pi.heavyWeapon);
                 break;
 

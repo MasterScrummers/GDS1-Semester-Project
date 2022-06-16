@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Hammer : WeaponBase
+public class Hammer : PlayerWeaponBase
 {
     public Hammer() : base("Hammer")
     {

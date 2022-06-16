@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Mirror : WeaponBase
+public class Mirror : PlayerWeaponBase
 {
     public Mirror() : base("Mirror")
     {

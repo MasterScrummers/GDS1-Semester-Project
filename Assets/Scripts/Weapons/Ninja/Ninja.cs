@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ninja : WeaponBase
+public class Ninja : PlayerWeaponBase
 {
     public Ninja() : base("Ninja")
     {

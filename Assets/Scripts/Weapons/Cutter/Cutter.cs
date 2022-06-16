@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Cutter : WeaponBase
+public class Cutter : PlayerWeaponBase
 {
     public Cutter() : base("Cutter")
     {

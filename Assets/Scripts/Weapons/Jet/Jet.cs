@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Jet : WeaponBase
+public class Jet : PlayerWeaponBase
 {
     public Jet() : base("Jet")
     {

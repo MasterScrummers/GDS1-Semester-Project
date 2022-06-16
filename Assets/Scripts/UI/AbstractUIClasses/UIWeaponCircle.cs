@@ -23,7 +23,7 @@ public abstract class UIWeaponCircle : UICircleBarBase
         circle.color = variableController.GetColour("Rubik Green");
     }
 
-    protected void UpdateSprite(WeaponBase weapon)
+    protected void UpdateSprite(PlayerWeaponBase weapon)
     {
         weaponIcon.sprite = variableController.GetIcon(weapon.weaponName);
         weaponIcon.SetNativeSize();

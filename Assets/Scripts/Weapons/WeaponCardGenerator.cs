@@ -5,7 +5,7 @@ using TMPro;
 [RequireComponent(typeof(Image))]
 public class WeaponCardGenerator : MonoBehaviour
 {
-    public WeaponBase weapon;
+    public PlayerWeaponBase weapon;
     private VariableController vc; //To grab the dictionary of weapons
     [SerializeField] private Image weaponIcon;
     [SerializeField] private TextMeshProUGUI weaponText;
@@ -15,7 +15,7 @@ public class WeaponCardGenerator : MonoBehaviour
         vc = DoStatic.GetGameController<VariableController>();
     }
 
-    public void SetWeapon(WeaponBase weapon)
+    public void SetWeapon(PlayerWeaponBase weapon)
     {
         this.weapon = weapon;
         SetCard();
@@ -23,7 +23,7 @@ public class WeaponCardGenerator : MonoBehaviour
 
     public void GenerateWeapon()
     {
-        weapon = WeaponBase.RandomWeapon();
+        weapon = PlayerWeaponBase.RandomWeapon();
         SetCard();
     }
 

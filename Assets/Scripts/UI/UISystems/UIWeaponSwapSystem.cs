@@ -22,9 +22,9 @@ public class UIWeaponSwapSystem : UISystemBase
 
     void Update()
     {
-        void WeaponSwap(ref WeaponBase weapon)
+        void WeaponSwap(ref PlayerWeaponBase weapon)
         {
-            WeaponBase temp = newCard.weapon;
+            PlayerWeaponBase temp = newCard.weapon;
             newCard.SetWeapon(weapon);
             weapon = temp;
             UpdateCards();
@@ -40,7 +40,6 @@ public class UIWeaponSwapSystem : UISystemBase
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
-            //ic.SetInputLock(false);
             Deactivate();
             return;
         }

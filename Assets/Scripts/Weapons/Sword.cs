@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Sword : WeaponBase
+public class Sword : PlayerWeaponBase
 {
     public Sword() : base("Sword")
     {

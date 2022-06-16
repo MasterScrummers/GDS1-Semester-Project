@@ -18,9 +18,9 @@ public class PlayerInput : MonoBehaviour
     private JumpComponent jump; //The main jump process.
 
     [HideInInspector] public bool canInteract = false;
-    [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
-    [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
-    [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
+    [HideInInspector] public PlayerWeaponBase lightWeapon; //The assigned light weapon
+    [HideInInspector] public PlayerWeaponBase heavyWeapon; //The assigned heavy weapon
+    [HideInInspector] public PlayerWeaponBase specialWeapon; //The assigned special weapon
 
     void Start()
     {
@@ -35,9 +35,9 @@ public class PlayerInput : MonoBehaviour
 
     public void Restart()
     {
-        lightWeapon = WeaponBase.RandomWeapon();
-        heavyWeapon = WeaponBase.RandomWeapon();
-        specialWeapon = WeaponBase.RandomWeapon();
+        lightWeapon = PlayerWeaponBase.RandomWeapon();
+        heavyWeapon = PlayerWeaponBase.RandomWeapon();
+        specialWeapon = PlayerWeaponBase.RandomWeapon();
 #if UNITY_EDITOR
         lightWeapon = heavyWeapon = specialWeapon = new Cutter();
 #endif
