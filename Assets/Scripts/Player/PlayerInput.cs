@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     private AttackDealer dealer; //The attack hitbox when attacking.
     private Rigidbody2D rb; //Kirby Rigidbody2D for the movement
 
-    [HideInInspector] public bool isSliding = false;
+    public bool isSliding = false;
     public OriginalValue<float> speed = new(5);
 
     private JumpComponent jump; //The main jump process.

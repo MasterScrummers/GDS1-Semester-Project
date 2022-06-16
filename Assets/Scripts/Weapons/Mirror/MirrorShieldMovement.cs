@@ -4,7 +4,7 @@ public class MirrorShieldMovement : MonoBehaviour
 {
     private Vector3 originalScale;
     public float scaleMultiplier; //The scale want to incrased to
-    [HideInInspector] public bool IsSpecialAttack;
+    public bool isSpecialAttack;
     private Animator anim;
     private VectorLerper lerp;
     private Timer lifeTime = new(0.5f);
@@ -17,7 +17,7 @@ public class MirrorShieldMovement : MonoBehaviour
 
     private void Update()
     {
-        if (IsSpecialAttack)
+        if (isSpecialAttack)
         {
             SpecialAttack();
             return;

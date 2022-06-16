@@ -19,7 +19,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private AttackDealer attacker;
     private PlayerInvincibility invincibility;
 
-    void Start()
+    private void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
         poolController = ic.GetComponent<PoolController>();
@@ -32,7 +32,6 @@ public class PlayerMiscAnim : MonoBehaviour
         invincibility = GetComponent<PlayerInvincibility>();
         attacker = GetComponentInChildren<AttackDealer>();
 
-        ms = shield.GetComponent<MirrorShieldMovement>();
         hammerHeavySpins.Reset();
     }
 
@@ -107,9 +106,12 @@ public class PlayerMiscAnim : MonoBehaviour
                 AnimAttack(PlayerAnim.AnimState.HeavyAttack, 3, 2, new(20, 0), 0.3f, 0.25f);
                 break;
 
+            case "SwordHeavyStop":
+                ic.SetInputReason("Movement", false);
+                break;
+
             case "SwordSpecialStart":
                 AnimAttack(PlayerAnim.AnimState.SpecialAttack, 15, 0.5f, new(-15, -15), 0.1f, 0.5f, true);
-                invincibility.SetPlayerInvincible(true, false);
                 break;
             #endregion
 
@@ -125,11 +127,6 @@ public class PlayerMiscAnim : MonoBehaviour
                 {
                     anim.SetTrigger("Finish");
                 }
-                break;
-
-            case "HammerHeavySleep":
-                ic.SetInputReason("Movement", false);
-                pi.isSliding = false;
                 break;
 
             case "HammerSpecialStart":
@@ -189,8 +186,6 @@ public class PlayerMiscAnim : MonoBehaviour
 
             case "MirrorLightActivate":
                 AnimAttack(PlayerAnim.AnimState.LightAttack, 2, 1, new(20, 0), 0.5f, 1);
-                invincibility.SetPlayerInvincible(true, false);
-                ActivateShield(false);
                 break;
 
             case "MirrorHeavyStart":
@@ -198,15 +193,9 @@ public class PlayerMiscAnim : MonoBehaviour
                 ic.SetInputReason("Movement", false);
                 break;
 
-            case "MirrorHeavyActivate":
-                mirror.SetActive(true);
-                break;
-
             case "MirrorSpecialStart":
                 AnimAttack(PlayerAnim.AnimState.SpecialAttack, 1, 1, new(0, 0), 0.1f, 1);
-                invincibility.SetPlayerInvincible(true, false);
                 ic.SetInputReason("Movement", false);
-                ActivateShield(true);
                 break;
             #endregion
 
@@ -223,10 +212,6 @@ public class PlayerMiscAnim : MonoBehaviour
                 AnimAttack(PlayerAnim.AnimState.SpecialAttack, pi.speed.originalValue, 1, new(1f, 0), 0.1f, 0.1f);
                 break;
             #endregion
-
-            case "SwordHeavyStop":
-                ic.SetInputReason("Movement", false);
-                break;
 
             default:
                 Debug.Log("Unknown method name: " + methodName);
@@ -296,7 +281,7 @@ public class PlayerMiscAnim : MonoBehaviour
 
     #region Cutter
     [Header("Cutter Parameters")]
-    [SerializeField] GameObject cutterPivot;
+    [SerializeField] private GameObject cutterPivot;
     private int nextWave = 0;
 
     private void CutterSpecial(int number)
@@ -336,20 +321,6 @@ public class PlayerMiscAnim : MonoBehaviour
     }
     #endregion
 
-    #region Mirror
-    [Header("Mirror Parameters")]
-    [SerializeField] private GameObject mirror;
-    [SerializeField] private GameObject shield;
-    private MirrorShieldMovement ms;
-
-    private void ActivateShield(bool isSpecial)
-    {
-        shield.SetActive(true);
-        ms.IsSpecialAttack = isSpecial;
-    }
-
-    #endregion
-
     #region Jet
     [Header("Jet Parameters")]
     [SerializeField] private float jetBackSpd = 5;
@@ -357,14 +328,6 @@ public class PlayerMiscAnim : MonoBehaviour
     [SerializeField] private float jetHeavySpd = 11;
     [SerializeField] private float jetSpecialSpd = 20;
     [SerializeField] private Transform spritePivot;
-
-    private enum DashDirection
-    {
-        Light,
-        Heavy,
-        Special,
-        backward,
-    }
 
     private void DashStart(float speed, bool affectGravity = true)
     {
