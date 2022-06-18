@@ -35,11 +35,11 @@ public class PlayerInput : MonoBehaviour
 
     public void Restart()
     {
-        lightWeapon = PlayerWeaponBase.RandomWeapon();
-        heavyWeapon = PlayerWeaponBase.RandomWeapon();
-        specialWeapon = PlayerWeaponBase.RandomWeapon();
+        lightWeapon = PlayerWeaponBase.RandomWeapon(speed);
+        heavyWeapon = PlayerWeaponBase.RandomWeapon(speed);
+        specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Cutter();
+        lightWeapon = heavyWeapon = specialWeapon = new Jet(speed);
 #endif
         cooldownTimer.Finish();
     }

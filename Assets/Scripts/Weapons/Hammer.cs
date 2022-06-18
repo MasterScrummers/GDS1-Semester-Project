@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Hammer : PlayerWeaponBase
 {
-    public Hammer() : base("Hammer")
+    public Hammer(OriginalValue<float> speed) : base("Hammer", speed)
     {
         description = "Light: Smash\nHeavy: Spin\nSpecial: Hammer Flip";
 
@@ -13,8 +13,7 @@ public class Hammer : PlayerWeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        //set player speed to 3 (slightly slower)
-        UpdateValues(1, new(17, 0), 0.5f, 0.3f);
+        UpdateValues(3, 1, new(17, 0), 0.5f, 0.3f);
         base.LightAttack(anim);
     }
 
@@ -26,8 +25,7 @@ public class Hammer : PlayerWeaponBase
 
     public override void SpecialAttack(Animator anim)
     {
-        //set player speed to 10 (faster) originally 2, but 10 sounds more fun.
-        UpdateValues(2, new(10, 0), 0.1f, 0.3f, "HammerSpecial_0");
+        UpdateValues(10, 2, new(10, 0), 0.1f, 0.3f, "HammerSpecial_0"); //Speed originally 2
         base.SpecialAttack(anim);
     }
 

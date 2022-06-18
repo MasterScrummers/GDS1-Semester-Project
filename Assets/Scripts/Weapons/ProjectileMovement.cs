@@ -23,5 +23,6 @@ public class ProjectileMovement : MonoBehaviour
     protected virtual void OnEnable()
     {
         lifeTime.Reset();
+        speed.Reset();
     }
 }

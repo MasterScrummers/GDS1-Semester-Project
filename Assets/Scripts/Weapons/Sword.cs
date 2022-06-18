@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Sword : PlayerWeaponBase
 {
-    public Sword() : base("Sword")
+    public Sword(OriginalValue<float> speed) : base("Sword", speed)
     {
         description = "Light: Slash\nHeavy: Stab\n Special: Spin";
 
@@ -19,15 +19,13 @@ public class Sword : PlayerWeaponBase
 
     public override void HeavyAttack(Animator anim)
     {
-        //set player speed to 3 (slightly slower)
-        UpdateValues(2, new(20, 0), 0.3f, 0.25f);
+        UpdateValues(3, 2, new(20, 0), 0.3f, 0.25f);
         base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        //set player speed to 15 (Much faster)
-        UpdateValues(1, new(-15, -15), 0.1f, 0.5f);
-        anim.Play(animPath + weaponName + "Special");
+        UpdateValues(15, 1, new(-15, -15), 0.1f, 0.5f);
+        base.SpecialAttack(anim);
     }
 }

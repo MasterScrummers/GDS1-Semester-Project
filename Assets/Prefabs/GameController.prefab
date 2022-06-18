@@ -105,9 +105,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 310744aaac9927441ac477818c3df381, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -163,9 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5b449763c96ac43a8a07f9d94206c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hammerHeavySpins:
-    <originalValue>k__BackingField: 3
-    value: 5
+  mirrorShield: {fileID: 6748391770886071008}
+  mirrorPivot: {fileID: 2344408869410372167}
   cutterPivot: {fileID: 2834517392197775664}
   firePoint: {fileID: 8245610911835613080}
   jetBackSpd: 5
@@ -1658,7 +1657,7 @@ GameObject:
   - component: {fileID: 2344408869410372167}
   - component: {fileID: 951237380800489672}
   - component: {fileID: 8265995460151243146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2785,7 @@ GameObject:
   - component: {fileID: 6748391770886071008}
   - component: {fileID: 1746890965445384494}
   - component: {fileID: 2765833674984802264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MirrorShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4163,7 +4162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7363564424468260497, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: center
@@ -4636,7 +4635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_IsActive
@@ -4847,7 +4846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_IsActive
@@ -4925,7 +4924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5027557552688006826, guid: 32964535b648deb449b2d0bcb4f5ba99, type: 3}
       propertyPath: m_IsActive

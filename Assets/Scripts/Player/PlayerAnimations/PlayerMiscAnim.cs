@@ -32,7 +32,12 @@ public class PlayerMiscAnim : MonoBehaviour
         invincibility = GetComponent<PlayerInvincibility>();
         attacker = GetComponentInChildren<AttackDealer>();
 
-        hammerHeavySpins.Reset();
+        Transform[] children = DoStatic.GetChildren(mirrorPivot);
+        mirrorPivotChildren = new AttackDealer[children.Length];
+        for (int i = 0; i < children.Length; i++)
+        {
+            mirrorPivotChildren[i] = children[i].GetComponent<AttackDealer>();
+        }
     }
 
     private void Update()
@@ -55,7 +60,7 @@ public class PlayerMiscAnim : MonoBehaviour
                 float num = 10;
                 for (int i = 0; i < num; i++)
                 {
-                    SpawnProjectile("CutterPool", (360 / num * i) + angle, pi.specialWeapon);
+                    SpawnProjectile("KunaiPool", (360 / num * i) + angle, pi.specialWeapon);
                 }
                 angle += 20;
             }
@@ -112,14 +117,17 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
             #endregion
 
+            #region Sword
+            case "SwordSpecialStart":
+                SpecialAttack(); //Adjust length through the anim clip exit time setting
+                pi.specialWeapon.SpecialAttack(anim); //needed to readjust the speed.
+                break;
+            #endregion
+
             #region Hammer
             case "HammerHeavyStart":
-                LightAttack();
+                HeavyAttack(); //Adjust length through the anim clip exit time setting
                 DashStart(jetLightSpd, false);
-                if (hammerHeavySpins.value-- == 0)
-                {
-                    anim.SetTrigger("Finish");
-                }
                 break;
 
             case "HammerFlip":
@@ -131,14 +139,32 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
             #endregion
 
+            #region Mirror
+            case "LightShieldActivate":
+                mirrorShield.SetWeapon(pi.lightWeapon);
+                break;
+
+            case "HeavyShieldActivate":
+                mirrorPivot.gameObject.SetActive(true);
+                foreach(AttackDealer child in mirrorPivotChildren)
+                {
+                    child.SetWeapon(pi.heavyWeapon);
+                }
+                break;
+
+            case "SpecialShieldActivate":
+                mirrorShield.SetWeapon(pi.specialWeapon);
+                break;
+
+            #endregion
+
             #region Jet
             case "JetLightStart":
                 LightAttack();
                 DashStart(jetLightSpd);
                 break;
 
-            case "JetHeavyStart":
-                HeavyAttack();
+            case "JetHeavy":
                 DashStart(jetHeavySpd);
                 break;
 
@@ -180,7 +206,7 @@ public class PlayerMiscAnim : MonoBehaviour
         {
             case AnimEndTypes.CutterHeavy:
                 AnimAttack(PlayerAnim.AnimState.HeavyAttack);
-                SpawnProjectile("CutterPool", spritePivot.localScale.x > 0 ? 0 : 180, pi.heavyWeapon);
+                SpawnProjectile("CutterPool", AngleFlip(), pi.heavyWeapon);
                 break;
 
             case AnimEndTypes.CutterSpecial:
@@ -192,7 +218,7 @@ public class PlayerMiscAnim : MonoBehaviour
                 AnimAttack(PlayerAnim.AnimState.LightAttack);
                 for (int i = -1; i <= 1; i++)
                 {
-                    SpawnProjectile("KunaiPool", i * 45, pi.lightWeapon);
+                    SpawnProjectile("KunaiPool", i * 45 + AngleFlip(), pi.lightWeapon);
                 }
                 break;
 
@@ -200,7 +226,7 @@ public class PlayerMiscAnim : MonoBehaviour
                 AnimAttack(PlayerAnim.AnimState.HeavyAttack);
                 for (int i = 0; i < 10; i++)
                 {
-                    SpawnProjectile("KunaiPool", Random.Range(-45, 45), pi.heavyWeapon);
+                    SpawnProjectile("KunaiPool", Random.Range(-45, 45) + AngleFlip(), pi.heavyWeapon);
                 }
                 break;
 
@@ -209,9 +235,6 @@ public class PlayerMiscAnim : MonoBehaviour
                 bulletHellWaves = 300;
                 break;
         }
-
-        hammerHeavySpins.Reset();
-        anim.ResetTrigger("Finish");
 
         if (!invincibility.allowFlashing)
         {
@@ -224,19 +247,27 @@ public class PlayerMiscAnim : MonoBehaviour
     }
 
     //Extra methods.
-    #region Hammer
-    [Header("Hammer Parameters")]
-    [SerializeField] private OriginalValue<int> hammerHeavySpins = new(3);
-    #endregion
-
-    private void SpawnProjectile(string pool, float angle, WeaponBase weapon)
+    private GameObject SpawnProjectile(string pool, float angle, WeaponBase weapon)
     {
         GameObject projectile = poolController.GetObjectFromPool(pool);
         projectile.transform.position = firePoint.position;
         projectile.transform.eulerAngles = new(0, 0, angle);
 
         projectile.GetComponent<AttackDealer>().SetWeapon(weapon);
+        return projectile;
     }
+
+    private int AngleFlip()
+    {
+        return spritePivot.localScale.x > 0 ? 0 : 180;
+    }
+
+    #region Mirror
+    [Header("Mirror Parameters")]
+    [SerializeField] private AttackDealer mirrorShield;
+    [SerializeField] private Transform mirrorPivot;
+    private AttackDealer[] mirrorPivotChildren;
+    #endregion
 
     #region Cutter
     [Header("Cutter Parameters")]
@@ -247,7 +278,9 @@ public class PlayerMiscAnim : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-            SpawnProjectile("CutterPool", 360 / number * i, pi.specialWeapon);
+            Transform projectile = SpawnProjectile("CutterPool", 360 / number * i, pi.specialWeapon).transform;
+            projectile.parent = cutterPivot.transform;
+            projectile.position = transform.position;
         }
         nextWave = number * 2;
     }
@@ -272,13 +305,10 @@ public class PlayerMiscAnim : MonoBehaviour
     private void DashStart(float speed, bool affectGravity = true)
     {
         rb.velocity = transform.right * speed * spritePivot.localScale.x;
-        pi.allowMovement = false;
-        pi.isSliding = true;
         if (affectGravity)
         {
             jump.fallGravity.value = 0f;
         }
-        invincibility.SetPlayerInvincible(true, false);
     }
     #endregion
 }

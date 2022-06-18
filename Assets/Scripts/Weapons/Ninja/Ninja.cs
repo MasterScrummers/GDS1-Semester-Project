@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ninja : PlayerWeaponBase
 {
-    public Ninja() : base("Ninja")
+    public Ninja(OriginalValue<float> speed) : base("Ninja", speed)
     {
         description = "Light: Kunai\nHeavy: Shotgun like Kunai\n Special: Kunai bullet hell";
         

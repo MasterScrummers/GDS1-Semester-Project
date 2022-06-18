@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Jet : PlayerWeaponBase
 {
-    public Jet() : base("Jet")
+    public Jet(OriginalValue<float> speed) : base("Jet", speed)
     {
         description = "Light: Dash\nHeavy: Long Dash\n Special: Dash with energy pulse";
 
@@ -19,7 +19,7 @@ public class Jet : PlayerWeaponBase
 
     public override void HeavyAttack(Animator anim)
     {
-        UpdateValues(2, new(40, 0), 0.3f, 0.2f);
+        UpdateValues(3, 2, new(40, 0), 0.3f, 0.2f);
         base.HeavyAttack(anim);
     }
 

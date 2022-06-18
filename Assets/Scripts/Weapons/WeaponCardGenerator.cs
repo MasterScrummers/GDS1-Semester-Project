@@ -21,9 +21,9 @@ public class WeaponCardGenerator : MonoBehaviour
         SetCard();
     }
 
-    public void GenerateWeapon()
+    public void GenerateWeapon(OriginalValue<float> speed)
     {
-        weapon = PlayerWeaponBase.RandomWeapon();
+        weapon = PlayerWeaponBase.RandomWeapon(speed);
         SetCard();
     }
 

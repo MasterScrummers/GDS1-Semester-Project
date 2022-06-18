@@ -12,16 +12,11 @@ public class MirrorPivotBehaviour : MonoBehaviour
     void Update()
     {
         lifeTime.Update(Time.deltaTime);
-        gameObject.SetActive(lifeTime.tick == 0);
+        gameObject.SetActive(lifeTime.tick > 0);
     }
 
     private void OnEnable()
     {
         lifeTime.Reset();
-        foreach (Transform child in DoStatic.GetChildren(transform))
-        {
-            child.gameObject.SetActive(true);
-        }
-
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Mirror : PlayerWeaponBase
 {
-    public Mirror() : base("Mirror")
+    public Mirror(OriginalValue<float> speed) : base("Mirror", speed)
     {
         description = "Light: Short Invincibility + Pushback\nHeavy: Summon 4 small mirror\nSpecial: Mirror Bomb";
 
@@ -14,8 +14,7 @@ public class Mirror : PlayerWeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        //set player speed to 3 (slightly slower)
-        UpdateValues(1, new(20, 0), 0.5f, stunTime);
+        UpdateValues(3, 1, new(20, 0), 0.5f, stunTime);
         base.LightAttack(anim);
     }
 

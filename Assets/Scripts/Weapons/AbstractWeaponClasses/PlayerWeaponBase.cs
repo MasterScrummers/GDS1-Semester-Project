@@ -1,18 +1,20 @@
 #pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
-public class PlayerWeaponBase : WeaponBase
+public abstract class PlayerWeaponBase : WeaponBase
 {
     public string weaponName { get; private set; } //Name of the weapon.
     public string description { get; protected set; } = "No Description."; //How does the weapon function on each button?
     protected string animPath; //The animation path, to keep things simple.
 
     public int specialCooldown { get; protected set; } = 3; //The cooldown of the weapon.
+    public OriginalValue<float> speed { get; protected set; }
 
-    public PlayerWeaponBase(string weaponName)
+    public PlayerWeaponBase(string weaponName, OriginalValue<float> speed)
     {
         this.weaponName = weaponName;
         animPath = "Base Layer." + weaponName + ".";
+        this.speed = speed;
     }
 
     /// <summary>
@@ -42,22 +44,28 @@ public class PlayerWeaponBase : WeaponBase
         anim.Play(animPath + weaponName + "Special");
     }
 
-    public static PlayerWeaponBase RandomWeapon()
+    public static PlayerWeaponBase RandomWeapon(OriginalValue<float> speed)
     {
         return Random.Range(1, 7) switch
         {
-            1 => new Sword(),
-            2 => new Hammer(),
-            3 => new Cutter(),
-            4 => new Mirror(),
-            5 => new Jet(),
-            6 => new Ninja(),
-            _ => new Sword(),
+            1 => new Sword(speed),
+            2 => new Hammer(speed),
+            3 => new Cutter(speed),
+            4 => new Mirror(speed),
+            5 => new Jet(speed),
+            6 => new Ninja(speed),
+            _ => new Sword(speed),
         };
     }
 
     protected void UpdateValues(int strengthMult, Vector2 knockback, float hitInterval, float stunTime, string sfx = "")
     {
+        UpdateValues(speed.originalValue, strengthMult, knockback, hitInterval, stunTime, sfx);
+    }
+
+    protected void UpdateValues(float speed, int strengthMult, Vector2 knockback, float hitInterval, float stunTime, string sfx = "")
+    {
+        this.speed.value = speed;
         this.strengthMult = strengthMult;
         this.knockback = knockback;
         this.hitInterval = hitInterval;

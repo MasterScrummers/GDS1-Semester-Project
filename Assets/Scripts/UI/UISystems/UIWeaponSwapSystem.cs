@@ -17,7 +17,7 @@ public class UIWeaponSwapSystem : UISystemBase
     {
         base.FirstActiveFrameUpdate();
         UpdateCards();
-        newCard.GenerateWeapon();
+        newCard.GenerateWeapon(input.speed);
     }
 
     void Update()

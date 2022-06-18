@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Cutter : PlayerWeaponBase
 {
-    public Cutter() : base("Cutter")
+    public Cutter(OriginalValue<float> speed) : base("Cutter", speed)
     {
         description = "Light: Slash\nHeavy: Range Cutter\nSpecial: Cutter Hell";
 
@@ -17,15 +17,13 @@ public class Cutter : PlayerWeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        //set player speed to 7 (slightly faster)
-        UpdateValues(1, knockback, hitInterval, stunTime);
+        UpdateValues(7, 1, knockback, hitInterval, stunTime);
         base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        UpdateValues(2, knockback, hitInterval, stunTime);
-        //set player speed to 2 (slower)
+        UpdateValues(2, 2, knockback, hitInterval, stunTime);
         base.HeavyAttack(anim);
     }
 
