@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeaponBase : MonoBehaviour
+public class EnemyWeaponBase : WeaponBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public EnemyWeaponBase() {}
 
-    // Update is called once per frame
-    void Update()
+    protected void UpdateValues(Vector2 knockback, float hitInterval, string sfx = "")
     {
-        
+        this.knockback = knockback;
+        this.hitInterval = hitInterval;
+        this.sfx = sfx;
     }
 }

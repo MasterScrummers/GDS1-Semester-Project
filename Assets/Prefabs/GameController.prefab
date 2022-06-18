@@ -148,9 +148,7 @@ MonoBehaviour:
   restartTimer:
     <timer>k__BackingField: 3
     <timeScale>k__BackingField: -1
-  hurtTimer:
-    <timer>k__BackingField: 1
-    <timeScale>k__BackingField: -1
+  invincibilityBuffer: 0.5
 --- !u!114 &8684894114443428548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 4809644456388783305}
   <invincible>k__BackingField: 0
-  <allowFlashing>k__BackingField: 0
+  <allowFlashing>k__BackingField: 1
 --- !u!114 &8653313013604842796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,10 +1719,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4899436723441869486}
   - component: {fileID: 8707351742812823566}
-  - component: {fileID: 1544674289702900727}
+  - component: {fileID: 64953177963782836}
   m_Layer: 6
   m_Name: KirbyBody
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1760,7 +1758,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.42
---- !u!114 &1544674289702900727
+--- !u!114 &64953177963782836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

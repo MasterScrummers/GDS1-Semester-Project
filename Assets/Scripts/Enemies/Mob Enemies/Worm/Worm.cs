@@ -11,7 +11,6 @@ public class Worm : Enemy
 
     public float idleTimeMin, idleTimeMax, attackTimeMin, attackTimeMax, hidingTimeMin, hidingTimeMax;
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -20,10 +19,8 @@ public class Worm : Enemy
         stateTimer = Random.Range(idleTimeMin, idleTimeMax);
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
         stateTimer -= Time.deltaTime;
 
         if (stateTimer <= 0f)
@@ -58,24 +55,8 @@ public class Worm : Enemy
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-
-        if (other.gameObject.CompareTag("Player") && state == State.Death)
-        {
-            Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
-        }
-    }
-
     protected override void Death()
     {
         wa.Death();
-    }
-
-    public override void RecieveAttack(Transform attackerPos, WeaponBase weapon)
-    {
-        if (state != State.Death)
-        {
-            base.RecieveAttack(attackerPos, weapon);
-        }
     }
 }

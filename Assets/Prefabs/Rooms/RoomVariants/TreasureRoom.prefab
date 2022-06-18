@@ -23,6 +23,18 @@ PrefabInstance:
       propertyPath: hasRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[0]
+      value: 
+      objectReference: {fileID: 9052570202990844375}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[1]
+      value: 
+      objectReference: {fileID: 6726472073569447540}
     - target: {fileID: 975200689749176899, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 58
@@ -1357,3 +1369,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caa8c58f6b031614484ff9cace538594, type: 3}
+--- !u!1 &6726472073569447540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3290458039212460163, guid: caa8c58f6b031614484ff9cace538594, type: 3}
+  m_PrefabInstance: {fileID: 8138906750157285111}
+  m_PrefabAsset: {fileID: 0}

@@ -2683,6 +2683,14 @@ PrefabInstance:
       propertyPath: hasDown
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[0]
+      value: 
+      objectReference: {fileID: 2136593179693066752}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
 --- !u!4 &4323960222131630983 stripped
@@ -2817,7 +2825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
-      value: AxeKnight
+      value: AxeKnight (Fake)
       objectReference: {fileID: 0}
     - target: {fileID: 6626975357289722432, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Color.b

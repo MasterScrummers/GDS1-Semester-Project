@@ -1,13 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent (typeof(Animator))]
 [RequireComponent(typeof(HealthComponent))]
 public abstract class Enemy : AttackDealer, IAttackReceiver
 {
+    [Header("Enemy Parameters")]
     [SerializeField] protected bool allowKnockback = true;
+    [SerializeField] protected bool isInvincible = false;
     [SerializeField] private Timer hurtTimer = new(0.2f);
-    [SerializeField] private Timer stunnedTimer = new(0f);
-    [SerializeField] protected bool isInvincibile = false;
+    private Timer stunnedTimer = new(0f);
 
     protected bool isStunned = false;
     protected Rigidbody2D rb;
@@ -18,16 +20,19 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     protected virtual void Start()
     {
+        weapon = new EnemyWeaponBase();
         health = GetComponent<HealthComponent>();
 
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
     }
 
-    protected virtual void Update()
+    /// <summary>
+    /// NO OVERRIDING ALLOWED!
+    /// </summary>
+    void Update()
     {
         float delta = Time.deltaTime;
-
         hurtTimer.Update(delta);
         if (hurtTimer.tick == 0)
         {
@@ -37,7 +42,16 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
         stunnedTimer.Update(delta);
         isStunned = stunnedTimer.tick > 0f;
+        if (!isStunned)
+        {
+            DoAction();
+        }
     }
+
+    /// <summary>
+    /// Treated as the Update method for children.
+    /// </summary>
+    protected virtual void DoAction() {}
 
     /// <summary>
     /// Meant to be COMPLETELY overridden.
@@ -67,26 +81,34 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         inRoom = roomData;
     }
 
-    public virtual void RecieveAttack(Transform attackerPos, WeaponBase weapon)
+    public void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {
-        if (isInvincibile)
+        if (isInvincible)
         {
             return;
         }
 
-        health.OffsetHP(-weapon.strength * weapon.strengthMult);
-
-        sr.color = Color.red;
-        stunnedTimer.SetTimer(weapon.stunTime);
-
-        if (allowKnockback)
-        {
-            rb.AddForce((transform.position - attackerPos.position).normalized * weapon.knockback, ForceMode2D.Impulse);
-        }
+        PlayerWeaponBase playerWeapon = (PlayerWeaponBase)weapon;
+        health.OffsetHP(-playerWeapon.strength * playerWeapon.strengthMult);
 
         if (health.health <= 0)
         {
             Death();
+            return;
         }
+
+        sr.color = Color.red;
+        if (allowKnockback)
+        {
+            stunnedTimer.SetTimer(playerWeapon.stunTime);
+            rb.AddForce((transform.position - attackerPos.position).normalized * playerWeapon.knockback, ForceMode2D.Impulse);
+        }
+
+        HurtReaction();
     }
+
+    /// <summary>
+    /// Treated as RecieveAttack.
+    /// </summary>
+    protected virtual void HurtReaction() {}
 }

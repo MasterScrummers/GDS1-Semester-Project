@@ -10,6 +10,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     private PlayerInvincibility invincibility;
 
     private InputController ic; // Input Controller
+    private VariableController vc; //Variable Controller.
     private SceneController sc; // Scene Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private JumpComponent jump; //The update the animation according to player input.
@@ -19,7 +20,8 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     public enum JumpState { Waiting, StartJump, Peak, Descending }
 
     [SerializeField] private Timer restartTimer = new(5f);
-    [SerializeField] private Timer hurtTimer = new(0.5f);
+    [SerializeField] private float invincibilityBuffer = 0.5f;
+    private Timer hurtTimer = new(0.5f);
     private bool isHurt = false;
     private bool isDead = false;
 
@@ -27,6 +29,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     {
         ic = DoStatic.GetGameController<InputController>();
         sc = ic.GetComponent<SceneController>();
+        vc = ic.GetComponent<VariableController>();
 
         anim = GetComponent<Animator>();
         miscAnim = GetComponent<PlayerMiscAnim>();
@@ -35,6 +38,9 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         health = GetComponent<HealthComponent>();
         invincibility = GetComponent<PlayerInvincibility>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+
+        restartTimer.Reset();
+        hurtTimer.Reset();
     }
 
     private void Update()
@@ -54,7 +60,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         if (isHurt)
         {
             hurtTimer.Update(delta);
-            if (ic.isInputLocked && hurtTimer.timer - hurtTimer.tick > 0.5f)
+            if (ic.isInputLocked && hurtTimer.tick < invincibilityBuffer)
             {
                 anim.SetTrigger("Recover");
                 ic.SetInputLock(false);
@@ -62,13 +68,17 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             else if (hurtTimer.tick == 0)
             {
                 isHurt = false;
-                invincibility.SetPlayerInvincible(false);
             }
         }
 
         LightAttackCheck();
         CheckWalking();
         CheckJumping();
+    }
+
+    private void LateUpdate()
+    {
+        invincibility.SetPlayerInvincible(isHurt);
     }
 
     private void LightAttackCheck()
@@ -127,6 +137,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         restartTimer.Reset();
         ic.GetComponent<VariableController>().SetLevel(1);
         rb.GetComponent<PlayerInput>().Restart();
+        anim.enabled = true;
     }
 
     /// <summary>
@@ -147,29 +158,28 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     public void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {
-        if (invincibility.invincible)
+        if (invincibility.invincible || isDead)
         {
             return;
         }
 
         ic.SetInputLock(true);
-        health.OffsetHP(-weapon.strength);
+        health.OffsetHP(-1);
 
-        bool isAlive = health.health > 0;
-        hurtTimer.Reset();
+        isDead = health.health == 0;
+        hurtTimer.SetTimer(weapon.hitInterval + invincibilityBuffer);
 
-        invincibility.SetPlayerInvincible(true);
-        if (isAlive)
+        if (isDead)
+        {
+            anim.enabled = false;
+            invincibility.enabled = false;
+            sprite.enabled = false;
+            Instantiate(deathEffect).transform.position = transform.position;
+        } else
         {
             isHurt = true;
             anim.Play("KirbyHurt");
             rb.velocity = attackerPos.position.x > transform.position.x ? -weapon.knockback : weapon.knockback;
-        } else
-        {
-            isDead = true;
-            invincibility.enabled = false;
-            sprite.enabled = false;
-            Instantiate(deathEffect).transform.position = transform.position;
         }
     }
 }

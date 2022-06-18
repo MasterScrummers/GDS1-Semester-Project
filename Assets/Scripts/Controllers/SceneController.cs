@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
         OpeningCutscene,
         Tutorial,
         MainGame,
-        MapTestScene, //REMOVE THIS LATER.
+        DummyGame,
     };
     private SceneName currentScene; //The current scene's name
 

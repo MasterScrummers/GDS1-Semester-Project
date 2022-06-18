@@ -3225,6 +3225,38 @@ PrefabInstance:
       propertyPath: hasDown
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[0]
+      value: 
+      objectReference: {fileID: 5178950266803779287}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[1]
+      value: 
+      objectReference: {fileID: 5247986178628726627}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[2]
+      value: 
+      objectReference: {fileID: 3724478848721928099}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[3]
+      value: 
+      objectReference: {fileID: 3886031188522498459}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[4]
+      value: 
+      objectReference: {fileID: 2194713883996832906}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[5]
+      value: 
+      objectReference: {fileID: 6936868055396640942}
+    - target: {fileID: 605045292073543923, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[6]
+      value: 
+      objectReference: {fileID: 891111413867398397}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c51dd251e4093fa4287bc0b9758aff9e, type: 3}
 --- !u!4 &4323960222131630983 stripped

@@ -10,6 +10,7 @@ public class PlayerMiscAnim : MonoBehaviour
     private enum AnimEndTypes { None, CutterHeavy, CutterSpecial, MirrorHeavy, NinjaLight, NinjaHeavy, NinjaSpecial }
 
     private InputController ic; // Input Controller
+    private VariableController vc; // Input Controller
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
     private Animator anim;
@@ -24,6 +25,7 @@ public class PlayerMiscAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         poolController = ic.GetComponent<PoolController>();
         ac = ic.GetComponent<AudioController>();
+        vc = ic.GetComponent<VariableController>();
 
         pi = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
@@ -244,6 +246,11 @@ public class PlayerMiscAnim : MonoBehaviour
         pi.speed.Reset();
         pi.isSliding = false;
         jump.fallGravity.Reset();
+    }
+
+    public void Restart()
+    {
+        AnimReset(AnimEndTypes.None);
     }
 
     //Extra methods.

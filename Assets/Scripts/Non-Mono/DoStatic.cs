@@ -85,7 +85,7 @@ public class DoStatic
     public static Transform[] GetChildren(Transform transform, int generationDepth = 1, List<Transform> childrenRef = null)
     {
         generationDepth--;
-        List<Transform> children = childrenRef != null ? childrenRef : new List<Transform>();
+        List<Transform> children = childrenRef ?? new List<Transform>();
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform child = transform.GetChild(i);
@@ -137,7 +137,7 @@ public class DoStatic
     /// There should only be one!
     /// </summary>
     /// <returns>The GameController GameObject</returns>
-    public static T GetGameController<T>()
+    public static T GetGameController<T>() where T : Component
     {
         return GetGameController().GetComponent<T>();
     }
@@ -157,9 +157,9 @@ public class DoStatic
     /// There should only be one!
     /// </summary>
     /// <returns>The Component from the player Gameobject</returns>
-    public static T GetPlayer<T>()
+    public static T GetPlayer<T>() where T : Component
     {
-        return GetPlayer().GetComponent<T>();
+        return GetPlayer().GetComponentInChildren<T>();
     }
 
     /// <summary>
@@ -169,9 +169,7 @@ public class DoStatic
     /// <param name="b">The second variable</param>
     public static void Swap<T>(ref T a, ref T b)
     {
-        T temp = a;
-        a = b;
-        b = temp;
+        (b, a) = (a, b);
     }
 
     /// <summary>

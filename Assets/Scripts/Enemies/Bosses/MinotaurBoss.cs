@@ -33,9 +33,8 @@ public class MinotaurBoss : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
         Vector3 dir = transform.position - player.transform.position; //to check if player is to the right or left of player
         if (direction == 1)
         {

@@ -19,7 +19,7 @@ public abstract class UIWeaponCircle : UICircleBarBase
             }
         }
         variableController = DoStatic.GetGameController<VariableController>();
-        playerInput = DoStatic.GetPlayer().GetComponent<PlayerInput>();
+        playerInput = DoStatic.GetPlayer<PlayerInput>();
         circle.color = variableController.GetColour("Rubik Green");
     }
 

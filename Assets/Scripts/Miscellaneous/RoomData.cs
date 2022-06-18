@@ -5,9 +5,8 @@ using UnityEngine;
 public class RoomData : MonoBehaviour
 {
     [SerializeField] private GameObject enemies; //The enemies in the room.
-    [SerializeField] private GameObject doors; //The doors in the room.
-    [SerializeField] private GameObject chest; //The chest in the room. (Optional to have one.)
-    [SerializeField] private GameObject nextLevelDoor; //The next level door in the room. (Optional to have one.)
+    [SerializeField] private GameObject[] itemsActiveOnClear; //All items turn ACTIVE when room is cleared.
+    [SerializeField] private GameObject[] itemsInactiveOnClear; //All items turn INACTIVE when room is cleared.
     private GameObject[] children; //An array of the room's children (1 generation deep).
     private bool inRoom = false; //A boolean to check if the player is in the room.
 
@@ -45,24 +44,21 @@ public class RoomData : MonoBehaviour
 
     void Update()
     {
-        void CheckSetActive(ref GameObject check, bool active)
-        {
-            if (check)
-            {
-                check.SetActive(active);
-            }
-        }
-
         if (!inRoom)
         {
             return;
         }
 
         empty = enemyCount == 0;
-        CheckSetActive(ref doors, !empty);
-        CheckSetActive(ref chest, empty);
-        CheckSetActive(ref nextLevelDoor, empty);
+        foreach (GameObject gameObject in itemsActiveOnClear)
+        {
+            gameObject.SetActive(empty);
+        }
 
+        foreach (GameObject gameObject in itemsInactiveOnClear)
+        {
+            gameObject.SetActive(!empty);
+        }
     }
 
     public void UpdateEnemyCount()
@@ -72,7 +68,7 @@ public class RoomData : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Vector3 camPos = Camera.main.transform.position;
             Vector3 pos = transform.position;
@@ -86,7 +82,7 @@ public class RoomData : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             ChildrenSetActive(false);
             inRoom = false;

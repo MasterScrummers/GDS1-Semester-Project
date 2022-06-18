@@ -39,9 +39,8 @@ public class Bat : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
         aiTimer.Update(Time.deltaTime);
         if (isStunned)
         {

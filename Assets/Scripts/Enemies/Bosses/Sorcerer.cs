@@ -30,10 +30,8 @@ public class Sorcerer : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
-
         if (state == State.Move)
         {
             Move();

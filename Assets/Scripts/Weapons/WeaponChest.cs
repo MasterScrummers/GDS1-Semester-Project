@@ -1,3 +1,4 @@
+#pragma warning disable IDE0051 // Remove unused private members
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]

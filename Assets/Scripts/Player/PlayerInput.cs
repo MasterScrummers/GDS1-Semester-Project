@@ -1,4 +1,3 @@
-#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 [RequireComponent(typeof(JumpComponent))]
@@ -38,10 +37,11 @@ public class PlayerInput : MonoBehaviour
         lightWeapon = PlayerWeaponBase.RandomWeapon(speed);
         heavyWeapon = PlayerWeaponBase.RandomWeapon(speed);
         specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
+        cooldownTimer.Finish();
+
 #if UNITY_EDITOR
         lightWeapon = heavyWeapon = specialWeapon = new Jet(speed);
 #endif
-        cooldownTimer.Finish();
     }
 
     void Update()

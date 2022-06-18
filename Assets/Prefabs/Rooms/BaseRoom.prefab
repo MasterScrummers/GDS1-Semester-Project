@@ -1165,6 +1165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: {fileID: 687779528}
+  itemsActiveOnClear: []
+  itemsInactiveOnClear:
+  - {fileID: 8129946694555725025}
   doors: {fileID: 8129946694555725025}
   chest: {fileID: 0}
   nextLevelDoor: {fileID: 0}
