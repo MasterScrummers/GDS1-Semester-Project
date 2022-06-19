@@ -331,11 +331,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowKnockback: 1
+  isHarmless: 0
   isInvincible: 0
   hurtTimer:
     <timer>k__BackingField: 0.2
     <timeScale>k__BackingField: -1
-  direction: 1
+  despawnTimer:
+    <timer>k__BackingField: 0
+    <timeScale>k__BackingField: -1
+  startGoingRight: 1
   movementSpeed: 3
   leftBoundary: -1
   rightBoundary: 1

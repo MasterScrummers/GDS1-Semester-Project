@@ -8,7 +8,7 @@ public class Ninja : PlayerWeaponBase
         
         specialCooldown = Random.Range(5, 10);
         int extra = Mathf.RoundToInt(specialCooldown * 0.1f);
-        strength = Random.Range(3 + extra, 5 + extra);
+        damage = Random.Range(3 + extra, 5 + extra);
 
         knockback = new(1, 0);
         hitInterval = 1f;

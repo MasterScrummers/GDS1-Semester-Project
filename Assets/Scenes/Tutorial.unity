@@ -277,6 +277,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 933269975195413176, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: leftBoundary
+      value: -2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 933269975195413176, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: rightBoundary
+      value: 1.94
+      objectReference: {fileID: 0}
     - target: {fileID: 1736773281121721267, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
       propertyPath: m_Name
       value: BattleTutorialRoom
@@ -329,6 +337,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
+    - target: {fileID: 8636289290176125155, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: leftBoundary
+      value: -7.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636289290176125155, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: startGoingRight
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
 --- !u!1001 &2648424485569130677

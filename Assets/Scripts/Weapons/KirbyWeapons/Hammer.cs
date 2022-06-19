@@ -8,7 +8,7 @@ public class Hammer : PlayerWeaponBase
 
         specialCooldown = Random.Range(4, 10);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        strength = Random.Range(6 + extra, 14 + extra);
+        damage = Random.Range(6 + extra, 14 + extra);
     }
 
     public override void LightAttack(Animator anim)

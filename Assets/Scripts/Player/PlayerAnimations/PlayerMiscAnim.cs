@@ -10,7 +10,6 @@ public class PlayerMiscAnim : MonoBehaviour
     private enum AnimEndTypes { None, CutterHeavy, CutterSpecial, MirrorHeavy, NinjaLight, NinjaHeavy, NinjaSpecial }
 
     private InputController ic; // Input Controller
-    private VariableController vc; // Input Controller
     private AudioController ac; // Audio Controller
     private PlayerInput pi; //The update the animation according to player input.
     private Animator anim;
@@ -25,7 +24,6 @@ public class PlayerMiscAnim : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         poolController = ic.GetComponent<PoolController>();
         ac = ic.GetComponent<AudioController>();
-        vc = ic.GetComponent<VariableController>();
 
         pi = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
@@ -68,8 +66,17 @@ public class PlayerMiscAnim : MonoBehaviour
             }
         }
 
+        void DashUpdate()
+        {
+            if (isDashing)
+            {
+                rb.velocity = dashSpeed;
+            }
+        }
+
         CutterUpdate();
         NinjaUpdate();
+        DashUpdate();
     }
 
     private void LightAttack()
@@ -246,6 +253,7 @@ public class PlayerMiscAnim : MonoBehaviour
         pi.speed.Reset();
         pi.isSliding = false;
         jump.fallGravity.Reset();
+        isDashing = false;
     }
 
     public void Restart()
@@ -303,19 +311,23 @@ public class PlayerMiscAnim : MonoBehaviour
 
     #region Jet
     [Header("Jet Parameters")]
-    [SerializeField] private float jetBackSpd = 5;
+    private float jetBackSpd;
     [SerializeField] private float jetLightSpd = 7;
     [SerializeField] private float jetHeavySpd = 11;
     [SerializeField] private float jetSpecialSpd = 20;
     [SerializeField] private Transform spritePivot;
+    private bool isDashing;
+    private Vector2 dashSpeed;
 
     private void DashStart(float speed, bool affectGravity = true)
     {
-        rb.velocity = transform.right * speed * spritePivot.localScale.x;
+        dashSpeed = speed * spritePivot.localScale.x * transform.right;
         if (affectGravity)
         {
             jump.fallGravity.value = 0f;
         }
+        jetBackSpd = speed;
+        isDashing = true;
     }
     #endregion
 }

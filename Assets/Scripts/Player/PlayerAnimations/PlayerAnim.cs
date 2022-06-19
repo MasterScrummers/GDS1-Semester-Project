@@ -10,7 +10,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     private PlayerInvincibility invincibility;
 
     private InputController ic; // Input Controller
-    private VariableController vc; //Variable Controller.
     private SceneController sc; // Scene Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private JumpComponent jump; //The update the animation according to player input.
@@ -21,7 +20,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     [SerializeField] private Timer restartTimer = new(5f);
     [SerializeField] private float invincibilityBuffer = 0.5f;
-    private Timer hurtTimer = new(0.5f);
+    private readonly Timer hurtTimer = new(0.5f);
     private bool isHurt = false;
     private bool isDead = false;
 
@@ -29,7 +28,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     {
         ic = DoStatic.GetGameController<InputController>();
         sc = ic.GetComponent<SceneController>();
-        vc = ic.GetComponent<VariableController>();
 
         anim = GetComponent<Animator>();
         miscAnim = GetComponent<PlayerMiscAnim>();
@@ -78,7 +76,10 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     private void LateUpdate()
     {
-        invincibility.SetPlayerInvincible(isHurt);
+        if (isHurt)
+        {
+            invincibility.SetPlayerInvincible(true);
+        }
     }
 
     private void LightAttackCheck()
@@ -86,7 +87,8 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         if (ic.GetButtonDown("Attack", "Light") && miscAnim.animState == AnimState.LightAttack)
         {
             anim.SetTrigger("FollowUp");
-        } else if (miscAnim.animState != AnimState.LightAttack)
+        }
+        else if (miscAnim.animState != AnimState.LightAttack)
         {
             anim.ResetTrigger("FollowUp");
         }
@@ -164,7 +166,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         }
 
         ic.SetInputLock(true);
-        health.OffsetHP(-1);
+        health.OffsetHP(-weapon.damage);
 
         isDead = health.health == 0;
         hurtTimer.SetTimer(weapon.hitInterval + invincibilityBuffer);
@@ -175,7 +177,8 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             invincibility.enabled = false;
             sprite.enabled = false;
             Instantiate(deathEffect).transform.position = transform.position;
-        } else
+        }
+        else
         {
             isHurt = true;
             anim.Play("KirbyHurt");

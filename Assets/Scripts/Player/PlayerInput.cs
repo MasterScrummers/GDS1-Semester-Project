@@ -40,7 +40,7 @@ public class PlayerInput : MonoBehaviour
         cooldownTimer.Finish();
 
 #if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Jet(speed);
+        lightWeapon = heavyWeapon = specialWeapon = new Cutter(speed);
 #endif
     }
 
@@ -49,6 +49,7 @@ public class PlayerInput : MonoBehaviour
         ic.SetInputReason("Movement", allowMovement);
         if (ic.isInputLocked) //Allows knockback when taking damage.
         {
+            rb.velocity = Vector2.zero;
             return;
         }
 

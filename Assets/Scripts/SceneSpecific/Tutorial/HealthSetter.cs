@@ -14,7 +14,7 @@ public class HealthSetter : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            HealthComponent health = collision.GetComponent<HealthComponent>();
+            HealthComponent health = DoStatic.GetPlayer<HealthComponent>();
             health.SetHP(healthSet);
             enabled = false;
         }

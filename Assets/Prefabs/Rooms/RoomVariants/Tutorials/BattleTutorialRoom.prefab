@@ -1191,6 +1191,14 @@ PrefabInstance:
       propertyPath: hasRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[0]
+      value: 
+      objectReference: {fileID: 6852944880166931773}
     - target: {fileID: 975200689073842377, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 6
@@ -4859,7 +4867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136096, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.37
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136096, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4900,6 +4908,14 @@ PrefabInstance:
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: strength
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 5.12
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
@@ -4966,6 +4982,18 @@ PrefabInstance:
       propertyPath: strength
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 1.36
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
       value: AxeKnight (3)
@@ -5031,6 +5059,10 @@ PrefabInstance:
       propertyPath: strength
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
       value: AxeKnight
@@ -5094,6 +5126,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -3.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 3.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: startGoingRight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
@@ -5161,6 +5209,18 @@ PrefabInstance:
       propertyPath: strength
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 11.96
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
       value: AxeKnight (4)
@@ -5224,6 +5284,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: strength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -5.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: startGoingRight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
@@ -5291,6 +5363,18 @@ PrefabInstance:
       propertyPath: strength
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 4.35
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
       value: AxeKnight (1)
@@ -5355,6 +5439,18 @@ PrefabInstance:
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: strength
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: isHarmless
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -3.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 9.85
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name

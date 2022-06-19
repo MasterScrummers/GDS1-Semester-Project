@@ -3,7 +3,8 @@ using UnityEngine;
 public class AxeKnightEnemy : Enemy
 {
     [Header("Axe Knight Parameters")]
-    [SerializeField] private int direction = 1; //The direction of the enemy.
+    [SerializeField] private bool startGoingRight = true; //The direction of the enemy.
+
     [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
     [SerializeField] private float leftBoundary = -1; //The right boundary?
     [SerializeField] private float rightBoundary = 1; //The left boundary?
@@ -20,6 +21,10 @@ public class AxeKnightEnemy : Enemy
         float oX = transform.position.x;
         leftBoundary += oX;
         rightBoundary += oX;
+
+        Vector3 sca = transform.localScale;
+        sca.x = startGoingRight ? 1 : -1;
+        transform.localScale = sca;
     }
 
     protected override void DoAction()
@@ -39,13 +44,12 @@ public class AxeKnightEnemy : Enemy
             case < 0 when min.x < leftBoundary:
             case > 0 when max.x > rightBoundary:
                 sca.x *= -1;
-                direction *= -1;
                 transform.localScale = sca;
                 break;
         }
 
         Vector2 vel = rb.velocity;
-        vel.x = direction * movementSpeed;
+        vel.x = sca.x * movementSpeed;
         rb.velocity = vel;
     }
 

@@ -165,7 +165,6 @@ MonoBehaviour:
   mirrorPivot: {fileID: 2344408869410372167}
   cutterPivot: {fileID: 2834517392197775664}
   firePoint: {fileID: 8245610911835613080}
-  jetBackSpd: 5
   jetLightSpd: 7
   jetHeavySpd: 11
   jetSpecialSpd: 20
@@ -4419,7 +4418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6172947032590051710, guid: 6719ad18faf3e454ab6d79a787272935, type: 3}
       propertyPath: m_text
-      value: Heavy
+      value: Heavy (K/X)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6719ad18faf3e454ab6d79a787272935, type: 3}
@@ -4552,7 +4551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6172947032590051710, guid: 6719ad18faf3e454ab6d79a787272935, type: 3}
       propertyPath: m_text
-      value: Light
+      value: Light (J/Z)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6719ad18faf3e454ab6d79a787272935, type: 3}
@@ -4763,7 +4762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6172947032590051710, guid: 6719ad18faf3e454ab6d79a787272935, type: 3}
       propertyPath: m_text
-      value: Special
+      value: Special (L/C)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6719ad18faf3e454ab6d79a787272935, type: 3}

@@ -562,6 +562,18 @@ PrefabInstance:
       propertyPath: nextLevelDoor
       value: 
       objectReference: {fileID: 361926832097630694}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[0]
+      value: 
+      objectReference: {fileID: 4650463849731575060}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: itemsActiveOnClear.Array.data[1]
+      value: 
+      objectReference: {fileID: 361926832097630694}
     - target: {fileID: 975200689073842377, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 6

@@ -8,9 +8,4 @@ public class MinotaurAnim : MonoBehaviour
     {
         boss = GetComponentInParent<MinotaurBoss>();
     }
-
-    private void FinishDeath()
-    {
-        boss.RemoveEnemy();
-    }
 }

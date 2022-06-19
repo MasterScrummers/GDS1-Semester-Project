@@ -7,8 +7,10 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 {
     [Header("Enemy Parameters")]
     [SerializeField] protected bool allowKnockback = true;
+    [SerializeField] protected bool isHarmless = false;
     [SerializeField] protected bool isInvincible = false;
     [SerializeField] private Timer hurtTimer = new(0.2f);
+    [SerializeField] private Timer despawnTimer = new(1f);
     private Timer stunnedTimer = new(0f);
 
     protected bool isStunned = false;
@@ -20,19 +22,42 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     protected virtual void Start()
     {
-        weapon = new EnemyWeaponBase();
+        weapon = new EnemyWeaponBase(isHarmless ? 0 : 1);
         health = GetComponent<HealthComponent>();
 
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        hurtTimer.Reset();
+        despawnTimer.Reset();
     }
 
     /// <summary>
     /// NO OVERRIDING ALLOWED!
     /// </summary>
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         float delta = Time.deltaTime;
+
+        if (health.health == 0)
+        {
+            despawnTimer.Update(delta);
+            if (despawnTimer.tick == 0)
+            {
+                if (inRoom)
+                {
+                    inRoom.UpdateEnemyCount();
+                    inRoom = null; //To prevent the count to go down more than once.
+                }
+                gameObject.SetActive(false);
+            } else
+            {
+                DeathAction();
+            }
+            return;
+        }
+
         hurtTimer.Update(delta);
         if (hurtTimer.tick == 0)
         {
@@ -45,6 +70,9 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         if (!isStunned)
         {
             DoAction();
+        } else
+        {
+            DoStunnedAction();
         }
     }
 
@@ -54,23 +82,19 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     protected virtual void DoAction() {}
 
     /// <summary>
-    /// Meant to be COMPLETELY overridden.
+    /// Treated as the Update method for children when stunned.
     /// </summary>
-    protected virtual void Death()
-    {
-        RemoveEnemy();
-    }
+    protected virtual void DoStunnedAction() { }
 
-    public void RemoveEnemy()
-    {
-        if (inRoom)
-        {
-            inRoom.UpdateEnemyCount();
-            inRoom = null; //To prevent the count to go down more than once.
-        }
+    /// <summary>
+    /// Treat as the Update method for children once dead.
+    /// </summary>
+    protected virtual void DeathAction() {}
 
-        gameObject.SetActive(false);
-    }
+    /// <summary>
+    /// Meant to be overridden.
+    /// </summary>
+    protected virtual void Death() {}
 
     /// <summary>
     /// Should only be called once on startup.
@@ -89,7 +113,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         }
 
         PlayerWeaponBase playerWeapon = (PlayerWeaponBase)weapon;
-        health.OffsetHP(-playerWeapon.strength * playerWeapon.strengthMult);
+        health.OffsetHP(-playerWeapon.damage * playerWeapon.strengthMult);
 
         if (health.health <= 0)
         {

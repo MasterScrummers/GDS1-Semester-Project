@@ -36,7 +36,6 @@ public class UIWeaponSwapSystem : UISystemBase
         }
 
         ic.SetInputReason("Attack", false);
-        input.allowMovement = false;
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
@@ -58,6 +57,11 @@ public class UIWeaponSwapSystem : UISystemBase
         {
             WeaponSwap(ref input.specialWeapon);
         }
+    }
+
+    void LateUpdate()
+    {
+        input.allowMovement = false;
     }
 
     private void UpdateCards()

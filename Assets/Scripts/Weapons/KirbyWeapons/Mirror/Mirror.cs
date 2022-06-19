@@ -7,7 +7,7 @@ public class Mirror : PlayerWeaponBase
         description = "Light: Short Invincibility + Pushback\nHeavy: Summon 4 small mirror\nSpecial: Mirror Bomb";
 
         specialCooldown = Random.Range(5, 7);
-        strength = Random.Range(2, 5);
+        damage = Random.Range(2, 5);
 
         stunTime = 1;
     }

@@ -9,7 +9,7 @@ public class AttackDealer : MonoBehaviour
 
     private readonly Dictionary<Collider2D, KeyValuePair<IAttackReceiver, Timer>> victims = new();
 
-    private void Update()
+    protected virtual void Update()
     {
         if (victims.Count == 0)
         {
@@ -47,6 +47,9 @@ public class AttackDealer : MonoBehaviour
         {
             victims.Add(collision, new(receiver, new(weapon.hitInterval)));
             receiver.RecieveAttack(transform, weapon);
+        }else if (collision.name.Equals("KirbyBody"))
+        {
+            Debug.Log("Ok");
         }
     }
 

@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class EnemyWeaponBase : WeaponBase
 {
-    public EnemyWeaponBase() {}
+    public EnemyWeaponBase(int damage = 1) {
+        this.damage = damage;
+    }
 
     protected void UpdateValues(Vector2 knockback, float hitInterval, string sfx = "")
     {

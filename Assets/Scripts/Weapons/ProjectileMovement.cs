@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
 {
+    [Header("Projectile Movement Parameters"), SerializeField] protected bool destroyOnContact = false;
     [SerializeField] protected OriginalValue<float> speed = new(1); //The moving speed;
     [SerializeField] protected Timer lifeTime = new(3);
 
@@ -24,5 +25,13 @@ public class ProjectileMovement : MonoBehaviour
     {
         lifeTime.Reset();
         speed.Reset();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (destroyOnContact)
+        {
+            lifeTime.Finish();
+        }
     }
 }

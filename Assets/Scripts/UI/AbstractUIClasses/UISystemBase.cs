@@ -92,10 +92,7 @@ public abstract class UISystemBase : MonoBehaviour
 
     protected void Notify()
     {
-        if (notification != null)
-        {
-            notification();
-        }
+        notification?.Invoke();
     }
 
     protected virtual void OnDisable()

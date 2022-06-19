@@ -6,8 +6,7 @@ public abstract class PlayerWeaponBase : WeaponBase
     public string weaponName { get; private set; } //Name of the weapon.
     public string description { get; protected set; } = "No Description."; //How does the weapon function on each button?
     protected string animPath; //The animation path, to keep things simple.
-
-    public int strength { get; protected set; } = 1; //The strength of the weapon.
+    
     public int specialCooldown { get; protected set; } = 3; //The cooldown of the weapon.
     public int strengthMult { get; protected set; } = 1; //The strength multiplier on the weapon.
     public float stunTime { get; protected set; } = 0.5f; //For enemy AI to freeze temporarily.

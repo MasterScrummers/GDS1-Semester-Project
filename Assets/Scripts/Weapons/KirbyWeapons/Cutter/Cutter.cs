@@ -8,7 +8,7 @@ public class Cutter : PlayerWeaponBase
 
         specialCooldown = Random.Range(3, 5);
         int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        strength = Random.Range(5 + extra, 7 + extra);
+        damage = Random.Range(5 + extra, 7 + extra);
 
         knockback = new(10, 0);
         hitInterval = 0.3f;
