@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class RoomData : MonoBehaviour
 {
-    [SerializeField] private GameObject enemies; //The enemies in the room.
+    [SerializeField] private Transform enemies; //The enemies in the room.
     [SerializeField] private GameObject[] itemsActiveOnClear; //All items turn ACTIVE when room is cleared.
     [SerializeField] private GameObject[] itemsInactiveOnClear; //All items turn INACTIVE when room is cleared.
     private GameObject[] children; //An array of the room's children (1 generation deep).
@@ -18,7 +18,6 @@ public class RoomData : MonoBehaviour
     [SerializeField] private bool hasDown = true;
 
     public bool empty { get; private set; } //A boolean to check if the number of enemies is 0.
-    private int enemyCount; //Tracks the number of enemies in the room.
 
     void Awake()
     {
@@ -30,15 +29,6 @@ public class RoomData : MonoBehaviour
         {
             children[i] = toddlers[i].gameObject;
         }
-
-        foreach(Transform child in DoStatic.GetChildren(enemies.transform))
-        {
-            if (child.TryGetComponent<Enemy>(out var enemy) && child.gameObject.activeInHierarchy)
-            {
-                enemy.AssignToRoomData(this);
-                enemyCount++;
-            }
-        }
         ChildrenSetActive(false);
     }
 
@@ -49,7 +39,7 @@ public class RoomData : MonoBehaviour
             return;
         }
 
-        empty = enemyCount == 0;
+        empty = IsEmpty();
         foreach (GameObject gameObject in itemsActiveOnClear)
         {
             gameObject.SetActive(empty);
@@ -61,9 +51,19 @@ public class RoomData : MonoBehaviour
         }
     }
 
-    public void UpdateEnemyCount()
+    private bool IsEmpty()
     {
-        enemyCount--;
+        for (int i = 0; i < enemies.childCount; i++)
+        {
+            GameObject child = enemies.GetChild(i).gameObject;
+            if (!child.activeInHierarchy)
+            {
+                Destroy(child);
+                continue;
+            }
+            break;
+        }
+        return enemies.childCount == 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

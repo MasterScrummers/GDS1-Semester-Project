@@ -29,7 +29,7 @@ public class ProjectileMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (destroyOnContact)
+        if (destroyOnContact && !collision.name.Equals("Platforms"))
         {
             lifeTime.Finish();
         }

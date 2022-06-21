@@ -20,7 +20,6 @@ public class PlayerInvincibility : MonoBehaviour
     public void SetPlayerInvincible(bool invincible, bool allowFlashing = true)
     {
         this.invincible = invincible;
-        Physics2D.IgnoreLayerCollision(6, 7, invincible);
         this.allowFlashing = allowFlashing;
     }
 }

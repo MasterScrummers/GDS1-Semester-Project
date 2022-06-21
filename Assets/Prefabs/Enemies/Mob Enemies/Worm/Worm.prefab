@@ -196,9 +196,9 @@ MonoBehaviour:
     <timer>k__BackingField: 1
     <timeScale>k__BackingField: -1
   <wormState>k__BackingField: 0
-  idleTime: {x: 5, y: 8}
-  attackTime: {x: 5, y: 8}
-  hidingTime: {x: 5, y: 8}
+  idleTime: {x: 2, y: 5}
+  attackTime: {x: 2, y: 4}
+  hidingTime: {x: 1, y: 3}
 --- !u!114 &3521688699099049331
 MonoBehaviour:
   m_ObjectHideFlags: 0

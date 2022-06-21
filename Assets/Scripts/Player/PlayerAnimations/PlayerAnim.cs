@@ -176,6 +176,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             anim.enabled = false;
             invincibility.enabled = false;
             sprite.enabled = false;
+            miscAnim.Death();
             Instantiate(deathEffect).transform.position = transform.position;
         }
         else

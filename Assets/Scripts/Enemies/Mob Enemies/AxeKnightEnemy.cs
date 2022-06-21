@@ -8,7 +8,6 @@ public class AxeKnightEnemy : Enemy
     [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
     [SerializeField] private float leftBoundary = -1; //The right boundary?
     [SerializeField] private float rightBoundary = 1; //The left boundary?
-    [SerializeField] private SpriteRenderer sprite;
 
     protected override void Start()
     {
@@ -34,7 +33,7 @@ public class AxeKnightEnemy : Enemy
 
     protected void Move()
     {
-        Bounds spriteBoundary = sprite.bounds;
+        Bounds spriteBoundary = sr.bounds;
         Vector2 min = spriteBoundary.min;
         Vector2 max = spriteBoundary.max;
 

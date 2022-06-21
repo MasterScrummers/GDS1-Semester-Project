@@ -7,7 +7,12 @@ public class PlayerMiscAnim : MonoBehaviour
     public PlayerAnim.AnimState animState { get; private set; } = PlayerAnim.AnimState.Idle;
     public PlayerAnim.JumpState jumpState { get; private set; } = PlayerAnim.JumpState.Waiting;
 
-    private enum AnimEndTypes { None, CutterHeavy, CutterSpecial, MirrorHeavy, NinjaLight, NinjaHeavy, NinjaSpecial }
+    private enum AnimEndTypes {
+        None,
+        CutterHeavy, CutterSpecial,
+        MirrorHeavy,
+        NinjaLight, NinjaHeavy, NinjaSpecial,
+    }
 
     private InputController ic; // Input Controller
     private AudioController ac; // Audio Controller
@@ -70,7 +75,9 @@ public class PlayerMiscAnim : MonoBehaviour
         {
             if (isDashing)
             {
-                rb.velocity = dashSpeed;
+                Vector2 vel = rb.velocity;
+                vel.x = dashSpeed;
+                rb.velocity = vel;
             }
         }
 
@@ -256,9 +263,9 @@ public class PlayerMiscAnim : MonoBehaviour
         isDashing = false;
     }
 
-    public void Restart()
+    public void Death()
     {
-        AnimReset(AnimEndTypes.None);
+        mirrorPivot.gameObject.SetActive(false);
     }
 
     //Extra methods.
@@ -317,14 +324,15 @@ public class PlayerMiscAnim : MonoBehaviour
     [SerializeField] private float jetSpecialSpd = 20;
     [SerializeField] private Transform spritePivot;
     private bool isDashing;
-    private Vector2 dashSpeed;
+    private float dashSpeed;
 
     private void DashStart(float speed, bool affectGravity = true)
     {
-        dashSpeed = speed * spritePivot.localScale.x * transform.right;
+        dashSpeed = speed * spritePivot.localScale.x;
         if (affectGravity)
         {
             jump.fallGravity.value = 0f;
+            Debug.Log("Huh");
         }
         jetBackSpd = speed;
         isDashing = true;

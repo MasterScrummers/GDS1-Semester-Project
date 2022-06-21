@@ -11,21 +11,22 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     [SerializeField] protected bool isInvincible = false;
     [SerializeField] private Timer hurtTimer = new(0.2f);
     [SerializeField] private Timer despawnTimer = new(1f);
-    private Timer stunnedTimer = new(0f);
+    private readonly Timer stunnedTimer = new(0f);
 
     protected bool isStunned = false;
-    protected Rigidbody2D rb;
-    private SpriteRenderer sr;
 
-    protected RoomData inRoom;
+    protected Animator anim;
+    protected Rigidbody2D rb;
     protected HealthComponent health;
+    protected SpriteRenderer sr;
 
     protected virtual void Start()
     {
         weapon = new EnemyWeaponBase(isHarmless ? 0 : 1);
-        health = GetComponent<HealthComponent>();
 
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<HealthComponent>();
         sr = GetComponentInChildren<SpriteRenderer>();
 
         hurtTimer.Reset();
@@ -40,29 +41,24 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         base.Update();
         float delta = Time.deltaTime;
 
+        hurtTimer.Update(delta);
+        if (hurtTimer.tick == 0)
+        {
+            sr.color = Color.white;
+            hurtTimer.Reset();
+        }
+
         if (health.health == 0)
         {
             despawnTimer.Update(delta);
             if (despawnTimer.tick == 0)
             {
-                if (inRoom)
-                {
-                    inRoom.UpdateEnemyCount();
-                    inRoom = null; //To prevent the count to go down more than once.
-                }
                 gameObject.SetActive(false);
             } else
             {
                 DeathAction();
             }
             return;
-        }
-
-        hurtTimer.Update(delta);
-        if (hurtTimer.tick == 0)
-        {
-            sr.color = Color.white;
-            hurtTimer.Reset();
         }
 
         stunnedTimer.Update(delta);
@@ -95,15 +91,6 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     /// Meant to be overridden.
     /// </summary>
     protected virtual void Death() {}
-
-    /// <summary>
-    /// Should only be called once on startup.
-    /// </summary>
-    /// <param name="roomData">The roomdata needed to update upon death.</param>
-    public void AssignToRoomData(RoomData roomData)
-    {
-        inRoom = roomData;
-    }
 
     public void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {

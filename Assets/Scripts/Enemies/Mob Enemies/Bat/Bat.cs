@@ -49,7 +49,9 @@ public class Bat : Enemy
     {
         if (state == State.Attack)
         {
-            InterruptAttack();
+            state = State.Move;
+            attackState = AttackState.AttackStart;
+            aiTimer.Finish();
         }
     }
 
@@ -63,9 +65,10 @@ public class Bat : Enemy
             vel = playerPointer.right * attackSpeed;
         }
 
-        Vector3 rot = transform.eulerAngles;
-        rot.x = transform.position.x < player.transform.position.x ? -1 : 1;
-        transform.eulerAngles = rot;
+        Vector3 sca = transform.localScale;
+        sca.x = Mathf.Abs(sca.x);
+        sca.x = transform.position.x < player.position.x ? sca.x : -sca.x;
+        transform.localScale = sca;
     }
 
     private void Attack()
@@ -91,13 +94,6 @@ public class Bat : Enemy
                 aiTimer.SetTimer(idleTimer);
                 break;
         }
-    }
-
-    private void InterruptAttack()
-    {
-        state = State.Move;
-        attackState = AttackState.AttackStart;
-        aiTimer.Finish();
     }
 
     private void OnDrawGizmosSelected()

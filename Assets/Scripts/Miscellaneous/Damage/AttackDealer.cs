@@ -43,13 +43,10 @@ public class AttackDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IAttackReceiver>(out var receiver))
+        if (collision.TryGetComponent<IAttackReceiver>(out var receiver) && !victims.ContainsKey(collision))
         {
             victims.Add(collision, new(receiver, new(weapon.hitInterval)));
             receiver.RecieveAttack(transform, weapon);
-        }else if (collision.name.Equals("KirbyBody"))
-        {
-            Debug.Log("Ok");
         }
     }
 

@@ -39,9 +39,7 @@ public class PlayerInput : MonoBehaviour
         specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
         cooldownTimer.Finish();
 
-#if UNITY_EDITOR
-        lightWeapon = heavyWeapon = specialWeapon = new Cutter(speed);
-#endif
+        lightWeapon = heavyWeapon = specialWeapon = new Hammer(speed);
     }
 
     void Update()
