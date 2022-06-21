@@ -88,7 +88,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     protected virtual void DeathAction() {}
 
     /// <summary>
-    /// Meant to be overridden.
+    /// Meant to be overridden. Called on the first frame of death.
     /// </summary>
     protected virtual void Death() {}
 

@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class RoomData : MonoBehaviour
 {
+    private HealthComponent playerHP;
     [SerializeField] private Transform enemies; //The enemies in the room.
     [SerializeField] private GameObject[] itemsActiveOnClear; //All items turn ACTIVE when room is cleared.
     [SerializeField] private GameObject[] itemsInactiveOnClear; //All items turn INACTIVE when room is cleared.
@@ -21,6 +22,7 @@ public class RoomData : MonoBehaviour
 
     void Awake()
     {
+        playerHP = DoStatic.GetPlayer<HealthComponent>();
         GetComponent<Collider2D>().isTrigger = true;
 
         Transform[] toddlers = DoStatic.GetChildren(transform);
@@ -34,6 +36,12 @@ public class RoomData : MonoBehaviour
 
     void Update()
     {
+        if (playerHP.health == 0 && enemies.gameObject.activeInHierarchy)
+        {
+            ChildrenSetActive(false);
+            inRoom = false;
+        }
+
         if (!inRoom)
         {
             return;

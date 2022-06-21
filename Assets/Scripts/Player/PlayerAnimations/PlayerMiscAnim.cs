@@ -10,7 +10,6 @@ public class PlayerMiscAnim : MonoBehaviour
     private enum AnimEndTypes {
         None,
         CutterHeavy, CutterSpecial,
-        MirrorHeavy,
         NinjaLight, NinjaHeavy, NinjaSpecial,
     }
 
@@ -43,6 +42,7 @@ public class PlayerMiscAnim : MonoBehaviour
         {
             mirrorPivotChildren[i] = children[i].GetComponent<AttackDealer>();
         }
+        mirrorShieldAnim = mirrorShield.GetComponent<Animator>();
     }
 
     private void Update()
@@ -59,13 +59,14 @@ public class PlayerMiscAnim : MonoBehaviour
         void NinjaUpdate()
         {
             ninjaTimer.Update(Time.deltaTime);
-            if (bulletHellWaves-- > 0 && ninjaTimer.tick == 0)
+            if (ninjaTimer.tick == 0 && bulletHellWaves-- > 0)
             {
                 ninjaTimer.Reset();
                 float num = 10;
                 for (int i = 0; i < num; i++)
                 {
-                    SpawnProjectile("KunaiPool", (360 / num * i) + angle, pi.specialWeapon);
+                    Transform kunai = SpawnProjectile("KunaiPool", (360 / num * i) + angle, pi.specialWeapon).transform;
+                    kunai.position = transform.position;
                 }
                 angle += 20;
             }
@@ -172,6 +173,9 @@ public class PlayerMiscAnim : MonoBehaviour
                 mirrorShield.SetWeapon(pi.specialWeapon);
                 break;
 
+            case "SpecialShieldEnd":
+                mirrorShieldAnim.SetTrigger("End");
+                break;
             #endregion
 
             #region Jet
@@ -248,7 +252,7 @@ public class PlayerMiscAnim : MonoBehaviour
 
             case AnimEndTypes.NinjaSpecial:
                 AnimAttack(PlayerAnim.AnimState.SpecialAttack);
-                bulletHellWaves = 300;
+                bulletHellWaves = 50;
                 break;
         }
 
@@ -287,6 +291,7 @@ public class PlayerMiscAnim : MonoBehaviour
     #region Mirror
     [Header("Mirror Parameters")]
     [SerializeField] private AttackDealer mirrorShield;
+    private Animator mirrorShieldAnim;
     [SerializeField] private Transform mirrorPivot;
     private AttackDealer[] mirrorPivotChildren;
     #endregion
@@ -332,7 +337,6 @@ public class PlayerMiscAnim : MonoBehaviour
         if (affectGravity)
         {
             jump.fallGravity.value = 0f;
-            Debug.Log("Huh");
         }
         jetBackSpd = speed;
         isDashing = true;

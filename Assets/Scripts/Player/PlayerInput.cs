@@ -38,8 +38,6 @@ public class PlayerInput : MonoBehaviour
         heavyWeapon = PlayerWeaponBase.RandomWeapon(speed);
         specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
         cooldownTimer.Finish();
-
-        lightWeapon = heavyWeapon = specialWeapon = new Hammer(speed);
     }
 
     void Update()

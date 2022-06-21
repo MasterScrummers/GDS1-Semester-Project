@@ -173,6 +173,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
         if (isDead)
         {
+            anim.SetTrigger("Recover");
             anim.enabled = false;
             invincibility.enabled = false;
             sprite.enabled = false;

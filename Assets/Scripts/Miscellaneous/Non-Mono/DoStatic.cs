@@ -177,8 +177,8 @@ public class DoStatic
     /// </summary>
     /// <param name="from">The starting position to look</param>
     /// <param name="target">The target position to look</param>
-    public static void LookAt(Transform from, Transform target)
+    public static void LookAt(Transform from, Vector3 target)
     {
-        from.right = target.position - from.position;
+        from.right = target - from.position;
     }
 }

@@ -104,190 +104,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sorcerer_villain-sheet_0
+      name: SorcererIdle0
       rect:
         serializedVersion: 2
         x: 0
         y: 360
-        width: 100
-        height: 132
-      alignment: 9
-      pivot: {x: 0.4339582, y: -0.00071485114}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93b8ad20087c7c04096753e751894416
-      internalID: 470162280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_1
-      rect:
-        serializedVersion: 2
-        x: 142
-        y: 360
-        width: 90
-        height: 142
-      alignment: 9
-      pivot: {x: 0.42544216, y: 0.00000021491252}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bd4ce610f709994b91fa2712c1cf17f
-      internalID: -1637040971
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_2
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 360
-        width: 78
-        height: 144
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34c784c8a95102c4898d019c8b960f94
-      internalID: 251725429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 426
-        y: 360
-        width: 54
-        height: 160
-      alignment: 9
-      pivot: {x: 0.5615856, y: 0.00000076293946}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4c618d282cb2f0428c90a1e349fdc98
-      internalID: 2029629165
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_4
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 180
-        width: 60
-        height: 164
-      alignment: 9
-      pivot: {x: 0.5515942, y: -0.0011795788}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d69bd7029b6bb7e4bb2d3dcb150dae27
-      internalID: 2034873886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_5
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 180
-        width: 60
-        height: 170
-      alignment: 9
-      pivot: {x: 0.56240106, y: -0.0022023818}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3210ab6a6de5eb4fac5096fbc0f5974
-      internalID: 597445609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_14
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 130
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee3eac7eacedebd4295645aa3e23d205
-      internalID: 591963717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_40
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 26
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fe90a875d4890149b006e31cfcc9789
-      internalID: 2096360516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sorcerer_villain-sheet_41
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 180
-        width: 79
+        width: 138
         height: 180
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6970b544d9303bf448d3e5e7d4c41d59
-      internalID: -2010966262
+      spriteID: a1722403b7fa35b48b8bd303a5be99b1
+      internalID: -67754093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererAnticipation0
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 360
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cce26f0dd87bc4694dd6f9579ab606
+      internalID: 1015194144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererAnticipation1
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 360
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad96ffd2baf23ab4c9e1222c90b96a5b
+      internalID: -993662804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererAnticipation2
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 360
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67129adb26bfac74b9637f79e3436ee2
+      internalID: 496893877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererAnticipation3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f46173f7ae6bb3468fb9833942ebd0f
+      internalID: 1574482670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererShoot0
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 180
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d09db33a95da50408c3953b04c7adcd
+      internalID: 96107812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererShoot1
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 180
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9685a4d3c13664e99cbd82faf8bd18
+      internalID: 1901300699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererMelee0
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 180
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28db60a3fdff8b84f83be4f0d0f37ecb
+      internalID: 247429179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererMelee1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8565c1eb1856f3c4db03337714d720a1
+      internalID: 1009339897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SorcererMelee2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 0
+        width: 138
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf439e74946a93408137bde82f99d66
+      internalID: -267615805
       vertices: []
       indices: 
       edges: []
@@ -303,49 +324,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sorcerer_villain-sheet_29: -637078174
-      Sorcerer_0: 49364016
-      sorcerer_villain-sheet_21: 533062764
-      sorcerer_villain-sheet_10: 841478416
-      sorcerer_villain-sheet_34: -1576950497
-      sorcerer_villain-sheet_6: -1609520340
-      sorcerer_villain-sheet_33: -337661880
-      sorcerer_villain-sheet_18: 2042599625
-      sorcerer_villain-sheet_14: 591963717
-      sorcerer_villain-sheet_4: 2034873886
-      sorcerer_villain-sheet_0: 470162280
-      sorcerer_villain-sheet_28: 1716102915
-      sorcerer_villain-sheet_30: -1582312328
-      sorcerer_villain-sheet_31: -1796576419
-      sorcerer_villain-sheet_9: -2113497092
-      sorcerer_villain-sheet_15: -697619035
-      sorcerer_villain-sheet_5: 597445609
-      sorcerer_villain-sheet_2: 251725429
-      sorcerer_villain-sheet_36: 1793960757
-      sorcerer_villain-sheet_37: 660925268
-      sorcerer_villain-sheet_17: 2030061927
-      sorcerer_villain-sheet_1: -1637040971
-      sorcerer_villain-sheet_20: 1294581701
-      sorcerer_villain-sheet_22: -607466359
-      sorcerer_villain-sheet_25: -1537908496
-      sorcerer_villain-sheet_38: -992636101
-      sorcerer_villain-sheet_13: 2141520326
-      sorcerer_villain-sheet_27: 1380276816
-      sorcerer_villain-sheet_23: 223359955
-      sorcerer_villain-sheet_12: -1654298616
-      sorcerer_villain-sheet_16: -2012980183
-      sorcerer_villain-sheet_40: 2096360516
-      sorcerer_villain-sheet_35: 835952509
-      sorcerer_villain-sheet_26: -1244855546
-      sorcerer_villain-sheet_3: 2029629165
-      sorcerer_villain-sheet_41: -2010966262
-      sorcerer_villain-sheet_19: 1201925831
-      sorcerer_villain-sheet_39: 35223496
-      sorcerer_villain-sheet_32: -1835910660
-      sorcerer_villain-sheet_7: 884148151
-      sorcerer_villain-sheet_24: -1906400093
-      sorcerer_villain-sheet_8: -872928209
-      sorcerer_villain-sheet_11: -748379502
+      SorcererMelee2: -267615805
+      SorcererAnticipation0: 1015194144
+      SorcererAnticipation2: 496893877
+      SorcererAnticipation3: 1574482670
+      SorcererAnticipation1: -993662804
+      SorcererMelee1: 1009339897
+      SorcererShoot1: 1901300699
+      SorcererMelee0: 247429179
+      SorcererIdle0: 49364016
+      SorcererShoot0: 96107812
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

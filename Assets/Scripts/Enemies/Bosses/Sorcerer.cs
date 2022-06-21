@@ -1,89 +1,161 @@
-using System.Collections;
-using System.Collections.Generic;
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 public class Sorcerer : Enemy
 {
-    public enum State { Move, AttackLine, AttackCircle, Death, DeathEnd };
-    public State state = State.Move;    
-    private SorcererAnim sa; // SorcererAnim script
-    private CapsuleCollider2D cc; // Sorcerer CapsuleCollider
-    public float stateTimer;
-    public float moveTimeMin, moveTimeMax, attackTimeMin, attackTimeMax;
+    public enum State { Idle, Busy };
+    [field: Header("Sorcerer Parameters"), SerializeField] public State state { get; private set; } = State.Idle;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] public float minIdleTime = 1f;
+    [SerializeField] public float maxIdleTime = 5f;
+    [SerializeField] private GameObject protection;
 
-    [SerializeField]private float upperBoundary = 0;
-    [SerializeField]private float lowerBoundary = -6;
+    private HealthComponent hp;
+    private Transform player;
+    private Timer aiTimer;
+    private PoolController pc;
 
-    [SerializeField] private float movementSpeed = 1;
-    private float direction = 1; // Up, -1 for down
+    public enum ShootingStyles
+    {
+        Towards,
+        Circle,
+        Shotgun,
+        Random,
+    }
+    private ShootingStyles shootingStyle = 0;
 
-    // Start is called before the first frame update
+    private readonly OriginalValue<int> numberOfBullets = new(20);
+
     protected override void Start()
     {
         base.Start();
-        sa = GetComponentInChildren<SorcererAnim>();
-        cc = GetComponent<CapsuleCollider2D>();
+        hp = GetComponent<HealthComponent>();
+        player = DoStatic.GetPlayer<Transform>();
+        aiTimer = new(minIdleTime);
+        pc = DoStatic.GetGameController<PoolController>();
+        numberOfBullets.Reset();
 
-        float oY = transform.position.y;
-        upperBoundary += oY;
-        lowerBoundary += oY;
+        foreach (Transform child in DoStatic.GetChildren(protection.transform))
+        {
+            child.GetComponent<AttackDealer>().SetWeapon(weapon);
+        }
     }
 
-    // Update is called once per frame
     protected override void DoAction()
     {
-        if (state == State.Move)
+        aiTimer.Update(Time.deltaTime);
+        if (state == State.Idle)
         {
-            Move();
+            LookAtPlayer();
         }
 
-        stateTimer -= Time.deltaTime;
-
-        if (stateTimer <= 0f)
+        if (state != State.Idle || aiTimer.tick > 0)
         {
-            switch(state) {
+            return;
+        }
 
-                case State.Move:
-                    state = DoStatic.RandomBool() ? State.AttackLine : State.AttackCircle;
-                    rb.velocity = Vector3.zero;
-                    stateTimer = Random.Range(attackTimeMin, attackTimeMax);
-                    break;
-                case State.AttackLine:
-                case State.AttackCircle:
-                    state = State.Move;
-                    stateTimer = Random.Range(moveTimeMin, moveTimeMax);
-                    break;
-            }
-        sa.UpdateState();
+        state = State.Busy;
+        anim.SetTrigger("TimeToAttack");
+        int typeOfAttack = Random.Range(0, 2);
+        anim.SetInteger("TypeOfAttack", typeOfAttack);
+        if (typeOfAttack == 0)
+        {
+            numberOfBullets.value = Random.Range((int)(numberOfBullets.originalValue * 0.5f), numberOfBullets.originalValue);
+            shootingStyle = (ShootingStyles)Random.Range(0, System.Enum.GetNames(typeof(ShootingStyles)).Length);
         }
     }
 
-    protected void Move() 
+    private void LookAtPlayer()
     {
-        if (transform.position.y < lowerBoundary)
-        {
-            direction = 1;
-        } else if (transform.position.y > upperBoundary)
-        {
-            direction = -1;
-        }
-
-        Vector2 vel = rb.velocity;
-        vel.y = direction * movementSpeed;
-        rb.velocity = vel;
+        Vector3 sca = transform.localScale;
+        sca.x = Mathf.Abs(sca.x);
+        sca.x = transform.position.x < player.position.x ? sca.x : -sca.x;
+        transform.localScale = sca;
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.layer == 3)
-        {
-            Physics2D.IgnoreCollision(other.collider, cc);
-        }
-    }
-
-    void OnDrawGizmosSelected()
+    protected override void Death()
     {
-        float posY = rb ? 0 : transform.position.y;
-        Gizmos.DrawLine(new Vector2(int.MinValue, posY + upperBoundary), new Vector2(int.MaxValue, posY + upperBoundary));
-        Gizmos.DrawLine(new Vector2(int.MinValue, posY + lowerBoundary), new Vector2(int.MaxValue, posY + lowerBoundary));
+        anim.Play("Death");
     }
+
+    private Transform ShootProjectile(float angle)
+    {
+        Transform bullet = pc.GetObjectFromPool("SorcBulletPool").transform;
+        bullet.position = firePoint.position;
+        Vector3 rot = bullet.eulerAngles;
+        rot.z = angle;
+        bullet.eulerAngles = rot;
+        bullet.GetComponent<AttackDealer>().SetWeapon(weapon);
+        return bullet;
+    }
+
+    #region Animation Events
+    private void TeleportToPlayer()
+    {
+        float xOffset = 3f;
+        transform.position = (Vector2)player.position + new Vector2(DoStatic.RandomBool() ? xOffset : -xOffset, 0);
+        LookAtPlayer();
+    }
+
+    private void TeleportRandom()
+    {
+        transform.localPosition = new Vector2(Random.Range(-6.5f, 6.5f), Random.Range(-5.5f, 5.5f));
+    }
+
+    private void LoopToIdle()
+    {
+        state = State.Idle;
+        aiTimer.SetTimer(Random.Range(minIdleTime, minIdleTime + maxIdleTime * hp.GetPercentage()));
+    }
+
+    private void Shoot()
+    {
+        if (numberOfBullets.value-- == 0)
+        {
+            numberOfBullets.Reset();
+            anim.SetTrigger("LoopToIdle");
+            LoopToIdle();
+            return;
+        }
+
+        switch (shootingStyle)
+        {
+            case ShootingStyles.Towards:
+                DoStatic.LookAt(ShootProjectile(0), player.position);
+                break;
+
+            case ShootingStyles.Circle:
+                int bulletsInCircle = 5;
+                float incrementalAngle = 360 / bulletsInCircle;
+                float offsetAngle = Random.Range(-incrementalAngle, incrementalAngle);
+                for (int i = 0; i < bulletsInCircle; i++)
+                {
+                    ShootProjectile(i * incrementalAngle + offsetAngle);
+                }
+                break;
+
+            case ShootingStyles.Shotgun:
+                int shotgunBullets = 3;
+                for (int i = 0; i < shotgunBullets; i++)
+                {
+                    Transform bullet = ShootProjectile(0);
+                    DoStatic.LookAt(bullet, player.position);
+                
+                    Vector3 bulletRot = bullet.eulerAngles;
+                    bulletRot.z += Random.Range(-45, 45f);
+                    bullet.eulerAngles = bulletRot;
+                }
+                break;
+
+            case ShootingStyles.Random:
+                int randomBullets = 10;
+                for (int i = 0; i < randomBullets; i++)
+                {
+                    ShootProjectile(Random.Range(0, 360f));
+                }
+                break;
+        }
+    }
+    #endregion
 }
