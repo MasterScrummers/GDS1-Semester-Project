@@ -7,8 +7,8 @@ public class Sorcerer : Enemy
     public enum State { Idle, Busy };
     [field: Header("Sorcerer Parameters"), SerializeField] public State state { get; private set; } = State.Idle;
     [SerializeField] private Transform firePoint;
-    [SerializeField] public float minIdleTime = 1f;
-    [SerializeField] public float maxIdleTime = 5f;
+    [SerializeField] private float minIdleTime = 1f;
+    [SerializeField] private float maxIdleTime = 5f;
     [SerializeField] private GameObject protection;
 
     private HealthComponent hp;
@@ -106,7 +106,7 @@ public class Sorcerer : Enemy
     private void LoopToIdle()
     {
         state = State.Idle;
-        aiTimer.SetTimer(Random.Range(minIdleTime, minIdleTime + maxIdleTime * hp.GetPercentage()));
+        aiTimer.SetTimer(minIdleTime + Random.Range(0 , maxIdleTime * hp.GetPercentage()));
     }
 
     private void Shoot()

@@ -41,13 +41,10 @@ public class MinotaurBoss : Enemy
             case MinotaurState.Idle:
                 anim.SetInteger("AttackType", Random.Range(0, 3));
 
-                string action = DoStatic.RandomBool() ? "Summoning" : "Attacking";
+                string action = "Attacking";
                 anim.SetTrigger(action);
-                state = action.Equals("Summoning") ? MinotaurState.Busy : MinotaurState.Walking;
-                if (state == MinotaurState.Walking)
-                {
-                    aiTimer.SetTimer(walkTime);
-                }
+                state = MinotaurState.Walking;
+                aiTimer.SetTimer(walkTime);
                 break;
 
             case MinotaurState.Walking:

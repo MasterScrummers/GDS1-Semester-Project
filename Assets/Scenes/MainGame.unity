@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: vCont
       value: 
       objectReference: {fileID: 1127869284}
+    - target: {fileID: 172122358566061252, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
+      propertyPath: maxRooms
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2194689467201349317, guid: 51730ba8f48c6954abef51e580a85f65, type: 3}
       propertyPath: m_RootOrder
       value: 1

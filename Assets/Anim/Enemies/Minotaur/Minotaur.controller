@@ -341,12 +341,6 @@ AnimatorController:
   m_Name: Minotaur
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Summoning
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Attacking
     m_Type: 9
     m_DefaultFloat: 0
@@ -407,13 +401,13 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2064445484389745918}
-    m_Position: {x: 700, y: 0, z: 0}
+    m_Position: {x: 700, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8418306801037737805}
     m_Position: {x: 1300, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1662080989924129700}
-    m_Position: {x: 1000, y: 0, z: 0}
+    m_Position: {x: 1000, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8584538683482780039}
     m_Position: {x: 1300, y: 200, z: 0}
@@ -524,8 +518,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: InRange
+    m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Summoning
+    m_ConditionEvent: Attacking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2064445484389745918}

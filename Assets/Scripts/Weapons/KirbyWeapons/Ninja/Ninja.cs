@@ -7,8 +7,7 @@ public class Ninja : PlayerWeaponBase
         description = "Light: Kunai\nHeavy: Shotgun like Kunai\n Special: Kunai bullet hell";
         
         specialCooldown = Random.Range(5, 10);
-        int extra = Mathf.RoundToInt(specialCooldown * 0.1f);
-        damage = Random.Range(3 + extra, 5 + extra);
+        damage = 1;
 
         knockback = new(1, 0);
         hitInterval = 1f;
@@ -29,7 +28,7 @@ public class Ninja : PlayerWeaponBase
 
     public override void SpecialAttack(Animator anim)
     {
-        UpdateValues(3, knockback, hitInterval, stunTime);
+        UpdateValues(1, knockback, hitInterval, stunTime);
         base.SpecialAttack(anim);
     }
 }

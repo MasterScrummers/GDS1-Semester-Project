@@ -53,7 +53,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
             despawnTimer.Update(delta);
             if (despawnTimer.tick == 0)
             {
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             } else
             {
                 DeathAction();

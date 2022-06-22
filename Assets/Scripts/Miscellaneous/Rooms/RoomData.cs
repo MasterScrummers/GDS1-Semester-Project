@@ -11,12 +11,12 @@ public class RoomData : MonoBehaviour
     private GameObject[] children; //An array of the room's children (1 generation deep).
     private bool inRoom = false; //A boolean to check if the player is in the room.
 
-    public enum Direction { left, right, up, down }
-    [Header("Room Exits")]
-    [SerializeField] private bool hasLeft = true;
-    [SerializeField] private bool hasRight = true;
-    [SerializeField] private bool hasUp = true;
-    [SerializeField] private bool hasDown = true;
+    [field: SerializeField] public bool hasContent { get; private set; } = false;
+
+    [field: Header("Room Exits"), SerializeField] public bool hasLeft { get; private set; } = true;
+    [field: SerializeField] public bool hasRight { get; private set; } = true;
+    [field: SerializeField] public bool hasUp { get; private set; } = true;
+    [field: SerializeField] public bool hasDown { get; private set; } = true;
 
     public bool empty { get; private set; } //A boolean to check if the number of enemies is 0.
 
@@ -25,13 +25,24 @@ public class RoomData : MonoBehaviour
         playerHP = DoStatic.GetPlayer<HealthComponent>();
         GetComponent<Collider2D>().isTrigger = true;
 
+        if (!hasContent)
+        {
+            RoomContent roomContent = DoStatic.GetGameController<VariableController>().GetRandomRoomContent();
+            roomContent.transform.parent = transform;
+            roomContent.transform.localPosition = Vector3.zero;
+            enemies = roomContent.enemies;
+            itemsActiveOnClear = roomContent.itemsActiveOnClear;
+        }
+
         Transform[] toddlers = DoStatic.GetChildren(transform);
         children = new GameObject[toddlers.Length];
         for (int i = 0; i < toddlers.Length; i++)
         {
             children[i] = toddlers[i].gameObject;
         }
+
         ChildrenSetActive(false);
+
     }
 
     void Update()
@@ -47,7 +58,7 @@ public class RoomData : MonoBehaviour
             return;
         }
 
-        empty = IsEmpty();
+        empty = enemies.childCount == 0;
         foreach (GameObject gameObject in itemsActiveOnClear)
         {
             gameObject.SetActive(empty);
@@ -57,21 +68,6 @@ public class RoomData : MonoBehaviour
         {
             gameObject.SetActive(!empty);
         }
-    }
-
-    private bool IsEmpty()
-    {
-        for (int i = 0; i < enemies.childCount; i++)
-        {
-            GameObject child = enemies.GetChild(i).gameObject;
-            if (!child.activeInHierarchy)
-            {
-                Destroy(child);
-                continue;
-            }
-            break;
-        }
-        return enemies.childCount == 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -106,17 +102,5 @@ public class RoomData : MonoBehaviour
                 child.SetActive(setActive);
             }
         }
-    }
-
-    public bool HasExit(Direction dir)
-    {
-        return dir switch
-        {
-            Direction.left => hasLeft,
-            Direction.right => hasRight,
-            Direction.up => hasUp,
-            Direction.down => hasDown,
-            _ => throw new System.NotImplementedException()
-        };
     }
 }

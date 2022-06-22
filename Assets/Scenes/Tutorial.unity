@@ -427,10 +427,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2414137688525544767, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 131.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2754748722020269044, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
+    - target: {fileID: 3551019841923038961, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
+      propertyPath: m_Name
+      value: HP Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551019841923038961, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167499733586529010, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
+      propertyPath: m_text
+      value: Your HP is located at the bottom left.
+      objectReference: {fileID: 0}
     - target: {fileID: 8747227467220943019, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
       propertyPath: m_RootOrder
       value: 3

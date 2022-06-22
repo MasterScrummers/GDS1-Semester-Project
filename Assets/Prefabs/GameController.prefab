@@ -148,7 +148,7 @@ MonoBehaviour:
   restartTimer:
     <timer>k__BackingField: 3
     <timeScale>k__BackingField: -1
-  invincibilityBuffer: 0.5
+  invincibilityBuffer: 1
 --- !u!114 &8684894114443428548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3315,6 +3315,8 @@ MonoBehaviour:
     iconSprite: {fileID: 1241522459, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
   - iconName: Ninja
     iconSprite: {fileID: 1826421709, guid: d99745983906b2c458b26661e3482a9e, type: 3}
+  roomContents:
+  - {fileID: 7671297733724593656, guid: 2ab02c0eed5967741ab5922eb2e1ed47, type: 3}
 --- !u!114 &879982545141655048
 MonoBehaviour:
   m_ObjectHideFlags: 0

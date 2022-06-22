@@ -3,49 +3,37 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    //private int[,] mapRoom;
-    private VariableController vCont;
+    [System.Serializable]
+    private class SpecialRooms
+    {
+        public string roomName;
+        public RoomData room;
+    }
+
+    private VariableController vCont; //To keep track of the levels.
     [SerializeField] private int maxRooms; // The max amount of rooms
-    public GameObject startRoom; //The start room, could be hardcoded.
-    public RoomData[] specialRooms; //The special room pool
-    public RoomData[] rooms; //The room pools
+    [SerializeField] private SpecialRooms[] specialRooms; //The special room pool
+    [SerializeField] private RoomData[] rooms; //The room pools
 
     //public int roomCount;
 
-    private Dictionary<Vector2, RoomData> grid;
-    private Dictionary<string, List<GameObject>> sortedNormalRooms;
+    private Dictionary<Vector2, RoomData> grid = new();
+    private Dictionary<string, List<GameObject>> sortedNormalRooms = new();
 
-    void Start()
+    private void Start()
     {
-        grid = new Dictionary<Vector2, RoomData>();
-        sortedNormalRooms = new Dictionary<string, List<GameObject>>();
         vCont = DoStatic.GetGameController<VariableController>();
-        SortRooms();
-    }
-
-    /// <summary>
-    /// To be called ONCE per level by external means (usually by SceneStartUp).
-    /// </summary>
-    public void GenerateLevel()
-    {
-        PlanLevelStructure();
-        GenerateRooms();
-        grid.Clear(); //For the next time the level needs to be generated.
-    }
-
-    private void SortRooms()
-    {
         foreach (string combination in new string[]
         {
             "L", "R", "U", "D",
 
             "LR", "LU", "LD",
-            "UR", "DR",
+            "RU", "RD",
             "UD",
 
-            "LUR", "LDR", "LUD", "UDR",
+            "LRU", "LRD", "LUD", "RUD",
 
-            "LUDR"
+            "LRUD"
         })
         {
             sortedNormalRooms.Add(combination, new List<GameObject>());
@@ -53,105 +41,129 @@ public class MapGenerator : MonoBehaviour
 
         foreach (RoomData room in rooms)
         {
-            string exits = "";
-            exits += room.HasExit(RoomData.Direction.left) ? "L" : "";
-            exits += room.HasExit(RoomData.Direction.up) ? "U" : "";
-            exits += room.HasExit(RoomData.Direction.down) ? "D" : "";
-            exits += room.HasExit(RoomData.Direction.right) ? "R" : "";
+            string exits = room.hasLeft ? "L" : "";
+            exits += room.hasRight ? "R" : "";
+            exits += room.hasUp ? "U" : "";
+            exits += room.hasDown ? "D" : "";
             sortedNormalRooms[exits].Add(room.gameObject);
         }
     }
 
-    private void PlanLevelStructure()
+    /// <summary>
+    /// To be called ONCE per level by external means (usually by SceneStartUp).
+    /// </summary>
+    public void GenerateLevel()
     {
-        void GenerateNeighbours(Queue<Vector2> unfilledRooms, Vector2 room, bool[] branches) {
-            void AddEmptyRoom(Vector2 pos, bool allowBranch)
+        PlotRooms(maxRooms, new(0, 0));
+        RemoveSomeRooms();
+        CheckAndRemoveDisconnectedRooms(new Vector2(0, 0));
+        GenerateRooms();
+    }
+
+    private void PlotRooms(int roomCount, Vector2 startPos)
+    {
+        Vector2[] neighbours = new Vector2[] {
+            startPos,
+            startPos + new Vector2(50, 0),//1
+            startPos + new Vector2(-50, 0),//2
+            startPos + new Vector2(0, 50),//3
+            startPos + new Vector2(0, -50),//4
+        };
+
+        foreach (Vector2 pos in neighbours)
+        {
+            if ((DoStatic.RandomBool() || pos == startPos) && !grid.ContainsKey(pos))
             {
-                if (allowBranch && !grid.ContainsKey(pos))
+                grid.Add(pos, null);
+                roomCount--;
+            }
+
+            if (roomCount == 0)
+            {
+                return;
+            }
+        }
+
+        PlotRooms(roomCount, neighbours[Random.Range(0, neighbours.Length)]);
+    }
+
+    private void RemoveSomeRooms()
+    {
+        Vector2[] locations = new Vector2[grid.Count];
+        grid.Keys.CopyTo(locations, 0);
+        foreach (Vector2 location in locations)
+        {
+            if (DoStatic.RandomBool() || !grid.ContainsKey(location) || location == new Vector2(0, 0))
+            {
+                continue;
+            }
+
+            bool safeToRemove = grid.ContainsKey(location + new Vector2(50, 0)); //Right
+            safeToRemove = safeToRemove && grid.ContainsKey(location + new Vector2(-50, 0)); //Left
+            safeToRemove = safeToRemove && grid.ContainsKey(location + new Vector2(0, 50)); //Top
+            safeToRemove = safeToRemove && grid.ContainsKey(location + new Vector2(0, -50)); //Bottom
+
+            if (!safeToRemove)
+            {
+                continue;
+            }
+
+            bool TRBL = grid.ContainsKey(location + new Vector2(50, 50));
+            TRBL = TRBL && grid.ContainsKey(location + new Vector2(-50, -50)); //BottomLeft
+
+            bool TLBR = grid.ContainsKey(location + new Vector2(-50, 50)); //TopLeft
+            TLBR = TLBR && grid.ContainsKey(location + new Vector2(50, -50)); //BottomRight
+            
+            if (TLBR || TRBL)
+            {
+                grid.Remove(location);
+            }
+        }
+    }
+
+    private void CheckAndRemoveDisconnectedRooms(Vector2 starPos)
+    {
+        List<Vector2> history = new();
+        Queue<Vector2> placesToCheck = new();
+        placesToCheck.Enqueue(starPos);
+
+        while (placesToCheck.Count > 0)
+        {
+            Vector2 position = placesToCheck.Dequeue();
+            history.Add(position);
+
+            foreach (Vector2 neighbour in new Vector2[] {
+                position + new Vector2(50, 0),//1
+                position + new Vector2(-50, 0),//2
+                position + new Vector2(0, 50),//3
+                position + new Vector2(0, -50),//4
+            })
+            {
+                if (grid.ContainsKey(neighbour) && !history.Contains(neighbour) && !placesToCheck.Contains(neighbour))
                 {
-                    grid.Add(pos, null);
-                    unfilledRooms.Enqueue(pos);
-                    maxRooms--;
+                    placesToCheck.Enqueue(neighbour);
                 }
             }
-            
-            AddEmptyRoom(room + new Vector2(-50, 0), branches[0]);
-            AddEmptyRoom(room + new Vector2(50, 0), branches[1]);
-            AddEmptyRoom(room + new Vector2(0, 50), branches[2]);
-            AddEmptyRoom(room + new Vector2(0, -50), branches[3]);
         }
-
-        bool[] RandomiseExits(float successRate, bool guarenteeAll)
+        
+        Vector2[] locations = new Vector2[grid.Count];
+        grid.Keys.CopyTo(locations, 0);
+        foreach (Vector2 location in locations)
         {
-            bool[] branches = new bool[4];
-            float chance = guarenteeAll ? 1 : successRate;
-            for (int i = 0; i < branches.Length; i++)
+            if (!history.Contains(location))
             {
-                branches[i] = DoStatic.RandomBool(chance);
+                grid.Remove(location);
             }
-
-            return branches;
         }
-
-        Queue<Vector2> unfilledRooms = new Queue<Vector2>();
-        grid.Add(Vector2.zero, null);
-        unfilledRooms.Enqueue(Vector2.zero);
-        maxRooms--;
-
-        while (maxRooms > 0)
-        {
-            GenerateNeighbours(unfilledRooms, unfilledRooms.Dequeue(), RandomiseExits(0.25f, unfilledRooms.Count == 0));
-        }
-
     }
 
     private void GenerateRooms()
     {
-        int level = vCont.GetLevel();
-        Vector2 maxRight = Vector2.zero;
-        string finalCode = ""; 
-        GameObject finalRoom = null;
-
-        string[] cell = new string[sortedNormalRooms.Count];
-        sortedNormalRooms.Keys.CopyTo(cell, 0);
-
-        Vector2[] rooms = new Vector2[grid.Count];
-        grid.Keys.CopyTo(rooms, 0);
-
-        foreach (Vector2 pos in rooms)
+        Vector2[] locations = new Vector2[grid.Count];
+        grid.Keys.CopyTo(locations, 0);
+        foreach (Vector2 location in locations)
         {
-            string exist = "";
-            exist += grid.ContainsKey((pos + new Vector2(-50, 0))) ? "L" : "";
-            exist += grid.ContainsKey(pos + new Vector2(0, 50)) ? "U" : "";
-            exist += grid.ContainsKey(pos + new Vector2(0, -50)) ? "D" : "";
-            exist += grid.ContainsKey(pos + new Vector2(50, 0)) ? "R" : "";
-
-            if (!grid[pos])
-            {
-                List<GameObject> eligibleRoom = sortedNormalRooms[exist];
-                int spawningRoom = Random.Range(0, eligibleRoom.Count);
-                GameObject roomToSpawn = eligibleRoom[spawningRoom];
-
-                GameObject spawned = Instantiate(roomToSpawn, pos, Quaternion.identity);
-                grid[pos] = spawned.GetComponent<RoomData>();
-
-                if (pos.x > maxRight.x)
-                {
-                    maxRight = pos;
-                    finalRoom = spawned;
-                    finalCode = exist;
-                }
-            }
+            Instantiate(rooms[Random.Range(0, rooms.Length)]).transform.position = location;
         }
-
-        Destroy(finalRoom);
-        finalCode += "R";
-        List<GameObject> roomsT = sortedNormalRooms[finalCode];
-        int randR = Random.Range(0, roomsT.Count);
-        GameObject room = roomsT[randR];
-        Instantiate(room, maxRight, Quaternion.identity);
-        Instantiate(specialRooms[1], maxRight + new Vector2(50,0), Quaternion.identity);
-        Instantiate(specialRooms[level + 1], maxRight + new Vector2(100, 0), Quaternion.identity);
-        Instantiate(specialRooms[0], maxRight + new Vector2(150,0),Quaternion.identity);
-    } 
+    }
 }

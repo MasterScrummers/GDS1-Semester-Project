@@ -17,6 +17,9 @@ public class VariableController : MonoBehaviour
 
     [SerializeField] private IconPedia[] icons;
     private Dictionary<string, Sprite> allIcons;
+
+    [SerializeField] private List<RoomContent> roomContents;
+
     private Dictionary<string, Color32> globalColours;
     private SceneController.SceneName scene = SceneController.SceneName.MainGame;
     private int level = 1;
@@ -75,5 +78,10 @@ public class VariableController : MonoBehaviour
     public SceneController.SceneName GetScene()
     {
         return scene;
+    }
+
+    public RoomContent GetRandomRoomContent()
+    {
+        return Instantiate(roomContents[Random.Range(0, roomContents.Count)]);
     }
 }
