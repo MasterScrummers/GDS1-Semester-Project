@@ -71,6 +71,18 @@ PrefabInstance:
       propertyPath: hasLeft
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: <hasUp>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: <hasDown>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: <hasLeft>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 975200689073842377, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 0
@@ -2527,6 +2539,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4054830400155654204, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735030191593982606, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4763412599639701363, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2730,6 +2750,10 @@ PrefabInstance:
     - target: {fileID: 5335633158621088226, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[2].Array.data[3].Y
       value: -70000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621013181814247291, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7437726304198083500, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_IsActive

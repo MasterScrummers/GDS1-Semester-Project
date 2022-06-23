@@ -181,4 +181,18 @@ public class DoStatic
     {
         from.right = target - from.position;
     }
+
+    /// <summary>
+    /// Shuffles an array.
+    /// </summary>
+    /// <typeparam name="T">Any dayatype</typeparam>
+    /// <param name="arr">An array.</param>
+    /// <returns>A new shuffled array of what was given.</returns>
+    public static void ShuffleArray<T>(T[] arr)
+    {
+        for (int element = 0; element < arr.Length; element++)
+        {
+            Swap(ref arr[element], ref arr[Random.Range(0, arr.Length)]);
+        }
+    }
 }

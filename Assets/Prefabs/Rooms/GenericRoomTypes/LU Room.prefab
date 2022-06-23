@@ -87,6 +87,14 @@ PrefabInstance:
       propertyPath: hasRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: <hasDown>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: <hasRight>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 975200689073842377, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 0
@@ -2167,6 +2175,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4735030191593982606, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5335633158621088226, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 2
@@ -2240,6 +2252,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7437726304198083500, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142232179489922974, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

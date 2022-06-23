@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: hasRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 157840638659717043, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: <hasLeft>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 975200689749176899, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 50
@@ -1268,6 +1272,10 @@ PrefabInstance:
       value: 174
       objectReference: {fileID: 0}
     - target: {fileID: 2034868337385544469, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054830400155654204, guid: 6320bb630358eaf4286f4198b61ceb7e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
