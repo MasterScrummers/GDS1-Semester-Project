@@ -56,10 +56,7 @@ public class Bat : Enemy
             State.Death => tick < 0 ? RemoveEnemy : null,
             _ => null
         };
-        if (simple != null)
-        {
-            simple();
-        }
+        simple?.Invoke();
     }
 
     // Bat movement

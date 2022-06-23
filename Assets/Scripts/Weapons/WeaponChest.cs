@@ -33,12 +33,14 @@ public class WeaponChest : InteractableObject
     protected override void Interact()
     {
         base.Interact();
+        ic.SetInputLock(true);
         anim.SetTrigger("Open");
-       
+
     }
 
     private void OpenUI()
     {
+        ic.SetInputLock(false);
         ic.GetComponent<UIController>().GetUI<UIWeaponSwapSystem>("WeaponSwapSystem").Activate(); //bring up WeaponSwap UI
     }
 

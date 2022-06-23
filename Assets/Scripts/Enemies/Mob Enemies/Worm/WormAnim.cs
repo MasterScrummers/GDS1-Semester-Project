@@ -16,7 +16,6 @@ public class WormAnim : MonoBehaviour
         anim = GetComponent<Animator>();
         pc = DoStatic.GetGameController<PoolController>();
 
-
         state = worm.state;
     }
 
@@ -70,5 +69,9 @@ public class WormAnim : MonoBehaviour
     private void FinishDeath()
     {
         worm.RemoveEnemy();
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        // if (other.gameObject.CompareTag("Player"))
     }
 }

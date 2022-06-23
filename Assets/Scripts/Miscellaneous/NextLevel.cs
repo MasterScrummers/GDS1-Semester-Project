@@ -7,6 +7,8 @@ public class NextLevel : InteractableObject
     protected override void Interact()
     {
         base.Interact();
-        ic.GetComponent<SceneController>().ChangeScene(nextScene);
+        VariableController variable = ic.GetComponent<VariableController>();
+        variable.OffsetLevel(1);
+        ic.GetComponent<SceneController>().ChangeScene(variable.GetLevel() == 3 ? SceneController.SceneName.Credits : nextScene);
     }
 }

@@ -18,6 +18,23 @@ public class VariableController : MonoBehaviour
     [SerializeField] private IconPedia[] icons;
     private Dictionary<string, Sprite> allIcons;
     private Dictionary<string, Color32> globalColours;
+    private SceneController.SceneName scene = SceneController.SceneName.MapTestScene;
+    private int level = 1;
+
+    public void SetLevel(int newLevel)
+    {
+        level = newLevel;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public void OffsetLevel(int amount)
+    {
+        level += amount;
+    }
 
     void Awake()
     {
@@ -48,5 +65,15 @@ public class VariableController : MonoBehaviour
     public Color32 GetColour(string colour)
     {
         return globalColours[colour];
+    }
+
+    public void SetScene(SceneController.SceneName scene)
+    {
+        this.scene = scene;
+    }
+
+    public SceneController.SceneName GetScene()
+    {
+        return scene;
     }
 }

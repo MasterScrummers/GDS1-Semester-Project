@@ -18,6 +18,7 @@ public class SceneController : MonoBehaviour
     {
         TitleScreen,
         Credits,
+        OpeningCutscene,
         Tutorial,
         MainGame,
         MapTestScene, //REMOVE THIS LATER.
@@ -35,7 +36,7 @@ public class SceneController : MonoBehaviour
     
     private void GenericSceneStartUp(SceneName sceneName)
     {
-        bool isTitleScreen = (int)sceneName < 2;
+        bool isTitleScreen = (int)sceneName < 3;
         player.SetActive(!isTitleScreen);
         inGameUI.SetActive(!isTitleScreen);
 
@@ -47,8 +48,9 @@ public class SceneController : MonoBehaviour
 
         ac.PlayMusic(sceneName switch
         {
-            SceneName.TitleScreen => "TitleScreen",
-            SceneName.Credits => "Credits",
+            SceneName.TitleScreen => "TitleScreen", //Adventure
+            SceneName.Credits => "Credits", //Enigmatic
+            SceneName.OpeningCutscene => "Credits",
             _ => mainGameTrackPool[Random.Range(0, mainGameTrackPool.Length)],
         });
     }

@@ -71,6 +71,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
     {
+        Debug.Log("Receiving attack");
         if (this.invincibilityTime > 0f)
         {
             return;

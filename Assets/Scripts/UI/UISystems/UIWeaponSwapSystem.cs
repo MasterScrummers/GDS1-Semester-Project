@@ -40,6 +40,7 @@ public class UIWeaponSwapSystem : UISystemBase
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
+            //ic.SetInputLock(false);
             Deactivate();
             return;
         }
