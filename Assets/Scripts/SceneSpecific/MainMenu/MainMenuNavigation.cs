@@ -41,6 +41,12 @@ public class MainMenuNavigation : MonoBehaviour
             switch (menuOptions[currentIndex].name)
             {
                 case "StartGame":
+                    ic.GetComponent<VariableController>().ResetLevel();
+                    Camera.main.transform.position = Vector2.zero;
+                    HealthComponent health = DoStatic.GetPlayer<HealthComponent>();
+                    health.SetHP();
+                    health.GetComponent<PlayerInput>().Restart();
+                    
                     menu++;
                     currentIndex = 0;
                     return;

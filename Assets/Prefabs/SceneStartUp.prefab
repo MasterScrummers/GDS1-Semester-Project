@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8855516cc382a7438272c784b09978d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingRoom: {fileID: 8903851147163449999, guid: 158038325e9922e448cddc4eda0e3101, type: 3}
   rooms:
   - {fileID: 7387756897756180861, guid: 26e28d021cdb80e479790814db110177, type: 3}
   - {fileID: 7387756897756180861, guid: d3358bc2b40e27845b1f440b619e3589, type: 3}

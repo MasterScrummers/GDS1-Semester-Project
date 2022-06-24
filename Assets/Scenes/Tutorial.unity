@@ -277,14 +277,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 933269975195413176, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
-      propertyPath: leftBoundary
-      value: -2.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 933269975195413176, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
-      propertyPath: rightBoundary
-      value: 1.94
-      objectReference: {fileID: 0}
     - target: {fileID: 1736773281121721267, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
       propertyPath: m_Name
       value: BattleTutorialRoom
@@ -337,14 +329,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
-    - target: {fileID: 8636289290176125155, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
-      propertyPath: leftBoundary
-      value: -7.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 8636289290176125155, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
-      propertyPath: startGoingRight
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
 --- !u!1001 &2648424485569130677
@@ -402,22 +386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndingTutorialRoom
       objectReference: {fileID: 0}
-    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 86.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13.3
-      objectReference: {fileID: 0}
     - target: {fileID: 6220325223475044499, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
-    - target: {fileID: 6296222954918392628, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
 --- !u!1001 &6939716434147823479
@@ -427,26 +399,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2414137688525544767, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 131.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2754748722020269044, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
-    - target: {fileID: 3551019841923038961, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
-      propertyPath: m_Name
-      value: HP Intro
-      objectReference: {fileID: 0}
-    - target: {fileID: 3551019841923038961, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4167499733586529010, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
-      propertyPath: m_text
-      value: Your HP is located at the bottom left.
-      objectReference: {fileID: 0}
     - target: {fileID: 8747227467220943019, guid: e1c5c4a238148f841b57281a450de25a, type: 3}
       propertyPath: m_RootOrder
       value: 3

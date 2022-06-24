@@ -41,7 +41,7 @@ public class RoomData : MonoBehaviour
     {
         if (playerHP.health == 0 && enemies.gameObject.activeInHierarchy)
         {
-            ChildrenSetActive(false);
+            enemies.gameObject.SetActive(false);
             inRoom = false;
         }
 

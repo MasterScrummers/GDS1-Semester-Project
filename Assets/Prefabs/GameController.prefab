@@ -3316,7 +3316,22 @@ MonoBehaviour:
   - iconName: Ninja
     iconSprite: {fileID: 1826421709, guid: d99745983906b2c458b26661e3482a9e, type: 3}
   roomContents:
-  - {fileID: 7671297733724593656, guid: 2ab02c0eed5967741ab5922eb2e1ed47, type: 3}
+  - {fileID: 2760934894160303216, guid: ccbc96619e5bd534ab65f59aabdb6daa, type: 3}
+  - {fileID: 2760934894160303216, guid: eabf95b463e490e409bd1deaab86925d, type: 3}
+  - {fileID: 1126324346794361382, guid: 284e4dc84bab3134fb9090a5f68ee75e, type: 3}
+  - {fileID: 4463729206919963510, guid: 629bd41be10c1ca49b7ee924b821656c, type: 3}
+  - {fileID: 4463729206919963510, guid: 927b9ac1489c7df42920c883eddcba4a, type: 3}
+  - {fileID: 4463729206919963510, guid: 46c40b40250f0324989cc1a158d711ce, type: 3}
+  - {fileID: 4463729206919963510, guid: d796f90c71728ec4b836bb0ebe3cb8bd, type: 3}
+  - {fileID: 4463729206919963510, guid: 4959ddc7e8bcc2845a50702a95a323f3, type: 3}
+  - {fileID: 4463729206919963510, guid: 257ceaf1d9fb8b44dace35bb07b35a9d, type: 3}
+  - {fileID: 4463729206919963510, guid: c31ba8f271d25ae4b8aac7ee7a882d9a, type: 3}
+  - {fileID: 4463729206919963510, guid: f43741d450f94f64f918419869ae8951, type: 3}
+  - {fileID: 4463729206919963510, guid: 18998437684e20f4d83e57ef56ee214c, type: 3}
+  - {fileID: 4463729206919963510, guid: 6a09d05b41cdc6a4082221dea4789869, type: 3}
+  - {fileID: 4463729206919963510, guid: 16fff481f6a17a742915b159174a49e3, type: 3}
+  - {fileID: 4463729206919963510, guid: 105fa76b04db871458050b854f864557, type: 3}
+  - {fileID: 4463729206919963510, guid: e919a7ddbb723974fa1e2da68d0d5910, type: 3}
 --- !u!114 &879982545141655048
 MonoBehaviour:
   m_ObjectHideFlags: 0

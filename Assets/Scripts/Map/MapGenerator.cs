@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] private RoomData[] rooms; //Not yet sorted into a dictionary.
+    [SerializeField] private RoomContent startingRoom;
+    [SerializeField] private RoomData[] rooms; //Sorted into a sortedNormalRooms.
 
     private readonly Dictionary<Vector2, RoomData> grid = new();
     private readonly Dictionary<string, List<GameObject>> sortedNormalRooms = new();
@@ -35,13 +36,13 @@ public class MapGenerator : MonoBehaviour
     /// <summary>
     /// To be called ONCE per level by external means (usually by SceneStartUp).
     /// </summary>
-    public void GenerateLevel(int maxRooms, RoomContent[] roomContents)
+    public void GenerateLevel(int maxRooms, RoomContent[] mandatoryRooms)
     {
         PlotRooms(maxRooms, new(0, 0));
         RemoveSomeRooms();
         GenerateRooms();
         FixDisconnectedRooms();
-        InsertMandatoryContents(roomContents);
+        InsertMandatoryContents(mandatoryRooms);
     }
 
     private void PlotRooms(int roomCount, Vector2 startPos)
@@ -236,6 +237,10 @@ public class MapGenerator : MonoBehaviour
     {
         List<GameObject> roomPool = sortedNormalRooms[roomType];
         RoomData room = Instantiate(roomPool[Random.Range(0, roomPool.Count)]).GetComponent<RoomData>();
+        while (location == Vector2.zero && room.hasSetContent)
+        {
+            room = Instantiate(roomPool[Random.Range(0, roomPool.Count)]).GetComponent<RoomData>();
+        }
         room.transform.position = location;
         grid[location] = room;
     }
@@ -338,6 +343,8 @@ public class MapGenerator : MonoBehaviour
         Vector2[] locations = new Vector2[grid.Count];
         grid.Keys.CopyTo(locations, 0);
         DoStatic.ShuffleArray(locations);
+
+        grid[Vector2.zero].UpdateContent(Instantiate(startingRoom));
 
         int keyCount = 0;
         for (int i = 0; i < roomContents.Length; i++)
