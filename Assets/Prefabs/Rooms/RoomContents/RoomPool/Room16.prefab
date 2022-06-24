@@ -92,6 +92,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4463729206046584233}
     m_Modifications:
+    - target: {fileID: 5271314687301567754, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136096, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -154,11 +158,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -2.04
+      value: -2.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 2.82
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: startGoingRight
@@ -223,11 +231,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.19
+      value: -4.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 0.19
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
@@ -242,6 +254,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4463729206046584233}
     m_Modifications:
+    - target: {fileID: 5271314687301567754, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136096, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -304,11 +320,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -3.83
+      value: -3.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 1.18
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: startGoingRight
@@ -458,11 +478,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.19
+      value: -1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 0.19
+      value: 3.52
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
@@ -580,11 +604,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.19
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 0.19
+      value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
@@ -645,11 +673,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.19
+      value: -3.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 0.19
+      value: 1.61
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
@@ -710,11 +742,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.19
+      value: -2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 0.19
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
@@ -3100,6 +3136,10 @@ PrefabInstance:
       value: -2.48
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
       value: 2.47
       objectReference: {fileID: 0}
@@ -3116,6 +3156,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4463729206046584233}
     m_Modifications:
+    - target: {fileID: 5271314687301567754, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136096, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3178,11 +3222,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.62
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 4.37
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: startGoingRight
@@ -3247,11 +3295,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -0.19
+      value: -4.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: movementSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 0.19
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name

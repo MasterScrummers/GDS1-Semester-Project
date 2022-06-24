@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worm
       objectReference: {fileID: 0}
+    - target: {fileID: 3493965080032516254, guid: c6afbd11ac8509142a6078d180bb9307, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6afbd11ac8509142a6078d180bb9307, type: 3}
 --- !u!1001 &3410758520519816114

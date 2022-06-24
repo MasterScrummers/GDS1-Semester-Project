@@ -108,6 +108,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: leftBoundary
+      value: -0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
+      propertyPath: rightBoundary
+      value: 0.97
+      objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
       value: AxeKnight
@@ -3619,11 +3627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -8.75
+      value: -8.69
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 5.26
+      value: 5.17
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
