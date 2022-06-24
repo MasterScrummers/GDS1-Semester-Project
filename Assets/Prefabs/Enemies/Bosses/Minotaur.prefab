@@ -336,7 +336,7 @@ MonoBehaviour:
     <timer>k__BackingField: 5
     <timeScale>k__BackingField: -1
   <state>k__BackingField: 0
-  speed: 5
+  speed: 2
   idleTime: 1
   walkTime: 2
   SpawnableEnemies:

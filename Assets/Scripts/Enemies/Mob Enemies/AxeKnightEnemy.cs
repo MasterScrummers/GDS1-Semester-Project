@@ -22,7 +22,7 @@ public class AxeKnightEnemy : Enemy
         rightBoundary += oX;
 
         Vector3 sca = transform.localScale;
-        sca.x = startGoingRight ? 1 : -1;
+        sca.x = startGoingRight ? Mathf.Abs(sca.x) : -Mathf.Abs(sca.x);
         transform.localScale = sca;
     }
 

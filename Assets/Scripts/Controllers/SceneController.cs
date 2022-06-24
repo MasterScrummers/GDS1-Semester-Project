@@ -6,7 +6,7 @@ public class SceneController : MonoBehaviour
     private bool isTransitioning; //A check to know when the scene is transitioning.
 
     [SerializeField] private GameObject inGameUI; //To toggle it on/off.
-    private GameObject player; //To toggle player on/off
+    public GameObject player { get; private set; } //To toggle player on/off
 
     private UITransitionSystem transitionSystem; //To transition between scenes.
     private AudioController ac;

@@ -21,6 +21,15 @@ public class MainMenuNavigation : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         menuOptions = GetOptions(DoStatic.GetChildren(optionList.transform));
         promptOptions = GetOptions(DoStatic.GetChildren(tutorialPrompt.transform));
+
+        ic.GetComponent<VariableController>().ResetLevel();
+        Vector3 camPos = Vector3.zero;
+        camPos.z = -10;
+        Camera.main.transform.position = camPos;
+
+        HealthComponent health = ic.GetComponent<SceneController>().player.GetComponent<HealthComponent>();
+        health.SetHP();
+        health.GetComponent<PlayerInput>().Restart();
     }
 
     private RectTransform[] GetOptions(Transform[] children)
@@ -41,12 +50,6 @@ public class MainMenuNavigation : MonoBehaviour
             switch (menuOptions[currentIndex].name)
             {
                 case "StartGame":
-                    ic.GetComponent<VariableController>().ResetLevel();
-                    Camera.main.transform.position = Vector2.zero;
-                    HealthComponent health = DoStatic.GetPlayer<HealthComponent>();
-                    health.SetHP();
-                    health.GetComponent<PlayerInput>().Restart();
-                    
                     menu++;
                     currentIndex = 0;
                     return;
