@@ -1,6 +1,7 @@
 #pragma warning disable IDE1006 // Naming Styles
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(Collider2D))]
 public class RoomData : MonoBehaviour
@@ -143,6 +144,24 @@ public class RoomData : MonoBehaviour
             {
                 children.Add(child.gameObject);
             }
+        }
+    }
+
+    public void UpdateColourPalette(VariableController.RoomColourPalettes roomColours)
+    {
+        List<Tilemap> maps = new();
+        maps.AddRange(GetComponentsInChildren<Tilemap>());
+        maps.AddRange(roomContent.tilemaps.GetComponentsInChildren<Tilemap>());
+        foreach (Tilemap map in maps)
+        {
+            map.color = map.name switch
+            {
+                "Background" => roomColours.backgroundColour,
+                "Platforms" => roomColours.platformColour,
+                "Doors" => roomColours.doorColour,
+                "Walls" => roomColours.wallColour,
+                _ => roomColours.backgroundColour,
+            };
         }
     }
 }

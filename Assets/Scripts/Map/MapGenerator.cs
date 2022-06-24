@@ -353,5 +353,11 @@ public class MapGenerator : MonoBehaviour
             Vector2 location;
             while ((location = locations[keyCount++]) == Vector2.zero || !grid[location].UpdateContent(content)) {}
         }
+
+        VariableController.RoomColourPalettes levelPalette = DoStatic.GetGameController<VariableController>().GetRandomColourPalette();
+        foreach (Vector2 location in locations)
+        {
+            grid[location].UpdateColourPalette(levelPalette);
+        }
     }
 }

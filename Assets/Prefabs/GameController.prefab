@@ -3315,6 +3315,47 @@ MonoBehaviour:
     iconSprite: {fileID: 1241522459, guid: 583ede0942a22184bb188ae6efa7db9e, type: 3}
   - iconName: Ninja
     iconSprite: {fileID: 1826421709, guid: d99745983906b2c458b26661e3482a9e, type: 3}
+  colours:
+  - <colourName>k__BackingField: Rubik Red
+    <colour>k__BackingField: {r: 0.7176471, g: 0.07058824, b: 0.20392157, a: 1}
+  - <colourName>k__BackingField: Rubik Green
+    <colour>k__BackingField: {r: 0, g: 0.60784316, b: 0.28235295, a: 1}
+  - <colourName>k__BackingField: Rubik White
+    <colour>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  - <colourName>k__BackingField: Rubik Orange
+    <colour>k__BackingField: {r: 1, g: 0.34509805, b: 0, a: 1}
+  - <colourName>k__BackingField: Rubik Blue
+    <colour>k__BackingField: {r: 0, g: 0.27450982, b: 0.6784314, a: 1}
+  - <colourName>k__BackingField: Rubik Yellow
+    <colour>k__BackingField: {r: 1, g: 0.8352941, b: 0, a: 1}
+  - <colourName>k__BackingField: Gray
+    <colour>k__BackingField: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  roomPalettes:
+  - <colourName>k__BackingField: Normal
+    <backgroundColour>k__BackingField: {r: 0, g: 0.27450982, b: 0.6784314, a: 1}
+    <platformColour>k__BackingField: {r: 0, g: 0.60784316, b: 0.28235295, a: 1}
+    <doorColour>k__BackingField: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    <wallColour>k__BackingField: {r: 0.7176471, g: 0.07058824, b: 0.20392159, a: 1}
+  - <colourName>k__BackingField: Gameboy
+    <backgroundColour>k__BackingField: {r: 0.18431373, g: 0.24313727, b: 0.13725491, a: 1}
+    <platformColour>k__BackingField: {r: 0.7058824, g: 0.61960787, b: 0.4156863, a: 1}
+    <doorColour>k__BackingField: {r: 0.83921576, g: 0.79215693, b: 0.6627451, a: 1}
+    <wallColour>k__BackingField: {r: 0.34901962, g: 0.41176474, b: 0.28235295, a: 1}
+  - <colourName>k__BackingField: Ryan Style
+    <backgroundColour>k__BackingField: {r: 0.27058825, g: 0.34117648, b: 0.49803925, a: 1}
+    <platformColour>k__BackingField: {r: 0.8862746, g: 0.627451, b: 0.44705886, a: 1}
+    <doorColour>k__BackingField: {r: 0.68235296, g: 0.6862745, b: 0.56078434, a: 1}
+    <wallColour>k__BackingField: {r: 0.8862746, g: 0.42352945, b: 0.41176474, a: 1}
+  - <colourName>k__BackingField: Underwater
+    <backgroundColour>k__BackingField: {r: 0.6627451, g: 0.70980394, b: 1, a: 1}
+    <platformColour>k__BackingField: {r: 0.9843138, g: 0.4784314, b: 0.5568628, a: 1}
+    <doorColour>k__BackingField: {r: 0.38431376, g: 0.58431375, b: 0.9960785, a: 1}
+    <wallColour>k__BackingField: {r: 0.011764707, g: 0.10588236, b: 0.5372549, a: 1}
+  - <colourName>k__BackingField: Monochrome
+    <backgroundColour>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
+    <platformColour>k__BackingField: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    <doorColour>k__BackingField: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+    <wallColour>k__BackingField: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
   roomContents:
   - {fileID: 2760934894160303216, guid: ccbc96619e5bd534ab65f59aabdb6daa, type: 3}
   - {fileID: 2760934894160303216, guid: eabf95b463e490e409bd1deaab86925d, type: 3}

@@ -89,9 +89,13 @@ public class MinotaurBoss : Enemy
 
     private bool InMeleeBounds(Vector2 pos)
     {
-        bool facingRight = transform.localScale.x > 0;
-        Vector2 min = facingRight ? minMeleeBound.position : maxMeleeBound.position; //BottomLeft
-        Vector2 max = facingRight ? maxMeleeBound.position : minMeleeBound.position; //TopRight
+        Vector2 min = minMeleeBound.position; //BottomLeft
+        Vector2 max = maxMeleeBound.position; //TopRight
+        if (transform.localScale.x < 0)
+        {
+            DoStatic.Swap(ref min.x, ref max.x);
+        }
+
         bool inRange = pos.x > min.x && pos.x < max.x;
         return inRange && pos.y > min.y && pos.y < max.y;
     }

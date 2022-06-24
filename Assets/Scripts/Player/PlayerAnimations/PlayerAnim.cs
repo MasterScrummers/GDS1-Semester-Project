@@ -50,6 +50,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             restartTimer.Update(delta);
             if (restartTimer.tick == 0)
             {
+                isDead = false;
                 ic.GetComponent<VariableController>().ResetLevel();
                 sc.RestartScene(Restart);
             }
@@ -132,7 +133,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     private void Restart()
     {
-        isDead = false;
         invincibility.enabled = true;
         invincibility.SetPlayerInvincible(false);
         ic.SetInputLock(false);

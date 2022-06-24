@@ -53,11 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -2.38
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 11.56
+      value: 11.44
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: startGoingRight
@@ -2770,11 +2770,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: leftBoundary
-      value: -10.89
+      value: -10.84
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136097, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: rightBoundary
-      value: 3.03
+      value: 2.93
       objectReference: {fileID: 0}
     - target: {fileID: 6577600788766136098, guid: 66892c54f275d754e8a4f0478ceedd42, type: 3}
       propertyPath: m_Name
