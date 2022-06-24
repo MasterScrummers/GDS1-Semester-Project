@@ -46,6 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateLevel: 1
+  levels:
+  - <numberOfRooms>k__BackingField: 9
+    <mandatoryContent>k__BackingField:
+    - {fileID: 2281953251908309287, guid: 57afb9de7924e144face28beadf23c89, type: 3}
+  - <numberOfRooms>k__BackingField: 20
+    <mandatoryContent>k__BackingField:
+    - {fileID: 2281953251908309287, guid: 25c8a065583ec484ba334713739f18eb, type: 3}
 --- !u!114 &172122358566061252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,12 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8855516cc382a7438272c784b09978d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRooms: 9
-  specialRooms:
-  - roomName: Minotaur
-    room: {fileID: 0}
-  - roomName: Sorcerer
-    room: {fileID: 0}
   rooms:
   - {fileID: 7387756897756180861, guid: 26e28d021cdb80e479790814db110177, type: 3}
   - {fileID: 7387756897756180861, guid: d3358bc2b40e27845b1f440b619e3589, type: 3}

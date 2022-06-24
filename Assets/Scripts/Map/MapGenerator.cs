@@ -3,16 +3,6 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [System.Serializable]
-    private class SpecialRooms
-    {
-        public string roomName;
-        public RoomData room;
-    }
-
-    private VariableController vCont; //To keep track of the levels.
-    [SerializeField] private int maxRooms; // The max amount of rooms
-    [SerializeField] private SpecialRooms[] specialRooms; //The special room pool
     [SerializeField] private RoomData[] rooms; //Not yet sorted into a dictionary.
 
     private readonly Dictionary<Vector2, RoomData> grid = new();
@@ -20,7 +10,6 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-        vCont = DoStatic.GetGameController<VariableController>();
         foreach (string combination in new string[]
         {
             "L", "R", "U", "D", "",
@@ -46,12 +35,13 @@ public class MapGenerator : MonoBehaviour
     /// <summary>
     /// To be called ONCE per level by external means (usually by SceneStartUp).
     /// </summary>
-    public void GenerateLevel()
+    public void GenerateLevel(int maxRooms, RoomContent[] roomContents)
     {
         PlotRooms(maxRooms, new(0, 0));
         RemoveSomeRooms();
         GenerateRooms();
         FixDisconnectedRooms();
+        InsertMandatoryContents(roomContents);
     }
 
     private void PlotRooms(int roomCount, Vector2 startPos)
@@ -341,5 +331,20 @@ public class MapGenerator : MonoBehaviour
         exits += room.hasUp ? "U" : "";
         exits += room.hasDown ? "D" : "";
         return exits;
+    }
+
+    private void InsertMandatoryContents(RoomContent[] roomContents)
+    {
+        Vector2[] locations = new Vector2[grid.Count];
+        grid.Keys.CopyTo(locations, 0);
+        DoStatic.ShuffleArray(locations);
+
+        int keyCount = 0;
+        for (int i = 0; i < roomContents.Length; i++)
+        {
+            RoomContent content = Instantiate(roomContents[i]);
+            Vector2 location;
+            while ((location = locations[keyCount++]) == Vector2.zero || !grid[location].UpdateContent(content)) {}
+        }
     }
 }

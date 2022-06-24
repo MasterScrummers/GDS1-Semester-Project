@@ -50,6 +50,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
             restartTimer.Update(delta);
             if (restartTimer.tick == 0)
             {
+                ic.GetComponent<VariableController>().ResetLevel();
                 sc.RestartScene(Restart);
             }
             return;
@@ -137,7 +138,6 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
         ic.SetInputLock(false);
         health.SetHP();
         restartTimer.Reset();
-        ic.GetComponent<VariableController>().SetLevel(1);
         rb.GetComponent<PlayerInput>().Restart();
         anim.enabled = true;
     }

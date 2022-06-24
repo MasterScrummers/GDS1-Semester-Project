@@ -22,21 +22,18 @@ public class VariableController : MonoBehaviour
 
     private Dictionary<string, Color32> globalColours;
     private SceneController.SceneName scene = SceneController.SceneName.MainGame;
-    private int level = 1;
+    public int level { get; private set; } = 0;
+    public bool finalLevel { get; private set; } = false;
 
-    public void SetLevel(int newLevel)
+    public void IncrementLevel(int numberOfLevels)
     {
-        level = newLevel;
+        level++;
+        finalLevel = level == numberOfLevels;
     }
 
-    public int GetLevel()
+    public void ResetLevel()
     {
-        return level;
-    }
-
-    public void OffsetLevel(int amount)
-    {
-        level += amount;
+        level = 0;
     }
 
     void Awake()

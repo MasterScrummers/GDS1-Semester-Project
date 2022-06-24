@@ -8,7 +8,6 @@ public class NextLevel : InteractableObject
     {
         base.Interact();
         VariableController variable = ic.GetComponent<VariableController>();
-        variable.OffsetLevel(1);
-        ic.GetComponent<SceneController>().ChangeScene(variable.GetLevel() == 3 ? SceneController.SceneName.Credits : nextScene);
+        ic.GetComponent<SceneController>().ChangeScene(variable.finalLevel ? SceneController.SceneName.Credits : nextScene);
     }
 }

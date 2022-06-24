@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MinotaurBoss : Enemy
 {
-    public enum MinotaurState { Idle, Walking, Busy, Death };
+    public enum MinotaurState { Idle, Walking, Attacking, Death };
     [field: SerializeField, Header("Minotaur Parameters")] public MinotaurState state { get; private set; } = MinotaurState.Idle;
     [SerializeField] private float speed = 2f;
     [SerializeField] private float idleTime = 3f;
@@ -39,10 +39,7 @@ public class MinotaurBoss : Enemy
         switch (state)
         {
             case MinotaurState.Idle:
-                anim.SetInteger("AttackType", Random.Range(0, 3));
-
-                string action = "Attacking";
-                anim.SetTrigger(action);
+                anim.SetTrigger("Attacking");
                 state = MinotaurState.Walking;
                 aiTimer.SetTimer(walkTime);
                 break;
@@ -50,7 +47,6 @@ public class MinotaurBoss : Enemy
             case MinotaurState.Walking:
                 anim.SetInteger("AttackType", 3);
                 anim.SetBool("InRange", true);
-                state = MinotaurState.Busy;
                 break;
         }
     }
@@ -76,12 +72,15 @@ public class MinotaurBoss : Enemy
         if (state == MinotaurState.Walking)
         {
             bool inRange = InMeleeBounds(player.position);
-            bool isWaiting = Mathf.Abs(player.position.x - transform.position.x) < 0.5f;
             anim.SetBool("InRange", inRange);
+
+            bool isWaiting = Mathf.Abs(player.position.x - transform.position.x) < 1f;
             anim.SetBool("Waiting", isWaiting);
 
             rb.velocity = isWaiting ? Vector2.zero : new(transform.localScale.x < 0 ? -speed : speed, 0);
-            state = inRange ? MinotaurState.Busy : state;
+            state = inRange ? MinotaurState.Attacking : state;
+
+            anim.SetInteger("AttackType", player.position.y > transform.position.y ? 0 : Random.Range(1, 3));
         } else
         {
             rb.velocity = Vector2.zero;

@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
         specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
         cooldownTimer.Finish();
 
-        lightWeapon = heavyWeapon = specialWeapon = new Ninja(speed);
+        //lightWeapon = heavyWeapon = specialWeapon = new Ninja(speed);
     }
 
     void Update()
@@ -47,7 +47,9 @@ public class PlayerInput : MonoBehaviour
         ic.SetInputReason("Movement", allowMovement);
         if (ic.isInputLocked) //Allows knockback when taking damage.
         {
-            rb.velocity = Vector2.zero;
+            Vector2 vel = rb.velocity;
+            vel.x = 0;
+            rb.velocity = vel;
             return;
         }
 

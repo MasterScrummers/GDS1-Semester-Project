@@ -68,7 +68,6 @@ public class MainMenuNavigation : MonoBehaviour
             {
                 VariableController var = ic.GetComponent<VariableController>();
                 var.SetScene(SceneController.SceneName.Tutorial);
-                var.SetLevel(0);
             }
 
             ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.OpeningCutscene);

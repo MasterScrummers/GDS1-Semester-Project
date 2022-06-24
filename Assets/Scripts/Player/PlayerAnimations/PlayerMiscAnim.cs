@@ -147,6 +147,10 @@ public class PlayerMiscAnim : MonoBehaviour
                 DashStart(jetLightSpd, false);
                 break;
 
+            case "HammerHeavySleep":
+                isDashing = false;
+                break;
+
             case "HammerFlip":
                 ((Hammer)attacker.weapon).HammerFlip();
                 break;

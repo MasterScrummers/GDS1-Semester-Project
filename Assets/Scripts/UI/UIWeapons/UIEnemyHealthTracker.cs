@@ -14,6 +14,9 @@ public class UIEnemyHealthTracker : MonoBehaviour
 
     void Update()
     {
-        image.fillAmount = hp.GetPercentage();
+        if (hp)
+        {
+            image.fillAmount = hp.GetPercentage();
+        }
     }
 }
