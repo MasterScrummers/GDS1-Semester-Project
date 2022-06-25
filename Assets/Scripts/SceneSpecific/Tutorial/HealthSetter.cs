@@ -16,7 +16,7 @@ public class HealthSetter : MonoBehaviour
         {
             HealthComponent health = DoStatic.GetPlayer<HealthComponent>();
             health.SetHP(healthSet);
-            enabled = false;
+            Destroy(this);
         }
     }
 }
