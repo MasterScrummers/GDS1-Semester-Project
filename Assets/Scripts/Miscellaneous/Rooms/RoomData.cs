@@ -40,15 +40,15 @@ public class RoomData : MonoBehaviour
 
     void Update()
     {
+        if (!inRoom)
+        {
+            return;
+        }
+
         if (playerHP.health == 0 && enemies.gameObject.activeInHierarchy)
         {
             enemies.gameObject.SetActive(false);
             inRoom = false;
-        }
-
-        if (!inRoom)
-        {
-            return;
         }
 
         empty = enemies.childCount == 0;
