@@ -6,9 +6,9 @@ public class Sword : PlayerWeaponBase
     {
         description = "Light: Slash\nHeavy: Stab\n Special: Spin";
 
-        specialCooldown = Random.Range(5, 9);
-        int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
-        damage = Random.Range(5 + extra, 8 + extra);
+        specialCooldown = 6;
+        //int extra = Mathf.RoundToInt(specialCooldown * 0.5f);
+        damage = Random.Range(9 , 12);
     }
 
     public override void LightAttack(Animator anim)
