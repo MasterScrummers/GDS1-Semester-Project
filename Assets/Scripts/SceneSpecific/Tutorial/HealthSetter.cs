@@ -12,9 +12,9 @@ public class HealthSetter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            HealthComponent health = collision.GetComponent<HealthComponent>();
+            HealthComponent health = DoStatic.GetPlayer<HealthComponent>();
             health.SetHP(healthSet);
             enabled = false;
         }

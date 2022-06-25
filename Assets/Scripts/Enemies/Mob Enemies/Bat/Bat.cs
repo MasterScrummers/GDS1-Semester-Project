@@ -1,123 +1,99 @@
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
 
 public class Bat : Enemy
 {
-    private CircleCollider2D cc; // Bat CircleCollider
-    private BatAnim ba; // BatAnim script
-
     private Transform player;
     private Transform playerPointer;
     private Vector2 vel;
 
     public enum State { Move, Attack, Death, DeathEnd }; // Bat states
-    public State state { get; private set; } = State.Move; // Tracks bat current state
     private enum AttackState { AttackStart, Attacking, AttackEnd };
     private AttackState attackState = AttackState.AttackStart;
-    
-    [SerializeField] private float movementSpeed = 1; //The movement of the enemy
-    [SerializeField] private float attackSpeed = 1;
-    [SerializeField] private float attackRadius = 2.0f;
 
-    [SerializeField] private float idleTimer = 0.5f;
+    [Header("Bat Parameters")]
+    [SerializeField] private float movementSpeed = 2; //The movement of the enemy
+    [SerializeField] private float attackSpeed = 10;
+    [SerializeField] private float attackRadius = 3f;
+
+    [SerializeField] private float idleTimer = 3f;
     [SerializeField] private float anticipationTimer = 0.5f;
     [SerializeField] private float attackTimer = 0.5f;
-    [SerializeField] private float deathTimer = 5;
-    private float tick;
+    [SerializeField] public State state { get; private set; } = State.Move; // Tracks bat current state
+    private Timer aiTimer;
 
     
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        
-        ba = GetComponentInChildren<BatAnim>();
-        cc = GetComponent<CircleCollider2D>();
         player = DoStatic.GetPlayer<Transform>();
         playerPointer = GetComponentInChildren<PlayerPointer>().transform;
-        tick = 0f;
+        aiTimer = new(attackTimer);
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
-        float delta = Time.deltaTime;
-
-        tick -= tick <= 0 ? 0 : delta;
-        if (isStunned)
-        {
-            return;
-        }
-
+        aiTimer.Update(Time.deltaTime);
         DoStatic.SimpleDelegate simple = state switch
         {
             State.Move => Move,
-            State.Attack => hurt ? InterruptAttack : Attack,
-            State.Death => tick < 0 ? RemoveEnemy : null,
-            _ => null
+            State.Attack => Attack,
+            _ => Move
         };
         simple?.Invoke();
     }
 
-    // Bat movement
-    protected void Move()
+    protected override void DoStunnedAction()
     {
-        rb.velocity = movementSpeed * playerPointer.right;
-        if (Vector2.Distance(transform.position, player.position) < attackRadius && tick <= 0f && !hurt)
+        if (state == State.Attack)
         {
-            state = State.Attack;
-            tick = anticipationTimer;
-            vel = playerPointer.right * attackSpeed;
+            state = State.Move;
+            attackState = AttackState.AttackStart;
+            aiTimer.Finish();
         }
-        Vector3 rot = transform.eulerAngles;
-        rot.y = transform.position.x < player.transform.position.x ? 0 : 180;
-        transform.eulerAngles = rot;
     }
 
-    protected void Attack()
+    private void Move()
+    {
+        rb.velocity = movementSpeed * playerPointer.right;
+        if (aiTimer.tick == 0f && Vector2.Distance(transform.position, player.position) < attackRadius)
+        {
+            state = State.Attack;
+            aiTimer.SetTimer(anticipationTimer);
+            vel = playerPointer.right * attackSpeed;
+        }
+
+        Vector3 sca = transform.localScale;
+        sca.x = Mathf.Abs(sca.x);
+        sca.x = transform.position.x < player.position.x ? sca.x : -sca.x;
+        transform.localScale = sca;
+    }
+
+    private void Attack()
     {
         switch(attackState) {
-
             case AttackState.AttackStart:
                 rb.velocity = Vector2.zero;
-                if (tick <= 0f)
+                if (aiTimer.tick <= 0f)
                 {
-                    attackState = AttackState.Attacking;
-                    tick = attackTimer;
+                    attackState++;
+                    aiTimer.SetTimer(attackTimer);
                 }
                 break;
 
             case AttackState.Attacking:
                 rb.velocity = vel;
-                if (tick <= 0f)
-                {
-                    attackState = AttackState.AttackEnd;
-                }
+                attackState += aiTimer.tick == 0 ? 1 : 0;
                 break;
 
             case AttackState.AttackEnd:
                 state = State.Move;
                 attackState = AttackState.AttackStart;
-                tick = idleTimer;
-                break;            
+                aiTimer.SetTimer(idleTimer);
+                break;
         }
-    }
-
-    // Bat death
-    protected override void Death()
-    {
-        state = State.Death;
-        cc.enabled = false;
-        ba.Death();
-        tick = deathTimer;
-    }
-
-    private void InterruptAttack()
-    {
-        state = State.Move;
-        attackState = AttackState.AttackStart;
-        // rb.velocity = Vector2.zero;
-        tick = 0f;
     }
 
     private void OnDrawGizmosSelected()

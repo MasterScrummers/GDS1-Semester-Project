@@ -111,8 +111,8 @@ TextureImporter:
         y: 986
         width: 24
         height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -120,6 +120,48 @@ TextureImporter:
       bones: []
       spriteID: b87b08a3bf554a14d94d30a8a178f111
       internalID: -1510565185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Axe_Knight_1
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 986
+        width: 24
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74276426ce96fd944a053eb892df5982
+      internalID: 1729566282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Axe_Knight_2
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 986
+        width: 24
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87e8f8577c8fdad4a8ad0bcbfa3929e1
+      internalID: -986187094
       vertices: []
       indices: 
       edges: []
@@ -135,7 +177,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Axe_Knight_2: -986187094
+      Axe_Knight_5: -873390847
+      Axe_Knight_3: -1316280811
+      Axe_Knight_4: 1846657691
       DS DSi - Kirby Super Star Ultra - Meta Knights Soldiers Transparent_0: 938140689
+      Axe_Knight_1: 1729566282
       Axe_Knight_0: -1510565185
   spritePackingTag: 
   pSDRemoveMatte: 0

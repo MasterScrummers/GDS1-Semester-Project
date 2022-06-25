@@ -3,80 +3,69 @@ using UnityEngine;
 public class Worm : Enemy
 {
     private WormAnim wa; // WormAnim script
-    private BoxCollider2D bc; // Worm BoxCollider
-    public enum State { Idle, Attack, Hiding, Death };
-    public State state = State.Idle;
 
-    public float stateTimer;
+    public enum State { Idle, Attack, Hiding };
 
-    public float idleTimeMin, idleTimeMax, attackTimeMin, attackTimeMax, hidingTimeMin, hidingTimeMax;
+    private Timer stateTimer;
+    [field: Header("Worm Parameters"), SerializeField] public State wormState { get; private set; } = State.Idle;
 
-    // Start is called before the first frame update
+    [Header("Worm Parameters (Min(x) / Max(y)) Timers")]
+    [SerializeField] private Vector2 idleTime;
+    [SerializeField] private Vector2 attackTime;
+    [SerializeField] private Vector2 hidingTime;
+
     protected override void Start()
     {
         base.Start();
-        wa = GetComponentInChildren<WormAnim>();
-        bc = GetComponent<BoxCollider2D>();
-        stateTimer = Random.Range(idleTimeMin, idleTimeMax);
+        wa = GetComponent<WormAnim>();
+        stateTimer = new(RandomTime(wormState));
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
-        stateTimer -= Time.deltaTime;
-
-        if (stateTimer <= 0f)
+        stateTimer.Update(Time.deltaTime);
+        if (stateTimer.tick > 0f)
         {
-            switch(state) {
-
-                case State.Idle:
-                    state = DoStatic.RandomBool() ? State.Attack : State.Hiding;
-                    stateTimer = Random.Range(idleTimeMin, idleTimeMax);
-                    break;
-                case State.Attack:
-                    state = DoStatic.RandomBool() ? State.Idle : State.Hiding;
-                    stateTimer = Random.Range(attackTimeMin, attackTimeMax);
-                    break;
-                case State.Hiding:
-                    state = DoStatic.RandomBool() ? State.Attack : State.Idle;
-                    stateTimer = Random.Range(hidingTimeMin, hidingTimeMax);
-                    break;
-            }
-            wa.updateState();
-
-            switch (state) {
-                case State.Hiding:
-                case State.Death:
-                    bc.enabled = false;
-                    break;
-                case State.Idle:
-                case State.Attack:
-                    bc.enabled = true;
-                    break;
-            }
+            return;
         }
+        UpdateState();
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-
-        if (other.gameObject.CompareTag("Player") && state == State.Death)
+    private void UpdateState()
+    {
+        switch (wormState)
         {
-            Debug.Log("Ignoring collision");
-            Physics2D.IgnoreCollision(other.collider, GetComponent<BoxCollider2D>());
+            case State.Idle:
+                wormState = DoStatic.RandomBool() ? State.Attack : State.Hiding;
+                break;
+
+            case State.Attack:
+                wormState = DoStatic.RandomBool() ? State.Idle : State.Hiding;
+                break;
+
+            case State.Hiding:
+                wormState = DoStatic.RandomBool() ? State.Idle : State.Attack;
+                break;
         }
+        stateTimer.SetTimer(RandomTime(wormState));
+        wa.UpdateState(wormState);
+    }
+
+    private float RandomTime(State state)
+    {
+        Vector2 range = state switch
+        {
+            State.Idle => idleTime,
+            State.Attack => attackTime,
+            State.Hiding => hidingTime,
+            _ => idleTime,
+        };
+
+        return Random.Range(range.x, range.y);
     }
 
     protected override void Death()
     {
         wa.Death();
-    }
-
-    public override void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
-    {
-        if (state != State.Death)
-        {
-            base.RecieveAttack(attackerPos, strength, knockback, invincibilityTime, stunTime);
-        }
     }
 }
