@@ -2,57 +2,49 @@ using UnityEngine;
 
 public class BatAnim : MonoBehaviour
 {
-    private Bat bat; // Bat parent
+    private HealthComponent health;
     private Rigidbody2D rb; // Bat rigidbody
-    private Collider2D body;
+    [SerializeField] private Collider2D body;
     private Collider2D platforms;
 
     private Animator anim; // Bat sprite Animator
+    private bool isDead = false;
 
     void Start()
     {
-        bat = GetComponentInParent<Bat>();
+        health = GetComponent<HealthComponent>();
         rb = GetComponentInParent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        body = GetComponent<CircleCollider2D>();
     }
 
     void Update()
     {
-        if (bat.state == Bat.State.Death && rb.velocity.y == 0)
+        if (isDead)
         {
-            anim.Play("BatDeathGround");
-            enabled = false;
+            if (rb.velocity.y == 0)
+            {
+                anim.Play("BatDeathGround");
+                enabled = false;
+            }
+        } else if (health.health == 0)
+        {
+            isDead = true;
+            anim.Play("BatDeath");
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 5;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            if (platforms)
+            {
+                Physics2D.IgnoreCollision(platforms, body, false);
+            }
         }
     }
 
-    /// <summary>
-    /// For bat death. Should be called through Bat class when death sqeuence is initiated.
-    /// </summary>
-    public void Death()
-    {
-        anim.Play("BatDeath");
-        if (platforms)
-        {
-            Physics2D.IgnoreCollision(platforms, body, false);
-        }
-
-        rb.gravityScale = 0.5f;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        rb.drag = 0f;
-    }
-
-    // Checks for ground contact after death initiated
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.CompareTag("Player") && (bat.state == Bat.State.Death || bat.state == Bat.State.DeathEnd))
-        {
-            Physics2D.IgnoreCollision(other.collider, body);
-        }
-
         if (!platforms && other.gameObject.name.Equals("Platforms"))
         {
             platforms = other.collider;
-            Physics2D.IgnoreCollision(platforms, body);
+            Physics2D.IgnoreCollision(platforms, body, true);
         }
     }
 }

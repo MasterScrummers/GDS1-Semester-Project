@@ -29,20 +29,11 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
-      - serializedVersion: 3
-        time: 1.6666666
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
     classID: 58
     script: {fileID: 0}
   - curve:
@@ -50,7 +41,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.37
+        value: 0.61
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -61,7 +52,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Offset.y
-    path: 
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
     classID: 58
     script: {fileID: 0}
   - curve:
@@ -69,26 +60,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1.3003172
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Radius
-    path: 
-    classID: 58
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.47
+        value: -0.03
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -99,7 +71,64 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Offset.x
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
+    classID: 58
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: <allowFlashing>k__BackingField
     path: 
+    classID: 114
+    script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: <invincible>k__BackingField
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 2.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Radius
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
     classID: 58
     script: {fileID: 0}
   m_PPtrCurves:
@@ -120,92 +149,8 @@ AnimationClip:
       value: {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
     - time: 0.23333333
       value: {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.26666668
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.3
-      value: {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.33333334
-      value: {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.36666667
-      value: {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.4
-      value: {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.43333334
-      value: {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.46666667
-      value: {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.5
-      value: {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.53333336
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.56666666
-      value: {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.6
-      value: {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.6333333
-      value: {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.6666667
-      value: {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.7
-      value: {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.73333335
-      value: {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.76666665
-      value: {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.8
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.8333333
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.8666667
-      value: {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.9
-      value: {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.93333334
-      value: {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 0.96666664
-      value: {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1
-      value: {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.0333333
-      value: {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.0666667
-      value: {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.1
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.1333333
-      value: {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.1666666
-      value: {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.2
-      value: {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.2333333
-      value: {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.2666667
-      value: {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.3
-      value: {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.3333334
-      value: {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.3666667
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.4
-      value: {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.4333333
-      value: {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.4666667
-      value: {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.5
-      value: {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.5333333
-      value: {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.5666667
-      value: {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.6
-      value: {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - time: 1.6333333
-      value: {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
     attribute: m_Sprite
-    path: 
+    path: KirbySpritePivot/Kirby Sprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 30
@@ -216,7 +161,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 1773627965
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 58
@@ -224,28 +169,42 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
+      attribute: 4137198953
+      script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 2797829672
+      script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2581053364
       attribute: 0
       script: {fileID: 0}
       typeID: 212
       customType: 23
       isPPtrCurve: 1
     - serializedVersion: 2
-      path: 0
+      path: 1773627965
       attribute: 1872933342
       script: {fileID: 0}
       typeID: 58
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 0
-      attribute: 1984117138
+      path: 1773627965
+      attribute: 413499720
       script: {fileID: 0}
       typeID: 58
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 0
-      attribute: 413499720
+      path: 1773627965
+      attribute: 1984117138
       script: {fileID: 0}
       typeID: 58
       customType: 0
@@ -259,54 +218,12 @@ AnimationClip:
     - {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
     - {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
     - {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 628119977, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1348973139, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1445406992, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -58497699, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: -1620302585, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1791956043, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 1065570231, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
-    - {fileID: 604588221, guid: 1cddd21f351c5a347b71a9dc0b92894d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.6666666
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -334,20 +251,11 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
-      - serializedVersion: 3
-        time: 1.6666666
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
     classID: 58
     script: {fileID: 0}
   - curve:
@@ -355,7 +263,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.37
+        value: 0.61
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -366,7 +274,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Offset.y
-    path: 
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
     classID: 58
     script: {fileID: 0}
   - curve:
@@ -374,26 +282,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1.3003172
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Radius
-    path: 
-    classID: 58
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.47
+        value: -0.03
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -404,7 +293,64 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Offset.x
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
+    classID: 58
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: <allowFlashing>k__BackingField
     path: 
+    classID: 114
+    script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: <invincible>k__BackingField
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: d9bc701bf52e70c4f9ebb8bf4f6905a4, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 2.5
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Radius
+    path: KirbySpritePivot/Kirby Sprite/AttackHitbox/HitCircle1
     classID: 58
     script: {fileID: 0}
   m_EulerEditorCurves: []
@@ -412,44 +358,16 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetAnimState
+    functionName: AnimMethod
+    data: SwordSpecialStart
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.26666668
+    functionName: AnimReset
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 5
-    messageOptions: 0
-  - time: 0
-    functionName: SetStrengthMult
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 3
-    messageOptions: 0
-  - time: 0
-    functionName: ChangeSpeed
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 13
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: SetKnockbackX
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 8
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: StartAnimInvincible
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 1.2
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: SetInvincibilityLength
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.3
     intParameter: 0
     messageOptions: 0

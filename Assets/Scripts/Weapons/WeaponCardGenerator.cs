@@ -5,7 +5,7 @@ using TMPro;
 [RequireComponent(typeof(Image))]
 public class WeaponCardGenerator : MonoBehaviour
 {
-    public WeaponBase weapon;
+    public PlayerWeaponBase weapon;
     private VariableController vc; //To grab the dictionary of weapons
     [SerializeField] private Image weaponIcon;
     [SerializeField] private TextMeshProUGUI weaponText;
@@ -15,15 +15,15 @@ public class WeaponCardGenerator : MonoBehaviour
         vc = DoStatic.GetGameController<VariableController>();
     }
 
-    public void SetWeapon(WeaponBase weapon)
+    public void SetWeapon(PlayerWeaponBase weapon)
     {
         this.weapon = weapon;
         SetCard();
     }
 
-    public void GenerateWeapon()
+    public void GenerateWeapon(OriginalValue<float> speed)
     {
-        weapon = WeaponBase.RandomWeapon();
+        weapon = PlayerWeaponBase.RandomWeapon(speed);
         SetCard();
     }
 
@@ -55,7 +55,7 @@ public class WeaponCardGenerator : MonoBehaviour
     private void SetWeaponText()
     {
 
-        weaponText.text = "<b>" + weapon.GetType().Name + "</b>" + "\n\nStrength: " + weapon.baseStrength +"\n\n" + weapon.description;
+        weaponText.text = "<b>" + weapon.GetType().Name + "</b>" + "\n\nStrength: " + weapon.damage +"\n\n" + weapon.description;
         weaponText.text += "\n(" + weapon.specialCooldown + " seconds cooldown)";
     }
 }

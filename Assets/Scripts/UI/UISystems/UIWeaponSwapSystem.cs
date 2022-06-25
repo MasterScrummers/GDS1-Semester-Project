@@ -17,14 +17,14 @@ public class UIWeaponSwapSystem : UISystemBase
     {
         base.FirstActiveFrameUpdate();
         UpdateCards();
-        newCard.GenerateWeapon();
+        newCard.GenerateWeapon(input.speed);
     }
 
     void Update()
     {
-        void WeaponSwap(ref WeaponBase weapon)
+        void WeaponSwap(ref PlayerWeaponBase weapon)
         {
-            WeaponBase temp = newCard.weapon;
+            PlayerWeaponBase temp = newCard.weapon;
             newCard.SetWeapon(weapon);
             weapon = temp;
             UpdateCards();
@@ -35,8 +35,7 @@ public class UIWeaponSwapSystem : UISystemBase
             return;
         }
 
-        ic.SetID("Attack", false);
-        ic.SetID("Movement", false);
+        ic.SetInputReason("Attack", false);
 
         if (ic.GetButtonDown("WeaponSwap", "Exit"))
         {
@@ -60,6 +59,11 @@ public class UIWeaponSwapSystem : UISystemBase
         }
     }
 
+    void LateUpdate()
+    {
+        input.allowMovement = false;
+    }
+
     private void UpdateCards()
     {
         if (input.lightWeapon != null)
@@ -81,7 +85,7 @@ public class UIWeaponSwapSystem : UISystemBase
     protected override void OnDisable()
     {
         base.OnDisable();
-        ic.SetID("Attack", true);
-        ic.SetID("Movement", true);
+        ic.SetInputReason("Attack", true);
+        input.allowMovement = true;
     }
 }

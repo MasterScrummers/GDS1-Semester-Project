@@ -2,5 +2,9 @@ using UnityEngine;
 
 interface IAttackReceiver
 {
-    public void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime);
+    /// <summary>
+    /// Receive the attack and its data that is passed through.
+    /// </summary>
+    /// <param name="attackerPos">The attacker's position.</param>
+    public void RecieveAttack(Transform attackerPos, WeaponBase weapon);
 }

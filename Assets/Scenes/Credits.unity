@@ -391,6 +391,21 @@ MonoBehaviour:
     - name: Nintendo - Kirby
       link: https://www.spriters-resource.com/ds_dsi/kssu/
       isLink: 1
+    - name: elthen - Minotaur
+      link: ' https://elthen.itch.io/2d-pixel-art-minotaur-sprites'
+      isLink: 1
+    - name: elthen - Bat
+      link: https://elthen.itch.io/bat-sprite-pack
+      isLink: 1
+    - name: elthen - Worm
+      link: https://elthen.itch.io/pixel-art-worm-monster-sprites
+      isLink: 1
+    - name: Warren Clark - Sorcerer
+      link: https://lionheart963.itch.io/sorcerer-villain
+      isLink: 1
+    - name: blackdragon1727 - Fire
+      link: https://blackdragon1727.itch.io/fire-pixel-bullet-16x16
+      isLink: 1
   - heading: Title Screen
     people:
     - name: muddle

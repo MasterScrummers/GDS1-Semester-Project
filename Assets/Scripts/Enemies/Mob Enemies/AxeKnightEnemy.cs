@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class AxeKnightEnemy : Enemy
 {
-    [SerializeField] private int direction = 1; //The direction of the enemy.
+    [Header("Axe Knight Parameters")]
+    [SerializeField] private bool startGoingRight = true; //The direction of the enemy.
+
     [SerializeField] private float movementSpeed = 3; //The movement of the enemy.
     [SerializeField] private float leftBoundary = -1; //The right boundary?
     [SerializeField] private float rightBoundary = 1; //The left boundary?
@@ -10,41 +12,43 @@ public class AxeKnightEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        
         if (leftBoundary > rightBoundary)
         {
-            float temp = leftBoundary;
-            leftBoundary = rightBoundary;
-            rightBoundary = temp;
+            DoStatic.Swap(ref leftBoundary, ref rightBoundary);
         }
 
         float oX = transform.position.x;
         leftBoundary += oX;
         rightBoundary += oX;
+
+        Vector3 sca = transform.localScale;
+        sca.x = startGoingRight ? Mathf.Abs(sca.x) : -Mathf.Abs(sca.x);
+        transform.localScale = sca;
     }
 
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
-        
-        if (!isStunned)
-        {
-            Move();
-        }
+        Move();
     }
 
     protected void Move()
     {
+        Bounds spriteBoundary = sr.bounds;
+        Vector2 min = spriteBoundary.min;
+        Vector2 max = spriteBoundary.max;
+
         Vector3 sca = transform.localScale;
-        if (sca.x < 0 && transform.position.x < leftBoundary || sca.x > 0 && transform.position.x > rightBoundary)
+        switch (sca.x)
         {
-            sca.x *= -1;
-            direction *= -1;
-            transform.localScale = sca;
+            case < 0 when min.x < leftBoundary:
+            case > 0 when max.x > rightBoundary:
+                sca.x *= -1;
+                transform.localScale = sca;
+                break;
         }
 
         Vector2 vel = rb.velocity;
-        vel.x = direction * movementSpeed;
+        vel.x = sca.x * movementSpeed;
         rb.velocity = vel;
     }
 

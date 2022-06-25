@@ -4,9 +4,9 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     private bool isTransitioning; //A check to know when the scene is transitioning.
-    
+
     [SerializeField] private GameObject inGameUI; //To toggle it on/off.
-    private GameObject player; //To toggle player on/off
+    public GameObject player { get; private set; } //To toggle player on/off
 
     private UITransitionSystem transitionSystem; //To transition between scenes.
     private AudioController ac;
@@ -18,13 +18,14 @@ public class SceneController : MonoBehaviour
     {
         TitleScreen,
         Credits,
+        OpeningCutscene,
         Tutorial,
         MainGame,
-        MapTestScene, //REMOVE THIS LATER.
+        DummyGame,
     };
     private SceneName currentScene; //The current scene's name
 
-    void Start()
+    private void Start()
     {
         player = DoStatic.GetChildWithTag("Player", transform);
         currentScene = (SceneName)System.Enum.Parse(typeof(SceneName), DoStatic.GetSceneName());
@@ -32,10 +33,10 @@ public class SceneController : MonoBehaviour
         ac = GetComponent<AudioController>();
         GenericSceneStartUp(currentScene);
     }
-    
+
     private void GenericSceneStartUp(SceneName sceneName)
     {
-        bool isTitleScreen = (int)sceneName < 2;
+        bool isTitleScreen = (int)sceneName < 3;
         player.SetActive(!isTitleScreen);
         inGameUI.SetActive(!isTitleScreen);
 
@@ -47,8 +48,9 @@ public class SceneController : MonoBehaviour
 
         ac.PlayMusic(sceneName switch
         {
-            SceneName.TitleScreen => "TitleScreen",
-            SceneName.Credits => "Credits",
+            SceneName.TitleScreen => "TitleScreen", //Adventure
+            SceneName.Credits => "Credits", //Enigmatic
+            SceneName.OpeningCutscene => "Credits",
             _ => mainGameTrackPool[Random.Range(0, mainGameTrackPool.Length)],
         });
     }
@@ -103,10 +105,7 @@ public class SceneController : MonoBehaviour
         currentScene = newSceneName;
         GenericSceneStartUp(currentScene);
         yield return StartCoroutine(LoadProgress(DoStatic.LoadScene(newSceneName.ToString())));
-        if (notify != null)
-        {
-            notify();
-        }
+        notify?.Invoke();
 
         transitionSystem.Deactivate();
         yield return StartCoroutine(Wait(transitionSystem));

@@ -111,8 +111,8 @@ TextureImporter:
         y: 250
         width: 29
         height: 28
-      alignment: 9
-      pivot: {x: 0.5872787, y: 0.00963756}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: Mirror_Heavy_1
       rect:
         serializedVersion: 2
-        x: 223
-        y: 249
+        x: 224
+        y: 250
         width: 29
         height: 46
-      alignment: 9
-      pivot: {x: 0.62041605, y: 0.02757595}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -574,7 +574,7 @@ TextureImporter:
         width: 30
         height: 28
       alignment: 9
-      pivot: {x: 0.9037303, y: 0.06687927}
+      pivot: {x: 0.62, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -595,7 +595,7 @@ TextureImporter:
         width: 29
         height: 28
       alignment: 9
-      pivot: {x: 0.79742855, y: 0.06838008}
+      pivot: {x: 0.56, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -615,8 +615,8 @@ TextureImporter:
         y: 413
         width: 26
         height: 27
-      alignment: 9
-      pivot: {x: 0.77286, y: 0.0707307}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -637,7 +637,7 @@ TextureImporter:
         width: 31
         height: 29
       alignment: 9
-      pivot: {x: 0.97270447, y: 0.06487195}
+      pivot: {x: 0.59, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -658,7 +658,7 @@ TextureImporter:
         width: 35
         height: 30
       alignment: 9
-      pivot: {x: 0.94681007, y: 0.061658733}
+      pivot: {x: 0.61, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -2,76 +2,38 @@ using UnityEngine;
 
 public class WormAnim : MonoBehaviour
 {
-    private Worm worm; // Worm parent
     private PoolController pc;
+    private AttackDealer attacker;
     private Animator anim; // Worm sprite Animator
     [SerializeField] private Transform firePoint;
-    private Worm.State state; // Tracks worm current state
-    private Worm.State prevState;
 
     // Start is called before the first frame update
     void Start()
     {
-        worm = GetComponentInParent<Worm>();
         anim = GetComponent<Animator>();
+        attacker = GetComponent<AttackDealer>();
         pc = DoStatic.GetGameController<PoolController>();
-
-        state = worm.state;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (state != worm.state)
-        {
-            updateState();
-        }
+    public void UpdateState(Worm.State state) {
+        anim.SetBool("Idling", state == Worm.State.Idle);
+        anim.SetBool("Attacking", state == Worm.State.Attack);
+        anim.SetBool("Hiding", state == Worm.State.Hiding);
     }
 
-    public void updateState() {
-        prevState = state;
-        state = worm.state;
-
-        if (prevState == Worm.State.Hiding)
-        {
-            anim.Play("Base Layer.WormEmerge");
-        }
-
-        switch(state) {
-
-            case Worm.State.Idle:
-                anim.SetTrigger("Idle");
-                break;
-            case Worm.State.Attack:
-                anim.SetTrigger("Attack");
-                break;
-            case Worm.State.Hiding:
-                anim.SetTrigger("Burrow");
-                break;
-        }
-    }
-
-    public void Attack(float angle)
+    public void Attack()
     {
         GameObject bullet = pc.GetObjectFromPool("WormBulletPool");
         bullet.transform.position = firePoint.position;
+
         Vector3 rot = bullet.transform.eulerAngles;
-        rot.z = angle;
+        rot.z = Random.Range(45, 135) + transform.eulerAngles.z;
         bullet.transform.eulerAngles = rot;
+        bullet.GetComponent<AttackDealer>().SetWeapon(attacker.weapon);
     }
 
     public void Death()
     {
-        worm.state = Worm.State.Death;
         anim.Play("Base Layer.WormDeath");
-    }
-
-    private void FinishDeath()
-    {
-        worm.RemoveEnemy();
-    }
-
-    void OnCollisionEnter2D(Collision2D other) {
-        // if (other.gameObject.CompareTag("Player"))
     }
 }

@@ -6,17 +6,17 @@ public class UIEnemyHealthTracker : MonoBehaviour
 {
     [SerializeField] private HealthComponent hp;
     private Image image;
-    private VariableController vc;
 
     void Start()
     {
         image = GetComponent<Image>();
-        vc = DoStatic.GetGameController<VariableController>();
     }
 
     void Update()
     {
-        float percent = hp.GetPercentage();
-        image.fillAmount = percent;
+        if (hp)
+        {
+            image.fillAmount = hp.GetPercentage();
+        }
     }
 }

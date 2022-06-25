@@ -1,52 +1,60 @@
+#pragma warning disable IDE1006 // Naming Styles
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackDealer : MonoBehaviour
 {
-    [SerializeField] protected int strength = 1; //The strength the hit, should be controlled by another script.
-    protected int strengthMult = 1;
+    public WeaponBase weapon { get; protected set; }
 
-    [SerializeField] protected Vector2 knockback = Vector2.one; //The knockback given, should be controlled by another script.
+    private readonly Dictionary<Collider2D, KeyValuePair<IAttackReceiver, Timer>> victims = new();
 
-    [SerializeField] protected float invincibilityLength = 1.5f;
-    [SerializeField] protected float invincibilityTime;
-    [SerializeField] protected float stunTime;
-
-    public void UpdateAttackDealer(WeaponBase weapon)
+    protected virtual void Update()
     {
-        strength = weapon.baseStrength;
-        knockback = weapon.knockbackStr;
-        invincibilityLength = weapon.invincibilityTime;
-        stunTime = weapon.stunTime;
-    }
-    
-    public void SetStrengthMult(int mult)
-    {
-        strengthMult = mult;
-    }
-
-    public void SetKnockbackX(float x)
-    {
-        knockback.x = x;
-    }
-
-    public void SetKnockbackY(float y)
-    {
-        knockback.y = y;
-    }
-
-    public void SetInvincibilityLength(float length)
-    {
-        invincibilityLength = length;
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        IAttackReceiver receiver = collision.GetComponent<IAttackReceiver>();
-        
-        if (receiver != null)
+        if (victims.Count == 0)
         {
-            Debug.Log("Received attack from: " + collision.gameObject.name);
-            receiver.RecieveAttack(transform, strength * strengthMult, knockback, invincibilityLength, stunTime);
+            return;
+        }
+
+        Collider2D[] keys = new Collider2D[victims.Keys.Count];
+        victims.Keys.CopyTo(keys, 0);
+        float delta = Time.deltaTime;
+        foreach (Collider2D key in keys)
+        {
+            if (!victims.TryGetValue(key, out var value))
+            {
+                return;
+            }
+
+            Timer time = value.Value;
+            time.Update(delta);
+            if (time.tick == 0)
+            {
+                time.Reset();
+                value.Key.RecieveAttack(transform, weapon);
+            }
+        }
+    }
+
+    public void SetWeapon(WeaponBase weapon)
+    {
+        this.weapon = weapon;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IAttackReceiver>(out var receiver) && !victims.ContainsKey(collision))
+        {
+            victims.Add(collision, new(receiver, new(weapon.hitInterval)));
+            receiver.RecieveAttack(transform, weapon);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (victims.ContainsKey(other))
+        {
+            victims.Remove(other);
         }
     }
 }

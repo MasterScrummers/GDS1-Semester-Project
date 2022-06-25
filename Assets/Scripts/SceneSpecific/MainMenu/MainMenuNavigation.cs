@@ -21,6 +21,15 @@ public class MainMenuNavigation : MonoBehaviour
         ic = DoStatic.GetGameController<InputController>();
         menuOptions = GetOptions(DoStatic.GetChildren(optionList.transform));
         promptOptions = GetOptions(DoStatic.GetChildren(tutorialPrompt.transform));
+
+        ic.GetComponent<VariableController>().ResetLevel();
+        Vector3 camPos = Vector3.zero;
+        camPos.z = -10;
+        Camera.main.transform.position = camPos;
+
+        HealthComponent health = ic.GetComponent<SceneController>().player.GetComponent<HealthComponent>();
+        health.SetHP();
+        health.GetComponent<PlayerInput>().Restart();
     }
 
     private RectTransform[] GetOptions(Transform[] children)
@@ -64,16 +73,13 @@ public class MainMenuNavigation : MonoBehaviour
 
         void DoGameOption()
         {
-            switch (promptOptions[currentIndex].name)
+            if (promptOptions[currentIndex].name.Equals("Yes"))
             {
-                case "Yes":
-                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.Tutorial);
-                    return;
-
-                case "No":
-                    ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.MainGame);
-                    return;
+                VariableController var = ic.GetComponent<VariableController>();
+                var.SetScene(SceneController.SceneName.Tutorial);
             }
+
+            ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.OpeningCutscene);
         }
 
         bool spacePressed = Input.GetKeyDown(KeyCode.Space);

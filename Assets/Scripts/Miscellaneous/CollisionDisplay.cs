@@ -13,7 +13,7 @@ public class CollisionDisplay : MonoBehaviour
 
     private void PlayerCheck(Collider2D collision, bool active)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             display.SetActive(active);
         }

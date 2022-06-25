@@ -136,12 +136,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 134018831627938800, guid: de905da36588aa44884e3c4721a4f817, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134018831627938800, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: m_LocalPosition.y
       value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 475724108390712465, guid: de905da36588aa44884e3c4721a4f817, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -98.424805
       objectReference: {fileID: 0}
     - target: {fileID: 2487152057857153135, guid: de905da36588aa44884e3c4721a4f817, type: 3}
       propertyPath: rotationSpeed.z
@@ -329,6 +329,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 573766888}
+    - target: {fileID: 6755362572230055648, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6836dbf720f1ef94f93c135dca49b7b3, type: 3}
 --- !u!1001 &2648424485569130677
@@ -385,14 +389,6 @@ PrefabInstance:
     - target: {fileID: 718806065697583108, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
       propertyPath: m_Name
       value: EndingTutorialRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 86.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 889569591840919321, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13.3
       objectReference: {fileID: 0}
     - target: {fileID: 6220325223475044499, guid: d975b505807bff84bbbc4683f3f2c8e2, type: 3}
       propertyPath: m_Camera

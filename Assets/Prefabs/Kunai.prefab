@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2829143237788610599}
   - component: {fileID: 8680449783090467246}
   - component: {fileID: 1202999765444694380}
-  - component: {fileID: 3505762005563016609}
+  - component: {fileID: 2872255842981864019}
   m_Layer: 8
   m_Name: Kunai
   m_TagString: Untagged
@@ -69,8 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cda4baa176f50409715e352759dadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  lifeTime: 3
+  speed:
+    <originalValue>k__BackingField: 8
+    value: 1
+  lifeTime:
+    <timer>k__BackingField: 3
+    <timeScale>k__BackingField: -1
 --- !u!114 &8680449783090467246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,12 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 3
-  knockbackStr: 1
-  invincibilityLength: 1.5
-  invincibilityTime: 0
-  typing: 0
-  stunTime: 0
 --- !u!212 &1202999765444694380
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -141,8 +139,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3505762005563016609
-PolygonCollider2D:
+--- !u!61 &2872255842981864019
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -164,11 +162,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5208334, y: 0.20833334}
-      - {x: -0.5208334, y: -0.20833334}
-      - {x: 0.3541667, y: -0.20833334}
-      - {x: 0.5208334, y: -0.125}
-      - {x: 0.5208334, y: 0.125}
-      - {x: 0.3125, y: 0.20833334}
+  serializedVersion: 2
+  m_Size: {x: 1.0416666, y: 0.41666666}
+  m_EdgeRadius: 0

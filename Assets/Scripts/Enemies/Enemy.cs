@@ -1,95 +1,125 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent (typeof(Animator))]
 [RequireComponent(typeof(HealthComponent))]
 public abstract class Enemy : AttackDealer, IAttackReceiver
 {
+    [Header("Enemy Parameters")]
     [SerializeField] protected bool allowKnockback = true;
-    protected bool hurt;
-    public const float HurtTime = 0.2f;
-    private float hurtColourTimer = HurtTime;
+    [SerializeField] protected bool isHarmless = false;
+    [SerializeField] protected bool isInvincible = false;
+    [SerializeField] private Timer hurtTimer = new(0.2f);
+    [SerializeField] private Timer despawnTimer = new(1f);
+    private readonly Timer stunnedTimer = new(0f);
+
     protected bool isStunned = false;
+
+    protected Animator anim;
     protected Rigidbody2D rb;
-    private SpriteRenderer sr;
-
-    protected RoomData inRoom;
     protected HealthComponent health;
+    protected SpriteRenderer sr;
 
-    protected virtual void Start() {
-        health = GetComponent<HealthComponent>();
+    protected virtual void Start()
+    {
+        weapon = new EnemyWeaponBase(isHarmless ? 0 : 1);
 
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<HealthComponent>();
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        hurtTimer.Reset();
+        despawnTimer.Reset();
     }
-    
-    protected virtual void Update()
+
+    /// <summary>
+    /// NO OVERRIDING ALLOWED!
+    /// </summary>
+    protected override void Update()
     {
-        if (hurt)
+        base.Update();
+        float delta = Time.deltaTime;
+
+        hurtTimer.Update(delta);
+        if (hurtTimer.tick == 0)
         {
-            if (hurtColourTimer < 0f)
+            sr.color = Color.white;
+            hurtTimer.Reset();
+        }
+
+        if (health.health == 0)
+        {
+            despawnTimer.Update(delta);
+            if (despawnTimer.tick == 0)
             {
-                sr.color = Color.white;
-                hurt = false;
-                hurtColourTimer = HurtTime;
-            } else {
-                sr.color = Color.red;
-                hurtColourTimer -= Time.deltaTime;
+                Destroy(gameObject);
+            } else
+            {
+                DeathAction();
             }
+            return;
         }
 
-        isStunned = (stunTime -= Time.deltaTime) > 0f;
-        invincibilityTime -= Time.deltaTime;
-    }
-
-    /// <summary>
-    /// Meant to be COMPLETELY overridden.
-    /// </summary>
-    protected virtual void Death()
-    {
-        RemoveEnemy();
-    }
-
-    public void RemoveEnemy()
-    {
-        if (inRoom)
+        stunnedTimer.Update(delta);
+        isStunned = stunnedTimer.tick > 0f;
+        if (!isStunned)
         {
-            inRoom.UpdateEnemyCount();
-            inRoom = null; //To prevent the count to go down more than once.
+            DoAction();
+        } else
+        {
+            DoStunnedAction();
         }
-
-        gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Should only be called once on startup.
+    /// Treated as the Update method for children.
     /// </summary>
-    /// <param name="roomData">The roomdata needed to update upon death.</param>
-    public void AssignToRoomData(RoomData roomData)
-    {
-        inRoom = roomData;
-    }
+    protected virtual void DoAction() {}
 
-    public virtual void RecieveAttack(Transform attackerPos, int strength, Vector2 knockback, float invincibilityTime, float stunTime)
+    /// <summary>
+    /// Treated as the Update method for children when stunned.
+    /// </summary>
+    protected virtual void DoStunnedAction() { }
+
+    /// <summary>
+    /// Treat as the Update method for children once dead.
+    /// </summary>
+    protected virtual void DeathAction() {}
+
+    /// <summary>
+    /// Meant to be overridden. Called on the first frame of death.
+    /// </summary>
+    protected virtual void Death() {}
+
+    public void RecieveAttack(Transform attackerPos, WeaponBase weapon)
     {
-        Debug.Log("Receiving attack");
-        if (this.invincibilityTime > 0f)
+        if (isInvincible)
         {
             return;
         }
-        health.OffsetHP(-strength);
 
-        hurt = true;
-        this.stunTime = stunTime;
-        this.invincibilityTime = invincibilityTime;
-
-        if (allowKnockback)
-        {
-            rb.AddForce(attackerPos.position.x > transform.position.x ? -knockback : knockback, ForceMode2D.Impulse);
-        }
+        PlayerWeaponBase playerWeapon = (PlayerWeaponBase)weapon;
+        health.OffsetHP(-playerWeapon.damage * playerWeapon.strengthMult);
 
         if (health.health <= 0)
         {
             Death();
+            return;
         }
+
+        sr.color = Color.red;
+        if (allowKnockback)
+        {
+            stunnedTimer.SetTimer(playerWeapon.stunTime);
+            rb.AddForce((transform.position - attackerPos.position).normalized * playerWeapon.knockback, ForceMode2D.Impulse);
+        }
+
+        HurtReaction();
     }
+
+    /// <summary>
+    /// Treated as RecieveAttack.
+    /// </summary>
+    protected virtual void HurtReaction() {}
 }

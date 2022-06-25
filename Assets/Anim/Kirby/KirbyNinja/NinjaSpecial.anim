@@ -21,10 +21,10 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
-    - time: 1
-      value: {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
+    - time: 0.1
+      value: {fileID: 113024050, guid: d99745983906b2c458b26661e3482a9e, type: 3}
     attribute: m_Sprite
-    path: 
+    path: KirbySpritePivot/Kirby Sprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 30
@@ -35,7 +35,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 2581053364
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -43,13 +43,13 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
-    - {fileID: -2144854836, guid: d99745983906b2c458b26661e3482a9e, type: 3}
+    - {fileID: 113024050, guid: d99745983906b2c458b26661e3482a9e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0333333
+    m_StopTime: 0.13333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -70,30 +70,16 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SpawnSpecialKunaiProjectile
-    data: On
+    functionName: SpecialAttack
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: set_animState
+  - time: 0.13333334
+    functionName: AnimReset
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 5
-    messageOptions: 0
-  - time: 0
-    functionName: StartAnimInvincible
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 2
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.0333333
-    functionName: SpawnSpecialKunaiProjectile
-    data: Off
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
     messageOptions: 0

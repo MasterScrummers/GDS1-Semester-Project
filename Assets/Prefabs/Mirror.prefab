@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 6
-  knockback: {x: 3, y: 0}
+  knockback: {x: 7, y: 0}
   invincibilityLength: 0.3
   invincibilityTime: 0
   stunTime: 0.2

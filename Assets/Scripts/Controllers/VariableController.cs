@@ -1,3 +1,4 @@
+#pragma warning disable IDE1006 // Naming Styles
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +16,45 @@ public class VariableController : MonoBehaviour
         }
     }
 
+    [System.Serializable]
+    private class ColourPedia
+    {
+        [field: SerializeField] public string colourName { get; private set; }
+        [field: SerializeField] public Color colour { get; private set; }
+    }
+
+    [System.Serializable]
+    public class RoomColourPalettes
+    {
+        [field: SerializeField] public string colourName { get; private set; }
+        [field: SerializeField] public Color backgroundColour { get; private set; }
+        [field: SerializeField] public Color platformColour { get; private set; }
+        [field: SerializeField] public Color doorColour { get; private set; }
+        [field: SerializeField] public Color wallColour { get; private set; }
+    }
+
     [SerializeField] private IconPedia[] icons;
+    [SerializeField] private ColourPedia[] colours;
+    [SerializeField] private RoomColourPalettes[] roomPalettes;
     private Dictionary<string, Sprite> allIcons;
+
+    [SerializeField] private List<RoomContent> roomContents;
+
     private Dictionary<string, Color32> globalColours;
+    private SceneController.SceneName scene = SceneController.SceneName.MainGame;
+    public int level { get; private set; } = 0;
+    public bool finalLevel { get; private set; } = false;
+
+    public void IncrementLevel(int numberOfLevels)
+    {
+        level++;
+        finalLevel = level == numberOfLevels;
+    }
+
+    public void ResetLevel()
+    {
+        level = 0;
+    }
 
     void Awake()
     {
@@ -27,17 +64,11 @@ public class VariableController : MonoBehaviour
             icon.AddIntoDictionary(ref allIcons);
         }
 
-        globalColours = new()
+        globalColours = new();
+        foreach (ColourPedia colour in colours)
         {
-            ["Rubik Red"] = new(183, 18, 52, 255),
-            ["Rubik Green"] = new(0, 155, 72, 255),
-            ["Rubik White"] = Color.white,
-            ["Rubik Orange"] = new(255, 88, 0, 255),
-            ["Rubik Blue"] = new(0, 70, 173, 255),
-            ["Rubik Yellow"] = new(255, 213, 0, 255),
-
-            ["Gray"] = Color.gray,
-        };
+            globalColours.Add(colour.colourName, colour.colour);
+        }
     }
 
     public Sprite GetIcon(string name)
@@ -48,5 +79,25 @@ public class VariableController : MonoBehaviour
     public Color32 GetColour(string colour)
     {
         return globalColours[colour];
+    }
+
+    public RoomColourPalettes GetRandomColourPalette()
+    {
+        return roomPalettes[Random.Range(0, roomPalettes.Length)];
+    }
+
+    public void SetScene(SceneController.SceneName scene)
+    {
+        this.scene = scene;
+    }
+
+    public SceneController.SceneName GetScene()
+    {
+        return scene;
+    }
+
+    public RoomContent GetRandomRoomContent()
+    {
+        return Instantiate(roomContents[Random.Range(0, roomContents.Count)]);
     }
 }
