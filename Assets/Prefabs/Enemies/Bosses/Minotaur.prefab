@@ -343,6 +343,7 @@ MonoBehaviour:
   - {fileID: 544042796527561100, guid: 47011b07ad5690649b41856ed01f6616, type: 3}
   minMeleeBound: {fileID: 6718034674281554294}
   maxMeleeBound: {fileID: 6364428458253490231}
+  attackList: 
 --- !u!114 &4030648275961640545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330cef5fe245648438f1e2f988034537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 200
+  <maxHealth>k__BackingField: 330
 --- !u!95 &2505903564164864334
 Animator:
   serializedVersion: 4
