@@ -1,6 +1,7 @@
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MinotaurBoss : Enemy
 {
@@ -16,6 +17,9 @@ public class MinotaurBoss : Enemy
 
     private Transform player;
     private Timer aiTimer;
+
+    private int attackNum; //The type of attack Minotaur performed
+    public List<int> attackList = new List<int>(); //Array to store the attackNum
 
     protected override void Start()
     {
@@ -80,8 +84,32 @@ public class MinotaurBoss : Enemy
             rb.velocity = isWaiting ? Vector2.zero : new(transform.localScale.x < 0 ? -speed : speed, 0);
             state = inRange ? MinotaurState.Attacking : state;
 
-            anim.SetInteger("AttackType", player.position.y > transform.position.y ? 0 : Random.Range(1, 3));
-        } else
+            if (attackList.Count < 2)
+            {
+                attackNum = player.position.y > transform.position.y ? 0 : Random.Range(1, 3);
+                anim.SetInteger("AttackType", attackNum);
+                if (attackNum != 2)
+                {
+                    attackList.Clear();
+                }
+
+                else if (attackNum == 2)
+                {
+                    attackList.Add(attackNum);
+                }
+            }
+
+            else if (attackList.Count >= 1)
+            {
+                anim.SetInteger("AttackType", 1);
+                attackList.Clear();
+            }
+
+            
+
+            //anim.SetInteger("AttackType", player.position.y > transform.position.y ? 0 : Random.Range(1, 3));
+        } 
+        else
         {
             rb.velocity = Vector2.zero;
         }

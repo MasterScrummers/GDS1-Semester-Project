@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
         specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
         cooldownTimer.Finish();
 
-        lightWeapon = heavyWeapon = specialWeapon = new Sword(speed); //Turn it off after
+       // lightWeapon = heavyWeapon = specialWeapon = new Jet(speed); //Turn it off after
     }
 
     void Update()

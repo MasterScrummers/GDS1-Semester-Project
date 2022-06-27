@@ -256,7 +256,7 @@ public class PlayerMiscAnim : MonoBehaviour
 
             case AnimEndTypes.NinjaSpecial:
                 AnimAttack(PlayerAnim.AnimState.SpecialAttack);
-                bulletHellWaves = 50;
+                bulletHellWaves = 14;
                 break;
         }
 
@@ -329,7 +329,7 @@ public class PlayerMiscAnim : MonoBehaviour
     [Header("Jet Parameters")]
     private float jetBackSpd;
     [SerializeField] private float jetLightSpd = 7;
-    [SerializeField] private float jetHeavySpd = 11;
+    [SerializeField] private float jetHeavySpd = 15;
     [SerializeField] private float jetSpecialSpd = 20;
     [SerializeField] private Transform spritePivot;
     private bool isDashing;

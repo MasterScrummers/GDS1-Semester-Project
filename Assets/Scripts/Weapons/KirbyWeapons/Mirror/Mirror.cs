@@ -6,27 +6,27 @@ public class Mirror : PlayerWeaponBase
     {
         description = "Light: Short Invincibility + Pushback\nHeavy: Summon 4 small mirror\nSpecial: Mirror Bomb";
 
-        specialCooldown = Random.Range(5, 7);
-        damage = Random.Range(2, 5);
+        specialCooldown = 7;
+        damage = Random.Range(2, 4);
 
         stunTime = 1;
     }
 
     public override void LightAttack(Animator anim)
     {
-        UpdateValues(3, 1, new(20, 0), 0.5f, stunTime);
+        UpdateValues(3, 0, new(20, 0), 1f, 1f);
         base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim) //Look into how this works
     {
-        UpdateValues(1, new(10, 0), 0.5f, stunTime);
+        UpdateValues(2, new(7, 0), 0.3f, 0.2f);
         base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim) //Look into how this works
     {
-        UpdateValues(1, new(0, 0), 0.1f, stunTime);
+        UpdateValues(3, new(25, 0), 0.5f, 1f);
         base.SpecialAttack(anim);
     }
 }
