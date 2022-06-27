@@ -60,6 +60,7 @@ public class OpeningCutscene : MonoBehaviour
                 {
                     SceneController sceneController = DoStatic.GetGameController<SceneController>();
                     sceneController.ChangeScene(sceneController.GetComponent<VariableController>().GetScene());
+                    sceneController.GetComponent<VariableController>().SetScene(SceneController.SceneName.MainGame);
                 }
                 return;
         }
