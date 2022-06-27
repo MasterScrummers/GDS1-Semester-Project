@@ -53,6 +53,12 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
+        if (ic.GetButtonDown("Movement", "Exit"))
+        {
+            ic.SetInputLock(true);
+            ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.TitleScreen);
+        }
+
         HorizontalMovement();
         VerticalMovement();
         AttackChecks();
