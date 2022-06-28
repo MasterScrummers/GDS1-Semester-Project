@@ -16,13 +16,13 @@ public class Cutter : PlayerWeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        UpdateValues(7, 1, new(10, 0), 0.1f, 0.2f);
+        UpdateValues(7, 1, new(10, 0), 0.1f, 0.2f, "CutterLight");
         base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        UpdateValues(2, 2, new(7, 0), 0.17f, 0.1f);
+        UpdateValues(2, 2, new(7, 0), 0.17f, 0.1f, "CutterHeavy");
         base.HeavyAttack(anim);
     }
 

@@ -11,6 +11,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
     private InputController ic; // Input Controller
     private SceneController sc; // Scene Controller
+    private AudioController ac; // Audio Controller
     private Rigidbody2D rb; //The rigidbody of the player
     private JumpComponent jump; //The update the animation according to player input.
     private HealthComponent health; //To track the player's health.
@@ -28,6 +29,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
     {
         ic = DoStatic.GetGameController<InputController>();
         sc = ic.GetComponent<SceneController>();
+        ac = DoStatic.GetGameController<AudioController>();
 
         anim = GetComponent<Animator>();
         miscAnim = GetComponent<PlayerMiscAnim>();
@@ -170,6 +172,7 @@ public class PlayerAnim : MonoBehaviour, IAttackReceiver
 
         isDead = health.health == 0;
         hurtTimer.SetTimer(weapon.hitInterval + invincibilityBuffer);
+        ac.PlaySound("KirbyHurt");
 
         if (isDead)
         {

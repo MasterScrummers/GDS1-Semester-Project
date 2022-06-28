@@ -16,7 +16,7 @@ public class Ninja : PlayerWeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        UpdateValues(1, knockback, hitInterval, stunTime);
+        UpdateValues(1, knockback, hitInterval, stunTime, "KunaiLight");
         base.LightAttack(anim);
     }
 

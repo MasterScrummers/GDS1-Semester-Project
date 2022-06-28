@@ -15,6 +15,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
 
     protected bool isStunned = false;
 
+    private AudioController ac;
     protected Animator anim;
     protected Rigidbody2D rb;
     protected HealthComponent health;
@@ -24,6 +25,7 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
     {
         weapon = new EnemyWeaponBase(isHarmless ? 0 : 1);
 
+        ac = DoStatic.GetGameController<AudioController>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<HealthComponent>();
@@ -98,6 +100,8 @@ public abstract class Enemy : AttackDealer, IAttackReceiver
         {
             return;
         }
+
+        ac.PlaySound("Hurt");
 
         PlayerWeaponBase playerWeapon = (PlayerWeaponBase)weapon;
         health.OffsetHP(-playerWeapon.damage * playerWeapon.strengthMult);

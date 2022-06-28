@@ -22,9 +22,12 @@ public class JumpComponent : MonoBehaviour
     [SerializeField] private float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
     [SerializeField] private LayerMask ground;
 
+    private AudioController ac;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ac = DoStatic.GetGameController<AudioController>();
     }
 
     private void Update()
@@ -60,6 +63,7 @@ public class JumpComponent : MonoBehaviour
             return;
         }
 
+        ac.PlaySound("Jump");
         hasJumped = true;
         isJumpHeld = true;
         numberOfJumps.value--;

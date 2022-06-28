@@ -13,19 +13,19 @@ public class Sword : PlayerWeaponBase
 
     public override void LightAttack(Animator anim)
     {
-        UpdateValues(1, new(15, 0), 0.17f, 0.2f);
+        UpdateValues(1, new(15, 0), 0.17f, 0.2f, "SwordLight");
         base.LightAttack(anim);
     }
 
     public override void HeavyAttack(Animator anim)
     {
-        UpdateValues(3, 2, new(20, 0), 1f, 0.5f);
+        UpdateValues(3, 2, new(20, 0), 1f, 0.5f, "SwordHeavy1");
         base.HeavyAttack(anim);
     }
 
     public override void SpecialAttack(Animator anim)
     {
-        UpdateValues(15, 2, new(15, 0), 0.5f, 0.3f);
+        UpdateValues(15, 2, new(15, 0), 0.5f, 0.3f, "SwordSpecial1");
         base.SpecialAttack(anim);
     }
 }

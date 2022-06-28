@@ -6,6 +6,7 @@ public class WeaponChest : InteractableObject
 {
     private RoomData roomData; //The room data.
     private Animator anim; //WeaponChest animator
+    private AudioController ac;
     private bool hasAppeared = false;
     private bool isOpened = false;
 
@@ -14,6 +15,7 @@ public class WeaponChest : InteractableObject
         base.Awake();
         roomData = GetComponentInParent<RoomData>();
         anim = GetComponent<Animator>();
+        ac = DoStatic.GetGameController<AudioController>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class WeaponChest : InteractableObject
         ic.SetInputLock(true);
         anim.SetTrigger("Open");
 
+        ac.PlaySound("ChestSparkle");
     }
 
     private void OpenUI()

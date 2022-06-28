@@ -1001,7 +1001,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6333333
+  - time: 0.5
     functionName: AnimMethod
     data: HammerFlipExplode
     objectReferenceParameter: {fileID: 0}

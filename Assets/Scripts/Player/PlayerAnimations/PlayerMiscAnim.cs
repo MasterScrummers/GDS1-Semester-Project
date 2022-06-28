@@ -61,6 +61,7 @@ public class PlayerMiscAnim : MonoBehaviour
             ninjaTimer.Update(Time.deltaTime);
             if (ninjaTimer.tick == 0 && bulletHellWaves-- > 0)
             {
+                ac.PlaySound("KunaiLight");
                 ninjaTimer.Reset();
                 float num = 10;
                 for (int i = 0; i < num; i++)
@@ -148,15 +149,16 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
 
             case "HammerHeavySleep":
+                ac.PlaySound("HammerHeavySleep");
                 isDashing = false;
                 break;
-
+            
             case "HammerFlip":
                 ((Hammer)attacker.weapon).HammerFlip();
                 break;
 
             case "HammerFlipExplode":
-                ac.PlaySound("HammerSpecial_1");
+                ac.PlaySound("HammerSpecial1Explosion");
                 break;
             #endregion
 
@@ -178,6 +180,7 @@ public class PlayerMiscAnim : MonoBehaviour
                 break;
 
             case "SpecialShieldEnd":
+                ac.PlaySound("MirrorSpecialPop");
                 mirrorShieldAnim.SetTrigger("End");
                 break;
             #endregion
@@ -195,6 +198,10 @@ public class PlayerMiscAnim : MonoBehaviour
             case "JetSpecialStart":
                 SpecialAttack();
                 DashStart(jetSpecialSpd);
+                break;
+
+            case "JetSpecialExplosion":
+                ac.PlaySound("JetSpecialExplosion");
                 break;
 
             case "JetBackStart":
@@ -248,6 +255,14 @@ public class PlayerMiscAnim : MonoBehaviour
 
             case AnimEndTypes.NinjaHeavy:
                 AnimAttack(PlayerAnim.AnimState.HeavyAttack);
+                
+                // Repeats the kunai sound to make it more full, to simulate throwing multiple kunais
+                int soundOverlap = 3;
+                for (int i = 0; i < soundOverlap; i++)
+                {
+                    ac.PlaySound("KunaiLight");
+                }
+                
                 for (int i = 0; i < 10; i++)
                 {
                     SpawnProjectile("KunaiPool", Random.Range(-45, 45) + AngleFlip(), pi.heavyWeapon);
@@ -307,6 +322,9 @@ public class PlayerMiscAnim : MonoBehaviour
 
     private void CutterSpecial(int number)
     {
+        ac.PlaySound("CutterSpecial");
+        if (number>10) {ac.PlaySound("CutterSpecial");}
+
         for (int i = 0; i < number; i++)
         {
             Transform projectile = SpawnProjectile("CutterPool", 360 / number * i, pi.specialWeapon).transform;

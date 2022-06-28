@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainMenuNavigation : MonoBehaviour
 {
     private InputController ic;
+    private AudioController ac;
     [SerializeField] private GameObject start;
     [SerializeField] private RectTransform pointer;
     [SerializeField] private GameObject optionList;
@@ -19,6 +20,7 @@ public class MainMenuNavigation : MonoBehaviour
     private void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
+        ac = DoStatic.GetGameController<AudioController>();
         menuOptions = GetOptions(DoStatic.GetChildren(optionList.transform));
         promptOptions = GetOptions(DoStatic.GetChildren(tutorialPrompt.transform));
 
@@ -66,6 +68,7 @@ public class MainMenuNavigation : MonoBehaviour
 
         void SetPointerPosition(int increments, RectTransform[] options)
         {
+            if (increments != 0) {ac.PlaySound("MenuSelect");}
             currentIndex += increments;
             currentIndex = currentIndex < 0 ? options.Length - 1 : currentIndex % options.Length;
             pointer.position = options[currentIndex].position;
