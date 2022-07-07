@@ -1,90 +1,166 @@
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE1006 // Naming Styles
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MinotaurBoss : Enemy
 {
-    [SerializeField] private Animator anim;
+    public enum MinotaurState { Idle, Walking, Attacking, Death };
+    [field: SerializeField, Header("Minotaur Parameters")] public MinotaurState state { get; private set; } = MinotaurState.Idle;
+    [SerializeField] private float speed = 2f;
+    [SerializeField] private float idleTime = 3f;
+    [SerializeField] private float walkTime = 5f;
+    [SerializeField] private GameObject[] SpawnableEnemies;
 
-    [SerializeField] private int direction = 1; //The direction of the enemy.
-    [SerializeField] private float movementSpeed = 2; //The movement of the enemy.
-    [SerializeField] private float leftBoundary = -1; //The right boundary?
-    [SerializeField] private float rightBoundary = 1; //The left boundary?
-    [SerializeField] private float attackRadius = 2.0f;
-    private GameObject player;
+    [SerializeField] private Transform minMeleeBound;
+    [SerializeField] private Transform maxMeleeBound;
 
-    // Start is called before the first frame update
+    private Transform player;
+    private Timer aiTimer;
+
+    private int attackNum; //The type of attack Minotaur performed
+    public List<int> attackList = new List<int>(); //Array to store the attackNum
+
     protected override void Start()
     {
         base.Start();
 
-        player = DoStatic.GetPlayer();
-
-        rb = GetComponent<Rigidbody2D>();
-
-        if (leftBoundary > rightBoundary)
-        {
-            float temp = leftBoundary;
-            leftBoundary = rightBoundary;
-            rightBoundary = temp;
-        }
-
-        float oX = transform.position.x;
-        leftBoundary += oX;
-        rightBoundary += oX;
+        player = DoStatic.GetPlayer<Transform>();
+        aiTimer = new(idleTime);
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    protected override void DoAction()
     {
-        base.Update();
-        Vector3 dir = transform.position - player.transform.position; //to check if player is to the right or left of player
-        if (direction == 1)
+        aiTimer.Update(Time.deltaTime);
+        LookAtPlayer();
+        Walk();
+
+        if (aiTimer.tick != 0)
         {
-            anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position) < attackRadius && dir.x < 0); 
-        }
-        else
-        {
-            anim.SetBool("Attack", Vector2.Distance(transform.position, player.transform.position)  < attackRadius && dir.x > 0);
-        }
-        
-        if (!anim.GetBool("Attack") && !anim.GetBool("Dead"))
-        {
-            Move();
+            return;
         }
 
+        switch (state)
+        {
+            case MinotaurState.Idle:
+                anim.SetTrigger("Attacking");
+                state = MinotaurState.Walking;
+                aiTimer.SetTimer(walkTime);
+                break;
+
+            case MinotaurState.Walking:
+                anim.SetInteger("AttackType", 3);
+                anim.SetBool("InRange", true);
+                break;
+        }
     }
 
-    protected void Move()
+    protected override void DoStunnedAction()
+    {
+        if (state == MinotaurState.Idle)
+        {
+            aiTimer.Finish();
+        }
+    }
+
+    private void LookAtPlayer()
     {
         Debug.Log("Moving");
         Vector3 sca = transform.localScale;
-        if (sca.x < 0 && transform.position.x < leftBoundary || sca.x > 0 && transform.position.x > rightBoundary)
-        {
-            sca.x *= -1;
-            direction *= -1;
-            transform.localScale = sca;
-        }
-
-        Vector2 vel = rb.velocity;
-        vel.x = direction * movementSpeed;
-        rb.velocity = vel;
+        sca.x = Mathf.Abs(sca.x);
+        sca.x = transform.position.x < player.position.x ? sca.x : -sca.x;
+        transform.localScale = sca;
     }
 
-    void OnDrawGizmosSelected()
+    private void Walk()
     {
-        float posX = rb ? 0 : transform.position.x;
-        Gizmos.DrawLine(new Vector2(posX + leftBoundary, int.MinValue), new Vector2(posX + leftBoundary, int.MaxValue));
-        Gizmos.DrawLine(new Vector2(posX + rightBoundary, int.MinValue), new Vector2(posX + rightBoundary, int.MaxValue));
+        if (state == MinotaurState.Walking)
+        {
+            bool inRange = InMeleeBounds(player.position);
+            anim.SetBool("InRange", inRange);
 
+            bool isWaiting = Mathf.Abs(player.position.x - transform.position.x) < 1f;
+            anim.SetBool("Waiting", isWaiting);
+
+            rb.velocity = isWaiting ? Vector2.zero : new(transform.localScale.x < 0 ? -speed : speed, 0);
+            state = inRange ? MinotaurState.Attacking : state;
+
+            if (attackList.Count < 2)
+            {
+                attackNum = player.position.y > transform.position.y ? 0 : Random.Range(1, 3);
+                anim.SetInteger("AttackType", attackNum);
+                if (attackNum != 2)
+                {
+                    attackList.Clear();
+                }
+
+                else if (attackNum == 2)
+                {
+                    attackList.Add(attackNum);
+                }
+            }
+
+            else if (attackList.Count >= 1)
+            {
+                anim.SetInteger("AttackType", 1);
+                attackList.Clear();
+            }
+
+            
+
+            //anim.SetInteger("AttackType", player.position.y > transform.position.y ? 0 : Random.Range(1, 3));
+        } 
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+
+    private bool InMeleeBounds(Vector2 pos)
+    {
+        Vector2 min = minMeleeBound.position; //BottomLeft
+        Vector2 max = maxMeleeBound.position; //TopRight
+        if (transform.localScale.x < 0)
+        {
+            DoStatic.Swap(ref min.x, ref max.x);
+        }
+
+        bool inRange = pos.x > min.x && pos.x < max.x;
+        return inRange && pos.y > min.y && pos.y < max.y;
     }
 
     protected override void Death()
     {
-        anim.SetBool("Dead", true);
-        rb.velocity = Vector3.zero; //Stops Minotaur sliding after death
-        BoxCollider2D[] colChildren = GetComponentsInChildren<BoxCollider2D>();
-        foreach (BoxCollider2D collider in colChildren)
+        anim.Play("MinotaurDeath");
+    }
+
+    private void LoopToIdle()
+    {
+        anim.Play("MinotaurIdle");
+        state = MinotaurState.Idle;
+        aiTimer.SetTimer(idleTime);
+    }
+
+    private void SummonMinon()
+    {
+        for (int i = 0; i < Random.Range(1, 4); i++)
         {
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), collider);
+            Transform parent = transform.parent;
+            GameObject minion = Instantiate(SpawnableEnemies[Random.Range(0, SpawnableEnemies.Length)], parent);
+            minion.transform.localPosition = new Vector2(Random.Range(-6.5f, 6.5f), Random.Range(-5.5f, 5.5f));
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Vector2 min = minMeleeBound.position; //BottomLeft
+        Vector2 max = maxMeleeBound.position; //TopRight
+        Vector2 bottomRight = new(max.x, min.y);
+        Vector2 topLeft = new(min.x, max.y);
+
+        Gizmos.DrawLine(min, bottomRight);
+        Gizmos.DrawLine(max, bottomRight);
+        Gizmos.DrawLine(min, topLeft);
+        Gizmos.DrawLine(max, topLeft);
     }
 }

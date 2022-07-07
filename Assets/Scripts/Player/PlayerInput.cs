@@ -1,75 +1,66 @@
 using UnityEngine;
 
+[RequireComponent(typeof(JumpComponent))]
 public class PlayerInput : MonoBehaviour
 {
     private InputController ic; //Input controller to check inputs.
-    private float cooldownTimer = 10f; //The cooldown timer
-    private float currCooldownTimer; //Current cooldown tick
+    private readonly Timer cooldownTimer = new(10f); //The cooldown timer
 
     private PlayerAnim playerAnim; //Kirby's animation for the attack
     private AttackDealer dealer; //The attack hitbox when attacking.
     private Rigidbody2D rb; //Kirby Rigidbody2D for the movement
 
-    public float speed = 5f; //Speed of the character
-    public float orignalspeed { get; private set; } //Orignal Speed
-
-    public bool hasJumped { private set; get; } = false;//Was the jump pressed?
-    public bool isFalling { private set; get; } = false;//Is player falling?
     public bool isSliding = false;
+    public OriginalValue<float> speed = new(5);
+    public bool allowMovement = true; //Can be manipulated by the animator.
 
-    private bool isJumpHeld = false; //Was the jump button held after inital jump?
-    public bool canInteract = false;
+    private JumpComponent jump; //The main jump process.
 
-    [SerializeField] private float baseJumpForce = 5; //The initial jump force
-    [SerializeField] private float jumpHoldTimer = 0.75f; //The timer for extra height
-    private float holdTimer; //Timer of the jumpHoldTimer;
-    private float prevYVel; //Previous Highest Y Velocity
-    [SerializeField] private float coyoteTimer = 0.2f;
-    private float coyoteTick;
-    public float originalGravity { private set; get; } //The original gravity
-    public float gravityMultiplier = 3.0f; //Multiplies the gravity when falling
-    public float originalGravityMultiplier;
-
-    public float radius; //the float groundCheckRadius allows you to set a radius for the groundCheck, to adjust the way you interact with the ground
-    public Transform feet; //Kirby's feet, to check if it is colliding with the ground
-    public Transform firePoint; // Fire Point for all sort of range weapon
-
-    [HideInInspector] public WeaponBase lightWeapon; //The assigned light weapon
-    [HideInInspector] public WeaponBase heavyWeapon; //The assigned heavy weapon
-    [HideInInspector] public WeaponBase specialWeapon; //The assigned special weapon
+    [HideInInspector] public bool canInteract = false;
+    [HideInInspector] public PlayerWeaponBase lightWeapon; //The assigned light weapon
+    [HideInInspector] public PlayerWeaponBase heavyWeapon; //The assigned heavy weapon
+    [HideInInspector] public PlayerWeaponBase specialWeapon; //The assigned special weapon
 
     void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
 
-        playerAnim = GetComponentInChildren<PlayerAnim>();
-        dealer = GetComponentInChildren<AttackDealer>();
+        playerAnim = GetComponent<PlayerAnim>();
         rb = GetComponent<Rigidbody2D>();
-
-        originalGravity = rb.gravityScale;
-        orignalspeed = speed;
-        originalGravityMultiplier = gravityMultiplier;
-
+        jump = GetComponent<JumpComponent>();
+        dealer = GetComponentInChildren<AttackDealer>();
         Restart();
     }
 
     public void Restart()
     {
-        lightWeapon = WeaponBase.RandomWeapon();
-        heavyWeapon =  WeaponBase.RandomWeapon();
-        specialWeapon = WeaponBase.RandomWeapon(); 
+        lightWeapon = PlayerWeaponBase.RandomWeapon(speed);
+        heavyWeapon = PlayerWeaponBase.RandomWeapon(speed);
+        specialWeapon = PlayerWeaponBase.RandomWeapon(speed);
+        cooldownTimer.Finish();
+
+    //    lightWeapon = heavyWeapon = specialWeapon = new Jet(speed); //Turn it off after
     }
 
     void Update()
     {
-        if (ic.lockedInput)
+        ic.SetInputReason("Movement", allowMovement);
+        if (ic.isInputLocked) //Allows knockback when taking damage.
         {
-            rb.velocity = Vector3.zero;
+            Vector2 vel = rb.velocity;
+            vel.x = 0;
+            rb.velocity = vel;
             return;
         }
 
-        VerticalMovement();
+        if (ic.GetButtonDown("Movement", "Exit"))
+        {
+            ic.SetInputLock(true);
+            ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.TitleScreen);
+        }
+
         HorizontalMovement();
+        VerticalMovement();
         AttackChecks();
     }
 
@@ -79,122 +70,59 @@ public class PlayerInput : MonoBehaviour
     /// <returns>1 for finished cooldown.</returns>
     public float CooldownPercentage()
     {
-        return 1 - Mathf.Clamp(currCooldownTimer / cooldownTimer, 0, 1);
-    }
-
-    private void VerticalMovement()
-    {
-        if (!isSliding)
-        {
-            rb.gravityScale = rb.velocity.y < 0 ? originalGravity * gravityMultiplier : originalGravity;
-        }
-        isFalling = rb.velocity.y < -1f;
-        if (isFalling && coyoteTick < 0)
-        {
-            return;
-        } else if (isFalling)
-        {
-            coyoteTick -= Time.deltaTime;
-        } else
-        {
-            coyoteTick = coyoteTimer;
-        }
-
-        if (canInteract && ic.GetButtonDown("Movement", "Interact"))
-        {
-            //ic.SetInputLock(true);
-            canInteract = false;
-            return;
-        }
-
-        Vector2 vel = rb.velocity;
-        if (ic.GetButtonDown("Movement", "Jump") && !hasJumped && OnGround())
-        {
-            vel.y = baseJumpForce;
-            rb.velocity = vel;
-            prevYVel = 0;
-            holdTimer = jumpHoldTimer;
-            hasJumped = true;
-            isJumpHeld = true;
-            coyoteTick = -1;
-        }
-        else if (Mathf.Abs(rb.velocity.y) < 0.1f && OnGround())
-        {
-            hasJumped = false;
-        }
-
-        if (!hasJumped || !isJumpHeld)
-        {
-            return;
-        }
-
-        isJumpHeld = ic.GetButtonStates("Movement", "Jump") && holdTimer > 0;
-        if (!isJumpHeld)
-        {
-            return;
-        }
-
-        holdTimer -= Time.deltaTime;
-        if (vel.y > prevYVel)
-        {
-            prevYVel = vel.y;
-        }
-        else
-        {
-            vel.y = prevYVel;
-            rb.velocity = vel;
-        }
+        return 1 - Mathf.Clamp(cooldownTimer.tick / cooldownTimer.timer, 0, 1);
     }
 
     private void HorizontalMovement()
     {
         if (!isSliding)
         {
-            Vector2 vel = new(speed * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
-            rb.velocity = vel;
+            rb.velocity = new(speed.value * ic.GetAxisRawValues("Movement", "Horizontal"), rb.velocity.y);
         }
+    }
+
+    private void VerticalMovement()
+    {
+        if (canInteract && ic.GetButtonDown("Movement", "Interact"))
+        {
+            canInteract = false;
+            return;
+        }
+
+        bool isJumpHeld = ic.GetButtonStates("Movement", "Jump");
+        if (ic.GetButtonDown("Movement", "Jump"))
+        {
+            jump.Jump();
+
+        }
+        jump.JumpHeld(isJumpHeld, Time.deltaTime);
     }
 
     private void AttackChecks()
     {
-        currCooldownTimer -= Time.deltaTime;
         if (playerAnim.IsAttacking())
         {
             return;
         }
 
-        if (ic.GetButtonDown("Attack", "Light") && lightWeapon != null)
+        if (ic.GetButtonDown("Attack", "Light"))
         {
-            lightWeapon.LightAttack(playerAnim.GetAnimator());
-            dealer.UpdateAttackDealer(lightWeapon);
+            lightWeapon.LightAttack(playerAnim.anim);
+            dealer.SetWeapon(lightWeapon);
         }
 
-        if (ic.GetButtonDown("Attack", "Heavy") && heavyWeapon != null)
+        if (ic.GetButtonDown("Attack", "Heavy"))
         {
-            heavyWeapon.HeavyAttack(playerAnim.GetAnimator());
-            dealer.UpdateAttackDealer(heavyWeapon);
+            heavyWeapon.HeavyAttack(playerAnim.anim);
+            dealer.SetWeapon(heavyWeapon);
         }
 
-        if (currCooldownTimer < 0 && ic.GetButtonDown("Attack", "Special") && specialWeapon != null)
+        cooldownTimer.Update(Time.deltaTime);
+        if (cooldownTimer.tick == 0 && ic.GetButtonDown("Attack", "Special"))
         {
-            cooldownTimer = specialWeapon.specialCooldown;
-            currCooldownTimer = cooldownTimer;
-            specialWeapon.SpecialAttack(playerAnim.GetAnimator());
-            dealer.UpdateAttackDealer(specialWeapon);
+            cooldownTimer.SetTimer(specialWeapon.specialCooldown);
+            specialWeapon.SpecialAttack(playerAnim.anim);
+            dealer.SetWeapon(specialWeapon);
         }
-    }
-
-    private bool OnGround()
-    {
-        bool Overlap(string layerName)
-        {
-            return Physics2D.OverlapCircle(feet.position, radius, LayerMask.NameToLayer(layerName));
-        }
-        return Overlap("Ground");
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(feet.position, radius);
     }
 }

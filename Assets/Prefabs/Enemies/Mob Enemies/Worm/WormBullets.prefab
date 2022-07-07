@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4163211598518025111}
   - component: {fileID: 3816852513538653239}
   - component: {fileID: 7916439309893593800}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: WormBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,8 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cda4baa176f50409715e352759dadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  lifeTime: 2
+  destroyOnContact: 1
+  speed:
+    <originalValue>k__BackingField: 5
+    value: 1
+  lifeTime:
+    <timer>k__BackingField: 3
+    <timeScale>k__BackingField: -1
 --- !u!50 &4163211598518025111
 Rigidbody2D:
   serializedVersion: 4
@@ -156,12 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced725b26605a5146ad05ce3e0432459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 1
-  knockbackStr: 1
-  invincibilityLength: 1.5
-  invincibilityTime: 0
-  typing: 0
-  stunTime: 0
 --- !u!58 &7916439309893593800
 CircleCollider2D:
   m_ObjectHideFlags: 0

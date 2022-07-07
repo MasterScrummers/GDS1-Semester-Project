@@ -4,9 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(MapGenerator))]
 public class SceneStartUp : MonoBehaviour
 {
+    [System.Serializable]
+    private class Level
+    {
+        [field: SerializeField] public int numberOfRooms { get; private set; }
+        [field: SerializeField] public RoomContent[] mandatoryContent { get; private set; }
+    }
+
     private GameObject player;
     private Dictionary<string, GameObject> children;
     [SerializeField] private bool generateLevel = true;
+    [SerializeField] private Level[] levels;
 
     void Start()
     {
@@ -20,7 +28,10 @@ public class SceneStartUp : MonoBehaviour
 
         if (generateLevel)
         {
-            GetComponent<MapGenerator>().GenerateLevel();
+            VariableController vars = DoStatic.GetGameController<VariableController>();
+            Level level = levels[vars.level];
+            GetComponent<MapGenerator>().GenerateLevel(level.numberOfRooms, level.mandatoryContent);
+            vars.IncrementLevel(levels.Length);
         }
 
         StartUp();

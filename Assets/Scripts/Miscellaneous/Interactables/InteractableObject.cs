@@ -33,7 +33,7 @@ public class InteractableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             nearPlayer = true;
             pi.canInteract = true;
@@ -42,7 +42,7 @@ public class InteractableObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             nearPlayer = false;
             pi.canInteract = ic.GetButtonDown("Movement", "Interact");

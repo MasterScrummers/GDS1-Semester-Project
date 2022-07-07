@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainMenuNavigation : MonoBehaviour
 {
     private InputController ic;
+    private AudioController ac;
     [SerializeField] private GameObject start;
     [SerializeField] private RectTransform pointer;
     [SerializeField] private GameObject optionList;
@@ -19,8 +20,18 @@ public class MainMenuNavigation : MonoBehaviour
     private void Start()
     {
         ic = DoStatic.GetGameController<InputController>();
+        ac = DoStatic.GetGameController<AudioController>();
         menuOptions = GetOptions(DoStatic.GetChildren(optionList.transform));
         promptOptions = GetOptions(DoStatic.GetChildren(tutorialPrompt.transform));
+
+        ic.GetComponent<VariableController>().ResetLevel();
+        Vector3 camPos = Vector3.zero;
+        camPos.z = -10;
+        Camera.main.transform.position = camPos;
+
+        HealthComponent health = ic.GetComponent<SceneController>().player.GetComponent<HealthComponent>();
+        health.SetHP();
+        health.GetComponent<PlayerInput>().Restart();
     }
 
     private RectTransform[] GetOptions(Transform[] children)
@@ -57,6 +68,7 @@ public class MainMenuNavigation : MonoBehaviour
 
         void SetPointerPosition(int increments, RectTransform[] options)
         {
+            if (increments != 0) {ac.PlaySound("MenuSelect");}
             currentIndex += increments;
             currentIndex = currentIndex < 0 ? options.Length - 1 : currentIndex % options.Length;
             pointer.position = options[currentIndex].position;
@@ -68,7 +80,6 @@ public class MainMenuNavigation : MonoBehaviour
             {
                 VariableController var = ic.GetComponent<VariableController>();
                 var.SetScene(SceneController.SceneName.Tutorial);
-                var.SetLevel(0);
             }
 
             ic.GetComponent<SceneController>().ChangeScene(SceneController.SceneName.OpeningCutscene);

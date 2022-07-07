@@ -22,7 +22,7 @@ AnimationClip:
     - time: 0
       value: {fileID: 105720551, guid: ea0280e442edeb14a8ed7a3adbe391ed, type: 3}
     attribute: m_Sprite
-    path: 
+    path: KirbySpritePivot/Kirby Sprite
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 30
@@ -67,16 +67,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetAnimState
-    data: 
+    functionName: AnimMethod
+    data: JumpStart
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
-    messageOptions: 0
-  - time: 0
-    functionName: SetJumpState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
     messageOptions: 0
